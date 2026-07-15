@@ -1,0 +1,192 @@
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import TickerTape from '../components/layout/TickerTape'
+import Navigation from '../components/layout/Navigation'
+import Footer from '../components/layout/Footer'
+import FinalCTA from '../components/home/FinalCTA'
+import SectionLabel from '../components/shared/SectionLabel'
+import GoldButton from '../components/shared/GoldButton'
+
+const FLIP_CARDS = [
+  { front: 'MADDENAI SENTIMENT', back: 'A weekly 0-100 sentiment score with a full factor breakdown — not just a number.' },
+  { front: 'THREE KEY THEMES', back: 'The three macro or market themes actually worth your attention that week, explained plainly.' },
+  { front: 'ASX WATCH LIST', back: 'A curated list of ASX names in focus, with the reasoning behind each inclusion.' },
+  { front: 'RBA CALENDAR', back: 'Every upcoming rate decision and data release that could move your portfolio.' },
+]
+
+const PAST_ISSUES = [
+  ['Issue #023', '7 July 2026', 'Iron ore holds, tech leads a quiet week for the ASX 200.'],
+  ['Issue #022', '30 June 2026', 'FY26 close: what the reporting season means for dividend investors.'],
+  ['Issue #021', '23 June 2026', 'Crypto breadth improves as BTC dominance eases below 60%.'],
+]
+
+function FlipCard({ front, back, index }) {
+  const [flipped, setFlipped] = useState(false)
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ delay: index * 0.1, duration: 0.4 }}
+      className="h-[180px] cursor-pointer"
+      style={{ perspective: 1000 }}
+      onClick={() => setFlipped((f) => !f)}
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+    >
+      <motion.div
+        className="relative w-full h-full"
+        style={{ transformStyle: 'preserve-3d' }}
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div
+          className="absolute inset-0 bg-bg-surface border border-gold/20 rounded p-5 flex items-center justify-center text-center"
+          style={{ backfaceVisibility: 'hidden' }}
+        >
+          <span className="font-mono text-[13px] tracking-wide text-gold">{front}</span>
+        </div>
+        <div
+          className="absolute inset-0 bg-bg-primary border border-gold/30 rounded p-5 flex items-center justify-center text-center"
+          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+        >
+          <span className="font-sans text-[13px] text-text-muted leading-relaxed">{back}</span>
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+export default function Research() {
+  const [email, setEmail] = useState('')
+
+  return (
+    <>
+      <TickerTape />
+      <Navigation />
+
+      <section className="bg-bg-primary pt-[140px] pb-16 px-6 md:px-10 text-center">
+        <SectionLabel center>MADDEN RESEARCH</SectionLabel>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-sans text-[36px] md:text-[54px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto"
+        >
+          The weekly brief serious Australian investors read first.
+        </motion.h1>
+        <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-relaxed">
+          Every Monday at 7:00am AEST. MaddenAI-powered market intelligence. Free to subscribe.
+        </p>
+      </section>
+
+      <section className="bg-bg-surface py-20 px-6 md:px-10">
+        <div className="max-w-[1280px] mx-auto text-center">
+          <SectionLabel center>WHAT'S INSIDE</SectionLabel>
+          <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+            Four sections. Every Monday. Hover to preview.
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+            {FLIP_CARDS.map((card, i) => (
+              <FlipCard key={card.front} front={card.front} back={card.back} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-primary py-20 px-6 md:px-10">
+        <div className="max-w-[600px] mx-auto">
+          <SectionLabel center>SAMPLE ISSUE</SectionLabel>
+          <div className="relative bg-bg-surface border border-gold/20 rounded overflow-hidden mt-6">
+            <div className="bg-gold px-5 py-3">
+              <div className="font-mono text-[13px] font-bold text-bg-primary tracking-[0.1em]">MADDEN RESEARCH</div>
+              <div className="font-mono text-[10px] text-bg-primary/70 mt-0.5">ISSUE #024 &nbsp;·&nbsp; MONDAY 14 JULY 2026</div>
+            </div>
+            <div className="p-5 font-mono text-[11px]">
+              <div className="text-gold text-[9px] tracking-[0.1em]">MADDENAI WEEKLY SENTIMENT</div>
+              <div className="text-text-primary text-[20px] font-bold mt-1.5">68/100 NEUTRAL-BULLISH</div>
+              <div className="w-full h-1.5 rounded-full mt-3" style={{ background: 'linear-gradient(to right, #A83232, #C9A84C, #2D8A50)' }} />
+              <div className="text-gold text-[9px] tracking-[0.1em] mt-6">THIS WEEK'S THREE THEMES</div>
+              <div className="flex flex-col gap-2 mt-2 text-text-muted">
+                <div>◆ Iron ore stability above US$95/t supports ASX materials sector</div>
+                <div>◆ Fed pause reduces AUD pressure — bullish for offshore earners</div>
+                <div>◆ Crypto breadth improving as BTC dominance eases from 60%</div>
+              </div>
+              <div className="text-gold text-[9px] tracking-[0.1em] mt-6">ASX WATCH LIST</div>
+              <div className="text-text-muted mt-2">CSL.AX · BHP.AX · WBC.AX · RIO.AX · WOW.AX</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-surface py-20 px-6 md:px-10">
+        <div className="max-w-[900px] mx-auto text-center">
+          <SectionLabel center>SUBSCRIBE</SectionLabel>
+          <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+            Free brief, or full paid access.
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 text-left">
+            <div className="border border-gold/20 rounded p-6 bg-bg-primary">
+              <div className="font-mono text-[13px] font-bold text-gold">FREE</div>
+              <div className="flex flex-col gap-2 mt-4 font-sans text-[12px] text-text-muted">
+                <div>◆ Weekly Monday brief</div>
+                <div>◆ MaddenAI sentiment score</div>
+                <div>◆ Three market themes</div>
+                <div>◆ RBA calendar</div>
+              </div>
+            </div>
+            <div className="border border-gold rounded p-6 bg-bg-primary">
+              <div className="font-mono text-[13px] font-bold text-gold">PAID A$29/MO</div>
+              <div className="flex flex-col gap-2 mt-4 font-sans text-[12px] text-text-muted">
+                <div>◆ Everything in Free</div>
+                <div>◆ Mid-week update</div>
+                <div>◆ Full ASX watch list</div>
+                <div>◆ Archive access</div>
+              </div>
+            </div>
+          </div>
+          <div className="max-w-[440px] mx-auto mt-8">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              className="w-full font-mono text-[12px] text-text-primary bg-bg-primary border border-gold/30 rounded px-4 py-3 outline-none focus:border-gold/60 transition-colors placeholder:text-text-faint"
+            />
+            <div className="mt-4">
+              <GoldButton className="w-full">SUBSCRIBE FREE</GoldButton>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-primary py-20 px-6 md:px-10">
+        <div className="max-w-[1280px] mx-auto text-center">
+          <SectionLabel center>PAST ISSUES</SectionLabel>
+          <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+            Catch up on what you missed.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12 text-left">
+            {PAST_ISSUES.map(([issue, date, summary], i) => (
+              <motion.div
+                key={issue}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+                className="bg-bg-surface border border-gold/20 rounded p-6 hover:border-gold/40 transition-colors cursor-pointer"
+              >
+                <div className="font-mono text-[11px] text-gold">{issue}</div>
+                <div className="font-mono text-[10px] text-text-faint mt-1">{date}</div>
+                <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{summary}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <FinalCTA />
+      <Footer />
+    </>
+  )
+}

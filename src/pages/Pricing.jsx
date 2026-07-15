@@ -1,0 +1,276 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import TickerTape from '../components/layout/TickerTape'
+import Navigation from '../components/layout/Navigation'
+import Footer from '../components/layout/Footer'
+import FinalCTA from '../components/home/FinalCTA'
+import SectionLabel from '../components/shared/SectionLabel'
+import GoldButton from '../components/shared/GoldButton'
+
+const PLANS = [
+  { name: 'CORE', monthly: 19, annual: 189, features: ['Markets + Watchlist', 'MaddenAI Sentiment Score', 'Daily market brief', 'Email support'] },
+  { name: 'PRO', monthly: 49, annual: 489, popular: true, features: ['Everything in Core', 'All 7 modules', 'Asset Analysis on demand', '5 Research Notes / mo'] },
+  { name: 'APEX', monthly: 149, annual: 1489, note: 'THIS PRICE IS CORRECT', features: ['Everything in Pro', 'Unlimited Research Notes', 'Global Intelligence Map', 'Priority support'] },
+  { name: 'ADVISER', monthly: 299, annual: 2989, note: 'THIS PRICE IS CORRECT', features: ['Everything in Apex', 'Multi-client dashboards', 'White-label reports', 'Dedicated account manager'] },
+]
+
+const COMPARISON_ROWS = [
+  ['Markets Module', true, true, true, true],
+  ['Crypto Module', true, true, true, true],
+  ['Rates Module', false, true, true, true],
+  ['Macro Module', false, true, true, true],
+  ['News Module', false, true, true, true],
+  ['Watchlist', true, true, true, true],
+  ['Global Intelligence', false, false, true, true],
+  ['Command Bar', false, true, true, true],
+  ['MaddenAI Sentiment Score', true, true, true, true],
+  ['Asset Analysis on demand', false, true, true, true],
+  ['Research Notes included / mo', '0', '5', 'Unlimited', 'Unlimited'],
+  ['Multi-client dashboards', false, false, false, true],
+  ['Priority support', false, false, true, true],
+  ['Dedicated account manager', false, false, false, true],
+]
+
+const RESEARCH_ROWS = [
+  ['Single Note', 'A$4.99'],
+  ['5-Pack', 'A$19.99'],
+  ['10-Pack', 'A$34.99'],
+  ['Pro Tier', '5 / month included'],
+  ['Apex Tier', 'Unlimited'],
+]
+
+const BUSINESS_TIERS = [
+  { name: 'ADVISER', price: 'A$299/mo', desc: 'For individual financial advisers managing client portfolios.', features: ['Up to 10 client dashboards', 'White-label reports', 'Priority support'] },
+  { name: 'FIRM', price: 'Custom', desc: 'For advisory firms and small institutions with multiple advisers.', features: ['Unlimited client dashboards', 'Team seat management', 'Dedicated account manager'] },
+  { name: 'INSTITUTIONAL', price: 'Custom', desc: 'For funds and institutions needing API access and custom data feeds.', features: ['Full API access', 'Custom data integrations', 'SLA-backed support'] },
+]
+
+const FAQS = [
+  ['Can I cancel anytime?', 'Yes. All plans are month-to-month with no lock-in contract, and you can cancel from your account settings at any time.'],
+  ['Is there really no credit card required for the trial?', 'Correct. The 7-day free trial gives you full Pro-tier access with no card required upfront.'],
+  ['What happens to my data if I downgrade?', 'Your watchlist, alerts, and saved research remain intact — downgrading only changes which modules and features are active.'],
+  ['Do Research Notes expire?', 'No. Once purchased, a Research Note is yours to access indefinitely from your account.'],
+  ['Is Maddex regulated financial advice?', 'No. Maddex provides general financial information only and does not constitute financial product advice. Always consult a licensed adviser for personal advice.'],
+]
+
+function ComparisonCell({ value }) {
+  if (value === true) return <span className="text-gold">✓</span>
+  if (value === false) return <span className="text-text-faint">—</span>
+  return <span className="text-text-primary">{value}</span>
+}
+
+function FAQItem({ question, answer, isOpen, onClick }) {
+  return (
+    <div className="border-b border-[rgba(30,70,140,0.3)]">
+      <button
+        type="button"
+        onClick={onClick}
+        className="w-full flex justify-between items-center py-5 text-left"
+      >
+        <span className="font-sans text-[15px] font-medium text-text-primary">{question}</span>
+        <motion.span animate={{ rotate: isOpen ? 45 : 0 }} className="text-gold text-[18px]">+</motion.span>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <p className="font-sans text-[13px] text-text-muted pb-5 leading-relaxed max-w-2xl">{answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
+export default function Pricing() {
+  const [annual, setAnnual] = useState(false)
+  const [openFaq, setOpenFaq] = useState(0)
+
+  return (
+    <>
+      <TickerTape />
+      <Navigation />
+
+      <section className="bg-bg-primary pt-[140px] pb-16 px-6 md:px-10 text-center">
+        <SectionLabel center>PRICING</SectionLabel>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="font-sans text-[36px] md:text-[54px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
+        >
+          Institutional intelligence. Retail pricing.
+        </motion.h1>
+        <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-relaxed">
+          No lock-in contracts. Cancel anytime. Full Pro access for 7 days, free.
+        </p>
+
+        <div className="inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-8">
+          <button
+            type="button"
+            onClick={() => setAnnual(false)}
+            className={`font-mono text-[11px] px-4 py-2 rounded-full transition-all ${!annual ? 'bg-gold text-bg-primary font-bold' : 'text-text-muted'}`}
+          >
+            MONTHLY
+          </button>
+          <button
+            type="button"
+            onClick={() => setAnnual(true)}
+            className={`font-mono text-[11px] px-4 py-2 rounded-full transition-all flex items-center gap-2 ${annual ? 'bg-gold text-bg-primary font-bold' : 'text-text-muted'}`}
+          >
+            ANNUAL
+            <span className="bg-gold/20 text-gold text-[9px] px-1.5 py-0.5 rounded-full">SAVE 17%</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10 text-left max-w-[1280px] mx-auto">
+          {PLANS.map((plan, i) => (
+            <motion.div
+              key={plan.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ delay: i * 0.1, duration: 0.4 }}
+              whileHover={{ scale: 1.01 }}
+              className={`relative bg-bg-surface rounded p-6 border transition-colors duration-200 ${
+                plan.popular ? 'border-gold scale-[1.02]' : 'border-gold/20 hover:border-gold/40'
+              }`}
+            >
+              {plan.popular && (
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full">
+                  MOST POPULAR
+                </span>
+              )}
+              <div className="font-mono text-[12px] tracking-wide text-gold">{plan.name}</div>
+              <div className="mt-3">
+                {annual ? (
+                  <>
+                    <span className="font-sans text-[13px] text-text-faint line-through mr-2">A${plan.monthly}</span>
+                    <span className="font-sans text-[28px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
+                    <span className="font-sans text-[13px] text-text-muted">/mo</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="font-sans text-[28px] font-bold text-text-primary">A${plan.monthly}</span>
+                    <span className="font-sans text-[13px] text-text-muted">/mo</span>
+                  </>
+                )}
+              </div>
+              {plan.note && <div className="font-mono text-[9px] text-text-faint mt-1">{plan.note}</div>}
+              <div className="flex flex-col gap-2.5 mt-5">
+                {plan.features.map((f) => (
+                  <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
+                    <span className="text-gold">◆</span>
+                    {f}
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6">
+                <GoldButton variant={plan.popular ? 'solid' : 'ghost'} className="w-full">GET STARTED</GoldButton>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-bg-surface py-20 px-6 md:px-10">
+        <div className="max-w-[1000px] mx-auto">
+          <SectionLabel center>FULL COMPARISON</SectionLabel>
+          <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary text-center leading-tight">
+            Every feature, side by side.
+          </h2>
+          <div className="overflow-x-auto mt-10">
+            <table className="w-full min-w-[640px] border-collapse">
+              <thead>
+                <tr className="border-b border-gold/20">
+                  <th className="text-left font-mono text-[11px] text-text-muted py-3 pr-4">FEATURE</th>
+                  {PLANS.map((p) => (
+                    <th key={p.name} className="font-mono text-[11px] text-gold py-3 px-3 text-center">{p.name}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON_ROWS.map(([label, ...values], i) => (
+                  <tr key={label} className={i % 2 === 0 ? 'bg-bg-primary/40' : ''}>
+                    <td className="font-sans text-[13px] text-text-muted py-3 pr-4">{label}</td>
+                    {values.map((v, j) => (
+                      <td key={j} className="font-mono text-[13px] text-center py-3 px-3"><ComparisonCell value={v} /></td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-primary py-20 px-6 md:px-10 text-center">
+        <div className="max-w-[600px] mx-auto bg-bg-surface border border-gold/20 rounded p-6 text-left">
+          <div className="font-mono text-[12px] text-gold tracking-wide text-center mb-4">
+            MADDENAI RESEARCH NOTES — From A$4.99
+          </div>
+          {RESEARCH_ROWS.map(([label, price], i) => (
+            <div key={label} className={`flex justify-between py-2.5 font-mono text-[12px] ${i > 0 ? 'border-t border-[rgba(30,70,140,0.3)]' : ''}`}>
+              <span className="text-text-muted">{label}</span>
+              <span className="text-text-primary">{price}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-bg-surface py-20 px-6 md:px-10">
+        <div className="max-w-[1280px] mx-auto text-center">
+          <SectionLabel center>BUSINESS PLANS</SectionLabel>
+          <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+            Built for advisers, firms, and institutions.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 text-left">
+            {BUSINESS_TIERS.map((tier) => (
+              <div key={tier.name} className="bg-bg-primary border border-gold/20 rounded p-6">
+                <div className="font-mono text-[12px] tracking-wide text-gold">{tier.name}</div>
+                <div className="font-sans text-[24px] font-bold text-text-primary mt-2">{tier.price}</div>
+                <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{tier.desc}</p>
+                <div className="flex flex-col gap-2 mt-5">
+                  {tier.features.map((f) => (
+                    <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
+                      <span className="text-gold">◆</span>{f}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6">
+                  <GoldButton variant="ghost" className="w-full">CONTACT SALES</GoldButton>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-primary py-20 px-6 md:px-10">
+        <div className="max-w-[720px] mx-auto">
+          <SectionLabel center>FAQ</SectionLabel>
+          <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary text-center leading-tight mb-8">
+            Questions, answered.
+          </h2>
+          {FAQS.map((faq, i) => (
+            <FAQItem
+              key={faq[0]}
+              question={faq[0]}
+              answer={faq[1]}
+              isOpen={openFaq === i}
+              onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
+            />
+          ))}
+        </div>
+      </section>
+
+      <FinalCTA />
+      <Footer />
+    </>
+  )
+}

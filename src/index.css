@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #060D1A;
+  --bg-surface: #0B1628;
+  --bg-elevated: #0F1E36;
+  --gold: #C9A84C;
+  --gold-dim: rgba(201,168,76,0.12);
+  --gold-glow: rgba(201,168,76,0.06);
+  --blue: #1A7FE8;
+  --text-primary: #E8EDF5;
+  --text-muted: #637899;
+  --text-faint: #3D5070;
+  --gain: #2D8A50;
+  --loss: #A83232;
+  --border: rgba(30,70,140,0.35);
+  --border-gold: rgba(201,168,76,0.25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #060D1A;
+  color: #E8EDF5;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: rgba(201,168,76,0.3); color: #E8EDF5; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #060D1A; }
+::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,0.5); }
+
+@keyframes blink-dot {
+  0% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+.blink-dot {
+  animation: blink-dot 1s ease-in-out alternate infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.blink-cursor {
+  animation: blink-cursor 0.8s step-start infinite;
+}
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(35px, 40px); }
+}
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-40px, -30px); }
+}
+@keyframes orb-float-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, -35px) scale(1.05); }
+}
+.orb-1 { animation: orb-float-1 22s ease-in-out infinite; }
+.orb-2 { animation: orb-float-2 25s ease-in-out infinite; }
+.orb-3 { animation: orb-float-3 20s ease-in-out infinite; }
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  animation: ticker-scroll 60s linear infinite;
+}
