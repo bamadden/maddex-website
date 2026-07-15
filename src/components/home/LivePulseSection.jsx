@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion, useInView } from 'framer-motion'
 import SectionLabel from '../shared/SectionLabel'
 
 function Sparkline({ points, color = '#C9A84C' }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-20px' })
   const max = Math.max(...points)
   const min = Math.min(...points)
   const range = max - min || 1
@@ -9,8 +12,18 @@ function Sparkline({ points, color = '#C9A84C' }) {
     .map((p, i) => `${(i / (points.length - 1)) * 80},${30 - ((p - min) / range) * 28 - 1}`)
     .join(' ')
   return (
-    <svg width="80" height="30" viewBox="0 0 80 30">
-      <polyline points={coords} fill="none" stroke={color} strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+    <svg ref={ref} width="80" height="30" viewBox="0 0 80 30">
+      <motion.polyline
+        points={coords}
+        fill="none"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: inView ? 1 : 0 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      />
     </svg>
   )
 }
@@ -23,11 +36,31 @@ function genSpark(trendUp = true) {
   })
 }
 
+function FadeNumber({ value, className }) {
+  return (
+    <span className={`relative inline-grid ${className}`}>
+      <AnimatePresence mode="popLayout">
+        <motion.span
+          key={value}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.4 }}
+          className="[grid-area:1/1]"
+        >
+          {value}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
 export default function LivePulseSection() {
   const [asx, setAsx] = useState(8412.4)
   const [btc, setBtc] = useState(162400)
   const [aud, setAud] = useState(0.6452)
   const [gold, setGoldPrice] = useState(4821)
+  const [secondsAgo, setSecondsAgo] = useState(0)
   const [sparks] = useState({
     asx: genSpark(true),
     btc: genSpark(true),
@@ -41,22 +74,34 @@ export default function LivePulseSection() {
       setBtc((v) => v + (Math.random() * 200 - 100))
       setAud((v) => v + (Math.random() * 0.001 - 0.0005))
       setGoldPrice((v) => v + (Math.random() * 6 - 3))
-    }, 10000)
+      setSecondsAgo(0)
+    }, 6000)
+    return () => clearInterval(id)
+  }, [])
+
+  useEffect(() => {
+    const id = setInterval(() => setSecondsAgo((s) => s + 1), 1000)
     return () => clearInterval(id)
   }, [])
 
   const dots = Array.from({ length: 22 }, (_, i) => i < 18)
 
   return (
-    <section className="bg-bg-surface py-24 md:py-[120px] px-6 md:px-10">
+    <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
       <div className="max-w-[1280px] mx-auto text-center">
         <SectionLabel center>LIVE MARKET PULSE</SectionLabel>
-        <h2 className="font-sans text-[32px] md:text-[44px] font-bold leading-tight tracking-tight text-text-primary">
+        <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary">
           Markets don't sleep. Neither does Maddex.
         </h2>
-        <p className="font-sans text-[17px] text-text-muted mt-4">
-          Data updates every 60 seconds. Powered by MaddenAI.
-        </p>
+        <div className="flex items-center justify-center gap-2 mt-4">
+          <span className="relative w-2 h-2">
+            <span className="pulse-ring absolute inset-0" />
+            <span className="absolute inset-0 rounded-full bg-gold" />
+          </span>
+          <p className="font-sans text-[18px] text-text-muted leading-[1.75]">
+            Data updates every 60 seconds. Powered by MaddenAI.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1000px] mx-auto mt-14 text-left">
           <div className="bg-bg-primary border border-gold/15 rounded p-6">
@@ -71,28 +116,28 @@ export default function LivePulseSection() {
 
           <div className="bg-bg-primary border border-gold/15 rounded p-6">
             <div className="font-mono text-[9px] text-gold">ASX 200</div>
-            <div className="font-mono text-[28px] font-bold text-text-primary mt-2">{asx.toFixed(2)}</div>
+            <FadeNumber value={asx.toFixed(2)} className="font-mono text-[28px] font-bold text-text-primary mt-2" />
             <div className="font-mono text-[14px] text-gain mt-1">▲ +0.42%</div>
             <div className="mt-3"><Sparkline points={sparks.asx} /></div>
           </div>
 
           <div className="bg-bg-primary border border-gold/15 rounded p-6">
             <div className="font-mono text-[9px] text-gold">BTC/AUD</div>
-            <div className="font-mono text-[28px] font-bold text-text-primary mt-2">A${btc.toLocaleString('en-AU', { maximumFractionDigits: 0 })}</div>
+            <FadeNumber value={`A$${btc.toLocaleString('en-AU', { maximumFractionDigits: 0 })}`} className="font-mono text-[28px] font-bold text-text-primary mt-2" />
             <div className="font-mono text-[14px] text-gain mt-1">▲ +1.80%</div>
             <div className="mt-3"><Sparkline points={sparks.btc} /></div>
           </div>
 
           <div className="bg-bg-primary border border-gold/15 rounded p-6">
             <div className="font-mono text-[9px] text-gold">AUD/USD</div>
-            <div className="font-mono text-[28px] font-bold text-text-primary mt-2">{aud.toFixed(4)}</div>
+            <FadeNumber value={aud.toFixed(4)} className="font-mono text-[28px] font-bold text-text-primary mt-2" />
             <div className="font-mono text-[14px] text-loss mt-1">▼ -0.12%</div>
             <div className="mt-3"><Sparkline points={sparks.aud} color="#A83232" /></div>
           </div>
 
           <div className="bg-bg-primary border border-gold/15 rounded p-6">
             <div className="font-mono text-[9px] text-gold">GOLD AUD</div>
-            <div className="font-mono text-[28px] font-bold text-text-primary mt-2">A${gold.toFixed(0)}</div>
+            <FadeNumber value={`A$${gold.toFixed(0)}`} className="font-mono text-[28px] font-bold text-text-primary mt-2" />
             <div className="font-mono text-[14px] text-gain mt-1">▲ +0.30%</div>
             <div className="mt-3"><Sparkline points={sparks.gold} /></div>
           </div>
@@ -107,6 +152,10 @@ export default function LivePulseSection() {
             </div>
             <div className="font-sans text-[10px] text-text-muted mt-2">MARKETS ACTIVE</div>
           </div>
+        </div>
+
+        <div className="font-mono text-[10px] text-text-faint mt-6">
+          LAST UPDATED {secondsAgo === 0 ? 'JUST NOW' : `${secondsAgo}S AGO`}
         </div>
       </div>
     </section>

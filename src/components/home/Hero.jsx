@@ -110,10 +110,17 @@ export default function Hero() {
       >
         <div>
           <motion.div
+            initial={{ opacity: 0, width: 0 }}
+            animate={{ opacity: 1, width: 120 }}
+            transition={{ delay: 0.15, duration: 0.5 }}
+            className="h-px bg-gold/50 mb-5"
+          />
+
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.4 }}
-            className="font-mono text-[10px] tracking-[0.2em] text-gold mb-6"
+            className="font-mono text-[9px] tracking-[0.25em] text-gold mb-6"
           >
             AUSTRALIAN FINANCIAL INTELLIGENCE
           </motion.div>
@@ -122,7 +129,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="font-sans text-[42px] sm:text-[56px] lg:text-[72px] font-bold leading-[1.0] tracking-[-0.03em] text-text-primary"
+            className="font-sans text-[44px] sm:text-[60px] lg:text-[80px] font-bold leading-[0.95] tracking-[-0.03em] text-text-primary"
           >
             The terminal
             <br />
@@ -135,7 +142,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.5 }}
-            className="font-sans text-[18px] text-text-muted leading-[1.7] max-w-[460px] mt-6"
+            className="font-sans text-[18px] text-text-muted leading-[1.75] max-w-[460px] mt-6"
           >
             Maddex delivers institutional-grade financial intelligence to Australian investors at a fraction of Bloomberg's cost. Real-time data. MaddenAI analysis. Global intelligence.
           </motion.p>
@@ -183,13 +190,46 @@ export default function Hero() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="hidden lg:block"
+          className="hidden lg:block relative"
         >
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: [0, -6, 0] }}
+            transition={{ opacity: { delay: 1.5, duration: 0.5 }, y: { delay: 1.5, duration: 5, repeat: Infinity, ease: 'easeInOut' } }}
+            className="absolute -top-6 -left-10 z-20 bg-bg-primary border border-gold/30 rounded px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+            style={{ willChange: 'transform' }}
+          >
+            <div className="font-mono text-[8px] tracking-[0.15em] text-gold">MADDENAI</div>
+            <div className="font-mono text-[12px] font-bold text-text-primary mt-0.5">72/100 <span className="text-gold">BULLISH</span></div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: [0, 6, 0] }}
+            transition={{ opacity: { delay: 1.65, duration: 0.5 }, y: { delay: 1.65, duration: 4.5, repeat: Infinity, ease: 'easeInOut' } }}
+            className="absolute -bottom-9 -left-14 z-20 bg-bg-primary border border-gold/30 rounded px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+            style={{ willChange: 'transform' }}
+          >
+            <div className="font-mono text-[8px] tracking-[0.15em] text-text-muted">ASX 200</div>
+            <div className="font-mono text-[12px] font-bold text-gain mt-0.5">▲ +0.42%</div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: [0, -7, 0] }}
+            transition={{ opacity: { delay: 1.8, duration: 0.5 }, y: { delay: 1.8, duration: 5.5, repeat: Infinity, ease: 'easeInOut' } }}
+            className="absolute -top-6 -right-8 z-20 bg-bg-primary border border-gold/30 rounded px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
+            style={{ willChange: 'transform' }}
+          >
+            <div className="font-mono text-[8px] tracking-[0.15em] text-text-muted">BTC/AUD</div>
+            <div className="font-mono text-[12px] font-bold text-gain mt-0.5">A$162,400 ▲</div>
+          </motion.div>
+
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <TerminalCard className="shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+            <TerminalCard className="shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_80px_rgba(201,168,76,0.08),0_0_160px_rgba(201,168,76,0.04)]">
               <div className="flex items-center justify-between h-8 bg-bg-primary border-b border-gold/12 px-3">
                 <div className="flex items-baseline gap-1">
                   <span className="font-mono text-[11px] font-bold text-gold">MADDEX</span>

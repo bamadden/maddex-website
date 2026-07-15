@@ -72,19 +72,48 @@ export default function MaddenAI() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-sans text-[36px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
+          className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
         >
           The intelligence layer behind every module.
         </motion.h1>
-        <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-relaxed">
+        <p className="font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
           MaddenAI isn't a chatbot bolted onto a data feed. It's a structured scoring engine that reads markets, sentiment, and macro simultaneously — then hands you the synthesis.
         </p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="max-w-[900px] mx-auto mt-12 bg-bg-surface border border-gold/25 rounded overflow-hidden text-left"
+        >
+          <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 flex-wrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
+            TODAY'S MADDENAI READINGS &nbsp;·&nbsp; 15 JULY 2026 &nbsp;·&nbsp; 09:42 AEST
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[rgba(30,70,140,0.3)]">
+            <div className="p-5 text-center">
+              <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">MARKET SENTIMENT</div>
+              <div className="font-mono text-[32px] font-bold text-gold mt-2">72<span className="text-[16px] text-text-primary">/100</span></div>
+              <div className="font-mono text-[11px] text-text-primary mt-1">NEUTRAL-BULLISH</div>
+            </div>
+            <div className="p-5 text-center">
+              <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">CRYPTO MOMENTUM</div>
+              <div className="font-mono text-[32px] font-bold text-gold mt-2">68<span className="text-[16px] text-text-primary">/100</span></div>
+              <div className="font-mono text-[11px] text-gain mt-1">BULLISH</div>
+            </div>
+            <div className="p-5 text-center">
+              <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">BEST PERFORMING SECTOR</div>
+              <div className="font-mono text-[20px] font-bold text-gold mt-2">INFORMATION TECHNOLOGY</div>
+              <div className="font-mono text-[11px] text-gain mt-1">81/100 STRONG</div>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
-      <section className="bg-bg-surface py-24 px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[1280px] mx-auto text-center">
           <SectionLabel center>HOW IT WORKS</SectionLabel>
-          <h2 className="font-sans text-[30px] md:text-[42px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             A two-layer intelligence system.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-14 text-left">
@@ -95,7 +124,7 @@ export default function MaddenAI() {
               transition={{ duration: 0.5 }}
               className="bg-bg-primary border border-gold/20 rounded p-7"
             >
-              <span className="font-mono text-[10px] tracking-[0.2em] text-gold">LAYER ONE</span>
+              <span className="font-mono text-[9px] tracking-[0.25em] text-gold">LAYER ONE</span>
               <h3 className="font-sans text-[22px] font-bold text-text-primary mt-3">Data Ingestion</h3>
               <p className="font-sans text-[14px] text-text-muted mt-3 leading-relaxed">
                 Prices, volumes, macro releases, central bank statements, and 28+ news sources are pulled continuously and normalised into a single structured dataset — refreshed as fast as the underlying markets move.
@@ -108,7 +137,7 @@ export default function MaddenAI() {
               transition={{ duration: 0.5, delay: 0.15 }}
               className="bg-bg-primary border border-gold/20 rounded p-7"
             >
-              <span className="font-mono text-[10px] tracking-[0.2em] text-gold">LAYER TWO</span>
+              <span className="font-mono text-[9px] tracking-[0.25em] text-gold">LAYER TWO</span>
               <h3 className="font-sans text-[22px] font-bold text-text-primary mt-3">Weighted Synthesis</h3>
               <p className="font-sans text-[14px] text-text-muted mt-3 leading-relaxed">
                 That dataset is run through weighted scoring models — Sentiment, Momentum, and Sector Strength — producing a 0-100 reading with a structured breakdown of exactly what's driving it.
@@ -118,10 +147,10 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-24 px-6 md:px-10">
+      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[1280px] mx-auto">
           <SectionLabel center>SCORING MODELS</SectionLabel>
-          <h2 className="font-sans text-[30px] md:text-[42px] font-bold text-text-primary text-center max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary text-center max-w-2xl mx-auto leading-tight">
             Three composite models. Fully transparent.
           </h2>
 
@@ -189,14 +218,14 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-24 px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
             <SectionLabel>ASSET ANALYSIS</SectionLabel>
-            <h2 className="font-sans text-[30px] md:text-[42px] font-bold text-text-primary leading-tight">
+            <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
               Type any ticker. Get a full structured read in seconds.
             </h2>
-            <p className="font-sans text-[16px] text-text-muted mt-4 leading-relaxed max-w-[440px]">
+            <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
               Stock, crypto, FX pair, or index — MaddenAI returns the same five-part structure every time, so you always know where to look.
             </p>
             <div className="flex flex-col gap-3 mt-7">
@@ -228,12 +257,12 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-24 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10 text-center">
         <SectionLabel center>RESEARCH NOTES</SectionLabel>
-        <h2 className="font-sans text-[30px] md:text-[42px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+        <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Institutional-quality PDF research, generated on demand.
         </h2>
-        <p className="font-sans text-[16px] text-text-muted max-w-xl mx-auto mt-4">
+        <p className="font-sans text-[18px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
           Any ASX or US ticker. From A$4.99 a note — or unlimited on the Apex tier.
         </p>
         <div className="mt-8">
@@ -241,10 +270,10 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-24 px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[1280px] mx-auto text-center">
           <SectionLabel center>PERSONALISATION</SectionLabel>
-          <h2 className="font-sans text-[30px] md:text-[42px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             MaddenAI adapts to what you actually hold.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-14 text-left">

@@ -16,7 +16,7 @@ export default function FinalCTA() {
         }}
       />
 
-      <div className="relative z-10 max-w-[900px] mx-auto px-6 md:px-10 text-center py-20">
+      <div className="relative z-10 max-w-[900px] mx-auto px-6 md:px-10 text-center py-20 md:py-[140px]">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -33,7 +33,7 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-sans text-[36px] md:text-[52px] lg:text-[64px] font-bold leading-tight tracking-tight text-text-primary mt-4"
+          className="font-sans text-[38px] md:text-[58px] lg:text-[70px] font-bold leading-tight tracking-tight text-text-primary mt-4"
         >
           Start your 7-day free trial today.
         </motion.h2>
@@ -43,7 +43,7 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-sans text-[18px] text-text-muted mt-5"
+          className="font-sans text-[18px] text-text-muted mt-5 leading-[1.75]"
         >
           No credit card. Full Pro access. First month 50% off when you subscribe.
         </motion.p>

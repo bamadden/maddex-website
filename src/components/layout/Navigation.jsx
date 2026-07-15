@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import GoldButton from '../shared/GoldButton'
 
@@ -74,14 +74,14 @@ function Dropdown({ item }) {
       className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50"
     >
       <div
-        className={`bg-bg-surface border border-gold/20 rounded p-2 ${
-          item.columns === 2 ? 'grid grid-cols-2 gap-1 min-w-[560px]' : 'min-w-[280px]'
+        className={`bg-bg-surface border border-gold/20 rounded p-3 ${
+          item.columns === 2 ? 'grid grid-cols-2 gap-2 min-w-[640px]' : 'min-w-[320px]'
         }`}
       >
         {item.items.map((sub) => (
           <div
             key={sub.title}
-            className="flex gap-3 px-3 py-2.5 rounded-sm hover:bg-gold/[0.06] transition-colors duration-150 cursor-pointer"
+            className="flex gap-3 px-3 py-3 rounded-sm hover:bg-gold/[0.06] transition-colors duration-150 cursor-pointer"
           >
             <span className="text-gold text-[16px] leading-none mt-0.5">{sub.icon}</span>
             <div>
@@ -99,6 +99,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     function onScroll() {
@@ -106,6 +107,17 @@ export default function Navigation() {
     }
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    function onKeyDown(e) {
+      if (e.key === 'Escape') {
+        setActiveDropdown(null)
+        setMobileOpen(false)
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
   }, [])
 
   return (
@@ -126,24 +138,36 @@ export default function Navigation() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          {NAV_ITEMS.map((item) => (
-            <div
-              key={item.label}
-              className="relative"
-              onMouseEnter={() => setActiveDropdown(item.label)}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <Link
-                to={item.to}
-                className="font-sans text-[13px] text-text-muted hover:text-gold transition-colors duration-150"
+          {NAV_ITEMS.map((item) => {
+            const isActive = location.pathname === item.to
+            return (
+              <div
+                key={item.label}
+                className="relative py-2"
+                onMouseEnter={() => setActiveDropdown(item.label)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                {item.label}
-              </Link>
-              <AnimatePresence>
-                {activeDropdown === item.label && <Dropdown item={item} />}
-              </AnimatePresence>
-            </div>
-          ))}
+                <Link
+                  to={item.to}
+                  className={`relative font-sans text-[13px] transition-colors duration-150 ${
+                    isActive ? 'text-gold' : 'text-text-muted hover:text-gold'
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-active-underline"
+                      className="absolute left-0 right-0 -bottom-2 h-px bg-gold"
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                </Link>
+                <AnimatePresence>
+                  {activeDropdown === item.label && <Dropdown item={item} />}
+                </AnimatePresence>
+              </div>
+            )
+          })}
         </div>
 
         <div className="hidden md:flex items-center">

@@ -10,21 +10,27 @@ const PRE_FOOTER_ITEMS = [
 export default function Footer() {
   return (
     <footer>
-      <div className="bg-bg-surface border-t border-b border-gold/10 px-6 md:px-10 py-2.5 flex items-center gap-6 overflow-x-auto">
-        <span className="font-mono text-[9px] text-gold flex items-center gap-1.5 shrink-0">
-          <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
-          LIVE
-        </span>
-        {PRE_FOOTER_ITEMS.map((item) => (
-          <span key={item.symbol} className="font-mono text-[10px] text-text-muted flex items-center gap-1.5 shrink-0">
-            <span className="text-gold font-semibold">{item.symbol}</span>
-            <span className="text-text-primary">{item.price}</span>
-            <span className={item.positive ? 'text-gain' : 'text-loss'}>
-              {item.positive ? '▲' : '▼'} {item.change}
-            </span>
-          </span>
-        ))}
-        <span className="font-mono text-[10px] text-gold shrink-0">MaddenAI 72/100</span>
+      <div className="h-9 bg-bg-surface border-t border-b border-gold/10 overflow-hidden relative">
+        <div className="flex ticker-track w-max h-full items-center">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex items-center gap-6 pl-6">
+              <span className="font-mono text-[9px] text-gold flex items-center gap-1.5 shrink-0">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
+                LIVE
+              </span>
+              {PRE_FOOTER_ITEMS.map((item) => (
+                <span key={item.symbol} className="font-mono text-[10px] text-text-muted flex items-center gap-1.5 shrink-0">
+                  <span className="text-gold font-semibold">{item.symbol}</span>
+                  <span className="text-text-primary">{item.price}</span>
+                  <span className={item.positive ? 'text-gain' : 'text-loss'}>
+                    {item.positive ? '▲' : '▼'} {item.change}
+                  </span>
+                </span>
+              ))}
+              <span className="font-mono text-[10px] text-gold shrink-0 pr-6">MaddenAI 72/100</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="bg-bg-primary px-6 md:px-10 py-14">
@@ -36,8 +42,15 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 mt-5">
               {['LinkedIn', 'X', 'YouTube'].map((s) => (
-                <a key={s} href="#" className="font-sans text-[11px] text-gold hover:text-gold/70 transition-colors">
+                <a
+                  key={s}
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group font-sans text-[11px] text-gold hover:text-gold/70 transition-colors inline-flex items-center gap-1"
+                >
                   {s}
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-150">↗</span>
                 </a>
               ))}
             </div>
@@ -93,7 +106,10 @@ export default function Footer() {
           <p className="font-mono text-[9px] text-text-faint max-w-[560px] leading-relaxed">
             MADDEX PROVIDES GENERAL FINANCIAL INFORMATION ONLY AND DOES NOT CONSTITUTE FINANCIAL PRODUCT ADVICE.
           </p>
-          <p className="font-mono text-[9px] text-text-faint">© 2026 MADDEX PTY LTD</p>
+          <div className="flex items-center gap-4">
+            <p className="font-mono text-[9px] text-text-faint">© 2026 MADDEX PTY LTD</p>
+            <p className="font-mono text-[9px] text-text-faint">BUILD: JULY 2026</p>
+          </div>
         </div>
       </div>
     </footer>

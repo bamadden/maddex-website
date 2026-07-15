@@ -53,34 +53,41 @@ export default function ParticleCanvas() {
   }, [])
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ willChange: 'transform' }}>
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(to right, rgba(201,168,76,0.03) 0, rgba(201,168,76,0.03) 1px, transparent 1px, transparent 60px), repeating-linear-gradient(to bottom, rgba(201,168,76,0.03) 0, rgba(201,168,76,0.03) 1px, transparent 1px, transparent 60px)',
+        }}
+      />
       <div
         className="orb-1 absolute rounded-full"
         style={{
-          width: 700,
-          height: 700,
-          top: '-15%',
-          left: '-10%',
-          background: 'rgba(201,168,76,0.04)',
-          filter: 'blur(80px)',
+          width: 850,
+          height: 850,
+          top: '-18%',
+          left: '-12%',
+          background: 'rgba(201,168,76,0.07)',
+          filter: 'blur(90px)',
         }}
       />
       <div
         className="orb-2 absolute rounded-full"
         style={{
-          width: 700,
-          height: 700,
-          bottom: '-20%',
-          right: '-10%',
-          background: 'rgba(26,127,232,0.04)',
-          filter: 'blur(80px)',
+          width: 800,
+          height: 800,
+          bottom: '-22%',
+          right: '-12%',
+          background: 'rgba(26,127,232,0.05)',
+          filter: 'blur(90px)',
         }}
       />
       <div
         className="orb-3 absolute rounded-full"
         style={{
-          width: 700,
-          height: 700,
+          width: 750,
+          height: 750,
           top: '20%',
           left: '35%',
           background: 'rgba(15,30,54,0.8)',
@@ -88,6 +95,12 @@ export default function ParticleCanvas() {
         }}
       />
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'radial-gradient(ellipse at center, transparent 40%, rgba(6,13,26,0.6) 100%)',
+        }}
+      />
     </div>
   )
 }

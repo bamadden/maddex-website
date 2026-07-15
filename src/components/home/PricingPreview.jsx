@@ -6,7 +6,7 @@ import GoldButton from '../shared/GoldButton'
 
 const PLANS = [
   { name: 'CORE', monthly: 19, annual: 189, popular: false, features: ['Markets + Watchlist', 'MaddenAI Sentiment Score', 'Daily market brief', 'Email support'] },
-  { name: 'PRO', monthly: 49, annual: 489, popular: true, features: ['Everything in Core', 'All 7 modules', 'Asset Analysis on demand', '5 Research Notes / mo'] },
+  { name: 'PRO', monthly: 49, annual: 489, popular: true, badge: 'BEST FOR PROS', features: ['Everything in Core', 'All 7 modules', 'Asset Analysis on demand', '5 Research Notes / mo'] },
   { name: 'APEX', monthly: 149, annual: 1489, popular: false, note: 'THIS PRICE IS CORRECT', features: ['Everything in Pro', 'Unlimited Research Notes', 'Global Intelligence Map', 'Priority support'] },
   { name: 'ADVISER', monthly: 299, annual: 2989, popular: false, note: 'THIS PRICE IS CORRECT', features: ['Everything in Apex', 'Multi-client dashboards', 'White-label reports', 'Dedicated account manager'] },
 ]
@@ -23,26 +23,28 @@ export default function PricingPreview() {
   const [annual, setAnnual] = useState(false)
 
   return (
-    <section className="bg-bg-primary py-24 md:py-[120px] px-6 md:px-10">
+    <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
       <div className="max-w-[1280px] mx-auto text-center">
         <SectionLabel center>PRICING</SectionLabel>
-        <h2 className="font-sans text-[30px] md:text-[42px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
+        <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
           Bloomberg costs A$42,000 a year. Maddex starts at A$19 a month.
         </h2>
 
-        <div className="inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-8">
+        <div className="relative inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-8">
           <button
             type="button"
             onClick={() => setAnnual(false)}
-            className={`font-mono text-[11px] px-4 py-2 rounded-full transition-all ${!annual ? 'bg-gold text-bg-primary font-bold' : 'text-text-muted'}`}
+            className={`relative font-mono text-[11px] px-4 py-2 rounded-full transition-colors ${!annual ? 'text-bg-primary font-bold' : 'text-text-muted'}`}
           >
+            {!annual && <motion.span layoutId="home-toggle-pill" className="absolute inset-0 bg-gold rounded-full" style={{ zIndex: -1 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
             MONTHLY
           </button>
           <button
             type="button"
             onClick={() => setAnnual(true)}
-            className={`font-mono text-[11px] px-4 py-2 rounded-full transition-all flex items-center gap-2 ${annual ? 'bg-gold text-bg-primary font-bold' : 'text-text-muted'}`}
+            className={`relative font-mono text-[11px] px-4 py-2 rounded-full transition-colors flex items-center gap-2 ${annual ? 'text-bg-primary font-bold' : 'text-text-muted'}`}
           >
+            {annual && <motion.span layoutId="home-toggle-pill" className="absolute inset-0 bg-gold rounded-full" style={{ zIndex: -1 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
             ANNUAL
             <span className="bg-gold/20 text-gold text-[9px] px-1.5 py-0.5 rounded-full">SAVE 17%</span>
           </button>
@@ -56,17 +58,25 @@ export default function PricingPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
-              whileHover={{ scale: 1.01 }}
-              className={`relative bg-bg-surface rounded p-6 border transition-colors duration-200 ${
+              whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
+              className={`group relative bg-bg-surface rounded p-6 border overflow-hidden transition-colors duration-200 ${
                 plan.popular ? 'border-gold scale-[1.02]' : 'border-gold/20 hover:border-gold/40'
               }`}
             >
+              <div
+                className="card-shimmer-el absolute inset-0 pointer-events-none"
+                style={{ background: 'linear-gradient(100deg, transparent 40%, rgba(201,168,76,0.12) 50%, transparent 60%)' }}
+              />
               {plan.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full">
-                  MOST POPULAR
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
+                  {plan.badge || 'MOST POPULAR'}
                 </span>
               )}
-              <div className="font-mono text-[12px] tracking-wide text-gold">{plan.name}</div>
+              <div className="font-mono text-[9px] text-text-faint">
+                <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
+                <span className="text-gold"> → {plan.name}: A${plan.annual}/yr</span>
+              </div>
+              <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
               <div className="mt-3">
                 {annual ? (
                   <>

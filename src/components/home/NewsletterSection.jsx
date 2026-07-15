@@ -6,7 +6,7 @@ export default function NewsletterSection() {
   const [email, setEmail] = useState('')
 
   return (
-    <section className="bg-bg-surface py-24 md:py-[120px] px-6 md:px-10">
+    <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
       <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
         <div className="relative bg-bg-primary border border-gold/20 rounded overflow-hidden">
           <div className="bg-gold px-5 py-3">
@@ -39,10 +39,10 @@ export default function NewsletterSection() {
 
         <div>
           <SectionLabel>MADDEN RESEARCH</SectionLabel>
-          <h2 className="font-sans text-[30px] md:text-[40px] font-bold leading-tight tracking-tight text-text-primary">
+          <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary">
             The weekly brief serious Australian investors read first.
           </h2>
-          <p className="font-sans text-[16px] text-text-muted mt-4 leading-relaxed">
+          <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">
             Every Monday at 7:00am AEST. MaddenAI-powered market intelligence. Free to subscribe.
           </p>
 

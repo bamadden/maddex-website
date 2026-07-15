@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
 import Footer from '../components/layout/Footer'
@@ -20,6 +21,7 @@ function MiniHeader({ label, right }) {
 const MODULES = [
   {
     key: 'markets',
+    stats: '9 Indices · 200+ ASX Stocks · 11 GICS Sectors · 60s Refresh',
     title: 'Markets Module',
     body: 'Every major global index, sector breakdown, and top mover — refreshed continuously and scored by MaddenAI for context, not just numbers.',
     features: ['9 global indices tracked live', 'Full ASX 200 constituent list', '11 GICS sector heatmap', 'MaddenAI sentiment overlay'],
@@ -50,6 +52,7 @@ const MODULES = [
   },
   {
     key: 'crypto',
+    stats: 'Top 20 AUD · 5-Factor Score · Live CoinGecko · 30s Refresh',
     title: 'Crypto Module',
     body: 'Top 20 assets by market cap in AUD, MaddenAI Momentum Index, and Fear & Greed tracking — built for investors who treat crypto as a real allocation.',
     features: ['Top 20 by AUD market cap', 'MaddenAI Momentum Index', 'Fear & Greed reading', 'BTC dominance tracking'],
@@ -80,6 +83,7 @@ const MODULES = [
   },
   {
     key: 'rates',
+    stats: '10 AUD Pairs · 8 Bond Tenors · 10+ Central Banks · 5min Refresh',
     title: 'Rates Module',
     body: 'FX pairs, government bond yield curves, and central bank rates across every major economy — the macro plumbing most retail platforms skip entirely.',
     features: ['10 AUD currency pairs', 'AU Government Bond yield curve', '10+ central bank policy rates', 'Rate decision countdowns'],
@@ -103,6 +107,7 @@ const MODULES = [
   },
   {
     key: 'macro',
+    stats: '8 AU Indicators · RBA Primary · China Watch · Economic Calendar',
     title: 'Macro Module',
     body: 'A live RBA dashboard with cash rate, next meeting countdown, and the eight Australian macro indicators that actually move markets.',
     features: ['RBA cash rate + next meeting countdown', '8 Australian macro indicators', 'China Watch commodity linkage', '30-day economic calendar'],
@@ -126,6 +131,7 @@ const MODULES = [
   },
   {
     key: 'news',
+    stats: '28+ Sources · 9 Categories · 3min Refresh · AI Sentiment',
     title: 'News Module',
     body: '28+ sources filtered for financial relevance across 9 categories, with MaddenAI surfacing the themes that matter before they hit the front page.',
     features: ['28+ curated sources', 'Financial relevance filter', '9 news categories', 'MaddenAI Key Themes daily'],
@@ -145,6 +151,7 @@ const MODULES = [
   },
   {
     key: 'watchlist',
+    stats: 'Unlimited Stocks · Live Prices · Supabase Sync · CSV Export',
     title: 'Watchlist',
     body: 'Add any ASX or US stock and track it live with full fundamental data, synced automatically across every device you use.',
     features: ['ASX + US ticker support', 'Live price tracking', 'Full fundamental data', 'Synced across all devices'],
@@ -166,6 +173,7 @@ const MODULES = [
   },
   {
     key: 'global',
+    stats: '50+ Exchanges · 200+ Countries · 5 Layers · Live Chokepoints',
     title: 'Global Intelligence',
     body: 'A live 3D globe covering 50+ exchanges, shipping chokepoints, and a 200+ country database — see geopolitical risk before it shows up in your portfolio.',
     features: ['Live 3D global exchange map', '50+ exchanges tracked', 'Shipping chokepoint monitoring', '200+ country risk database'],
@@ -201,18 +209,18 @@ export default function Product() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-sans text-[36px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
+          className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
         >
           Seven modules. Zero compromises.
         </motion.h1>
-        <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-relaxed">
+        <p className="font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
           Every screen in Maddex is built around one idea: give Australian investors the depth of a professional terminal without the professional price tag.
         </p>
       </section>
 
       <div className="bg-bg-surface">
         {MODULES.map((mod, i) => (
-          <section key={mod.key} className="py-20 px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
+          <section key={mod.key} className="py-16 md:py-[140px] px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
             <div
               className={`max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${
                 i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
@@ -224,9 +232,9 @@ export default function Product() {
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="font-mono text-[10px] tracking-[0.2em] text-gold">MODULE {String(i + 1).padStart(2, '0')}</span>
-                <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary mt-3 leading-tight">{mod.title}</h2>
-                <p className="font-sans text-[16px] text-text-muted mt-4 leading-relaxed max-w-[440px]">{mod.body}</p>
+                <span className="font-mono text-[9px] tracking-[0.25em] text-gold">MODULE {String(i + 1).padStart(2, '0')}</span>
+                <h2 className="font-sans text-[30px] md:text-[42px] font-bold text-text-primary mt-3 leading-tight">{mod.title}</h2>
+                <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">{mod.body}</p>
                 <div className="flex flex-col gap-2.5 mt-6">
                   {mod.features.map((f) => (
                     <div key={f} className="font-sans text-[13px] text-text-muted flex gap-2">
@@ -245,16 +253,25 @@ export default function Product() {
                 {mod.visual}
               </motion.div>
             </div>
+
+            <div className="max-w-[1280px] mx-auto mt-8 pt-6 border-t border-[rgba(30,70,140,0.2)] flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="font-mono text-[10px] tracking-[0.1em] text-text-muted text-center sm:text-left">
+                <span className="text-gold">KEY STATS —</span> {mod.stats}
+              </div>
+              <Link to="/pricing" className="font-mono text-[11px] text-gold hover:opacity-70 transition-opacity whitespace-nowrap">
+                TRY THIS MODULE FREE →
+              </Link>
+            </div>
           </section>
         ))}
       </div>
 
-      <section className="bg-bg-primary py-24 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10 text-center">
         <SectionLabel center>COMMAND BAR</SectionLabel>
-        <h2 className="font-sans text-[30px] md:text-[42px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+        <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Bloomberg-style command interface. Built for speed.
         </h2>
-        <p className="font-sans text-[16px] text-text-muted max-w-xl mx-auto mt-4">
+        <p className="font-sans text-[18px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
           Type a ticker, a module name, or a plain-English question. The command bar routes it instantly.
         </p>
         <div className="max-w-[600px] mx-auto mt-10">
@@ -270,14 +287,14 @@ export default function Product() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-24 px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
             <SectionLabel>MOBILE</SectionLabel>
-            <h2 className="font-sans text-[30px] md:text-[42px] font-bold text-text-primary leading-tight">
+            <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
               The full terminal. In your pocket.
             </h2>
-            <p className="font-sans text-[16px] text-text-muted mt-4 leading-relaxed max-w-[440px]">
+            <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
               Every module, every score, every watchlist entry — synced in real time between desktop and mobile, so the terminal is with you between meetings, not just at your desk.
             </p>
             <div className="mt-8">

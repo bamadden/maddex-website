@@ -27,17 +27,17 @@ function MarketsPanel() {
     { symbol: 'NIKKEI 225', price: '39,842.00', change: '+0.85%', positive: true },
   ]
   const sectors = [
-    { label: 'IT', change: '+1.8%', positive: true },
-    { label: 'FIN', change: '+0.3%', positive: true },
-    { label: 'HLTH', change: '+1.1%', positive: true },
-    { label: 'CDI', change: '-0.2%', positive: false },
-    { label: 'COM', change: '+0.7%', positive: true },
-    { label: 'IND', change: '+0.5%', positive: true },
-    { label: 'STA', change: '-0.1%', positive: false },
-    { label: 'ENRG', change: '-0.4%', positive: false },
-    { label: 'MAT', change: '+0.9%', positive: true },
-    { label: 'REI', change: '+0.3%', positive: true },
-    { label: 'UTL', change: '-0.2%', positive: false },
+    { label: 'IT', full: 'Information Technology', change: '+1.8%', positive: true },
+    { label: 'FIN', full: 'Financials', change: '+0.3%', positive: true },
+    { label: 'HLTH', full: 'Health Care', change: '+1.1%', positive: true },
+    { label: 'CDI', full: 'Consumer Discretionary', change: '-0.2%', positive: false },
+    { label: 'COM', full: 'Communication Services', change: '+0.7%', positive: true },
+    { label: 'IND', full: 'Industrials', change: '+0.5%', positive: true },
+    { label: 'STA', full: 'Consumer Staples', change: '-0.1%', positive: false },
+    { label: 'ENRG', full: 'Energy', change: '-0.4%', positive: false },
+    { label: 'MAT', full: 'Materials', change: '+0.9%', positive: true },
+    { label: 'REI', full: 'Real Estate', change: '+0.3%', positive: true },
+    { label: 'UTL', full: 'Utilities', change: '-0.2%', positive: false },
   ]
   return (
     <div className="flex flex-col">
@@ -71,7 +71,7 @@ function MarketsPanel() {
         {sectors.map((s) => (
           <div
             key={s.label}
-            className="px-2 py-2 rounded-sm font-mono text-[9px]"
+            className="group relative px-2 py-2 rounded-sm font-mono text-[9px] cursor-default transition-transform duration-150 hover:scale-[1.04]"
             style={{
               background: s.positive ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)',
               border: `1px solid ${s.positive ? 'rgba(45,138,80,0.2)' : 'rgba(168,50,50,0.2)'}`,
@@ -79,6 +79,9 @@ function MarketsPanel() {
             }}
           >
             {s.label} {s.change}
+            <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 whitespace-nowrap bg-bg-primary border border-gold/30 text-text-primary text-[9px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-10">
+              {s.full}
+            </span>
           </div>
         ))}
       </div>
@@ -416,13 +419,13 @@ export default function PlatformSection() {
   const ActivePanel = PANELS[activeTab]
 
   return (
-    <section className="bg-bg-surface py-24 md:py-[120px] px-6 md:px-10">
+    <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
       <div className="max-w-[1280px] mx-auto text-center">
         <SectionLabel center>THE TERMINAL</SectionLabel>
-        <h2 className="font-sans text-[32px] md:text-[44px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
+        <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
           Seven modules. One platform. Everything you need to know.
         </h2>
-        <p className="font-sans text-[17px] text-text-muted mt-4">Click any module to explore.</p>
+        <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">Click any module to explore.</p>
 
         <div className="flex flex-wrap justify-center gap-2 mt-10">
           {TABS.map((tab) => (
@@ -430,26 +433,39 @@ export default function PlatformSection() {
               key={tab}
               type="button"
               onClick={() => setActiveTab(tab)}
-              className={`font-mono text-[11px] tracking-[0.05em] px-5 py-2 rounded-full transition-all duration-150 ${
+              className={`relative font-mono text-[11px] tracking-[0.05em] px-5 py-2 rounded-full transition-colors duration-150 ${
                 activeTab === tab
-                  ? 'bg-gold text-bg-primary font-bold'
+                  ? 'text-bg-primary font-bold'
                   : 'border border-gold/30 text-gold hover:bg-gold/[0.08]'
               }`}
             >
+              {activeTab === tab && (
+                <motion.span
+                  layoutId="platform-tab-pill"
+                  className="absolute inset-0 bg-gold rounded-full"
+                  style={{ zIndex: -1 }}
+                  transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                />
+              )}
               {tab}
             </button>
           ))}
         </div>
 
-        <div className="bg-bg-primary border border-gold/20 rounded mt-10 min-h-[500px] text-left overflow-hidden flex flex-col">
+        <div className="relative bg-bg-primary border border-gold/20 rounded mt-10 h-[500px] text-left overflow-y-auto flex flex-col">
+          <span className="absolute -top-3 right-4 z-30 flex items-center gap-1.5 font-mono text-[9px] tracking-[0.1em] text-gold bg-bg-primary border border-gold/30 px-2.5 py-1 rounded-full pointer-events-none">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
+            LIVE
+          </span>
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.2 }}
               className="flex-1 flex flex-col"
+              style={{ willChange: 'transform' }}
             >
               <ActivePanel />
             </motion.div>

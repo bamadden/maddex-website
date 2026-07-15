@@ -7,6 +7,7 @@ const CARDS = [
     label: 'BLOOMBERG TERMINAL',
     price: 'A$42,000 / YEAR',
     priceColor: 'text-text-primary',
+    bg: 'rgba(168,50,50,0.03)',
     features: [
       { name: 'Real-time global data', value: '✓', color: '#2D8A50' },
       { name: 'Built for retail investors', value: '✗', color: '#A83232' },
@@ -32,6 +33,7 @@ const CARDS = [
     price: 'FROM A$19 / MONTH',
     priceColor: 'text-gold',
     highlight: true,
+    bg: 'rgba(201,168,76,0.03)',
     features: [
       { name: 'Real-time global data', value: '✓', color: '#C9A84C' },
       { name: 'Built for Australian investors', value: '✓', color: '#C9A84C' },
@@ -43,7 +45,7 @@ const CARDS = [
 
 export default function ProblemSection() {
   return (
-    <section className="bg-bg-primary py-24 md:py-[120px] px-6 md:px-10">
+    <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
       <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
         <div>
           <SectionLabel>THE INFORMATION GAP</SectionLabel>
@@ -52,7 +54,7 @@ export default function ProblemSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.5 }}
-            className="font-sans text-[34px] md:text-[44px] lg:text-[52px] font-bold leading-[1.05] tracking-tight text-text-primary"
+            className="font-sans text-[34px] md:text-[48px] lg:text-[58px] font-bold leading-[1.05] tracking-tight text-text-primary"
           >
             Bloomberg: A$42,000/yr.
             <br />
@@ -61,7 +63,7 @@ export default function ProblemSection() {
             Neither serves you.
           </motion.h2>
 
-          <div className="font-sans text-[17px] text-text-muted leading-[1.7] mt-8 flex flex-col gap-4">
+          <div className="font-sans text-[18px] text-text-muted leading-[1.75] mt-8 flex flex-col gap-4">
             <p>
               Bloomberg Terminal was built for trading desks, not individual investors — and priced accordingly. Most Australians will never see one, let alone afford it.
             </p>
@@ -77,23 +79,53 @@ export default function ProblemSection() {
 
         <div className="flex flex-col gap-5">
           {CARDS.map((card, i) => (
-            <motion.div
-              key={card.label}
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
-              className={`bg-bg-surface rounded p-5 ${card.highlight ? 'scale-[1.01] shadow-[0_0_20px_rgba(201,168,76,0.08)]' : ''}`}
-              style={{ borderLeft: `3px solid ${card.border}` }}
-            >
-              <div className="font-mono text-[9px] tracking-[0.1em] text-gold">{card.label}</div>
-              <div className={`font-sans text-[24px] font-bold mt-1.5 ${card.priceColor}`}>{card.price}</div>
-              {card.features.map((f) => (
-                <div key={f.name} className="flex justify-between font-sans text-[12px] mt-3">
-                  <span className="text-text-muted">{f.name}</span>
-                  <span style={{ color: f.color }}>{f.value}</span>
-                </div>
-              ))}
+            <motion.div key={card.label}>
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ delay: i * 0.15, duration: 0.5 }}
+                className={`rounded p-7 min-h-[220px] flex flex-col justify-center ${
+                  card.highlight
+                    ? 'scale-[1.02] shadow-[0_0_40px_rgba(201,168,76,0.14)]'
+                    : ''
+                }`}
+                style={{
+                  borderLeft: `3px solid ${card.border}`,
+                  backgroundColor: '#0B1628',
+                  backgroundImage: card.bg ? `linear-gradient(${card.bg}, ${card.bg})` : 'none',
+                }}
+              >
+                <div className="font-mono text-[9px] tracking-[0.15em] text-gold">{card.label}</div>
+                <div className={`font-sans text-[26px] font-bold mt-2 ${card.priceColor}`}>{card.price}</div>
+                {card.features.map((f) => (
+                  <div key={f.name} className="flex justify-between font-sans text-[13px] mt-3.5">
+                    <span className="text-text-muted">{f.name}</span>
+                    <span style={{ color: f.color }}>{f.value}</span>
+                  </div>
+                ))}
+              </motion.div>
+
+              {i === 1 && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="flex items-center justify-center gap-4 py-6"
+                >
+                  <div className="text-center">
+                    <div className="font-mono text-[22px] sm:text-[28px] font-bold text-loss line-through decoration-2">A$42,000</div>
+                  </div>
+                  <div className="font-mono text-[12px] text-text-faint">vs</div>
+                  <div className="text-center">
+                    <div className="font-mono text-[28px] sm:text-[36px] font-bold text-gold">A$228</div>
+                  </div>
+                  <div className="hidden sm:block font-mono text-[10px] text-text-muted max-w-[120px] leading-snug ml-2">
+                    Per year · Bloomberg vs Maddex Core
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
           ))}
         </div>

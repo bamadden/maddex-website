@@ -9,7 +9,7 @@ import GoldButton from '../components/shared/GoldButton'
 
 const PLANS = [
   { name: 'CORE', monthly: 19, annual: 189, features: ['Markets + Watchlist', 'MaddenAI Sentiment Score', 'Daily market brief', 'Email support'] },
-  { name: 'PRO', monthly: 49, annual: 489, popular: true, features: ['Everything in Core', 'All 7 modules', 'Asset Analysis on demand', '5 Research Notes / mo'] },
+  { name: 'PRO', monthly: 49, annual: 489, popular: true, badge: 'BEST FOR PROS', features: ['Everything in Core', 'All 7 modules', 'Asset Analysis on demand', '5 Research Notes / mo'] },
   { name: 'APEX', monthly: 149, annual: 1489, note: 'THIS PRICE IS CORRECT', features: ['Everything in Pro', 'Unlimited Research Notes', 'Global Intelligence Map', 'Priority support'] },
   { name: 'ADVISER', monthly: 299, annual: 2989, note: 'THIS PRICE IS CORRECT', features: ['Everything in Apex', 'Multi-client dashboards', 'White-label reports', 'Dedicated account manager'] },
 ]
@@ -102,27 +102,29 @@ export default function Pricing() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-sans text-[36px] md:text-[54px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
+          className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
         >
           Institutional intelligence. Retail pricing.
         </motion.h1>
-        <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-relaxed">
+        <p className="font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
           No lock-in contracts. Cancel anytime. Full Pro access for 7 days, free.
         </p>
 
-        <div className="inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-8">
+        <div className="relative inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-8">
           <button
             type="button"
             onClick={() => setAnnual(false)}
-            className={`font-mono text-[11px] px-4 py-2 rounded-full transition-all ${!annual ? 'bg-gold text-bg-primary font-bold' : 'text-text-muted'}`}
+            className={`relative font-mono text-[11px] px-4 py-2 rounded-full transition-colors ${!annual ? 'text-bg-primary font-bold' : 'text-text-muted'}`}
           >
+            {!annual && <motion.span layoutId="pricing-toggle-pill" className="absolute inset-0 bg-gold rounded-full" style={{ zIndex: -1 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
             MONTHLY
           </button>
           <button
             type="button"
             onClick={() => setAnnual(true)}
-            className={`font-mono text-[11px] px-4 py-2 rounded-full transition-all flex items-center gap-2 ${annual ? 'bg-gold text-bg-primary font-bold' : 'text-text-muted'}`}
+            className={`relative font-mono text-[11px] px-4 py-2 rounded-full transition-colors flex items-center gap-2 ${annual ? 'text-bg-primary font-bold' : 'text-text-muted'}`}
           >
+            {annual && <motion.span layoutId="pricing-toggle-pill" className="absolute inset-0 bg-gold rounded-full" style={{ zIndex: -1 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
             ANNUAL
             <span className="bg-gold/20 text-gold text-[9px] px-1.5 py-0.5 rounded-full">SAVE 17%</span>
           </button>
@@ -136,17 +138,25 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
-              whileHover={{ scale: 1.01 }}
-              className={`relative bg-bg-surface rounded p-6 border transition-colors duration-200 ${
+              whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
+              className={`group relative bg-bg-surface rounded p-6 border overflow-hidden transition-colors duration-200 ${
                 plan.popular ? 'border-gold scale-[1.02]' : 'border-gold/20 hover:border-gold/40'
               }`}
             >
+              <div
+                className="card-shimmer-el absolute inset-0 pointer-events-none"
+                style={{ background: 'linear-gradient(100deg, transparent 40%, rgba(201,168,76,0.12) 50%, transparent 60%)' }}
+              />
               {plan.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full">
-                  MOST POPULAR
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
+                  {plan.badge || 'MOST POPULAR'}
                 </span>
               )}
-              <div className="font-mono text-[12px] tracking-wide text-gold">{plan.name}</div>
+              <div className="font-mono text-[9px] text-text-faint">
+                <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
+                <span className="text-gold"> → {plan.name}: A${plan.annual}/yr</span>
+              </div>
+              <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
               <div className="mt-3">
                 {annual ? (
                   <>
@@ -178,10 +188,10 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto">
           <SectionLabel center>FULL COMPARISON</SectionLabel>
-          <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary text-center leading-tight">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight">
             Every feature, side by side.
           </h2>
           <div className="overflow-x-auto mt-10">
@@ -209,7 +219,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10 text-center">
         <div className="max-w-[600px] mx-auto bg-bg-surface border border-gold/20 rounded p-6 text-left">
           <div className="font-mono text-[12px] text-gold tracking-wide text-center mb-4">
             MADDENAI RESEARCH NOTES — From A$4.99
@@ -223,10 +233,10 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[1280px] mx-auto text-center">
           <SectionLabel center>BUSINESS PLANS</SectionLabel>
-          <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             Built for advisers, firms, and institutions.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 text-left">
@@ -251,10 +261,10 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 px-6 md:px-10">
+      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[720px] mx-auto">
           <SectionLabel center>FAQ</SectionLabel>
-          <h2 className="font-sans text-[28px] md:text-[36px] font-bold text-text-primary text-center leading-tight mb-8">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-8">
             Questions, answered.
           </h2>
           {FAQS.map((faq, i) => (
