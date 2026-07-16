@@ -9,14 +9,14 @@ const NAV_ITEMS = [
     to: '/product',
     columns: 2,
     items: [
-      { icon: '◆', title: 'Markets Module', desc: 'Global indices, sectors, top movers' },
-      { icon: '◆', title: 'Crypto Module', desc: 'Top 20 AUD, momentum index, F&G' },
-      { icon: '◆', title: 'Rates Module', desc: 'FX, yield curves, central banks' },
-      { icon: '◆', title: 'Macro Module', desc: 'RBA dashboard, AU indicators' },
-      { icon: '◆', title: 'News Module', desc: '28 sources, AI analysis, breaking alerts' },
-      { icon: '◆', title: 'Watchlist', desc: 'Live tracking, synced across devices' },
-      { icon: '◆', title: 'Global Intelligence', desc: '3D globe, geopolitical risk' },
-      { icon: '◆', title: 'Command Bar', desc: 'Bloomberg-style terminal interface' },
+      { icon: '◆', title: 'Markets Module', desc: 'Global indices, sectors, top movers', to: '/product' },
+      { icon: '◆', title: 'Crypto Module', desc: 'Top 20 AUD, momentum index, F&G', to: '/product' },
+      { icon: '◆', title: 'Rates Module', desc: 'FX, yield curves, central banks', to: '/product' },
+      { icon: '◆', title: 'Macro Module', desc: 'RBA dashboard, AU indicators', to: '/product' },
+      { icon: '◆', title: 'News Module', desc: '28 sources, AI analysis, breaking alerts', to: '/product' },
+      { icon: '◆', title: 'Watchlist', desc: 'Live tracking, synced across devices', to: '/product' },
+      { icon: '◆', title: 'Global Intelligence', desc: '3D globe, geopolitical risk', to: '/product' },
+      { icon: '◆', title: 'Command Bar', desc: 'Bloomberg-style terminal interface', to: '/product' },
     ],
   },
   {
@@ -24,12 +24,12 @@ const NAV_ITEMS = [
     to: '/maddenai',
     columns: 1,
     items: [
-      { icon: '◆', title: 'How It Works', desc: 'Two-layer intelligence system' },
-      { icon: '◆', title: 'Market Sentiment Score', desc: '8-factor weighted composite' },
-      { icon: '◆', title: 'Crypto Momentum Index', desc: '5-factor composite' },
-      { icon: '◆', title: 'Sector Strength Radar', desc: '11 GICS sectors simultaneously' },
-      { icon: '◆', title: 'Asset Analysis', desc: 'Any ticker, structured output instantly' },
-      { icon: '◆', title: 'Research Notes', desc: 'Institutional PDF reports from A$4.99' },
+      { icon: '◆', title: 'How It Works', desc: 'Two-layer intelligence system', to: '/maddenai' },
+      { icon: '◆', title: 'Market Sentiment Score', desc: '8-factor weighted composite', to: '/maddenai' },
+      { icon: '◆', title: 'Crypto Momentum Index', desc: '5-factor composite', to: '/maddenai' },
+      { icon: '◆', title: 'Sector Strength Radar', desc: '11 GICS sectors simultaneously', to: '/maddenai' },
+      { icon: '◆', title: 'Asset Analysis', desc: 'Any ticker, structured output instantly', to: '/maddenai' },
+      { icon: '◆', title: 'Research Notes', desc: 'Institutional PDF reports from A$4.99', to: '/maddenai' },
     ],
   },
   {
@@ -37,9 +37,9 @@ const NAV_ITEMS = [
     to: '/pricing',
     columns: 1,
     items: [
-      { icon: '◆', title: 'Individual Plans', desc: 'Core A$19, Pro A$49, Apex A$149' },
-      { icon: '◆', title: 'Business Plans', desc: 'Adviser A$299/mo, Firm A$999/mo' },
-      { icon: '◆', title: 'Research Notes', desc: 'From A$4.99 per note' },
+      { icon: '◆', title: 'Individual Plans', desc: 'Core A$19, Pro A$49, Apex A$149', to: '/pricing' },
+      { icon: '◆', title: 'Business Plans', desc: 'Adviser A$299/mo, Firm A$999/mo', to: '/pricing' },
+      { icon: '◆', title: 'Research Notes', desc: 'From A$4.99 per note', to: '/pricing' },
     ],
   },
   {
@@ -47,9 +47,9 @@ const NAV_ITEMS = [
     to: '/research',
     columns: 1,
     items: [
-      { icon: '◆', title: 'Madden Research', desc: 'Weekly Monday brief, free' },
-      { icon: '◆', title: 'Paid Brief', desc: 'Full analysis A$29/mo' },
-      { icon: '◆', title: 'MaddenAI Insights', desc: 'AI-generated market themes' },
+      { icon: '◆', title: 'Madden Research', desc: 'Weekly Monday brief, free', to: '/research' },
+      { icon: '◆', title: 'Paid Brief', desc: 'Full analysis A$29/mo', to: '/research' },
+      { icon: '◆', title: 'MaddenAI Insights', desc: 'AI-generated market themes', to: '/research' },
     ],
   },
   {
@@ -57,14 +57,14 @@ const NAV_ITEMS = [
     to: '/about',
     columns: 1,
     items: [
-      { icon: '◆', title: 'About', desc: 'The story behind Maddex' },
-      { icon: '◆', title: 'Roadmap', desc: 'What is coming and when' },
-      { icon: '◆', title: 'Contact', desc: 'Get in touch with Ben directly' },
+      { icon: '◆', title: 'About', desc: 'The story behind Maddex', to: '/about' },
+      { icon: '◆', title: 'Roadmap', desc: 'What is coming and when', to: '/about' },
+      { icon: '◆', title: 'Contact', desc: 'Get in touch with Ben directly', to: '/about' },
     ],
   },
 ]
 
-function Dropdown({ item }) {
+function Dropdown({ item, onNavigate }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: -4 }}
@@ -79,8 +79,10 @@ function Dropdown({ item }) {
         }`}
       >
         {item.items.map((sub) => (
-          <div
+          <Link
             key={sub.title}
+            to={sub.to}
+            onClick={onNavigate}
             className="flex gap-3 px-3 py-3 rounded-sm hover:bg-gold/[0.06] transition-colors duration-150 cursor-pointer"
           >
             <span className="text-gold text-[16px] leading-none mt-0.5">{sub.icon}</span>
@@ -88,7 +90,7 @@ function Dropdown({ item }) {
               <div className="font-sans text-[13px] font-medium text-text-primary">{sub.title}</div>
               <div className="font-sans text-[11px] text-text-muted mt-0.5">{sub.desc}</div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </motion.div>
@@ -122,14 +124,15 @@ export default function Navigation() {
 
   return (
     <nav
-      className="fixed top-8 left-0 right-0 h-14 z-[100] transition-colors duration-200"
+      className="fixed top-7 left-0 right-0 h-14 z-[1000] transition-colors duration-200"
       style={{
-        background: scrolled ? 'rgba(6,13,26,0.97)' : 'rgba(6,13,26,0.92)',
+        background: scrolled ? 'rgba(6,13,26,0.98)' : 'rgba(6,13,26,0.95)',
         backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
         borderBottom: `1px solid rgba(201,168,76,${scrolled ? 0.2 : 0.12})`,
       }}
     >
-      <div className="max-w-[1280px] mx-auto h-full px-6 md:px-10 flex items-center justify-between">
+      <div className="max-w-[1200px] mx-auto h-full px-6 md:px-10 flex items-center justify-between">
         <Link
           to="/"
           className="font-mono text-[15px] font-bold tracking-[0.12em] text-gold shrink-0"
@@ -163,7 +166,9 @@ export default function Navigation() {
                   )}
                 </Link>
                 <AnimatePresence>
-                  {activeDropdown === item.label && <Dropdown item={item} />}
+                  {activeDropdown === item.label && (
+                    <Dropdown item={item} onNavigate={() => setActiveDropdown(null)} />
+                  )}
                 </AnimatePresence>
               </div>
             )

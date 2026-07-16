@@ -203,7 +203,7 @@ export default function Product() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[140px] pb-20 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[84px] pb-20 px-6 md:px-10 text-center">
         <SectionLabel center>THE TERMINAL</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -220,9 +220,9 @@ export default function Product() {
 
       <div className="bg-bg-surface">
         {MODULES.map((mod, i) => (
-          <section key={mod.key} className="py-16 md:py-[140px] px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
+          <section key={mod.key} className="py-16 md:py-[100px] px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
             <div
-              className={`max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${
+              className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${
                 i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
               }`}
             >
@@ -254,7 +254,7 @@ export default function Product() {
               </motion.div>
             </div>
 
-            <div className="max-w-[1280px] mx-auto mt-8 pt-6 border-t border-[rgba(30,70,140,0.2)] flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div className="max-w-[1200px] mx-auto mt-8 pt-6 border-t border-[rgba(30,70,140,0.2)] flex flex-col sm:flex-row items-center justify-between gap-3">
               <div className="font-mono text-[10px] tracking-[0.1em] text-text-muted text-center sm:text-left">
                 <span className="text-gold">KEY STATS —</span> {mod.stats}
               </div>
@@ -266,7 +266,7 @@ export default function Product() {
         ))}
       </div>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 text-center">
         <SectionLabel center>COMMAND BAR</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Bloomberg-style command interface. Built for speed.
@@ -287,8 +287,8 @@ export default function Product() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
             <SectionLabel>MOBILE</SectionLabel>
             <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">

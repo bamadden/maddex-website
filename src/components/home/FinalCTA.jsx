@@ -16,7 +16,7 @@ export default function FinalCTA() {
         }}
       />
 
-      <div className="relative z-10 max-w-[900px] mx-auto px-6 md:px-10 text-center py-20 md:py-[140px]">
+      <div className="relative z-10 max-w-[900px] mx-auto px-6 md:px-10 text-center py-20 md:py-[100px]">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

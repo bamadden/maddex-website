@@ -33,8 +33,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="bg-bg-primary px-6 md:px-10 py-14">
-        <div className="max-w-[1280px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="bg-bg-primary px-6 md:px-10 py-10">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
           <div>
             <div className="font-mono text-[15px] font-bold text-gold">MADDEX</div>
             <p className="font-sans text-[12px] text-text-muted mt-3 leading-relaxed max-w-[220px]">
@@ -102,7 +102,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="max-w-[1280px] mx-auto border-t border-[rgba(30,70,140,0.3)] mt-10 pt-5 flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
+        <div className="max-w-[1200px] mx-auto border-t border-[rgba(30,70,140,0.3)] mt-10 pt-5 flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
           <p className="font-mono text-[9px] text-text-faint max-w-[560px] leading-relaxed">
             MADDEX PROVIDES GENERAL FINANCIAL INFORMATION ONLY AND DOES NOT CONSTITUTE FINANCIAL PRODUCT ADVICE.
           </p>

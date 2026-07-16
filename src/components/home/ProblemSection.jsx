@@ -45,8 +45,8 @@ const CARDS = [
 
 export default function ProblemSection() {
   return (
-    <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
-      <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
+    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
         <div>
           <SectionLabel>THE INFORMATION GAP</SectionLabel>
           <motion.h2

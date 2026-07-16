@@ -2,7 +2,6 @@ import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
 import Footer from '../components/layout/Footer'
 import Hero from '../components/home/Hero'
-import LogosBar from '../components/home/LogosBar'
 import ProblemSection from '../components/home/ProblemSection'
 import PlatformSection from '../components/home/PlatformSection'
 import MaddenAISection from '../components/home/MaddenAISection'
@@ -18,7 +17,6 @@ export default function Home() {
       <TickerTape />
       <Navigation />
       <Hero />
-      <LogosBar />
       <ProblemSection />
       <PlatformSection />
       <MaddenAISection />

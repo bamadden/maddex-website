@@ -40,7 +40,7 @@ export default function About() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[140px] pb-16 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
         <SectionLabel center>ABOUT MADDEX</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -55,7 +55,7 @@ export default function About() {
         </p>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-[240px_1fr] gap-10 items-start">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -103,7 +103,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 text-center">
         <SectionLabel center>MISSION</SectionLabel>
         <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-3xl mx-auto leading-tight">
           Give every Australian investor the intelligence that used to be reserved for trading floors.
@@ -113,8 +113,8 @@ export default function About() {
         </p>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto text-center">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>CORPORATE STRUCTURE</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             One mission. Three entities.
@@ -137,8 +137,8 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto text-center">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>HOW MADDEX IS STRUCTURED</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             One data engine. Three surfaces.
@@ -165,8 +165,8 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto text-center">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>VALUES</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             What we won't compromise on.
@@ -190,7 +190,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[800px] mx-auto">
           <SectionLabel center>ROADMAP</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-12">
@@ -221,7 +221,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10 text-center">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10 text-center">
         <SectionLabel center>CONTACT</SectionLabel>
         <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Get in touch with Ben directly.

@@ -23,8 +23,8 @@ export default function PricingPreview() {
   const [annual, setAnnual] = useState(false)
 
   return (
-    <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
-      <div className="max-w-[1280px] mx-auto text-center">
+    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>PRICING</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
           Bloomberg costs A$42,000 a year. Maddex starts at A$19 a month.
@@ -59,14 +59,10 @@ export default function PricingPreview() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
               whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
-              className={`group relative bg-bg-surface rounded p-6 border overflow-hidden transition-colors duration-200 ${
-                plan.popular ? 'border-gold scale-[1.02]' : 'border-gold/20 hover:border-gold/40'
+              className={`relative bg-bg-surface rounded p-6 border transition-colors duration-200 ${
+                plan.popular ? 'border-[rgba(201,168,76,0.5)] scale-[1.02]' : 'border-[rgba(201,168,76,0.2)] hover:border-gold/40'
               }`}
             >
-              <div
-                className="card-shimmer-el absolute inset-0 pointer-events-none"
-                style={{ background: 'linear-gradient(100deg, transparent 40%, rgba(201,168,76,0.12) 50%, transparent 60%)' }}
-              />
               {plan.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
                   {plan.badge || 'MOST POPULAR'}
@@ -115,7 +111,7 @@ export default function PricingPreview() {
           COMPARE ALL FEATURES →
         </Link>
 
-        <div className="max-w-[600px] mx-auto mt-16 bg-bg-surface border border-gold/20 rounded p-6 text-left">
+        <div className="max-w-[600px] mx-auto mt-10 bg-bg-surface border border-gold/20 rounded p-6 text-left">
           <div className="font-mono text-[12px] text-gold tracking-wide text-center mb-4">
             MADDENAI RESEARCH NOTES — From A$4.99
           </div>

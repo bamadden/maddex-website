@@ -18,8 +18,8 @@ const TESTIMONIALS = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
-      <div className="max-w-[1280px] mx-auto">
+    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto">
         <SectionLabel center>WHAT BETA USERS SAY</SectionLabel>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
           {TESTIMONIALS.map((t, i) => (

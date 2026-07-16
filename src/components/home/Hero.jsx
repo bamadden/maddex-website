@@ -105,8 +105,8 @@ export default function Hero() {
       <ParticleCanvas />
 
       <div
-        className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 items-center"
-        style={{ minHeight: 'calc(100vh - 88px)', paddingTop: 88 }}
+        className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 items-center"
+        style={{ minHeight: 'calc(100vh - 84px)', paddingTop: 84 }}
       >
         <div>
           <motion.div
@@ -193,39 +193,6 @@ export default function Hero() {
           className="hidden lg:block relative"
         >
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: [0, -6, 0] }}
-            transition={{ opacity: { delay: 1.5, duration: 0.5 }, y: { delay: 1.5, duration: 5, repeat: Infinity, ease: 'easeInOut' } }}
-            className="absolute -top-6 -left-10 z-20 bg-bg-primary border border-gold/30 rounded px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
-            style={{ willChange: 'transform' }}
-          >
-            <div className="font-mono text-[8px] tracking-[0.15em] text-gold">MADDENAI</div>
-            <div className="font-mono text-[12px] font-bold text-text-primary mt-0.5">72/100 <span className="text-gold">BULLISH</span></div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: [0, 6, 0] }}
-            transition={{ opacity: { delay: 1.65, duration: 0.5 }, y: { delay: 1.65, duration: 4.5, repeat: Infinity, ease: 'easeInOut' } }}
-            className="absolute -bottom-9 -left-14 z-20 bg-bg-primary border border-gold/30 rounded px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
-            style={{ willChange: 'transform' }}
-          >
-            <div className="font-mono text-[8px] tracking-[0.15em] text-text-muted">ASX 200</div>
-            <div className="font-mono text-[12px] font-bold text-gain mt-0.5">▲ +0.42%</div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: [0, -7, 0] }}
-            transition={{ opacity: { delay: 1.8, duration: 0.5 }, y: { delay: 1.8, duration: 5.5, repeat: Infinity, ease: 'easeInOut' } }}
-            className="absolute -top-6 -right-8 z-20 bg-bg-primary border border-gold/30 rounded px-3 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.4)]"
-            style={{ willChange: 'transform' }}
-          >
-            <div className="font-mono text-[8px] tracking-[0.15em] text-text-muted">BTC/AUD</div>
-            <div className="font-mono text-[12px] font-bold text-gain mt-0.5">A$162,400 ▲</div>
-          </motion.div>
-
-          <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           >
@@ -284,6 +251,21 @@ export default function Hero() {
                   <span className="blink-cursor">▍</span>
                 </span>
               </div>
+
+              <div className="grid grid-cols-3 divide-x divide-[rgba(30,70,140,0.3)] border-t border-gold/12">
+                <div className="px-3 py-2.5">
+                  <div className="font-mono text-[9px] text-text-muted">MADDENAI</div>
+                  <div className="font-mono text-[12px] font-bold text-gold mt-0.5">72/100 BULLISH</div>
+                </div>
+                <div className="px-3 py-2.5">
+                  <div className="font-mono text-[9px] text-text-muted">ASX 200</div>
+                  <div className="font-mono text-[12px] font-bold text-text-primary mt-0.5">8,412 <span className="text-gain">▲ +0.42%</span></div>
+                </div>
+                <div className="px-3 py-2.5">
+                  <div className="font-mono text-[9px] text-text-muted">BTC/AUD</div>
+                  <div className="font-mono text-[12px] font-bold text-gain mt-0.5">A$162,400</div>
+                </div>
+              </div>
             </TerminalCard>
           </motion.div>
         </motion.div>
@@ -293,7 +275,7 @@ export default function Hero() {
         initial={{ opacity: 1 }}
         animate={{ opacity: [1, 1, 0] }}
         transition={{ duration: 2, delay: 3 }}
-        className="absolute bottom-[30px] left-1/2 -translate-x-1/2 flex flex-col items-center hidden md:flex"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center hidden md:flex"
       >
         <span className="font-mono text-[9px] tracking-[0.2em] text-text-faint mb-2">SCROLL</span>
         <div className="w-px h-10 bg-gold/30 mb-2" />

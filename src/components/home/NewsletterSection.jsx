@@ -6,8 +6,8 @@ export default function NewsletterSection() {
   const [email, setEmail] = useState('')
 
   return (
-    <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-      <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="relative bg-bg-primary border border-gold/20 rounded overflow-hidden">
           <div className="bg-gold px-5 py-3">
             <div className="font-mono text-[13px] font-bold text-bg-primary tracking-[0.1em]">MADDEN RESEARCH</div>

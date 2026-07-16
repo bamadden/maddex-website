@@ -87,8 +87,8 @@ export default function LivePulseSection() {
   const dots = Array.from({ length: 22 }, (_, i) => i < 18)
 
   return (
-    <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-      <div className="max-w-[1280px] mx-auto text-center">
+    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>LIVE MARKET PULSE</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary">
           Markets don't sleep. Neither does Maddex.
@@ -103,7 +103,7 @@ export default function LivePulseSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1000px] mx-auto mt-14 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-[1000px] mx-auto mt-14 text-left">
           <div className="bg-bg-primary border border-gold/15 rounded p-6">
             <div className="font-mono text-[9px] text-gold">MADDENAI SENTIMENT</div>
             <div className="flex items-baseline gap-1 mt-2">

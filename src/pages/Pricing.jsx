@@ -126,7 +126,7 @@ export default function Pricing() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[140px] pb-16 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
         <SectionLabel center>PRICING</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -160,7 +160,7 @@ export default function Pricing() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10 text-left max-w-[1280px] mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10 text-left max-w-[1200px] mx-auto">
           {PLANS.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -169,14 +169,10 @@ export default function Pricing() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
               whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
-              className={`group relative bg-bg-surface rounded p-6 border overflow-hidden transition-colors duration-200 ${
-                plan.popular ? 'border-gold scale-[1.02]' : 'border-gold/20 hover:border-gold/40'
+              className={`relative bg-bg-surface rounded p-6 border transition-colors duration-200 ${
+                plan.popular ? 'border-[rgba(201,168,76,0.5)] scale-[1.02]' : 'border-[rgba(201,168,76,0.2)] hover:border-gold/40'
               }`}
             >
-              <div
-                className="card-shimmer-el absolute inset-0 pointer-events-none"
-                style={{ background: 'linear-gradient(100deg, transparent 40%, rgba(201,168,76,0.12) 50%, transparent 60%)' }}
-              />
               {plan.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
                   {plan.badge || 'MOST POPULAR'}
@@ -218,7 +214,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto">
           <SectionLabel center>FULL COMPARISON</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight">
@@ -249,7 +245,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 text-center">
         <div className="max-w-[600px] mx-auto bg-bg-surface border border-gold/20 rounded p-6 text-left">
           <div className="font-mono text-[12px] text-gold tracking-wide text-center mb-4">
             MADDENAI RESEARCH NOTES — From A$4.99
@@ -263,8 +259,8 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto text-center">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>BUSINESS PLANS</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             Built for advisers and firms.
@@ -293,7 +289,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[720px] mx-auto">
           <SectionLabel center>FAQ</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-8">

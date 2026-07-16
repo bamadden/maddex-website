@@ -15,7 +15,11 @@ const DESCRIPTIONS = {
 }
 
 function Row({ cols, className = '' }) {
-  return <div className={`flex items-center py-2.5 font-mono text-[11px] ${className}`}>{cols}</div>
+  return <div className={`flex items-center py-1.5 font-mono text-[11px] ${className}`}>{cols}</div>
+}
+
+function StripDivider() {
+  return <div className="h-px bg-[rgba(30,70,140,0.3)]" />
 }
 
 function MarketsPanel() {
@@ -35,19 +39,16 @@ function MarketsPanel() {
     { label: 'IND', full: 'Industrials', change: '+0.5%', positive: true },
     { label: 'STA', full: 'Consumer Staples', change: '-0.1%', positive: false },
     { label: 'ENRG', full: 'Energy', change: '-0.4%', positive: false },
-    { label: 'MAT', full: 'Materials', change: '+0.9%', positive: true },
-    { label: 'REI', full: 'Real Estate', change: '+0.3%', positive: true },
-    { label: 'UTL', full: 'Utilities', change: '-0.2%', positive: false },
   ]
   return (
-    <div className="flex flex-col">
-      <div className="bg-bg-surface border-b border-gold/12 px-4 py-2 flex flex-wrap justify-between gap-2 font-mono text-[10px]">
+    <div className="flex flex-col h-full">
+      <div className="bg-bg-surface border-b border-gold/12 px-4 py-1.5 flex flex-wrap justify-between gap-2 font-mono text-[10px]">
         <span className="text-text-muted">
           MARKETS &nbsp;·&nbsp; ASX 200 <span className="text-gain">&nbsp;●&nbsp; OPEN</span> &nbsp;09:42 AEST
         </span>
         <span className="text-gold">MaddenAI Sentiment 72/100 NEUTRAL-BULLISH</span>
       </div>
-      <div className="px-4 py-2">
+      <div className="px-4 py-1.5">
         {indices.map((row, i) => (
           <div key={row.symbol}>
             <Row
@@ -63,15 +64,15 @@ function MarketsPanel() {
                 </>
               }
             />
-            {i < indices.length - 1 && <div className="h-px bg-[rgba(30,70,140,0.3)]" />}
+            {i < indices.length - 1 && <StripDivider />}
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 px-4 pb-4">
+      <div className="grid grid-cols-4 gap-1 px-4 pb-2">
         {sectors.map((s) => (
           <div
             key={s.label}
-            className="group relative px-2 py-2 rounded-sm font-mono text-[9px] cursor-default transition-transform duration-150 hover:scale-[1.04]"
+            className="group relative px-2 py-1.5 rounded-sm font-mono text-[9px] cursor-default transition-transform duration-150 hover:scale-[1.04]"
             style={{
               background: s.positive ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)',
               border: `1px solid ${s.positive ? 'rgba(45,138,80,0.2)' : 'rgba(168,50,50,0.2)'}`,
@@ -85,8 +86,18 @@ function MarketsPanel() {
           </div>
         ))}
       </div>
-      <div className="mt-auto bg-gold/5 border-t border-gold/12 px-4 py-2 font-mono text-[10px] text-gold">
-        MADDENAI MARKET SENTIMENT &nbsp;72/100&nbsp; NEUTRAL-BULLISH &nbsp;─────●────
+      <div className="mt-auto flex flex-col">
+        <div className="border-t border-[rgba(30,70,140,0.3)] px-4 py-1.5 font-mono text-[9px] text-text-muted">
+          <span className="text-gold">TOP MOVERS</span>
+          &nbsp; ASX LEADERS: <span className="text-text-primary">CSL.AX</span> <span className="text-gain">▲+2.4%</span> &nbsp;
+          <span className="text-text-primary">BHP.AX</span> <span className="text-gain">▲+1.2%</span> &nbsp;
+          <span className="text-text-primary">WBC.AX</span> <span className="text-gain">▲+0.8%</span>
+          &nbsp;|&nbsp; LAGGARDS: <span className="text-text-primary">STO.AX</span> <span className="text-loss">▼-1.2%</span> &nbsp;
+          <span className="text-text-primary">ORG.AX</span> <span className="text-loss">▼-0.8%</span>
+        </div>
+        <div className="bg-gold/5 border-t border-gold/12 px-4 py-1.5 font-mono text-[10px] text-gold">
+          MADDENAI MARKET SENTIMENT &nbsp;72/100&nbsp; NEUTRAL-BULLISH &nbsp;─────●────
+        </div>
       </div>
     </div>
   )
@@ -102,32 +113,32 @@ function CryptoPanel() {
   ]
   const badgeColor = { BULLISH: '#2D8A50', NEUTRAL: '#C9A84C', BEARISH: '#A83232' }
   return (
-    <div>
+    <div className="flex flex-col h-full">
       <div className="grid grid-cols-2">
-        <div className="p-4 border-r border-b border-[rgba(30,70,140,0.3)]">
+        <div className="p-3 border-r border-b border-[rgba(30,70,140,0.3)]">
           <div className="font-mono text-[9px] text-gold">MADDENAI</div>
-          <div className="font-mono text-[32px] font-bold text-gold leading-none mt-1">68</div>
+          <div className="font-mono text-[28px] font-bold text-gold leading-none mt-1">68</div>
           <div className="font-sans text-[11px] text-text-primary">/100 BULLISH</div>
         </div>
-        <div className="p-4 border-b border-[rgba(30,70,140,0.3)]">
+        <div className="p-3 border-b border-[rgba(30,70,140,0.3)]">
           <div className="font-mono text-[9px] text-gold">FEAR &amp; GREED</div>
-          <div className="font-mono text-[32px] font-bold text-[#C9A84C] leading-none mt-1">42</div>
+          <div className="font-mono text-[28px] font-bold text-[#C9A84C] leading-none mt-1">42</div>
           <div className="font-sans text-[11px] text-text-primary">FEAR</div>
         </div>
-        <div className="p-4 border-r border-[rgba(30,70,140,0.3)]">
+        <div className="p-3 border-r border-[rgba(30,70,140,0.3)]">
           <div className="font-mono text-[9px] text-gold">MARKET CAP</div>
-          <div className="font-mono text-[22px] font-bold text-text-primary mt-1">A$2.4T</div>
+          <div className="font-mono text-[20px] font-bold text-text-primary mt-1">A$2.4T</div>
           <div className="font-mono text-[11px] text-gain">▲ +1.2% 24h</div>
         </div>
-        <div className="p-4">
+        <div className="p-3">
           <div className="font-mono text-[9px] text-gold">BTC DOMINANCE</div>
-          <div className="font-mono text-[22px] font-bold text-text-primary mt-1">58.2%</div>
+          <div className="font-mono text-[20px] font-bold text-text-primary mt-1">58.2%</div>
           <div className="w-full h-1 bg-[rgba(30,70,140,0.3)] rounded-full mt-2">
             <div className="h-1 bg-gold rounded-full" style={{ width: '58.2%' }} />
           </div>
         </div>
       </div>
-      <div className="px-4 py-2">
+      <div className="px-4 py-1.5">
         {coins.map((c) => (
           <Row
             key={c.name}
@@ -149,6 +160,12 @@ function CryptoPanel() {
           />
         ))}
       </div>
+      <div className="mt-auto border-t border-[rgba(30,70,140,0.3)] px-4 py-1.5 font-mono text-[9px] text-text-muted">
+        <span className="text-gold">TRENDING</span> &nbsp;🔥 <span className="text-text-primary">PEPE</span> <span className="text-gain">▲+12.4%</span> &nbsp;
+        <span className="text-text-primary">WIF</span> <span className="text-gain">▲+8.2%</span> &nbsp;
+        <span className="text-text-primary">BONK</span> <span className="text-gain">▲+6.1%</span> &nbsp;
+        <span className="text-text-primary">DOGE</span> <span className="text-gain">▲+4.8%</span>
+      </div>
     </div>
   )
 }
@@ -164,19 +181,19 @@ function RatesPanel() {
   ]
   const banks = [
     { bank: 'RBA', rate: '4.35%', status: 'HOLD' },
-    { bank: 'FED', rate: '4.75%', status: 'HOLD' },
-    { bank: 'ECB', rate: '3.15%', status: 'CUT' },
+    { bank: 'FED', rate: '4.25%', status: 'HOLD' },
+    { bank: 'ECB', rate: '2.50%', status: 'CUT' },
     { bank: 'BOE', rate: '4.50%', status: 'HOLD' },
-    { bank: 'BOJ', rate: '0.50%', status: 'HIKE' },
+    { bank: 'BOJ', rate: '0.50%', status: 'HOLD' },
   ]
   const tenors = ['3M', '6M', '1Y', '2Y', '3Y', '5Y', '10Y']
   const yields = [20, 24, 26, 30, 34, 40, 48]
   const points = yields.map((y, i) => `${(i / (yields.length - 1)) * 260 + 10},${70 - y}`).join(' ')
 
   return (
-    <div>
+    <div className="flex flex-col h-full">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-        <div className="p-4 border-r border-[rgba(30,70,140,0.3)]">
+        <div className="p-3 border-r border-[rgba(30,70,140,0.3)]">
           {fx.map((row) => (
             <Row
               key={row.pair}
@@ -191,9 +208,9 @@ function RatesPanel() {
             />
           ))}
         </div>
-        <div className="p-4">
+        <div className="p-3">
           <div className="font-mono text-[9px] text-gold mb-2">AU GOVERNMENT BOND YIELD CURVE</div>
-          <svg viewBox="0 0 280 90" className="w-full h-[110px]">
+          <svg viewBox="0 0 280 90" className="w-full h-[100px]">
             <line x1="10" y1="80" x2="270" y2="80" stroke="rgba(30,70,140,0.4)" strokeWidth="1" />
             <line x1="10" y1="10" x2="10" y2="80" stroke="rgba(30,70,140,0.4)" strokeWidth="1" />
             <polyline points={points} fill="none" stroke="#C9A84C" strokeWidth="1.5" />
@@ -213,12 +230,15 @@ function RatesPanel() {
           </svg>
         </div>
       </div>
-      <div className="border-t border-[rgba(30,70,140,0.3)] px-4 py-3 flex flex-wrap gap-4 justify-between">
-        {banks.map((b) => (
-          <span key={b.bank} className="font-mono text-[10px] text-text-muted">
-            <span className="text-gold font-semibold">{b.bank}</span> {b.rate} <span className="text-text-faint">{b.status}</span>
-          </span>
-        ))}
+      <div className="mt-auto border-t border-[rgba(30,70,140,0.3)] px-4 py-2">
+        <div className="font-mono text-[9px] text-gold mb-1.5">CENTRAL BANKS</div>
+        <div className="flex flex-wrap gap-x-4 gap-y-1">
+          {banks.map((b) => (
+            <span key={b.bank} className="font-mono text-[10px] text-text-muted">
+              <span className="text-gold font-semibold">{b.bank}</span> {b.rate} <span className="text-text-faint">{b.status}</span>
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -257,21 +277,27 @@ function MacroPanel() {
     { label: 'IRON ORE', value: 'US$98.20' },
   ]
   return (
-    <div className="p-6">
-      <div className="text-center py-6 border-b border-[rgba(30,70,140,0.3)]">
-        <div className="font-mono text-[48px] font-bold text-gold leading-none">4.35%</div>
+    <div className="p-4 flex flex-col h-full justify-between">
+      <div className="text-center py-5 border-b border-[rgba(30,70,140,0.3)]">
+        <div className="font-mono text-[44px] font-bold text-gold leading-none">4.35%</div>
         <div className="font-mono text-[12px] text-text-primary mt-2">CASH RATE — HELD</div>
-        <div className="font-mono text-[11px] text-text-muted mt-3">
+        <div className="font-mono text-[11px] text-text-muted mt-2">
           NEXT MEETING: 5 AUG 2026 &nbsp;·&nbsp; <CountdownTimer />
         </div>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+      <div className="grid grid-cols-4 gap-3">
         {indicators.map((ind) => (
-          <div key={ind.label} className="bg-bg-surface rounded p-3">
-            <div className="font-mono text-[9px] text-text-muted">{ind.label}</div>
-            <div className="font-mono text-[15px] text-text-primary font-bold mt-1">{ind.value}</div>
+          <div key={ind.label} className="bg-bg-surface rounded p-3 text-center">
+            <div className="font-mono text-[8px] text-text-muted">{ind.label}</div>
+            <div className="font-mono text-[14px] text-text-primary font-bold mt-1.5">{ind.value}</div>
           </div>
         ))}
+      </div>
+      <div className="pt-3 border-t border-[rgba(30,70,140,0.3)] font-mono text-[9px] text-text-muted">
+        <span className="text-gold">NEXT EVENTS</span> &nbsp; AU EMPLOYMENT <span className="text-text-primary">17 JUL</span> &nbsp;
+        US CPI <span className="text-text-primary">15 JUL</span> &nbsp;
+        FOMC <span className="text-text-primary">29-30 JUL</span> &nbsp;
+        RBA <span className="text-text-primary">5 AUG</span>
       </div>
     </div>
   )
@@ -282,18 +308,20 @@ function NewsPanel() {
     { source: 'AFR', time: '2m ago', sentiment: 'BULLISH', headline: 'RBA holds rates at 4.35%, signals possible cut Q4 2026' },
     { source: 'REUTERS', time: '8m ago', sentiment: 'BEARISH', headline: 'Iron ore slides as China construction data disappoints' },
     { source: 'COINTELEGRAPH', time: '14m ago', sentiment: 'BULLISH', headline: 'Bitcoin consolidates above A$160,000 resistance level' },
+    { source: 'BLOOMBERG', time: '22m ago', sentiment: 'BULLISH', headline: 'ASX financials rally as bond yields ease across the curve' },
+    { source: 'THE AUSTRALIAN', time: '31m ago', sentiment: 'BULLISH', headline: 'Consumer confidence ticks up on softer rate-cut expectations' },
   ]
   const badgeColor = { BULLISH: '#2D8A50', BEARISH: '#A83232' }
   const themes = [
-    'Iron ore stability above US$95/t supports ASX materials sector',
-    'Fed pause reduces AUD pressure — bullish for offshore earners',
+    'Iron ore stability above US$95/t supports ASX Materials',
+    'Fed pause reduces AUD pressure — bullish offshore earners',
     'Crypto breadth improving as BTC dominance eases from 60%',
   ]
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] gap-0">
-      <div className="p-4 flex flex-col gap-3">
+    <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] h-full overflow-hidden">
+      <div className="relative p-3 flex flex-col gap-2 overflow-hidden">
         {articles.map((a) => (
-          <div key={a.headline} className="bg-bg-surface rounded p-3">
+          <div key={a.headline} className="bg-bg-surface rounded p-2.5 shrink-0">
             <div className="font-mono text-[9px] text-text-muted flex items-center gap-2">
               <span className="text-gold">{a.source}</span>
               <span>· {a.time} ·</span>
@@ -304,12 +332,16 @@ function NewsPanel() {
                 {a.sentiment}
               </span>
             </div>
-            <div className="font-mono text-[12px] text-text-primary mt-2 leading-snug">{a.headline}</div>
+            <div className="font-mono text-[12px] text-text-primary mt-1.5 leading-snug">{a.headline}</div>
           </div>
         ))}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, transparent, #060D1A)' }}
+        />
       </div>
-      <div className="p-4 border-t md:border-t-0 md:border-l border-[rgba(30,70,140,0.3)]">
-        <div className="font-mono text-[9px] text-gold mb-3">MADDENAI KEY THEMES</div>
+      <div className="p-3 border-t md:border-t-0 md:border-l border-[rgba(30,70,140,0.3)]">
+        <div className="font-mono text-[9px] text-gold mb-3">MADDENAI TODAY'S THEMES</div>
         <div className="flex flex-col gap-3">
           {themes.map((t) => (
             <div key={t} className="font-mono text-[11px] text-text-muted leading-snug flex gap-2">
@@ -331,7 +363,7 @@ function WatchlistPanel() {
     { symbol: 'BTC/AUD', price: 'A$162,400', change: '+1.80%', positive: true, range: 84 },
   ]
   return (
-    <div className="p-4">
+    <div className="p-4 flex flex-col h-full">
       <input
         type="text"
         placeholder="ADD TICKER..."
@@ -339,7 +371,7 @@ function WatchlistPanel() {
       />
       <div className="mt-3">
         {rows.map((row) => (
-          <div key={row.symbol} className="flex items-center gap-3 py-2.5 border-b border-[rgba(30,70,140,0.2)]">
+          <div key={row.symbol} className="flex items-center gap-3 py-2 border-b border-[rgba(30,70,140,0.2)]">
             <span className="font-mono text-[11px] text-text-primary w-24">{row.symbol}</span>
             <span className="font-mono text-[11px] text-text-primary w-28 text-right">{row.price}</span>
             <span className={`font-mono text-[11px] w-20 text-right ${row.positive ? 'text-gain' : 'text-loss'}`}>{row.change}</span>
@@ -348,9 +380,15 @@ function WatchlistPanel() {
             </div>
           </div>
         ))}
-        <button type="button" className="flex items-center gap-2 py-3 font-mono text-[11px] text-gold w-full">
+        <button type="button" className="flex items-center gap-2 py-2 font-mono text-[11px] text-gold w-full">
           <span>+</span> ADD SYMBOL
         </button>
+      </div>
+      <div className="mt-auto pt-3 border-t border-[rgba(30,70,140,0.3)] font-mono text-[10px]">
+        <span className="text-gold">PORTFOLIO SUMMARY</span> &nbsp;
+        <span className="text-text-muted">Total Value:</span> <span className="text-text-primary">A$284,521</span> &nbsp;
+        <span className="text-text-muted">Day P&amp;L:</span> <span className="text-gain">▲ +A$4,218 (+1.5%)</span> &nbsp;
+        <span className="text-text-muted">Holdings:</span> <span className="text-text-primary">7</span>
       </div>
     </div>
   )
@@ -358,47 +396,76 @@ function WatchlistPanel() {
 
 function GlobalPanel() {
   const cities = [
-    { name: 'SYDNEY', x: 82, y: 62 },
-    { name: 'LONDON', x: 47, y: 24 },
-    { name: 'NEW YORK', x: 25, y: 28 },
-    { name: 'TOKYO', x: 87, y: 32 },
-    { name: 'SHANGHAI', x: 80, y: 34 },
+    { name: 'SYDNEY', code: 'ASX', x: 80, y: 58, open: true, ly: 4 },
+    { name: 'TOKYO', code: 'TSE', x: 88, y: 24, open: true, ly: -3 },
+    { name: 'SHANGHAI', code: 'SSE', x: 76, y: 30, open: true, ly: -3 },
+    { name: 'SINGAPORE', code: 'SGX', x: 68, y: 52, open: true, ly: 5 },
+    { name: 'LONDON', code: 'LSE', x: 42, y: 16, open: false, ly: -3 },
+    { name: 'FRANKFURT', code: 'XETRA', x: 48, y: 36, open: false, ly: 5 },
+    { name: 'NEW YORK', code: 'NYSE', x: 16, y: 32, open: false, ly: 5 },
   ]
   return (
-    <div className="p-4">
-      <div className="flex gap-2 mb-3 flex-wrap">
-        {['Exchanges', 'Routes', 'Risk'].map((l) => (
-          <span key={l} className="font-mono text-[9px] text-gold border border-gold/30 rounded-full px-3 py-1">
-            {l}
-          </span>
-        ))}
-      </div>
-      <div className="relative bg-bg-surface rounded" style={{ height: 220 }}>
-        <svg viewBox="0 0 100 80" className="w-full h-full">
-          <path d="M15,20 Q20,15 28,18 L35,25 Q30,32 22,30 Z" fill="rgba(30,70,140,0.4)" />
-          <path d="M40,15 Q48,12 55,18 L52,28 Q44,26 40,20 Z" fill="rgba(30,70,140,0.4)" />
-          <path d="M45,32 Q55,30 58,42 L50,55 Q42,48 45,32 Z" fill="rgba(30,70,140,0.4)" />
-          <path d="M65,20 Q78,18 85,28 L80,40 Q68,35 65,20 Z" fill="rgba(30,70,140,0.4)" />
-          <path d="M75,45 Q85,48 82,58 L74,56 Z" fill="rgba(30,70,140,0.4)" />
-          <line x1="82" y1="62" x2="80" y2="34" stroke="#C9A84C" strokeWidth="0.3" strokeDasharray="1,1" />
-          <line x1="82" y1="62" x2="87" y2="32" stroke="#C9A84C" strokeWidth="0.3" strokeDasharray="1,1" />
+    <div className="grid grid-cols-1 md:grid-cols-[60%_40%] h-full overflow-hidden">
+      <div className="relative p-3 border-r border-[rgba(30,70,140,0.3)]">
+        <svg viewBox="0 0 100 80" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+          <path d="M10,24 Q16,18 24,22 L30,30 Q24,36 16,34 Z" fill="rgba(30,70,140,0.3)" />
+          <path d="M38,10 Q48,8 54,16 L50,30 Q40,28 38,18 Z" fill="rgba(30,70,140,0.3)" />
+          <path d="M42,38 Q54,36 56,48 L48,62 Q40,54 42,38 Z" fill="rgba(30,70,140,0.3)" />
+          <path d="M62,16 Q78,14 86,24 L80,38 Q68,32 62,16 Z" fill="rgba(30,70,140,0.3)" />
+          <path d="M70,48 Q82,50 80,62 L70,58 Z" fill="rgba(30,70,140,0.3)" />
+
+          <line x1="80" y1="58" x2="76" y2="30" stroke="#C9A84C" strokeWidth="0.3" strokeDasharray="1,1" />
+          <text x="73" y="48" fontSize="2.1" fill="#C9A84C" textAnchor="middle" fontFamily="IBM Plex Mono">IRON ORE</text>
+          <line x1="80" y1="58" x2="88" y2="24" stroke="#C9A84C" strokeWidth="0.3" strokeDasharray="1,1" />
+          <text x="92" y="44" fontSize="2.1" fill="#C9A84C" textAnchor="middle" fontFamily="IBM Plex Mono">LNG</text>
+
           {cities.map((c) => (
             <g key={c.name}>
-              <circle cx={c.x} cy={c.y} r="1.2" fill="#C9A84C">
-                <animate attributeName="r" values="1;2;1" dur="2s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite" />
+              <circle cx={c.x} cy={c.y} r="1.1" fill={c.open ? '#C9A84C' : '#A83232'} opacity={c.open ? 1 : 0.5}>
+                {c.open && <animate attributeName="r" values="1;2;1" dur="2s" repeatCount="indefinite" />}
+                {c.open && <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite" />}
               </circle>
-              <text x={c.x} y={c.y - 2.5} fontSize="2.4" fill="#637899" textAnchor="middle" fontFamily="IBM Plex Mono">
-                {c.name}
+              <text x={c.x} y={c.y + c.ly} fontSize="2.1" fill="#637899" textAnchor="middle" fontFamily="IBM Plex Mono">
+                {c.code} ● {c.open ? 'OPEN' : 'CLOSED'}
               </text>
             </g>
           ))}
         </svg>
       </div>
-      <div className="flex justify-between mt-3 font-mono text-[10px] text-text-muted flex-wrap gap-2">
-        <span>50+ EXCHANGES</span>
-        <span className="text-gain">18 OPEN</span>
-        <span>RISK: <span className="text-gold">MODERATE</span></span>
+      <div className="p-3 flex flex-col gap-2.5 overflow-hidden font-mono text-[9px]">
+        <div>
+          <div className="text-gold tracking-[0.1em] mb-1">GLOBAL STATUS</div>
+          <div className="h-px bg-gold/20 mb-1.5" />
+          <div className="flex justify-between text-text-muted"><span>OPEN NOW</span><span className="text-gain">18/50</span></div>
+          <div className="flex justify-between text-text-muted"><span>CLOSING &lt; 1H</span><span className="text-text-primary">3</span></div>
+          <div className="flex justify-between text-text-muted"><span>CLOSED</span><span className="text-text-faint">29</span></div>
+        </div>
+        <div>
+          <div className="text-gold tracking-[0.1em] mb-1">ACTIVE LAYERS</div>
+          <div className="h-px bg-gold/20 mb-1.5" />
+          <div className="grid grid-cols-2 gap-1">
+            <span className="border border-gold/40 text-gold rounded-sm px-1.5 py-0.5">● MARKETS</span>
+            <span className="border border-[rgba(30,70,140,0.4)] text-text-faint rounded-sm px-1.5 py-0.5">MARITIME</span>
+            <span className="border border-[rgba(30,70,140,0.4)] text-text-faint rounded-sm px-1.5 py-0.5">AIR</span>
+            <span className="border border-[rgba(30,70,140,0.4)] text-text-faint rounded-sm px-1.5 py-0.5">GEO RISK</span>
+          </div>
+        </div>
+        <div>
+          <div className="text-gold tracking-[0.1em] mb-1">RISK PULSE</div>
+          <div className="h-px bg-gold/20 mb-1.5" />
+          <div className="text-text-muted mb-1">GLOBAL RISK: <span className="text-loss">ELEVATED</span> ████░░░░</div>
+          <div className="text-text-muted">🔴 Middle East — <span className="text-loss">CRITICAL</span></div>
+          <div className="text-text-muted">🟡 East Europe — <span className="text-gold">HIGH</span></div>
+          <div className="text-text-muted">🟡 Asia Pacific — <span className="text-gold">MEDIUM</span></div>
+        </div>
+        <div>
+          <div className="text-gold tracking-[0.1em] mb-1">TRADE FLOWS</div>
+          <div className="h-px bg-gold/20 mb-1.5" />
+          <div className="flex justify-between text-text-muted"><span>SUEZ CANAL</span><span className="text-gold">⚠ MONITORED</span></div>
+          <div className="flex justify-between text-text-muted"><span>HORMUZ</span><span className="text-gold">⚠ MONITORED</span></div>
+          <div className="flex justify-between text-text-muted"><span>PANAMA</span><span className="text-gain">✓ OPEN</span></div>
+          <div className="flex justify-between text-text-muted"><span>MALACCA</span><span className="text-gain">✓ OPEN</span></div>
+        </div>
       </div>
     </div>
   )
@@ -419,8 +486,8 @@ export default function PlatformSection() {
   const ActivePanel = PANELS[activeTab]
 
   return (
-    <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-      <div className="max-w-[1280px] mx-auto text-center">
+    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>THE TERMINAL</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
           Seven modules. One platform. Everything you need to know.
@@ -452,7 +519,7 @@ export default function PlatformSection() {
           ))}
         </div>
 
-        <div className="relative bg-bg-primary border border-gold/20 rounded mt-10 h-[500px] text-left overflow-y-auto flex flex-col">
+        <div className="relative bg-bg-primary border border-gold/20 rounded mt-10 h-[420px] text-left overflow-hidden flex flex-col">
           <span className="absolute -top-3 right-4 z-30 flex items-center gap-1.5 font-mono text-[9px] tracking-[0.1em] text-gold bg-bg-primary border border-gold/30 px-2.5 py-1 rounded-full pointer-events-none">
             <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
             LIVE
@@ -464,7 +531,7 @@ export default function PlatformSection() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.2 }}
-              className="flex-1 flex flex-col"
+              className="flex-1 flex flex-col overflow-hidden"
               style={{ willChange: 'transform' }}
             >
               <ActivePanel />

@@ -33,7 +33,7 @@ function ScoreDial({ value, label }) {
   const inView = useInView(ref, { once: true, margin: '-40px' })
   const circumference = 2 * Math.PI * 42
   return (
-    <div ref={ref} className="relative w-[110px] h-[110px] shrink-0">
+    <div ref={ref} className="relative w-[112px] h-[112px] shrink-0">
       <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
         <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(30,70,140,0.3)" strokeWidth="6" />
         <motion.circle
@@ -69,7 +69,7 @@ export default function MaddenAI() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[140px] pb-20 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[84px] pb-20 px-6 md:px-10 text-center">
         <SectionLabel center>MADDENAI</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -113,8 +113,8 @@ export default function MaddenAI() {
         </motion.div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto text-center">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>HOW IT WORKS</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             A two-layer intelligence system.
@@ -150,8 +150,8 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto">
           <SectionLabel center>SCORING MODELS</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary text-center max-w-2xl mx-auto leading-tight">
             Three composite models. Fully transparent.
@@ -238,8 +238,8 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
             <SectionLabel>ASSET ANALYSIS</SectionLabel>
             <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
@@ -277,7 +277,7 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 text-center">
         <SectionLabel center>RESEARCH NOTES</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Institutional-quality PDF research, generated on demand.
@@ -290,8 +290,8 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto text-center">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>PERSONALISATION</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             MaddenAI adapts to what you actually hold.

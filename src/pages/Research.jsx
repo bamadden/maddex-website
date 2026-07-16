@@ -65,7 +65,7 @@ export default function Research() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[140px] pb-16 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
         <SectionLabel center>MADDEN RESEARCH</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -80,8 +80,8 @@ export default function Research() {
         </p>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto text-center">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>WHAT'S INSIDE</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             Four sections. Every Monday. Hover to preview.
@@ -94,7 +94,7 @@ export default function Research() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[760px] mx-auto">
           <SectionLabel center>SAMPLE ISSUE</SectionLabel>
           <div className="relative bg-bg-surface border border-gold/20 rounded overflow-hidden mt-6" style={{ minHeight: 640 }}>
@@ -143,7 +143,7 @@ export default function Research() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[900px] mx-auto text-center">
           <SectionLabel center>SUBSCRIBE</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -187,8 +187,8 @@ export default function Research() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
-        <div className="max-w-[1280px] mx-auto text-center">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>PAST ISSUES</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             Catch up on what you missed.
