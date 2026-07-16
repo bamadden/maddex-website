@@ -55,17 +55,17 @@ export default function PricingPreview() {
             onClick={() => setAnnual(false)}
             className={`relative font-mono text-[11px] px-4 py-2 rounded-full transition-colors ${!annual ? 'text-bg-primary font-bold' : 'text-text-muted'}`}
           >
-            {!annual && <motion.span layoutId="home-toggle-pill" className="absolute inset-0 bg-gold rounded-full" style={{ zIndex: -1 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
-            MONTHLY
+            {!annual && <motion.span layoutId="home-toggle-pill" className="absolute inset-0 bg-gold rounded-full" style={{ zIndex: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
+            <span className="relative z-10">MONTHLY</span>
           </button>
           <button
             type="button"
             onClick={() => setAnnual(true)}
             className={`relative font-mono text-[11px] px-4 py-2 rounded-full transition-colors flex items-center gap-2 ${annual ? 'text-bg-primary font-bold' : 'text-text-muted'}`}
           >
-            {annual && <motion.span layoutId="home-toggle-pill" className="absolute inset-0 bg-gold rounded-full" style={{ zIndex: -1 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
-            ANNUAL
-            <span className="bg-gold/20 text-gold text-[9px] px-1.5 py-0.5 rounded-full">SAVE 17%</span>
+            {annual && <motion.span layoutId="home-toggle-pill" className="absolute inset-0 bg-gold rounded-full" style={{ zIndex: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
+            <span className="relative z-10">ANNUAL</span>
+            <span className="relative z-10 bg-gold/20 text-gold text-[9px] px-1.5 py-0.5 rounded-full">SAVE 17%</span>
           </button>
         </div>
 

@@ -74,7 +74,7 @@ body {
   animation: ticker-scroll 60s linear infinite;
 }
 .ticker-track-keywords {
-  animation: ticker-scroll 50s linear infinite;
+  animation: ticker-scroll 120s linear infinite;
 }
 
 @keyframes pulse-ring {
@@ -100,6 +100,15 @@ body {
 
 @keyframes border-spin {
   to { transform: rotate(360deg); }
+}
+
+@keyframes score-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+.score-pulse {
+  display: inline-block;
+  animation: score-pulse 2s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

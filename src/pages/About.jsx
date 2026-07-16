@@ -6,10 +6,9 @@ import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 
 const VALUES = [
-  ['Depth over noise', 'Every module is built to add signal, not another number that means nothing without context.'],
-  ['Australian-first', 'Built for the ASX, the RBA, and AUD-denominated portfolios — not a US product with a currency toggle.'],
-  ['Radical transparency', 'MaddenAI shows its factor weightings and methodology. No black-box scores.'],
-  ['Priced for individuals', 'Institutional-grade intelligence shouldn\'t require an institutional budget.'],
+  ['RIGOUR', '◆', 'Every module is built to add signal, not another number that means nothing without context.'],
+  ['ACCESSIBILITY', '◈', "Institutional-grade intelligence shouldn't require an institutional budget — built for Australian investors, priced for individuals."],
+  ['TRANSPARENCY', '◉', 'MaddenAI shows its factor weightings and methodology. No black-box scores.'],
 ]
 
 const ROADMAP = [
@@ -22,10 +21,10 @@ const ROADMAP = [
 ]
 
 const CREDENTIALS = [
-  'Master of Business (Applied Finance), QUT — Dean\'s Honour List 2021–22',
-  'Bachelor of Business (International Business), QUT — Distinction',
-  'Queensland Government Finance Graduate — Department of Housing and Public Works',
-  'OP2, Moreton Bay Boys\' College — Dux, Vice-Captain, Eagle Award',
+  ['MASTER OF BUSINESS (APPLIED FINANCE)', 'Queensland University of Technology', "Dean's Honour List 2021–22"],
+  ['BACHELOR OF BUSINESS (INTERNATIONAL BUSINESS)', 'Queensland University of Technology', 'Distinction'],
+  ['FINANCE GRADUATE', 'Queensland Government — Dept. of Housing and Public Works', 'Competitive rotational graduate program'],
+  ['OP2 · DUX · VICE-CAPTAIN · EAGLE AWARD', "Moreton Bay Boys' College", ''],
 ]
 
 const ENTITIES = [
@@ -62,37 +61,38 @@ export default function About() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="relative w-[240px] h-[240px] mx-auto md:mx-0 shrink-0"
+            className="mx-auto md:mx-0 shrink-0 text-center"
           >
-            <div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: 'conic-gradient(from 0deg, transparent 0%, #C9A84C 30%, transparent 60%)',
-                animation: 'border-spin 8s linear infinite',
-              }}
-            />
-            <div className="absolute inset-[6px] rounded-full bg-bg-primary border border-gold/10 flex items-center justify-center">
-              <span className="font-mono text-[64px] font-bold text-gold">BM</span>
+            <div className="relative w-[240px] h-[240px]">
+              <div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: 'conic-gradient(from 0deg, transparent 0%, #C9A84C 30%, transparent 60%)',
+                  animation: 'border-spin 4s linear infinite',
+                }}
+              />
+              <div className="absolute inset-[6px] rounded-full bg-bg-primary border border-gold/10 flex items-center justify-center">
+                <span className="font-mono text-[64px] font-bold text-gold">BM</span>
+              </div>
             </div>
+            <div className="font-mono text-[11px] tracking-[0.15em] text-gold mt-5">FOUNDER &amp; CEO</div>
+            <div className="font-mono text-[10px] tracking-[0.1em] text-text-muted mt-1.5">BRISBANE, AUSTRALIA</div>
           </motion.div>
           <div>
             <span className="font-mono text-[9px] tracking-[0.25em] text-gold">FOUNDER</span>
             <h2 className="font-sans text-[26px] md:text-[32px] font-bold text-text-primary mt-2">Benjamin Andrew Madden</h2>
-            <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">
-              I started building what became Maddex out of frustration — watching friends and colleagues either overpay for terminals they didn't need, or make decisions off a free app that told them a price moved without ever explaining why.
-            </p>
-            <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">
-              Maddex is the product I wanted to exist: real data depth, an AI layer that actually explains its reasoning, and a price that makes sense for an individual investor rather than a trading desk.
-            </p>
-            <div className="flex flex-col gap-2 mt-6">
-              {CREDENTIALS.map((c) => (
-                <div key={c} className="font-sans text-[12px] text-text-muted flex gap-2">
-                  <span className="text-gold shrink-0">◆</span>
-                  {c}
-                </div>
-              ))}
+            <div className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75] flex flex-col gap-4">
+              <p>I built Maddex because I needed it and it didn't exist.</p>
+              <p>
+                As a finance professional, I wanted institutional-grade intelligence — the kind of analysis that Bloomberg provides — without the A$42,000 per year price tag. I looked at everything available to Australian investors and found a market split between tools that cost more than most people's annual rent, and broker apps that tell you the price but not what it means.
+              </p>
+              <p>
+                So I built the middle. Maddex is the terminal I wanted. Built from scratch, alongside a full-time government finance career, using modern technology that makes this possible for a solo founder in a way it never was before.
+              </p>
+              <p>This is not a side project. This is the beginning of something serious.</p>
             </div>
-            <div className="inline-flex items-center gap-2 mt-5 font-mono text-[10px] tracking-[0.1em] text-text-muted border border-gold/20 rounded-full px-3 py-1.5">
+            <p className="font-sans text-[15px] text-text-primary mt-5 font-medium">— Benjamin Andrew Madden</p>
+            <div className="inline-flex items-center gap-2 mt-6 font-mono text-[10px] tracking-[0.1em] text-text-muted border border-gold/20 rounded-full px-3 py-1.5">
               <span className="relative w-1.5 h-1.5">
                 <span className="pulse-ring absolute inset-0" />
                 <span className="absolute inset-0 rounded-full bg-gold" />
@@ -103,17 +103,46 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1000px] mx-auto text-center">
+          <SectionLabel center>CREDENTIALS</SectionLabel>
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+            The work behind the terminal.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12 text-left">
+            {CREDENTIALS.map(([title, institution, detail], i) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+                style={{ background: '#0B1628', borderLeft: '2px solid #C9A84C', padding: '16px 20px' }}
+              >
+                <div className="font-mono text-[11px]" style={{ color: '#C9A84C' }}>{title}</div>
+                <div className="font-sans text-[13px] mt-1.5" style={{ color: '#E8EDF5' }}>{institution}</div>
+                {detail && <div className="font-sans text-[12px] text-text-muted mt-1">{detail}</div>}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10 text-center">
         <SectionLabel center>MISSION</SectionLabel>
-        <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-3xl mx-auto leading-tight">
-          Give every Australian investor the intelligence that used to be reserved for trading floors.
+        <div className="w-20 h-px bg-gold/50 mx-auto mb-6" />
+        <h2 className="font-sans text-[56px] font-bold text-text-primary max-w-3xl mx-auto leading-tight">
+          Australia first. The world next.
         </h2>
-        <p className="font-mono text-[14px] tracking-[0.1em] text-gold mt-6">
-          AUSTRALIA FIRST. THE WORLD NEXT.
+        <p className="font-sans text-[20px] text-text-primary max-w-2xl mx-auto mt-6 leading-relaxed">
+          Give every Australian investor the intelligence that used to be reserved for trading floors.
+        </p>
+        <p className="font-sans text-[16px] text-text-muted max-w-2xl mx-auto mt-6 leading-[1.75]">
+          Maddex launches with Australia at its core — the ASX, the RBA, the AUD, and the commodities that drive the Australian economy. But the platform is architected for the world. The same intelligence framework that serves Australian investors today is designed to scale across every major market, every currency, and every exchange globally.
         </p>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>CORPORATE STRUCTURE</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -127,7 +156,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.15, duration: 0.4 }}
-                className="bg-bg-primary border border-gold/20 rounded p-6 text-left"
+                className="bg-bg-surface border border-gold/20 rounded p-6 text-left"
               >
                 <span className="font-mono text-[11px] tracking-[0.05em] text-gold leading-snug">{name}</span>
                 <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{desc}</p>
@@ -140,7 +169,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>HOW MADDEX IS STRUCTURED</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -168,14 +197,14 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>VALUES</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             What we won't compromise on.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-12 text-left">
-            {VALUES.map(([title, desc], i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12 text-left">
+            {VALUES.map(([title, icon, desc], i) => (
               <motion.div
                 key={title}
                 initial={{ opacity: 0, y: 20 }}
@@ -183,9 +212,10 @@ export default function About() {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.1, duration: 0.4 }}
                 whileHover={{ y: -6, boxShadow: '0 16px 32px rgba(0,0,0,0.35)' }}
-                className="bg-bg-primary border-l-[3px] border-gold rounded-r p-6 cursor-default"
+                className="bg-bg-surface border-l-[3px] border-gold rounded-r p-6 cursor-default transition-colors"
               >
-                <h3 className="font-sans text-[16px] font-bold text-text-primary">{title}</h3>
+                <span className="text-gold text-[24px]">{icon}</span>
+                <h3 className="font-sans text-[16px] font-bold text-text-primary mt-3">{title}</h3>
                 <p className="font-sans text-[13px] text-text-muted mt-2 leading-relaxed">{desc}</p>
               </motion.div>
             ))}
@@ -193,38 +223,46 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
-        <div className="max-w-[800px] mx-auto">
+      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto">
           <SectionLabel center>ROADMAP</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-12">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-16">
             What's coming, and when.
           </h2>
-          <div className="flex flex-col">
-            {ROADMAP.map(([quarter, title, desc], i) => (
-              <motion.div
-                key={quarter}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ delay: i * 0.1, duration: 0.4 }}
-                className="flex gap-6 pb-10 relative"
-              >
-                <div className="flex flex-col items-center shrink-0">
-                  <span className="w-3 h-3 rounded-full bg-gold shrink-0" />
-                  {i < ROADMAP.length - 1 && <span className="w-px flex-1 bg-gold/20 mt-1" />}
-                </div>
-                <div>
-                  <span className="font-mono text-[11px] text-gold">{quarter}</span>
-                  <h3 className="font-sans text-[17px] font-bold text-text-primary mt-1">{title}</h3>
-                  <p className="font-sans text-[13px] text-text-muted mt-1 leading-relaxed">{desc}</p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="relative">
+            <div className="hidden md:block absolute top-[46px] left-0 right-0 h-px bg-gold/20" />
+            <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
+              {ROADMAP.map(([quarter, title, desc], i) => {
+                const isCurrent = i === 0
+                return (
+                  <motion.div
+                    key={quarter}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ delay: i * 0.1, duration: 0.4 }}
+                    className="relative flex flex-col items-center text-center"
+                  >
+                    <div className="h-10 flex items-end justify-center">
+                      <h3 className={`font-sans text-[13px] font-bold leading-snug ${isCurrent ? 'text-gold' : 'text-text-primary'}`}>{title}</h3>
+                    </div>
+                    <span
+                      className={`w-3.5 h-3.5 rounded-full z-10 mt-3 ${isCurrent ? 'bg-gold' : 'bg-bg-elevated border-2 border-gold/30'}`}
+                    />
+                    {isCurrent && (
+                      <span className="font-mono text-[8px] text-gold tracking-[0.1em] mt-2">YOU ARE HERE</span>
+                    )}
+                    <span className={`font-mono text-[10px] mt-2 ${isCurrent ? 'text-gold' : 'text-text-faint'}`}>{quarter}</span>
+                    <p className="font-sans text-[11px] text-text-faint mt-2 leading-snug max-w-[140px]">{desc}</p>
+                  </motion.div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 text-center">
         <SectionLabel center>CONTACT</SectionLabel>
         <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Get in touch with Ben directly.
@@ -232,8 +270,35 @@ export default function About() {
         <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">
           Questions, feedback, or a partnership idea — every message reaches the founder, not a support queue.
         </p>
+        <p className="font-sans text-[14px] text-text-muted mt-2 italic">Ben responds personally to every message.</p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[600px] mx-auto mt-8 text-left">
+          <a
+            href="mailto:hello@maddex.com.au"
+            className="bg-bg-surface border-l-2 border-gold rounded-r p-5 flex items-center gap-3 hover:bg-gold/[0.04] transition-colors"
+          >
+            <span className="text-gold text-[20px]">✉</span>
+            <div>
+              <div className="font-mono text-[9px] tracking-[0.1em] text-gold">EMAIL</div>
+              <div className="font-sans text-[13px] text-text-primary mt-0.5">hello@maddex.com.au</div>
+            </div>
+          </a>
+          <a
+            href="https://linkedin.com/in/benjaminmadden"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-bg-surface border-l-2 border-gold rounded-r p-5 flex items-center gap-3 hover:bg-gold/[0.04] transition-colors"
+          >
+            <span className="text-gold text-[20px]">in</span>
+            <div>
+              <div className="font-mono text-[9px] tracking-[0.1em] text-gold">LINKEDIN</div>
+              <div className="font-sans text-[13px] text-text-primary mt-0.5">linkedin.com/in/benjaminmadden</div>
+            </div>
+          </a>
+        </div>
+
         <div className="mt-8">
-          <GoldButton href="mailto:ben@maddex.com.au">EMAIL BEN →</GoldButton>
+          <GoldButton href="mailto:hello@maddex.com.au">EMAIL BEN →</GoldButton>
         </div>
       </section>
 

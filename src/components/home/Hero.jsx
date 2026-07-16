@@ -43,9 +43,9 @@ function TerminalDataRow({ symbol, price, change, positive, status, flashed }) {
         background: flashed ? 'rgba(201,168,76,0.08)' : 'transparent',
       }}
     >
-      <span className="font-mono text-[11px] text-text-muted">{symbol}</span>
-      <span className="font-mono text-[11px] text-text-primary text-right">{price}</span>
-      <span className={`font-mono text-[11px] text-right ${positive ? 'text-gain' : 'text-loss'}`}>
+      <span className="font-mono text-[12px] text-text-muted">{symbol}</span>
+      <span className="font-mono text-[12px] text-text-primary text-right">{price}</span>
+      <span className={`font-mono text-[12px] text-right ${positive ? 'text-gain' : 'text-loss'}`}>
         {positive ? '▲' : '▼'} {change}
       </span>
       <span
@@ -196,7 +196,7 @@ export default function Hero() {
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <TerminalCard className="shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_80px_rgba(201,168,76,0.08),0_0_160px_rgba(201,168,76,0.04)]">
+            <TerminalCard className="min-h-[560px] flex flex-col shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_80px_rgba(201,168,76,0.08),0_0_160px_rgba(201,168,76,0.04)]">
               <div className="flex items-center justify-between h-8 bg-bg-primary border-b border-gold/12 px-3">
                 <div className="flex items-baseline gap-1">
                   <span className="font-mono text-[11px] font-bold text-gold">MADDEX</span>
@@ -205,7 +205,7 @@ export default function Hero() {
                 <LiveClock />
               </div>
 
-              <div className="bg-gold/5 border-b border-gold/12 px-3 py-1.5 flex items-center gap-3">
+              <div className="bg-gold/5 border-b border-gold/12 px-3 py-2.5 flex items-center gap-3">
                 <span className="font-mono text-[9px] tracking-wide text-text-muted">MADDENAI SENTIMENT</span>
                 <span className="font-mono text-[14px] font-bold text-gold">72/100</span>
                 <span className="font-mono text-[10px] text-text-primary">NEUTRAL-BULLISH</span>
@@ -214,7 +214,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="p-3 flex flex-col gap-1.5">
+              <div className="p-3 flex-1 flex flex-col justify-center gap-3">
                 {rows.map((row, i) => (
                   <TerminalDataRow
                     key={row.symbol}
@@ -228,11 +228,11 @@ export default function Hero() {
                 ))}
               </div>
 
-              <div className="grid grid-cols-2 gap-1 px-3 pb-3">
+              <div className="grid grid-cols-2 gap-2 px-3 pb-3">
                 {SECTOR_TILES.map((tile) => (
                   <div
                     key={tile.label}
-                    className="px-2 py-1.5 rounded-sm font-mono text-[10px] font-bold"
+                    className="px-3 py-[10px] rounded-sm font-mono text-[10px] font-bold"
                     style={{
                       background: tile.positive ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)',
                       border: `1px solid ${tile.positive ? 'rgba(45,138,80,0.25)' : 'rgba(168,50,50,0.25)'}`,
@@ -244,7 +244,7 @@ export default function Hero() {
                 ))}
               </div>
 
-              <div className="border-t border-gold/12 bg-bg-primary px-3 py-2 flex items-center gap-2">
+              <div className="border-t border-gold/12 bg-bg-primary px-3 py-3 flex items-center gap-2">
                 <span className="font-mono text-[12px] font-bold text-gold">CMD&gt;</span>
                 <span className="font-mono text-[12px] text-text-primary">
                   <TypewriterText strings={['BHP.AX', 'MACRO', 'What is the RBA outlook?']} />

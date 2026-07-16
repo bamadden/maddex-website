@@ -500,21 +500,21 @@ export default function PlatformSection() {
               key={tab}
               type="button"
               onClick={() => setActiveTab(tab)}
-              className={`relative font-mono text-[11px] tracking-[0.05em] px-5 py-2 rounded-full transition-colors duration-150 ${
+              className={`relative font-mono text-[11px] tracking-[0.05em] px-5 py-2 rounded-full transition-colors duration-150 opacity-100 ${
                 activeTab === tab
                   ? 'text-bg-primary font-bold'
-                  : 'border border-gold/30 text-gold hover:bg-gold/[0.08]'
+                  : 'border border-[rgba(201,168,76,0.35)] text-gold bg-[rgba(201,168,76,0.08)] hover:bg-[rgba(201,168,76,0.15)] hover:border-[rgba(201,168,76,0.5)]'
               }`}
             >
               {activeTab === tab && (
                 <motion.span
                   layoutId="platform-tab-pill"
                   className="absolute inset-0 bg-gold rounded-full"
-                  style={{ zIndex: -1 }}
+                  style={{ zIndex: 0 }}
                   transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                 />
               )}
-              {tab}
+              <span className="relative z-10">{tab}</span>
             </button>
           ))}
         </div>

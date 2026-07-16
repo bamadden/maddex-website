@@ -11,7 +11,7 @@ import GoldButton from '../components/shared/GoldButton'
 
 function MiniHeader({ label, right }) {
   return (
-    <div className="bg-bg-surface border-b border-gold/12 px-4 py-2 flex justify-between items-center font-mono text-[10px]">
+    <div className="bg-bg-surface border-b border-gold/12 px-4 py-[10px] flex justify-between items-center font-mono text-[10px]">
       <span className="text-text-muted">{label}</span>
       {right && <span className="text-gold">{right}</span>}
     </div>
@@ -26,25 +26,25 @@ const MODULES = [
     body: 'ASX 200 as the primary index, alongside 9 global indices and full 11-sector GICS breakdown — refreshed continuously and scored by MaddenAI sentiment for context, not just numbers.',
     features: ['9 global indices tracked live', 'Full ASX 200 constituent list', '11 GICS sector heatmap', 'MaddenAI sentiment overlay'],
     visual: (
-      <TerminalCard>
+      <TerminalCard className="min-h-[480px] flex flex-col">
         <MiniHeader label="MARKETS · ASX 200" right="72/100" />
-        <div className="p-4 flex flex-col gap-2">
+        <div className="p-4 flex-1 flex flex-col justify-center gap-3">
           {[
             ['ASX 200', '8,412.40', '+0.42%', true],
             ['S&P 500', '5,847.23', '+0.40%', true],
             ['NASDAQ', '18,921.56', '+0.50%', true],
             ['FTSE 100', '8,204.10', '-0.10%', false],
           ].map(([sym, price, chg, pos]) => (
-            <div key={sym} className="flex justify-between font-mono text-[11px]">
+            <div key={sym} className="flex justify-between font-mono text-[12px] py-2">
               <span className="text-text-muted">{sym}</span>
               <span className="text-text-primary">{price}</span>
               <span className={pos ? 'text-gain' : 'text-loss'}>{pos ? '▲' : '▼'} {chg}</span>
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-4 gap-1 px-4 pb-4">
+        <div className="grid grid-cols-4 gap-2 px-4 pb-4">
           {[['IT', true], ['MAT', true], ['ENRG', false], ['FIN', true]].map(([l, pos]) => (
-            <div key={l} className="font-mono text-[9px] text-center py-1.5 rounded-sm" style={{ background: pos ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)', color: pos ? '#2D8A50' : '#A83232' }}>{l}</div>
+            <div key={l} className="font-mono text-[9px] text-center py-[10px] px-3 rounded-sm" style={{ background: pos ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)', color: pos ? '#2D8A50' : '#A83232' }}>{l}</div>
           ))}
         </div>
       </TerminalCard>
@@ -57,7 +57,7 @@ const MODULES = [
     body: 'Top 20 assets by market cap in AUD, sourced live from CoinGecko, with the MaddenAI Crypto Momentum Index and Fear & Greed tracking — built for investors who treat crypto as a real allocation.',
     features: ['Top 20 by AUD market cap', 'MaddenAI Momentum Index', 'Fear & Greed reading', 'BTC dominance tracking'],
     visual: (
-      <TerminalCard>
+      <TerminalCard className="min-h-[480px] flex flex-col">
         <MiniHeader label="CRYPTO · TOP 20" right="68 BULLISH" />
         <div className="grid grid-cols-2 gap-3 p-4">
           <div>
@@ -69,9 +69,9 @@ const MODULES = [
             <div className="font-mono text-[26px] font-bold text-text-primary">42</div>
           </div>
         </div>
-        <div className="px-4 pb-4 flex flex-col gap-2">
+        <div className="px-4 pb-4 flex-1 flex flex-col justify-center gap-3">
           {[['BTC', 'A$162,400', '+1.80%'], ['ETH', 'A$6,124', '+2.10%']].map(([n, p, c]) => (
-            <div key={n} className="flex justify-between font-mono text-[11px]">
+            <div key={n} className="flex justify-between font-mono text-[12px] py-2">
               <span className="text-text-primary">{n}</span>
               <span className="text-text-primary">{p}</span>
               <span className="text-gain">{c}</span>
@@ -88,17 +88,17 @@ const MODULES = [
     body: 'FX pairs sourced via the Frankfurter API, government bond yield curves, and central bank rates with the RBA as the primary reference rate — the macro plumbing most retail platforms skip entirely.',
     features: ['10 AUD currency pairs', 'AU Government Bond yield curve', '10+ central bank policy rates', 'Rate decision countdowns'],
     visual: (
-      <TerminalCard>
+      <TerminalCard className="min-h-[480px] flex flex-col">
         <MiniHeader label="RATES · FX & YIELDS" />
-        <div className="p-4 flex flex-col gap-2">
+        <div className="p-4 flex-1 flex flex-col justify-center gap-2">
           {[['AUD/USD', '0.6452', '-0.12%', false], ['AUD/EUR', '0.5981', '+0.08%', true], ['AUD/JPY', '96.42', '+0.22%', true]].map(([p, r, c, pos]) => (
-            <div key={p} className="flex justify-between font-mono text-[11px]">
+            <div key={p} className="flex justify-between font-mono text-[12px] py-2">
               <span className="text-text-muted">{p}</span>
               <span className="text-text-primary">{r}</span>
               <span className={pos ? 'text-gain' : 'text-loss'}>{c}</span>
             </div>
           ))}
-          <div className="flex justify-between font-mono text-[10px] mt-2 pt-2 border-t border-[rgba(30,70,140,0.3)]">
+          <div className="flex justify-between font-mono text-[11px] mt-2 pt-3 border-t border-[rgba(30,70,140,0.3)]">
             <span className="text-gold">RBA</span><span className="text-text-primary">4.35%</span><span className="text-text-faint">HOLD</span>
           </div>
         </div>
@@ -112,17 +112,17 @@ const MODULES = [
     body: 'A live RBA dashboard with cash rate, next meeting countdown, the eight Australian macro indicators that actually move markets, and a dedicated China Watch panel for commodity-linked demand signals.',
     features: ['RBA cash rate + next meeting countdown', '8 Australian macro indicators', 'China Watch commodity linkage', '30-day economic calendar'],
     visual: (
-      <TerminalCard>
+      <TerminalCard className="min-h-[480px] flex flex-col">
         <MiniHeader label="MACRO · RBA DASHBOARD" />
-        <div className="text-center py-6">
-          <div className="font-mono text-[36px] font-bold text-gold">4.35%</div>
-          <div className="font-mono text-[10px] text-text-muted mt-1">CASH RATE — HELD</div>
+        <div className="text-center py-10 flex-1 flex flex-col justify-center">
+          <div className="font-mono text-[40px] font-bold text-gold">4.35%</div>
+          <div className="font-mono text-[11px] text-text-muted mt-2">CASH RATE — HELD</div>
         </div>
-        <div className="grid grid-cols-3 gap-2 px-4 pb-4">
+        <div className="grid grid-cols-3 gap-3 px-4 pb-4">
           {[['CPI', '3.6%'], ['UE', '4.1%'], ['GDP', '1.5%']].map(([l, v]) => (
-            <div key={l} className="bg-bg-surface rounded p-2 text-center">
-              <div className="font-mono text-[8px] text-text-muted">{l}</div>
-              <div className="font-mono text-[13px] text-text-primary font-bold">{v}</div>
+            <div key={l} className="bg-bg-surface rounded p-3 text-center">
+              <div className="font-mono text-[9px] text-text-muted">{l}</div>
+              <div className="font-mono text-[14px] text-text-primary font-bold mt-1">{v}</div>
             </div>
           ))}
         </div>
@@ -136,13 +136,13 @@ const MODULES = [
     body: '28+ sources filtered for financial relevance across 9 categories, refreshed every 3 minutes, with MaddenAI surfacing the themes that matter before they hit the front page.',
     features: ['28+ curated sources', 'Financial relevance filter', '9 news categories', 'MaddenAI Key Themes daily'],
     visual: (
-      <TerminalCard>
+      <TerminalCard className="min-h-[480px] flex flex-col">
         <MiniHeader label="NEWS · LIVE FEED" />
-        <div className="p-4 flex flex-col gap-3">
+        <div className="p-4 flex-1 flex flex-col justify-center gap-4">
           {[['AFR', '2m ago', 'BULLISH', 'RBA holds rates at 4.35%'], ['REUTERS', '8m ago', 'BEARISH', 'Iron ore slides on China data']].map(([s, t, sent, h]) => (
-            <div key={h} className="font-mono text-[10px]">
+            <div key={h} className="font-mono text-[11px] bg-bg-surface rounded p-3">
               <div className="text-text-muted"><span className="text-gold">{s}</span> · {t} · <span className={sent === 'BULLISH' ? 'text-gain' : 'text-loss'}>{sent}</span></div>
-              <div className="text-text-primary mt-1">{h}</div>
+              <div className="text-text-primary mt-2 text-[12px]">{h}</div>
             </div>
           ))}
         </div>
@@ -156,17 +156,17 @@ const MODULES = [
     body: 'Add any ASX or US stock, priced live via Yahoo Finance and Twelve Data, with full fundamental data synced through Supabase across every device you use.',
     features: ['ASX + US ticker support', 'Live price tracking', 'Full fundamental data', 'Synced across all devices'],
     visual: (
-      <TerminalCard>
+      <TerminalCard className="min-h-[480px] flex flex-col">
         <MiniHeader label="WATCHLIST" />
-        <div className="p-4 flex flex-col gap-2">
+        <div className="p-4 flex-1 flex flex-col justify-center gap-2">
           {[['BHP.AX', 'A$43.82', '+0.85%'], ['CBA.AX', 'A$164.20', '+0.31%']].map(([s, p, c]) => (
-            <div key={s} className="flex justify-between font-mono text-[11px]">
+            <div key={s} className="flex justify-between font-mono text-[12px] py-2">
               <span className="text-text-primary">{s}</span>
               <span className="text-text-primary">{p}</span>
               <span className="text-gain">{c}</span>
             </div>
           ))}
-          <div className="font-mono text-[11px] text-gold mt-1">+ ADD SYMBOL</div>
+          <div className="font-mono text-[12px] text-gold mt-2 py-2">+ ADD SYMBOL</div>
         </div>
       </TerminalCard>
     ),
@@ -178,10 +178,10 @@ const MODULES = [
     body: 'A live 3D globe across 5 data layers covering 50+ exchanges, shipping chokepoints, and a 200+ country database — see geopolitical risk before it shows up in your portfolio.',
     features: ['Live 3D global exchange map', '50+ exchanges tracked', 'Shipping chokepoint monitoring', '200+ country risk database'],
     visual: (
-      <TerminalCard>
+      <TerminalCard className="min-h-[480px] flex flex-col">
         <MiniHeader label="GLOBAL INTELLIGENCE" right="RISK: MODERATE" />
-        <div className="p-4">
-          <svg viewBox="0 0 100 60" className="w-full h-[160px]">
+        <div className="p-4 flex-1 flex items-center">
+          <svg viewBox="0 0 100 60" className="w-full h-[280px]">
             <path d="M15,15 Q22,10 30,14 L36,22 Q28,28 20,25 Z" fill="rgba(30,70,140,0.4)" />
             <path d="M50,10 Q62,8 70,18 L64,30 Q52,26 50,15 Z" fill="rgba(30,70,140,0.4)" />
             <path d="M70,15 Q82,14 88,24 L80,34 Q70,30 70,15 Z" fill="rgba(30,70,140,0.4)" />

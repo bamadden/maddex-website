@@ -149,7 +149,26 @@ export default function Research() {
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             Free brief, or full paid access.
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 text-left">
+
+          <div
+            className="text-left font-mono text-[11px] text-text-muted leading-relaxed mt-10 mb-8"
+            style={{ background: 'rgba(201,168,76,0.04)', borderLeft: '2px solid #C9A84C', padding: '16px 20px' }}
+          >
+            <div className="text-gold tracking-[0.1em] mb-2">HOW MADDEN RESEARCH WORKS</div>
+            <p>
+              Madden Research is a standalone newsletter — it is not part of your Maddex terminal subscription. You can subscribe to Madden Research independently, whether or not you have a Maddex terminal subscription.
+            </p>
+            <p className="mt-3">
+              <span className="text-gold">FREE NEWSLETTER</span> — available to everyone, no Maddex subscription required
+              <br />
+              <span className="text-gold">PAID NEWSLETTER</span> — A$29/month standalone, no Maddex subscription required
+            </p>
+            <p className="mt-3">
+              Maddex terminal subscribers receive the free newsletter tier automatically with their account.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-left">
             <div className="border border-gold/20 rounded p-6 bg-bg-primary">
               <div className="font-mono text-[13px] font-bold text-gold">FREE</div>
               <div className="flex flex-col gap-2 mt-4 font-sans text-[12px] text-text-muted">
@@ -159,14 +178,19 @@ export default function Research() {
                 <div>◆ RBA calendar</div>
               </div>
             </div>
-            <div className="border border-gold rounded p-6 bg-bg-primary">
-              <div className="font-mono text-[13px] font-bold text-gold">PAID A$29/MO</div>
-              <div className="flex flex-col gap-2 mt-4 font-sans text-[12px] text-text-muted">
-                <div>◆ Everything in Free</div>
-                <div>◆ Mid-week update</div>
-                <div>◆ Full ASX watch list</div>
-                <div>◆ Archive access</div>
+            <div>
+              <div className="border border-gold rounded p-6 bg-bg-primary">
+                <div className="font-mono text-[13px] font-bold text-gold">PAID A$29/MO</div>
+                <div className="flex flex-col gap-2 mt-4 font-sans text-[12px] text-text-muted">
+                  <div>◆ Everything in Free</div>
+                  <div>◆ Mid-week update</div>
+                  <div>◆ Full ASX watch list</div>
+                  <div>◆ Archive access</div>
+                </div>
               </div>
+              <p className="font-sans text-[11px] text-text-faint mt-2">
+                A$29/month · Billed monthly · Cancel anytime · Independent of Maddex terminal subscription
+              </p>
             </div>
           </div>
           <div className="font-mono text-[10px] tracking-[0.1em] text-gold mt-10">
@@ -183,6 +207,9 @@ export default function Research() {
             <div className="mt-4">
               <GoldButton className="w-full">SUBSCRIBE FREE</GoldButton>
             </div>
+            <p className="font-sans text-[11px] text-text-faint mt-4">
+              Madden Research is independent of your Maddex terminal subscription. Subscribe separately or as a complement to your terminal access.
+            </p>
           </div>
         </div>
       </section>
