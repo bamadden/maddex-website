@@ -53,11 +53,14 @@ function ScoreDial({ value, label }) {
 }
 
 const SENTIMENT_FACTORS = [
-  ['ASX Breadth', 18], ['Global Momentum', 16], ['Volatility (VIX)', 14], ['Commodities', 12],
-  ['Bond Yields', 12], ['Currency Strength', 10], ['Sector Rotation', 10], ['News Sentiment', 8],
+  ['ASX Market Breadth', 20], ['US Market Breadth', 15], ['Crypto Fear & Greed', 15], ['Crypto Breadth', 10],
+  ['Global Index Momentum', 15], ['Volatility (VIX)', 10], ['Commodity Momentum', 10], ['News Sentiment', 5],
 ]
 const MOMENTUM_FACTORS = [
-  ['Price Momentum', 28], ['Volume Trend', 24], ['Dominance Shift', 20], ['Fear & Greed', 16], ['Derivatives Positioning', 12],
+  ['24H Price Momentum', 30], ['7D Price Momentum', 20], ['Market Breadth', 20], ['Fear & Greed Alignment', 15], ['Volume Conviction', 15],
+]
+const SECTOR_FACTORS = [
+  ['Day Change %', 40], ['Volume Conviction', 30], ['52W Range Position', 30],
 ]
 
 export default function MaddenAI() {
@@ -170,6 +173,10 @@ export default function MaddenAI() {
                   <FactorBar key={label} label={label} weight={weight} />
                 ))}
               </div>
+              <div className="flex justify-between font-mono text-[10px] text-text-faint mt-3 pt-3 border-t border-[rgba(30,70,140,0.3)]">
+                <span>TOTAL</span>
+                <span className="text-gold">100%</span>
+              </div>
             </motion.div>
 
             <motion.div
@@ -186,6 +193,10 @@ export default function MaddenAI() {
                 {MOMENTUM_FACTORS.map(([label, weight]) => (
                   <FactorBar key={label} label={label} weight={weight} />
                 ))}
+              </div>
+              <div className="flex justify-between font-mono text-[10px] text-text-faint mt-3 pt-3 border-t border-[rgba(30,70,140,0.3)]">
+                <span>TOTAL</span>
+                <span className="text-gold">100%</span>
               </div>
             </motion.div>
 
@@ -212,6 +223,15 @@ export default function MaddenAI() {
                     </div>
                   )
                 ))}
+              </div>
+              <div className="flex flex-col gap-2.5 mt-5 pt-5 border-t border-[rgba(30,70,140,0.3)]">
+                {SECTOR_FACTORS.map(([label, weight]) => (
+                  <FactorBar key={label} label={label} weight={weight} />
+                ))}
+              </div>
+              <div className="flex justify-between font-mono text-[10px] text-text-faint mt-3 pt-3 border-t border-[rgba(30,70,140,0.3)]">
+                <span>TOTAL</span>
+                <span className="text-gold">100%</span>
               </div>
             </motion.div>
           </div>

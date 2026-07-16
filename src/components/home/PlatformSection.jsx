@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import SectionLabel from '../shared/SectionLabel'
 
@@ -228,10 +228,10 @@ function CountdownTimer() {
   const target = new Date('2026-08-05T00:00:00+10:00').getTime()
   const [remaining, setRemaining] = useState(target - Date.now())
 
-  useState(() => {
+  useEffect(() => {
     const id = setInterval(() => setRemaining(target - Date.now()), 1000)
     return () => clearInterval(id)
-  })
+  }, [target])
 
   const days = Math.max(0, Math.floor(remaining / (1000 * 60 * 60 * 24)))
   const hours = Math.max(0, Math.floor((remaining / (1000 * 60 * 60)) % 24))

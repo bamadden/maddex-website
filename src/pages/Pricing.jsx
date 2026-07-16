@@ -8,10 +8,34 @@ import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 
 const PLANS = [
-  { name: 'CORE', monthly: 19, annual: 189, features: ['Markets + Watchlist', 'MaddenAI Sentiment Score', 'Daily market brief', 'Email support'] },
-  { name: 'PRO', monthly: 49, annual: 489, popular: true, badge: 'BEST FOR PROS', features: ['Everything in Core', 'All 7 modules', 'Asset Analysis on demand', '5 Research Notes / mo'] },
-  { name: 'APEX', monthly: 149, annual: 1489, note: 'THIS PRICE IS CORRECT', features: ['Everything in Pro', 'Unlimited Research Notes', 'Global Intelligence Map', 'Priority support'] },
-  { name: 'ADVISER', monthly: 299, annual: 2989, note: 'THIS PRICE IS CORRECT', features: ['Everything in Apex', 'Multi-client dashboards', 'White-label reports', 'Dedicated account manager'] },
+  {
+    name: 'CORE',
+    monthly: 19,
+    annual: 190,
+    features: ['Markets + Crypto modules', 'Watchlist — 50 stocks', 'MaddenAI Chat — 100/day', '5 Price Alerts'],
+  },
+  {
+    name: 'PRO',
+    monthly: 49,
+    annual: 490,
+    popular: true,
+    badge: 'BEST FOR PROS',
+    features: ['Everything in Core', 'All 7 modules + Command Bar', 'Unlimited MaddenAI Chat', '50 Price Alerts · 5 Research Notes/mo'],
+  },
+  {
+    name: 'APEX',
+    monthly: 149,
+    annual: 1490,
+    note: 'THIS PRICE IS CORRECT',
+    features: ['Everything in Pro', 'Unlimited Price Alerts + Research Notes', 'API Access — 10,000 calls/mo', 'Mobile App (Q4 2026)'],
+  },
+  {
+    name: 'ADVISER',
+    monthly: 299,
+    noAnnual: true,
+    note: '5 SEATS INCLUDED',
+    features: ['Everything in Apex', '5 team seats included', 'Multi-client dashboards', 'Dedicated account manager'],
+  },
 ]
 
 const COMPARISON_ROWS = [
@@ -20,12 +44,16 @@ const COMPARISON_ROWS = [
   ['Rates Module', false, true, true, true],
   ['Macro Module', false, true, true, true],
   ['News Module', false, true, true, true],
-  ['Watchlist', true, true, true, true],
+  ['Watchlist size', '50 stocks', 'Unlimited', 'Unlimited', 'Unlimited'],
   ['Global Intelligence', false, false, true, true],
   ['Command Bar', false, true, true, true],
   ['MaddenAI Sentiment Score', true, true, true, true],
   ['Asset Analysis on demand', false, true, true, true],
+  ['MaddenAI Chat', '100/day', 'Unlimited', 'Unlimited', 'Unlimited'],
+  ['Price Alerts', '5', '50', 'Unlimited', 'Unlimited'],
   ['Research Notes included / mo', '0', '5', 'Unlimited', 'Unlimited'],
+  ['API Access', false, false, '10,000 calls/mo', '10,000 calls/mo'],
+  ['Mobile App (Q4 2026)', false, true, true, true],
   ['Multi-client dashboards', false, false, false, true],
   ['Priority support', false, false, true, true],
   ['Dedicated account manager', false, false, false, true],
@@ -39,11 +67,13 @@ const RESEARCH_ROWS = [
   ['Apex Tier', 'Unlimited'],
 ]
 
-const BUSINESS_TIERS = [
-  { name: 'ADVISER', price: 'A$299/mo', desc: 'For individual financial advisers managing client portfolios.', features: ['Up to 10 client dashboards', 'White-label reports', 'Priority support'] },
-  { name: 'FIRM', price: 'Custom', desc: 'For advisory firms and small institutions with multiple advisers.', features: ['Unlimited client dashboards', 'Team seat management', 'Dedicated account manager'] },
-  { name: 'INSTITUTIONAL', price: 'Custom', desc: 'For funds and institutions needing API access and custom data feeds.', features: ['Full API access', 'Custom data integrations', 'SLA-backed support'] },
-]
+const FIRM_TIER = {
+  name: 'FIRM',
+  price: 'A$999/mo',
+  seats: '20 seats included',
+  desc: 'For advisory firms and small institutions managing multiple client teams.',
+  features: ['20 team seats included', 'Everything in Adviser', 'Custom onboarding', 'Priority SLA support'],
+}
 
 const FAQS = [
   ['Can I cancel anytime?', 'Yes. All plans are month-to-month with no lock-in contract, and you can cancel from your account settings at any time.'],
@@ -154,11 +184,11 @@ export default function Pricing() {
               )}
               <div className="font-mono text-[9px] text-text-faint">
                 <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
-                <span className="text-gold"> → {plan.name}: A${plan.annual}/yr</span>
+                <span className="text-gold"> → {plan.name}: A${plan.noAnnual ? plan.monthly * 12 : plan.annual}/yr</span>
               </div>
               <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
               <div className="mt-3">
-                {annual ? (
+                {annual && !plan.noAnnual ? (
                   <>
                     <span className="font-sans text-[13px] text-text-faint line-through mr-2">A${plan.monthly}</span>
                     <span className="font-sans text-[28px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
@@ -237,26 +267,28 @@ export default function Pricing() {
         <div className="max-w-[1280px] mx-auto text-center">
           <SectionLabel center>BUSINESS PLANS</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
-            Built for advisers, firms, and institutions.
+            Built for advisers and firms.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 text-left">
-            {BUSINESS_TIERS.map((tier) => (
-              <div key={tier.name} className="bg-bg-primary border border-gold/20 rounded p-6">
-                <div className="font-mono text-[12px] tracking-wide text-gold">{tier.name}</div>
-                <div className="font-sans text-[24px] font-bold text-text-primary mt-2">{tier.price}</div>
-                <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{tier.desc}</p>
-                <div className="flex flex-col gap-2 mt-5">
-                  {tier.features.map((f) => (
-                    <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
-                      <span className="text-gold">◆</span>{f}
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6">
-                  <GoldButton variant="ghost" className="w-full">CONTACT SALES</GoldButton>
-                </div>
+          <p className="font-sans text-[18px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
+            Already covered above: the Adviser plan at A$299/month for 5 seats. For larger teams, Firm scales that up.
+          </p>
+          <div className="max-w-[420px] mx-auto mt-10 text-left">
+            <div className="bg-bg-primary border border-gold/30 rounded p-7">
+              <div className="font-mono text-[12px] tracking-wide text-gold">{FIRM_TIER.name}</div>
+              <div className="font-sans text-[28px] font-bold text-text-primary mt-2">{FIRM_TIER.price}</div>
+              <div className="font-mono text-[9px] text-text-faint mt-1">{FIRM_TIER.seats}</div>
+              <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{FIRM_TIER.desc}</p>
+              <div className="flex flex-col gap-2 mt-5">
+                {FIRM_TIER.features.map((f) => (
+                  <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
+                    <span className="text-gold">◆</span>{f}
+                  </div>
+                ))}
               </div>
-            ))}
+              <div className="mt-6">
+                <GoldButton variant="ghost" className="w-full">CONTACT SALES</GoldButton>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -13,10 +13,25 @@ const VALUES = [
 ]
 
 const ROADMAP = [
-  ['Q3 2026', 'Options flow module', 'ASX and US options positioning data, integrated into MaddenAI sentiment.'],
-  ['Q4 2026', 'Portfolio import + tax reporting', 'Connect your broker account for live portfolio-aware MaddenAI scoring.'],
-  ['Q1 2027', 'Mobile app (iOS + Android)', 'Native apps with push alerts tuned to your watchlist.'],
-  ['Q2 2027', 'API access for Apex + Institutional', 'Programmatic access to MaddenAI scores and market data.'],
+  ['Q3 2026', 'Commercial Launch', 'Maddex opens to the public — Core, Pro, and Apex tiers live.'],
+  ['Q4 2026', 'Mobile App', 'Native iOS and Android apps for Pro and Apex subscribers, with push alerts.'],
+  ['Q1 2027', '500 Subscribers', 'Growing the individual investor base across all three tiers.'],
+  ['Q2 2027', 'API Launch', 'Programmatic access to MaddenAI scores and market data for Apex subscribers.'],
+  ['Q3 2027', 'Adviser Tier', 'Multi-client dashboards and white-label reporting for financial advisers.'],
+  ['2028', 'International Expansion', 'Extending MaddenAI intelligence beyond the ASX to global markets.'],
+]
+
+const CREDENTIALS = [
+  'Master of Business (Applied Finance), QUT — Dean\'s Honour List 2021–22',
+  'Bachelor of Business (International Business), QUT — Distinction',
+  'Queensland Government Finance Graduate — Department of Housing and Public Works',
+  'OP2, Moreton Bay Boys\' College — Dux, Vice-Captain, Eagle Award',
+]
+
+const ENTITIES = [
+  ['MADDEN GROUP HOLDINGS PTY LTD', 'Parent company'],
+  ['MADDEX PTY LTD', 'Operating subsidiary — the terminal'],
+  ['MADDEN GROUP CAPITAL PTY LTD', 'Dormant — reserved for Phase 4'],
 ]
 
 export default function About() {
@@ -62,19 +77,27 @@ export default function About() {
           </motion.div>
           <div>
             <span className="font-mono text-[9px] tracking-[0.25em] text-gold">FOUNDER</span>
-            <h2 className="font-sans text-[26px] md:text-[32px] font-bold text-text-primary mt-2">Ben Madden</h2>
+            <h2 className="font-sans text-[26px] md:text-[32px] font-bold text-text-primary mt-2">Benjamin Andrew Madden</h2>
             <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">
               I started building what became Maddex out of frustration — watching friends and colleagues either overpay for terminals they didn't need, or make decisions off a free app that told them a price moved without ever explaining why.
             </p>
             <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">
               Maddex is the product I wanted to exist: real data depth, an AI layer that actually explains its reasoning, and a price that makes sense for an individual investor rather than a trading desk.
             </p>
+            <div className="flex flex-col gap-2 mt-6">
+              {CREDENTIALS.map((c) => (
+                <div key={c} className="font-sans text-[12px] text-text-muted flex gap-2">
+                  <span className="text-gold shrink-0">◆</span>
+                  {c}
+                </div>
+              ))}
+            </div>
             <div className="inline-flex items-center gap-2 mt-5 font-mono text-[10px] tracking-[0.1em] text-text-muted border border-gold/20 rounded-full px-3 py-1.5">
               <span className="relative w-1.5 h-1.5">
                 <span className="pulse-ring absolute inset-0" />
                 <span className="absolute inset-0 rounded-full bg-gold" />
               </span>
-              BUILT IN BRISBANE, AUSTRALIA
+              BRISBANE, QUEENSLAND, AUSTRALIA
             </div>
           </div>
         </div>
@@ -85,9 +108,36 @@ export default function About() {
         <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-3xl mx-auto leading-tight">
           Give every Australian investor the intelligence that used to be reserved for trading floors.
         </h2>
+        <p className="font-mono text-[14px] tracking-[0.1em] text-gold mt-6">
+          AUSTRALIA FIRST. THE WORLD NEXT.
+        </p>
       </section>
 
       <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
+        <div className="max-w-[1280px] mx-auto text-center">
+          <SectionLabel center>CORPORATE STRUCTURE</SectionLabel>
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+            One mission. Three entities.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
+            {ENTITIES.map(([name, desc], i) => (
+              <motion.div
+                key={name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ delay: i * 0.15, duration: 0.4 }}
+                className="bg-bg-primary border border-gold/20 rounded p-6 text-left"
+              >
+                <span className="font-mono text-[11px] tracking-[0.05em] text-gold leading-snug">{name}</span>
+                <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[1280px] mx-auto text-center">
           <SectionLabel center>HOW MADDEX IS STRUCTURED</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -115,7 +165,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
+      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[1280px] mx-auto text-center">
           <SectionLabel center>VALUES</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -130,7 +180,7 @@ export default function About() {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.1, duration: 0.4 }}
                 whileHover={{ y: -6, boxShadow: '0 16px 32px rgba(0,0,0,0.35)' }}
-                className="bg-bg-surface border-l-[3px] border-gold rounded-r p-6 cursor-default"
+                className="bg-bg-primary border-l-[3px] border-gold rounded-r p-6 cursor-default"
               >
                 <h3 className="font-sans text-[16px] font-bold text-text-primary">{title}</h3>
                 <p className="font-sans text-[13px] text-text-muted mt-2 leading-relaxed">{desc}</p>
@@ -140,7 +190,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10">
+      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10">
         <div className="max-w-[800px] mx-auto">
           <SectionLabel center>ROADMAP</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-12">
@@ -171,7 +221,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[140px] px-6 md:px-10 text-center">
+      <section className="bg-bg-surface py-20 md:py-[140px] px-6 md:px-10 text-center">
         <SectionLabel center>CONTACT</SectionLabel>
         <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Get in touch with Ben directly.

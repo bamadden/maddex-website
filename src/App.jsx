@@ -1,14 +1,15 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
-import Home from './pages/Home'
-import Product from './pages/Product'
-import MaddenAIPage from './pages/MaddenAI'
-import Pricing from './pages/Pricing'
-import About from './pages/About'
-import Research from './pages/Research'
 import ScrollProgress from './components/shared/ScrollProgress'
 import BackToTop from './components/shared/BackToTop'
+
+const Home = lazy(() => import('./pages/Home'))
+const Product = lazy(() => import('./pages/Product'))
+const MaddenAIPage = lazy(() => import('./pages/MaddenAI'))
+const Pricing = lazy(() => import('./pages/Pricing'))
+const About = lazy(() => import('./pages/About'))
+const Research = lazy(() => import('./pages/Research'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -53,7 +54,9 @@ export default function App() {
       <BrowserRouter>
         <ScrollToTop />
         <ScrollProgress />
-        <AnimatedRoutes />
+        <Suspense fallback={null}>
+          <AnimatedRoutes />
+        </Suspense>
         <BackToTop />
       </BrowserRouter>
     </MotionConfig>

@@ -23,7 +23,7 @@ const MODULES = [
     key: 'markets',
     stats: '9 Indices · 200+ ASX Stocks · 11 GICS Sectors · 60s Refresh',
     title: 'Markets Module',
-    body: 'Every major global index, sector breakdown, and top mover — refreshed continuously and scored by MaddenAI for context, not just numbers.',
+    body: 'ASX 200 as the primary index, alongside 9 global indices and full 11-sector GICS breakdown — refreshed continuously and scored by MaddenAI sentiment for context, not just numbers.',
     features: ['9 global indices tracked live', 'Full ASX 200 constituent list', '11 GICS sector heatmap', 'MaddenAI sentiment overlay'],
     visual: (
       <TerminalCard>
@@ -54,7 +54,7 @@ const MODULES = [
     key: 'crypto',
     stats: 'Top 20 AUD · 5-Factor Score · Live CoinGecko · 30s Refresh',
     title: 'Crypto Module',
-    body: 'Top 20 assets by market cap in AUD, MaddenAI Momentum Index, and Fear & Greed tracking — built for investors who treat crypto as a real allocation.',
+    body: 'Top 20 assets by market cap in AUD, sourced live from CoinGecko, with the MaddenAI Crypto Momentum Index and Fear & Greed tracking — built for investors who treat crypto as a real allocation.',
     features: ['Top 20 by AUD market cap', 'MaddenAI Momentum Index', 'Fear & Greed reading', 'BTC dominance tracking'],
     visual: (
       <TerminalCard>
@@ -85,7 +85,7 @@ const MODULES = [
     key: 'rates',
     stats: '10 AUD Pairs · 8 Bond Tenors · 10+ Central Banks · 5min Refresh',
     title: 'Rates Module',
-    body: 'FX pairs, government bond yield curves, and central bank rates across every major economy — the macro plumbing most retail platforms skip entirely.',
+    body: 'FX pairs sourced via the Frankfurter API, government bond yield curves, and central bank rates with the RBA as the primary reference rate — the macro plumbing most retail platforms skip entirely.',
     features: ['10 AUD currency pairs', 'AU Government Bond yield curve', '10+ central bank policy rates', 'Rate decision countdowns'],
     visual: (
       <TerminalCard>
@@ -109,7 +109,7 @@ const MODULES = [
     key: 'macro',
     stats: '8 AU Indicators · RBA Primary · China Watch · Economic Calendar',
     title: 'Macro Module',
-    body: 'A live RBA dashboard with cash rate, next meeting countdown, and the eight Australian macro indicators that actually move markets.',
+    body: 'A live RBA dashboard with cash rate, next meeting countdown, the eight Australian macro indicators that actually move markets, and a dedicated China Watch panel for commodity-linked demand signals.',
     features: ['RBA cash rate + next meeting countdown', '8 Australian macro indicators', 'China Watch commodity linkage', '30-day economic calendar'],
     visual: (
       <TerminalCard>
@@ -133,7 +133,7 @@ const MODULES = [
     key: 'news',
     stats: '28+ Sources · 9 Categories · 3min Refresh · AI Sentiment',
     title: 'News Module',
-    body: '28+ sources filtered for financial relevance across 9 categories, with MaddenAI surfacing the themes that matter before they hit the front page.',
+    body: '28+ sources filtered for financial relevance across 9 categories, refreshed every 3 minutes, with MaddenAI surfacing the themes that matter before they hit the front page.',
     features: ['28+ curated sources', 'Financial relevance filter', '9 news categories', 'MaddenAI Key Themes daily'],
     visual: (
       <TerminalCard>
@@ -153,7 +153,7 @@ const MODULES = [
     key: 'watchlist',
     stats: 'Unlimited Stocks · Live Prices · Supabase Sync · CSV Export',
     title: 'Watchlist',
-    body: 'Add any ASX or US stock and track it live with full fundamental data, synced automatically across every device you use.',
+    body: 'Add any ASX or US stock, priced live via Yahoo Finance and Twelve Data, with full fundamental data synced through Supabase across every device you use.',
     features: ['ASX + US ticker support', 'Live price tracking', 'Full fundamental data', 'Synced across all devices'],
     visual: (
       <TerminalCard>
@@ -175,7 +175,7 @@ const MODULES = [
     key: 'global',
     stats: '50+ Exchanges · 200+ Countries · 5 Layers · Live Chokepoints',
     title: 'Global Intelligence',
-    body: 'A live 3D globe covering 50+ exchanges, shipping chokepoints, and a 200+ country database — see geopolitical risk before it shows up in your portfolio.',
+    body: 'A live 3D globe across 5 data layers covering 50+ exchanges, shipping chokepoints, and a 200+ country database — see geopolitical risk before it shows up in your portfolio.',
     features: ['Live 3D global exchange map', '50+ exchanges tracked', 'Shipping chokepoint monitoring', '200+ country risk database'],
     visual: (
       <TerminalCard>

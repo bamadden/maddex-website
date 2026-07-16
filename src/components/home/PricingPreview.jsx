@@ -5,10 +5,10 @@ import SectionLabel from '../shared/SectionLabel'
 import GoldButton from '../shared/GoldButton'
 
 const PLANS = [
-  { name: 'CORE', monthly: 19, annual: 189, popular: false, features: ['Markets + Watchlist', 'MaddenAI Sentiment Score', 'Daily market brief', 'Email support'] },
-  { name: 'PRO', monthly: 49, annual: 489, popular: true, badge: 'BEST FOR PROS', features: ['Everything in Core', 'All 7 modules', 'Asset Analysis on demand', '5 Research Notes / mo'] },
-  { name: 'APEX', monthly: 149, annual: 1489, popular: false, note: 'THIS PRICE IS CORRECT', features: ['Everything in Pro', 'Unlimited Research Notes', 'Global Intelligence Map', 'Priority support'] },
-  { name: 'ADVISER', monthly: 299, annual: 2989, popular: false, note: 'THIS PRICE IS CORRECT', features: ['Everything in Apex', 'Multi-client dashboards', 'White-label reports', 'Dedicated account manager'] },
+  { name: 'CORE', monthly: 19, annual: 190, popular: false, features: ['Markets + Crypto modules', 'Watchlist — 50 stocks', 'MaddenAI Chat — 100/day', '5 Price Alerts'] },
+  { name: 'PRO', monthly: 49, annual: 490, popular: true, badge: 'BEST FOR PROS', features: ['Everything in Core', 'All 7 modules + Command Bar', 'Unlimited MaddenAI Chat', '50 Price Alerts · 5 Research Notes/mo'] },
+  { name: 'APEX', monthly: 149, annual: 1490, popular: false, note: 'THIS PRICE IS CORRECT', features: ['Everything in Pro', 'Unlimited Price Alerts + Research Notes', 'API Access — 10,000 calls/mo', 'Mobile App (Q4 2026)'] },
+  { name: 'ADVISER', monthly: 299, noAnnual: true, popular: false, note: '5 SEATS INCLUDED', features: ['Everything in Apex', '5 team seats included', 'Multi-client dashboards', 'Dedicated account manager'] },
 ]
 
 const RESEARCH_ROWS = [
@@ -74,11 +74,11 @@ export default function PricingPreview() {
               )}
               <div className="font-mono text-[9px] text-text-faint">
                 <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
-                <span className="text-gold"> → {plan.name}: A${plan.annual}/yr</span>
+                <span className="text-gold"> → {plan.name}: A${plan.noAnnual ? plan.monthly * 12 : plan.annual}/yr</span>
               </div>
               <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
               <div className="mt-3">
-                {annual ? (
+                {annual && !plan.noAnnual ? (
                   <>
                     <span className="font-sans text-[13px] text-text-faint line-through mr-2">
                       A${plan.monthly}

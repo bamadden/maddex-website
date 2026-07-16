@@ -38,7 +38,7 @@ const NAV_ITEMS = [
     columns: 1,
     items: [
       { icon: '◆', title: 'Individual Plans', desc: 'Core A$19, Pro A$49, Apex A$149' },
-      { icon: '◆', title: 'Business Plans', desc: 'Adviser, Firm, Institutional' },
+      { icon: '◆', title: 'Business Plans', desc: 'Adviser A$299/mo, Firm A$999/mo' },
       { icon: '◆', title: 'Research Notes', desc: 'From A$4.99 per note' },
     ],
   },
@@ -137,7 +137,7 @@ export default function Navigation() {
           MADDEX
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-8">
           {NAV_ITEMS.map((item) => {
             const isActive = location.pathname === item.to
             return (
@@ -170,7 +170,7 @@ export default function Navigation() {
           })}
         </div>
 
-        <div className="hidden md:flex items-center">
+        <div className="hidden lg:flex items-center">
           <button
             type="button"
             className="font-sans text-[13px] text-text-muted hover:text-text-primary transition-colors duration-150 mr-5"
@@ -182,7 +182,7 @@ export default function Navigation() {
 
         <button
           type="button"
-          className="md:hidden text-gold text-2xl"
+          className="lg:hidden text-gold text-2xl"
           onClick={() => setMobileOpen(true)}
           aria-label="Open menu"
         >

@@ -54,7 +54,7 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-            <p className="font-mono text-[10px] text-text-faint mt-6">© 2026 Maddex. All rights reserved.</p>
+            <p className="font-mono text-[10px] text-text-faint mt-6">© 2026 Madden Group Holdings Pty Ltd. All rights reserved.</p>
           </div>
 
           <div>
@@ -107,7 +107,7 @@ export default function Footer() {
             MADDEX PROVIDES GENERAL FINANCIAL INFORMATION ONLY AND DOES NOT CONSTITUTE FINANCIAL PRODUCT ADVICE.
           </p>
           <div className="flex items-center gap-4">
-            <p className="font-mono text-[9px] text-text-faint">© 2026 MADDEX PTY LTD</p>
+            <p className="font-mono text-[9px] text-text-faint">© 2026 MADDEN GROUP HOLDINGS PTY LTD</p>
             <p className="font-mono text-[9px] text-text-faint">BUILD: JULY 2026</p>
           </div>
         </div>
