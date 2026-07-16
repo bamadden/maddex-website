@@ -45,7 +45,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-sans text-[18px] text-text-muted mt-5 leading-[1.75]"
         >
-          No credit card. Full Pro access. First month 50% off when you subscribe.
+          No credit card. Core level access for 7 days. First month 50% off when you subscribe.
         </motion.p>
 
         <motion.div
@@ -66,7 +66,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="font-sans text-[13px] text-text-faint mt-8"
         >
-          🔒 Secure &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; Full Pro access for 7 days
+          🔒 Secure &nbsp;·&nbsp; No credit card &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; Core level access for 7 days
         </motion.div>
       </div>
     </section>

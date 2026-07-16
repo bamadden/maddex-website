@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
@@ -12,72 +12,264 @@ const PLANS = [
     name: 'CORE',
     monthly: 19,
     annual: 190,
-    features: ['Markets + Crypto modules', 'Watchlist — 50 stocks', 'MaddenAI Chat — 100/day', '5 Price Alerts'],
+    tagline: 'Professional intelligence at an accessible price.',
+    highlights: [
+      'All 7 intelligence modules',
+      'MaddenAI chat — 50 messages/day',
+      'Watchlist — 50 stocks',
+      'Full MaddenAI Sentiment, Crypto & Sector scores',
+      'Data export — full JSON',
+    ],
+    included: [
+      'All 7 intelligence modules — visible and accessible',
+      'All 9 global indices displayed',
+      'Full sector heatmap — day performance',
+      'Top 20 cryptocurrencies — price and 24h change',
+      'All 10 AUD currency pairs — live rates',
+      'Full central bank rates panel',
+      'Full RBA dashboard — cash rate, next meeting, countdown',
+      'All 8 AU macro indicators',
+      'China Watch — overview',
+      'All 28+ news sources — all 9 categories',
+      'Watchlist — 50 stocks',
+      'Portfolio — unlimited holdings, live P&L',
+      'Global Intelligence Map — globe and exchange indicators',
+      'MaddenAI Market Sentiment Score — full score and all components',
+      'MaddenAI Crypto Momentum Index — full',
+      'MaddenAI Sector Strength Radar — full',
+      'MaddenAI chat — 50 messages per day',
+      'Data export — full JSON',
+    ],
+    upgrades: [
+      'Equity prices: 15-minute delay (Pro: real-time)',
+      'MaddenAI chat: 50/day (Pro: 200/day)',
+      'MaddenAI analysis on article click (Pro only)',
+      'MaddenAI analysis on stock click (Pro only)',
+      "MaddenAI Today's Key Themes in News (Pro only)",
+      'News sentiment badges (Pro only)',
+      'Watchlist fundamental data — P/E, market cap, 52W range (Pro only)',
+      'Portfolio analytics — Sharpe, beta, drawdown (Pro only)',
+      'Global country detail panels (Pro only)',
+      'Global intelligence layers — maritime, air, commodities, geopolitical (Pro only)',
+      'Multi-country yield curve comparison (Pro only)',
+      'Economic calendar: 7 days only (Pro: 30 days)',
+      'Price alerts (Pro only)',
+      'Mobile companion app (Pro only)',
+      'Stock screener (Pro only)',
+      'Technical analysis overlays (Pro only)',
+      'Research Notes not included — purchasable at A$4.99',
+    ],
   },
   {
     name: 'PRO',
     monthly: 49,
     annual: 490,
     popular: true,
-    badge: 'BEST FOR PROS',
-    features: ['Everything in Core', 'All 7 modules + Command Bar', 'Unlimited MaddenAI Chat', '50 Price Alerts · 5 Research Notes/mo'],
+    badge: 'MOST POPULAR',
+    tagline: 'The full product. Real-time. Complete.',
+    highlights: [
+      'Everything in Core, plus real-time prices',
+      'MaddenAI chat — 200 messages/day',
+      'AI analysis on every article & stock',
+      'Watchlist — 100 stocks, full fundamentals',
+      '3 Research Notes/month included',
+    ],
+    plus: [
+      'Real-time equity prices — Twelve Data',
+      'MaddenAI chat — 200 messages per day',
+      'MaddenAI analysis on every article — ASK AI button',
+      'MaddenAI analysis on every stock click — full structured output',
+      "MaddenAI Today's Key Themes — generated every 15 minutes",
+      'News sentiment badges — BULLISH/BEARISH/NEUTRAL on every article',
+      'Watchlist — 100 stocks with full fundamental data (P/E, market cap, 52W range, volume, dividend yield)',
+      'Portfolio analytics — Sharpe ratio, beta, max drawdown, benchmark comparison vs ASX 200 and S&P 500',
+      'Global country detail panels — full 200+ country database on click',
+      'Global intelligence layers — all 5 (markets, maritime, air, commodities, geopolitical)',
+      'Multi-country yield curve comparison — AU, US, UK, JP, DE',
+      'Economic calendar — 30 days forward',
+      'Sector heatmap — day/week/month/YTD toggle',
+      'Price alerts — 20 active, in-app and email',
+      'Maddex Mobile companion app — iOS and Android',
+      'Stock screener — unlimited saved screens',
+      'Technical analysis overlays — 50MA, 200MA, RSI, MACD, Bollinger Bands',
+      'Dividend tracker — ex-dividend dates, franking credits, projected income',
+      'MaddenAI Research Notes — 3 per month included',
+    ],
   },
   {
     name: 'APEX',
     monthly: 149,
     annual: 1490,
     note: 'THIS PRICE IS CORRECT',
-    features: ['Everything in Pro', 'Unlimited Price Alerts + Research Notes', 'API Access — 10,000 calls/mo', 'Mobile App (Q4 2026)'],
-  },
-  {
-    name: 'ADVISER',
-    monthly: 299,
-    noAnnual: true,
-    note: '5 SEATS INCLUDED',
-    features: ['Everything in Apex', '5 team seats included', 'Multi-client dashboards', 'Dedicated account manager'],
+    tagline: 'Maximum intelligence. No limits.',
+    highlights: [
+      'Everything in Pro, plus',
+      'MaddenAI chat — 500 messages/day',
+      'Unlimited price alerts & Research Notes',
+      'Personalised MaddenAI scoring',
+      'Priority support — 24hr guaranteed',
+    ],
+    plus: [
+      'MaddenAI chat — 500 messages per day',
+      'Price alerts — unlimited',
+      'MaddenAI Research Notes — unlimited',
+      'Maddex API — 1,000 calls per month (personal automation)',
+      'Personalised MaddenAI scoring — adjust factor weights to match your investment style',
+      'Early feature access — 30 days before Pro and Core',
+      'Priority support — guaranteed 24-hour response',
+      'Usage analytics dashboard — query history, most viewed assets, activity patterns',
+    ],
   },
 ]
 
-const COMPARISON_ROWS = [
-  ['Markets Module', true, true, true, true],
-  ['Crypto Module', true, true, true, true],
-  ['Rates Module', false, true, true, true],
-  ['Macro Module', false, true, true, true],
-  ['News Module', false, true, true, true],
-  ['Watchlist size', '50 stocks', 'Unlimited', 'Unlimited', 'Unlimited'],
-  ['Global Intelligence', false, false, true, true],
-  ['Command Bar', false, true, true, true],
-  ['MaddenAI Sentiment Score', true, true, true, true],
-  ['Asset Analysis on demand', false, true, true, true],
-  ['MaddenAI Chat', '100/day', 'Unlimited', 'Unlimited', 'Unlimited'],
-  ['Price Alerts', '5', '50', 'Unlimited', 'Unlimited'],
-  ['Research Notes included / mo', '0', '5', 'Unlimited', 'Unlimited'],
-  ['API Access', false, false, '10,000 calls/mo', '10,000 calls/mo'],
-  ['Mobile App (Q4 2026)', false, true, true, true],
-  ['Multi-client dashboards', false, false, false, true],
-  ['Priority support', false, false, true, true],
-  ['Dedicated account manager', false, false, false, true],
+const ENTERPRISE_TIERS = [
+  {
+    name: 'ADVISER',
+    price: 'A$499/mo',
+    seats: '5 user seats · A$100 per seat',
+    plusLabel: 'Everything in Apex, plus:',
+    features: [
+      'Client portfolio management',
+      'Compliance-ready reporting',
+      'Client-facing summary views',
+      'White label option',
+      'Dedicated onboarding call',
+      'API: 5,000 calls per month',
+    ],
+    button: 'ENQUIRE NOW →',
+  },
+  {
+    name: 'FIRM',
+    price: 'A$1,999/mo',
+    seats: '20 user seats · A$100 per seat',
+    plusLabel: 'Everything in Adviser, plus:',
+    features: [
+      'Dedicated account manager',
+      'SLA guarantee — 99.5% uptime',
+      'API: 100,000 calls per month',
+      'Custom MaddenAI integration',
+      'Team watchlists and portfolios',
+      'Annual: A$19,990/year — 2 months free',
+    ],
+    button: 'ENQUIRE NOW →',
+  },
+  {
+    name: 'INSTITUTIONAL',
+    price: 'Custom pricing',
+    seats: 'Unlimited seats',
+    plusLabel: 'Everything in Firm, plus:',
+    features: [
+      'Unlimited API access',
+      'Custom data feeds',
+      'White label with custom domain',
+      'Executive account relationship',
+      'Custom SLA and compliance requirements',
+    ],
+    button: 'GET IN TOUCH →',
+  },
+]
+
+const COMPARISON_GROUPS = [
+  {
+    category: 'DATA AND MARKETS',
+    rows: [
+      ['Global indices', 'All 9', 'All 9', 'All 9'],
+      ['Equity prices', '15-min delay', 'Real-time', 'Real-time'],
+      ['Crypto refresh', '5-min', '30-sec', '30-sec'],
+      ['Sector heatmap', 'Day only', 'Day/Week/Month/YTD', 'Day/Week/Month/YTD'],
+      ['Economic calendar', '7 days', '30 days', '30 days'],
+      ['Yield curve', 'AU only', 'Multi-country', 'Multi-country'],
+    ],
+  },
+  {
+    category: 'WATCHLIST AND PORTFOLIO',
+    rows: [
+      ['Watchlist size', '50 stocks', '100 stocks', '100 stocks'],
+      ['Watchlist data', 'Price + change', 'Full fundamentals', 'Full fundamentals'],
+      ['Portfolio holdings', 'Unlimited', 'Unlimited', 'Unlimited'],
+      ['Portfolio analytics', 'Basic P&L', 'Full analytics', 'Full analytics'],
+      ['Benchmark comparison', false, '✓ ASX 200 + S&P 500', '✓ ASX 200 + S&P 500'],
+      ['Technical overlays', false, true, true],
+      ['Dividend tracker', false, true, true],
+    ],
+  },
+  {
+    category: 'MADDENAI',
+    rows: [
+      ['MaddenAI Sentiment Score', 'Full', 'Full', 'Full'],
+      ['MaddenAI Crypto Index', 'Full', 'Full', 'Full'],
+      ['MaddenAI Sector Radar', 'Full', 'Full', 'Full'],
+      ['MaddenAI chat', '50/day', '200/day', '500/day'],
+      ['AI on article click', false, true, true],
+      ['AI on stock click', false, true, true],
+      ["Today's Key Themes", false, true, true],
+      ['Research Notes', 'Buy at A$4.99', '3/month', 'Unlimited'],
+      ['Personalised scoring', false, false, true],
+    ],
+  },
+  {
+    category: 'NEWS',
+    rows: [
+      ['Sources', '28+', '28+', '28+'],
+      ['Categories', 'All 9', 'All 9', 'All 9'],
+      ['Sentiment badges', false, true, true],
+      ['Key Themes', false, true, true],
+      ['ASK AI on articles', false, true, true],
+    ],
+  },
+  {
+    category: 'GLOBAL INTELLIGENCE',
+    rows: [
+      ['Globe and exchanges', true, true, true],
+      ['Country detail panels', false, true, true],
+      ['Intelligence layers', false, 'All 5', 'All 5'],
+      ['Shipping chokepoints', false, true, true],
+    ],
+  },
+  {
+    category: 'ALERTS AND NOTIFICATIONS',
+    rows: [
+      ['Price alerts', false, '20 active', 'Unlimited'],
+      ['Alert delivery', '—', 'In-app + email', 'In-app + email + push'],
+      ['Mobile companion app', false, true, true],
+      ['Morning Brief', false, true, true],
+    ],
+  },
+  {
+    category: 'PLATFORM',
+    rows: [
+      ['Stock screener', false, true, true],
+      ['Data export', true, true, true],
+      ['API access', false, false, '1,000 calls/mo'],
+      ['Personalised scoring', false, false, true],
+      ['Early feature access', false, false, '30 days early'],
+      ['Priority support', false, false, '24hr guaranteed'],
+      ['Usage analytics', false, false, true],
+    ],
+  },
+  {
+    category: 'TRIAL AND BILLING',
+    rows: [
+      ['Free trial', '7 days Core', '7 days Core', '7 days Core'],
+      ['First month offer', '50% off', '50% off', '50% off'],
+      ['Annual discount', 'Save 17%', 'Save 17%', 'Save 17%'],
+      ['Cancel anytime', true, true, true],
+    ],
+  },
 ]
 
 const RESEARCH_ROWS = [
-  ['Single Note', 'A$4.99'],
-  ['5-Pack', 'A$19.99'],
-  ['10-Pack', 'A$34.99'],
-  ['Pro Tier', '5 / month included'],
-  ['Apex Tier', 'Unlimited'],
+  ['Single note', 'A$4.99', 'A$4.99'],
+  ['5-note pack', 'A$19.99', 'A$4.00'],
+  ['10-note pack', 'A$34.99', 'A$3.50'],
+  ['Pro subscription', 'A$49/mo', '3 notes included'],
+  ['Apex subscription', 'A$149/mo', 'Unlimited'],
 ]
-
-const FIRM_TIER = {
-  name: 'FIRM',
-  price: 'A$999/mo',
-  seats: '20 seats included',
-  desc: 'For advisory firms and small institutions managing multiple client teams.',
-  features: ['20 team seats included', 'Everything in Adviser', 'Custom onboarding', 'Priority SLA support'],
-}
 
 const FAQS = [
   ['Can I cancel anytime?', 'Yes. All plans are month-to-month with no lock-in contract, and you can cancel from your account settings at any time.'],
-  ['Is there really no credit card required for the trial?', 'Correct. The 7-day free trial gives you full Pro-tier access with no card required upfront.'],
+  ['Is there really no credit card required for the trial?', 'Correct. The 7-day free trial gives you Core level access with no card required upfront.'],
+  ['What happens after my trial ends?', 'After your 7-day trial your account is paused. Your watchlist, portfolio, and settings are preserved. Subscribe at any time to continue — your data will be waiting.'],
   ['What happens to my data if I downgrade?', 'Your watchlist, alerts, and saved research remain intact — downgrading only changes which modules and features are active.'],
   ['Do Research Notes expire?', 'No. Once purchased, a Research Note is yours to access indefinitely from your account.'],
   ['Is Maddex regulated financial advice?', 'No. Maddex provides general financial information only and does not constitute financial product advice. Always consult a licensed adviser for personal advice.'],
@@ -85,7 +277,7 @@ const FAQS = [
 
 function ComparisonCell({ value }) {
   if (value === true) return <span className="text-gold">✓</span>
-  if (value === false) return <span className="text-text-faint">—</span>
+  if (value === false) return <span className="text-text-faint">✗</span>
   return <span className="text-text-primary">{value}</span>
 }
 
@@ -117,6 +309,124 @@ function FAQItem({ question, answer, isOpen, onClick }) {
   )
 }
 
+function PlanCard({ plan, i, annual }) {
+  const [expanded, setExpanded] = useState(false)
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ delay: i * 0.1, duration: 0.4 }}
+      whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
+      className={`relative bg-bg-surface rounded p-6 border transition-colors duration-200 flex flex-col ${
+        plan.popular ? 'border-[rgba(201,168,76,0.5)] scale-[1.02]' : 'border-[rgba(201,168,76,0.2)] hover:border-gold/40'
+      }`}
+    >
+      {plan.popular && (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
+          {plan.badge}
+        </span>
+      )}
+      <div className="font-mono text-[9px] text-text-faint">
+        <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
+        <span className="text-gold"> → {plan.name}: A${plan.annual}/yr</span>
+      </div>
+      <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
+      <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
+      <div className="mt-3">
+        {annual ? (
+          <>
+            <span className="font-sans text-[13px] text-text-faint line-through mr-2">A${plan.monthly}</span>
+            <span className="font-sans text-[28px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
+            <span className="font-sans text-[13px] text-text-muted">/mo</span>
+          </>
+        ) : (
+          <>
+            <span className="font-sans text-[28px] font-bold text-text-primary">A${plan.monthly}</span>
+            <span className="font-sans text-[13px] text-text-muted">/mo</span>
+          </>
+        )}
+      </div>
+      {plan.note && <div className="font-mono text-[9px] text-text-faint mt-1">{plan.note}</div>}
+      <div className="flex flex-col gap-2.5 mt-5">
+        {plan.highlights.map((f) => (
+          <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
+            <span className="text-gold">◆</span>
+            {f}
+          </div>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        onClick={() => setExpanded((e) => !e)}
+        className="font-mono text-[10px] text-gold mt-4 text-left hover:opacity-70 transition-opacity"
+      >
+        {expanded ? 'HIDE FULL FEATURE LIST ▴' : 'SEE FULL FEATURE LIST ▾'}
+      </button>
+
+      <AnimatePresence>
+        {expanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="overflow-hidden"
+          >
+            {plan.included && (
+              <div className="mt-4 pt-4 border-t border-[rgba(30,70,140,0.3)]">
+                <div className="font-mono text-[9px] tracking-[0.1em] text-gold mb-2">WHAT'S INCLUDED — FULL ACCESS</div>
+                <div className="flex flex-col gap-1.5">
+                  {plan.included.map((f) => (
+                    <div key={f} className="font-sans text-[11px] text-text-muted flex gap-2 leading-snug">
+                      <span className="text-gain shrink-0">✓</span>
+                      {f}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {plan.upgrades && (
+              <div className="mt-4 pt-4 border-t border-[rgba(30,70,140,0.3)]">
+                <div className="font-mono text-[9px] tracking-[0.1em] text-gold mb-2">WHAT UPGRADES IN PRO</div>
+                <div className="flex flex-col gap-1.5">
+                  {plan.upgrades.map((f) => (
+                    <div key={f} className="font-sans text-[11px] text-text-muted flex gap-2 leading-snug">
+                      <span className="text-loss shrink-0">✗</span>
+                      {f}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {plan.plus && (
+              <div className="mt-4 pt-4 border-t border-[rgba(30,70,140,0.3)]">
+                <div className="font-mono text-[9px] tracking-[0.1em] text-gold mb-2">
+                  EVERYTHING IN {plan.name === 'PRO' ? 'CORE' : 'PRO'}, PLUS
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  {plan.plus.map((f) => (
+                    <div key={f} className="font-sans text-[11px] text-text-muted flex gap-2 leading-snug">
+                      <span className="text-gold shrink-0">✓</span>
+                      {f}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="mt-6">
+        <GoldButton variant={plan.popular ? 'solid' : 'ghost'} className="w-full">GET STARTED</GoldButton>
+      </div>
+    </motion.div>
+  )
+}
+
 export default function Pricing() {
   const [annual, setAnnual] = useState(false)
   const [openFaq, setOpenFaq] = useState(0)
@@ -137,7 +447,7 @@ export default function Pricing() {
           Institutional intelligence. Retail pricing.
         </motion.h1>
         <p className="font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
-          No lock-in contracts. Cancel anytime. Full Pro access for 7 days, free.
+          No lock-in contracts. Cancel anytime. 7-day free trial with Core level access, no credit card required.
         </p>
 
         <div className="relative inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-8">
@@ -160,58 +470,15 @@ export default function Pricing() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10 text-left max-w-[1200px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 text-left max-w-[1000px] mx-auto">
           {PLANS.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ delay: i * 0.1, duration: 0.4 }}
-              whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
-              className={`relative bg-bg-surface rounded p-6 border transition-colors duration-200 ${
-                plan.popular ? 'border-[rgba(201,168,76,0.5)] scale-[1.02]' : 'border-[rgba(201,168,76,0.2)] hover:border-gold/40'
-              }`}
-            >
-              {plan.popular && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
-                  {plan.badge || 'MOST POPULAR'}
-                </span>
-              )}
-              <div className="font-mono text-[9px] text-text-faint">
-                <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
-                <span className="text-gold"> → {plan.name}: A${plan.noAnnual ? plan.monthly * 12 : plan.annual}/yr</span>
-              </div>
-              <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
-              <div className="mt-3">
-                {annual && !plan.noAnnual ? (
-                  <>
-                    <span className="font-sans text-[13px] text-text-faint line-through mr-2">A${plan.monthly}</span>
-                    <span className="font-sans text-[28px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
-                    <span className="font-sans text-[13px] text-text-muted">/mo</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="font-sans text-[28px] font-bold text-text-primary">A${plan.monthly}</span>
-                    <span className="font-sans text-[13px] text-text-muted">/mo</span>
-                  </>
-                )}
-              </div>
-              {plan.note && <div className="font-mono text-[9px] text-text-faint mt-1">{plan.note}</div>}
-              <div className="flex flex-col gap-2.5 mt-5">
-                {plan.features.map((f) => (
-                  <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
-                    <span className="text-gold">◆</span>
-                    {f}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6">
-                <GoldButton variant={plan.popular ? 'solid' : 'ghost'} className="w-full">GET STARTED</GoldButton>
-              </div>
-            </motion.div>
+            <PlanCard key={plan.name} plan={plan} i={i} annual={annual} />
           ))}
         </div>
+
+        <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-relaxed">
+          Daily message limits reset at midnight AEST. Limits are designed to be generous for all legitimate use — 200 messages is more than one query every 4 minutes during market hours.
+        </p>
       </section>
 
       <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
@@ -221,7 +488,7 @@ export default function Pricing() {
             Every feature, side by side.
           </h2>
           <div className="overflow-x-auto mt-10">
-            <table className="w-full min-w-[640px] border-collapse">
+            <table className="w-full min-w-[560px] border-collapse">
               <thead>
                 <tr className="border-b border-gold/20">
                   <th className="text-left font-mono text-[11px] text-text-muted py-3 pr-4">FEATURE</th>
@@ -231,13 +498,22 @@ export default function Pricing() {
                 </tr>
               </thead>
               <tbody>
-                {COMPARISON_ROWS.map(([label, ...values], i) => (
-                  <tr key={label} className={i % 2 === 0 ? 'bg-bg-primary/40' : ''}>
-                    <td className="font-sans text-[13px] text-text-muted py-3 pr-4">{label}</td>
-                    {values.map((v, j) => (
-                      <td key={j} className="font-mono text-[13px] text-center py-3 px-3"><ComparisonCell value={v} /></td>
+                {COMPARISON_GROUPS.map((group) => (
+                  <Fragment key={group.category}>
+                    <tr>
+                      <td colSpan={4} className="font-mono text-[9px] tracking-[0.1em] text-gold pt-6 pb-2">
+                        {group.category}
+                      </td>
+                    </tr>
+                    {group.rows.map(([label, core, pro, apex], i) => (
+                      <tr key={label} className={i % 2 === 0 ? 'bg-bg-primary/40' : ''}>
+                        <td className="font-sans text-[13px] text-text-muted py-3 pr-4">{label}</td>
+                        <td className="font-mono text-[13px] text-center py-3 px-3"><ComparisonCell value={core} /></td>
+                        <td className="font-mono text-[13px] text-center py-3 px-3"><ComparisonCell value={pro} /></td>
+                        <td className="font-mono text-[13px] text-center py-3 px-3"><ComparisonCell value={apex} /></td>
+                      </tr>
                     ))}
-                  </tr>
+                  </Fragment>
                 ))}
               </tbody>
             </table>
@@ -250,42 +526,55 @@ export default function Pricing() {
           <div className="font-mono text-[12px] text-gold tracking-wide text-center mb-4">
             MADDENAI RESEARCH NOTES — From A$4.99
           </div>
-          {RESEARCH_ROWS.map(([label, price], i) => (
-            <div key={label} className={`flex justify-between py-2.5 font-mono text-[12px] ${i > 0 ? 'border-t border-[rgba(30,70,140,0.3)]' : ''}`}>
+          <div className="grid grid-cols-3 gap-2 font-mono text-[10px] text-text-faint pb-2 border-b border-[rgba(30,70,140,0.3)]">
+            <span>OPTION</span>
+            <span className="text-right">PRICE</span>
+            <span className="text-right">PER NOTE</span>
+          </div>
+          {RESEARCH_ROWS.map(([label, price, perNote]) => (
+            <div key={label} className="grid grid-cols-3 gap-2 py-2.5 font-mono text-[12px] border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
               <span className="text-text-muted">{label}</span>
-              <span className="text-text-primary">{price}</span>
+              <span className="text-text-primary text-right">{price}</span>
+              <span className="text-text-muted text-right">{perNote}</span>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <section id="enterprise" className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
-          <SectionLabel center>BUSINESS PLANS</SectionLabel>
+          <SectionLabel center>ENTERPRISE</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
-            Built for advisers and firms.
+            For adviser practices, firms, and institutions
           </h2>
           <p className="font-sans text-[18px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
-            Already covered above: the Adviser plan at A$299/month for 5 seats. For larger teams, Firm scales that up.
+            Enterprise packages with multiple seats, dedicated support, and commercial-grade features. Contact us to discuss.
           </p>
-          <div className="max-w-[420px] mx-auto mt-10 text-left">
-            <div className="bg-bg-primary border border-gold/30 rounded p-7">
-              <div className="font-mono text-[12px] tracking-wide text-gold">{FIRM_TIER.name}</div>
-              <div className="font-sans text-[28px] font-bold text-text-primary mt-2">{FIRM_TIER.price}</div>
-              <div className="font-mono text-[9px] text-text-faint mt-1">{FIRM_TIER.seats}</div>
-              <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{FIRM_TIER.desc}</p>
-              <div className="flex flex-col gap-2 mt-5">
-                {FIRM_TIER.features.map((f) => (
-                  <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
-                    <span className="text-gold">◆</span>{f}
-                  </div>
-                ))}
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12 text-left">
+            {ENTERPRISE_TIERS.map((tier) => (
+              <div key={tier.name} className="bg-bg-primary border border-[rgba(201,168,76,0.15)] rounded p-6 flex flex-col">
+                <div className="font-mono text-[11px] tracking-wide text-gold">{tier.name}</div>
+                <div className="font-sans text-[22px] font-bold text-text-primary mt-2">{tier.price}</div>
+                <div className="font-mono text-[9px] text-text-faint mt-1">{tier.seats}</div>
+                <div className="font-mono text-[9px] text-text-muted mt-4">{tier.plusLabel}</div>
+                <div className="flex flex-col gap-2 mt-2">
+                  {tier.features.map((f) => (
+                    <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
+                      <span className="text-gold">◆</span>{f}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-6">
+                  <GoldButton href="mailto:hello@maddex.com.au" variant="ghost" className="w-full">{tier.button}</GoldButton>
+                </div>
               </div>
-              <div className="mt-6">
-                <GoldButton variant="ghost" className="w-full">CONTACT SALES</GoldButton>
-              </div>
-            </div>
+            ))}
           </div>
+
+          <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-relaxed">
+            Enterprise packages are available via direct enquiry. Current enterprise features are being developed for Q2-Q3 2027 release. Individual packages (Core, Pro, Apex) are available immediately via self-serve signup.
+          </p>
         </div>
       </section>
 

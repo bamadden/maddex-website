@@ -134,6 +134,9 @@ export default function About() {
               </motion.div>
             ))}
           </div>
+          <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-relaxed">
+            Enterprise packages (Adviser, Firm, Institutional) are planned for Q2-Q3 2027 as Phase 3 of the Maddex roadmap. Individual packages (Core, Pro, Apex) are available at launch in Q3 2026.
+          </p>
         </div>
       </section>
 

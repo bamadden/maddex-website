@@ -165,7 +165,7 @@ export default function Hero() {
             transition={{ delay: 1.1, duration: 0.5 }}
             className="font-mono text-[10px] text-text-faint mt-6 tracking-wide"
           >
-            7-DAY FREE TRIAL · NO CREDIT CARD REQUIRED · FULL PRO ACCESS
+            7-DAY FREE TRIAL · NO CREDIT CARD REQUIRED · CORE LEVEL ACCESS
           </motion.div>
 
           <motion.div

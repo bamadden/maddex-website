@@ -5,17 +5,36 @@ import SectionLabel from '../shared/SectionLabel'
 import GoldButton from '../shared/GoldButton'
 
 const PLANS = [
-  { name: 'CORE', monthly: 19, annual: 190, popular: false, features: ['Markets + Crypto modules', 'Watchlist — 50 stocks', 'MaddenAI Chat — 100/day', '5 Price Alerts'] },
-  { name: 'PRO', monthly: 49, annual: 490, popular: true, badge: 'BEST FOR PROS', features: ['Everything in Core', 'All 7 modules + Command Bar', 'Unlimited MaddenAI Chat', '50 Price Alerts · 5 Research Notes/mo'] },
-  { name: 'APEX', monthly: 149, annual: 1490, popular: false, note: 'THIS PRICE IS CORRECT', features: ['Everything in Pro', 'Unlimited Price Alerts + Research Notes', 'API Access — 10,000 calls/mo', 'Mobile App (Q4 2026)'] },
-  { name: 'ADVISER', monthly: 299, noAnnual: true, popular: false, note: '5 SEATS INCLUDED', features: ['Everything in Apex', '5 team seats included', 'Multi-client dashboards', 'Dedicated account manager'] },
+  {
+    name: 'CORE',
+    monthly: 19,
+    annual: 190,
+    popular: false,
+    features: ['All 7 intelligence modules', 'MaddenAI chat — 50 messages/day', 'Watchlist — 50 stocks', 'Full MaddenAI Sentiment, Crypto & Sector scores', 'Data export — full JSON'],
+  },
+  {
+    name: 'PRO',
+    monthly: 49,
+    annual: 490,
+    popular: true,
+    badge: 'MOST POPULAR',
+    features: ['Everything in Core, plus real-time prices', 'MaddenAI chat — 200 messages/day', 'AI analysis on every article & stock', 'Watchlist — 100 stocks, full fundamentals', '3 Research Notes/month included'],
+  },
+  {
+    name: 'APEX',
+    monthly: 149,
+    annual: 1490,
+    popular: false,
+    note: 'THIS PRICE IS CORRECT',
+    features: ['Everything in Pro, plus', 'MaddenAI chat — 500 messages/day', 'Unlimited price alerts & Research Notes', 'Personalised MaddenAI scoring', 'Priority support — 24hr guaranteed'],
+  },
 ]
 
 const RESEARCH_ROWS = [
   ['Single Note', 'A$4.99'],
   ['5-Pack', 'A$19.99'],
   ['10-Pack', 'A$34.99'],
-  ['Pro Tier', '5 / month included'],
+  ['Pro Tier', '3 / month included'],
   ['Apex Tier', 'Unlimited'],
 ]
 
@@ -50,7 +69,7 @@ export default function PricingPreview() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-10 text-left">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 text-left max-w-[1000px] mx-auto">
           {PLANS.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -65,16 +84,16 @@ export default function PricingPreview() {
             >
               {plan.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
-                  {plan.badge || 'MOST POPULAR'}
+                  {plan.badge}
                 </span>
               )}
               <div className="font-mono text-[9px] text-text-faint">
                 <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
-                <span className="text-gold"> → {plan.name}: A${plan.noAnnual ? plan.monthly * 12 : plan.annual}/yr</span>
+                <span className="text-gold"> → {plan.name}: A${plan.annual}/yr</span>
               </div>
               <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
               <div className="mt-3">
-                {annual && !plan.noAnnual ? (
+                {annual ? (
                   <>
                     <span className="font-sans text-[13px] text-text-faint line-through mr-2">
                       A${plan.monthly}
@@ -110,6 +129,12 @@ export default function PricingPreview() {
         <Link to="/pricing" className="inline-block font-mono text-[12px] text-gold mt-8 hover:opacity-70 transition-opacity">
           COMPARE ALL FEATURES →
         </Link>
+
+        <div>
+          <Link to="/pricing#enterprise" className="inline-block font-mono text-[11px] text-text-muted hover:text-gold transition-colors mt-3">
+            For adviser practices, firms, and institutions → View enterprise plans
+          </Link>
+        </div>
 
         <div className="max-w-[600px] mx-auto mt-10 bg-bg-surface border border-gold/20 rounded p-6 text-left">
           <div className="font-mono text-[12px] text-gold tracking-wide text-center mb-4">

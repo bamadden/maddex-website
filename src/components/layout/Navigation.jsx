@@ -37,9 +37,10 @@ const NAV_ITEMS = [
     to: '/pricing',
     columns: 1,
     items: [
-      { icon: '◆', title: 'Individual Plans', desc: 'Core A$19, Pro A$49, Apex A$149', to: '/pricing' },
-      { icon: '◆', title: 'Business Plans', desc: 'Adviser A$299/mo, Firm A$999/mo', to: '/pricing' },
+      { icon: '◆', title: 'Individual Plans', desc: 'Core, Pro, and Apex', to: '/pricing' },
+      { icon: '◆', title: 'Enterprise Plans', desc: 'Adviser, Firm, Institutional', to: '/pricing#enterprise' },
       { icon: '◆', title: 'Research Notes', desc: 'From A$4.99 per note', to: '/pricing' },
+      { icon: '◆', title: 'Newsletter', desc: 'Free and A$29/mo', to: '/research' },
     ],
   },
   {

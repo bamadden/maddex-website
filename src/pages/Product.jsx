@@ -151,7 +151,7 @@ const MODULES = [
   },
   {
     key: 'watchlist',
-    stats: 'Unlimited Stocks · Live Prices · Supabase Sync · CSV Export',
+    stats: 'Up to 100 Stocks · Live Prices · Supabase Sync · CSV Export',
     title: 'Watchlist',
     body: 'Add any ASX or US stock, priced live via Yahoo Finance and Twelve Data, with full fundamental data synced through Supabase across every device you use.',
     features: ['ASX + US ticker support', 'Live price tracking', 'Full fundamental data', 'Synced across all devices'],
