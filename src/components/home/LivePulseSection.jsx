@@ -104,7 +104,7 @@ export default function LivePulseSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-[1000px] mx-auto mt-14 text-left">
-          <div className="bg-bg-surface border border-gold/15 rounded p-6">
+          <div className="bg-bg-surface border border-gold/15 rounded p-6 min-h-[160px] flex flex-col">
             <div className="font-mono text-[9px] text-gold">MADDENAI SENTIMENT</div>
             <div className="flex items-baseline gap-1 mt-2">
               <span className="font-mono text-[48px] font-bold text-gold leading-none">72</span>
@@ -114,43 +114,43 @@ export default function LivePulseSection() {
             <div className="w-full h-1.5 rounded-full mt-4" style={{ background: 'linear-gradient(to right, #A83232, #C9A84C, #2D8A50)' }} />
           </div>
 
-          <div className="bg-bg-surface border border-gold/15 rounded p-6">
+          <div className="bg-bg-surface border border-gold/15 rounded p-6 min-h-[160px] flex flex-col">
             <div className="font-mono text-[9px] text-gold">ASX 200</div>
             <FadeNumber value={asx.toFixed(2)} className="font-mono text-[28px] font-bold text-text-primary mt-2" />
             <div className="font-mono text-[14px] text-gain mt-1">▲ +0.42%</div>
             <div className="mt-3"><Sparkline points={sparks.asx} /></div>
           </div>
 
-          <div className="bg-bg-surface border border-gold/15 rounded p-6">
+          <div className="bg-bg-surface border border-gold/15 rounded p-6 min-h-[160px] flex flex-col">
             <div className="font-mono text-[9px] text-gold">BTC/AUD</div>
             <FadeNumber value={`A$${btc.toLocaleString('en-AU', { maximumFractionDigits: 0 })}`} className="font-mono text-[28px] font-bold text-text-primary mt-2" />
             <div className="font-mono text-[14px] text-gain mt-1">▲ +1.80%</div>
             <div className="mt-3"><Sparkline points={sparks.btc} /></div>
           </div>
 
-          <div className="bg-bg-surface border border-gold/15 rounded p-6">
+          <div className="bg-bg-surface border border-gold/15 rounded p-6 min-h-[160px] flex flex-col">
             <div className="font-mono text-[9px] text-gold">AUD/USD</div>
             <FadeNumber value={aud.toFixed(4)} className="font-mono text-[28px] font-bold text-text-primary mt-2" />
             <div className="font-mono text-[14px] text-loss mt-1">▼ -0.12%</div>
             <div className="mt-3"><Sparkline points={sparks.aud} color="#A83232" /></div>
           </div>
 
-          <div className="bg-bg-surface border border-gold/15 rounded p-6">
+          <div className="bg-bg-surface border border-gold/15 rounded p-6 min-h-[160px] flex flex-col">
             <div className="font-mono text-[9px] text-gold">GOLD AUD</div>
             <FadeNumber value={`A$${gold.toFixed(0)}`} className="font-mono text-[28px] font-bold text-text-primary mt-2" />
             <div className="font-mono text-[14px] text-gain mt-1">▲ +0.30%</div>
             <div className="mt-3"><Sparkline points={sparks.gold} /></div>
           </div>
 
-          <div className="bg-bg-surface border border-gold/15 rounded p-6">
-            <div className="font-mono text-[9px] text-gold">GLOBAL MARKETS</div>
+          <div className="bg-bg-surface border border-gold/15 rounded p-6 min-h-[160px] flex flex-col items-center justify-center text-center">
+            <div className="font-mono text-[9px] text-gold self-start">GLOBAL MARKETS</div>
             <div className="font-mono text-[28px] font-bold text-text-primary mt-2">18/22 OPEN</div>
-            <div className="grid grid-cols-11 gap-1 mt-3">
+            <div className="grid grid-cols-11 gap-1 mt-3 justify-center">
               {dots.map((open, i) => (
                 <span key={i} className={`w-1.5 h-1.5 rounded-full ${open ? 'bg-gold' : 'bg-gold/15'}`} />
               ))}
             </div>
-            <div className="font-sans text-[10px] text-text-muted mt-2">MARKETS ACTIVE</div>
+            <div className="font-mono text-[9px] text-gold mt-2">MARKETS ACTIVE</div>
           </div>
         </div>
 

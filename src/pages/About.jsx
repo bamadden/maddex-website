@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
@@ -34,6 +35,10 @@ const ENTITIES = [
 ]
 
 export default function About() {
+  useEffect(() => {
+    document.title = 'Maddex — About'
+  }, [])
+
   return (
     <>
       <TickerTape />
@@ -109,7 +114,7 @@ export default function About() {
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             The work behind the terminal.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12 text-left items-stretch">
             {CREDENTIALS.map(([title, institution, detail], i) => (
               <motion.div
                 key={title}
@@ -117,11 +122,13 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.1, duration: 0.4 }}
+                whileHover={{ y: -2, borderLeftColor: '#E8C878' }}
+                className="min-h-[110px] flex flex-col justify-center transition-colors"
                 style={{ background: '#0B1628', borderLeft: '2px solid #C9A84C', padding: '16px 20px' }}
               >
                 <div className="font-mono text-[11px]" style={{ color: '#C9A84C' }}>{title}</div>
-                <div className="font-sans text-[13px] mt-1.5" style={{ color: '#E8EDF5' }}>{institution}</div>
-                {detail && <div className="font-sans text-[12px] text-text-muted mt-1">{detail}</div>}
+                <div className="font-sans text-[14px] font-bold mt-1.5" style={{ color: '#E8EDF5' }}>{institution}</div>
+                {detail && <div className="font-sans text-[13px] text-text-muted mt-1">{detail}</div>}
               </motion.div>
             ))}
           </div>
@@ -286,32 +293,34 @@ export default function About() {
         <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">
           Questions, feedback, or a partnership idea — every message reaches the founder, not a support queue.
         </p>
-        <p className="font-sans text-[14px] text-text-muted mt-2 italic">Ben responds personally to every message.</p>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[600px] mx-auto mt-8 text-left">
           <a
             href="mailto:hello@maddex.com.au"
-            className="bg-bg-surface border-l-2 border-gold rounded-r p-5 flex items-center gap-3 hover:bg-gold/[0.04] transition-colors"
+            className="group w-full bg-bg-surface border-l-2 border-gold rounded-r p-5 flex items-center gap-3 hover:bg-gold/[0.04] transition-colors overflow-hidden"
           >
             <span className="text-gold text-[20px]">✉</span>
-            <div>
+            <div className="flex-1">
               <div className="font-mono text-[9px] tracking-[0.1em] text-gold">EMAIL</div>
               <div className="font-sans text-[13px] text-text-primary mt-0.5">hello@maddex.com.au</div>
             </div>
+            <span className="text-gold text-[16px] -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-200">→</span>
           </a>
           <a
             href="https://linkedin.com/in/benjaminmadden"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-bg-surface border-l-2 border-gold rounded-r p-5 flex items-center gap-3 hover:bg-gold/[0.04] transition-colors"
+            className="group w-full bg-bg-surface border-l-2 border-gold rounded-r p-5 flex items-center gap-3 hover:bg-gold/[0.04] transition-colors overflow-hidden"
           >
             <span className="text-gold text-[20px]">in</span>
-            <div>
+            <div className="flex-1">
               <div className="font-mono text-[9px] tracking-[0.1em] text-gold">LINKEDIN</div>
               <div className="font-sans text-[13px] text-text-primary mt-0.5">linkedin.com/in/benjaminmadden</div>
             </div>
+            <span className="text-gold text-[16px] -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-200">→</span>
           </a>
         </div>
+
+        <p className="font-sans text-[14px] text-gold mt-6 italic">Ben responds personally to every message.</p>
 
         <div className="mt-8">
           <GoldButton href="mailto:hello@maddex.com.au">EMAIL BEN →</GoldButton>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
@@ -60,6 +60,10 @@ function FlipCard({ front, back, index }) {
 export default function Research() {
   const [email, setEmail] = useState('')
 
+  useEffect(() => {
+    document.title = 'Madden Research — Weekly Market Brief'
+  }, [])
+
   return (
     <>
       <TickerTape />
@@ -105,7 +109,7 @@ export default function Research() {
             <div className="p-6 font-mono text-[11px] relative">
               <div className="text-gold text-[9px] tracking-[0.1em]">MADDENAI WEEKLY SENTIMENT</div>
               <div className="text-text-primary text-[22px] font-bold mt-1.5">68/100 NEUTRAL-BULLISH</div>
-              <div className="w-full h-1.5 rounded-full mt-3" style={{ background: 'linear-gradient(to right, #A83232, #C9A84C, #2D8A50)' }} />
+              <div className="w-full h-2 rounded-full mt-3" style={{ background: 'linear-gradient(to right, #A83232, #C9A84C, #2D8A50)' }} />
 
               <div className="text-gold text-[9px] tracking-[0.1em] mt-7">THIS WEEK'S THREE THEMES</div>
               <div className="flex flex-col gap-2 mt-2 text-text-muted">
@@ -127,14 +131,14 @@ export default function Research() {
               </p>
 
               <div className="text-gold text-[9px] tracking-[0.1em] mt-7">ASX WATCH LIST</div>
-              <div className="text-text-muted mt-2">CSL.AX · BHP.AX · WBC.AX · RIO.AX · WOW.AX</div>
+              <div className="text-text-primary font-bold mt-2">CSL.AX · BHP.AX · WBC.AX · RIO.AX · WOW.AX</div>
 
               <div className="text-gold text-[9px] tracking-[0.1em] mt-7">RBA CALENDAR</div>
               <div className="text-text-muted mt-2">Next meeting: 5 AUG 2026 · Cash rate held at 4.35% since May</div>
 
               <div
                 className="absolute bottom-0 left-0 right-0 flex items-end justify-center pb-8"
-                style={{ height: '35%', background: 'linear-gradient(to bottom, transparent, #0B1628 80%)' }}
+                style={{ height: '35%', background: 'linear-gradient(to bottom, transparent 0%, transparent 40%, #0B1628 100%)' }}
               >
                 <GoldButton>SUBSCRIBE TO READ MORE</GoldButton>
               </div>

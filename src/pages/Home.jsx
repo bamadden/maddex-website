@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
 import Footer from '../components/layout/Footer'
@@ -12,6 +13,10 @@ import TestimonialsSection from '../components/home/TestimonialsSection'
 import FinalCTA from '../components/home/FinalCTA'
 
 export default function Home() {
+  useEffect(() => {
+    document.title = 'Maddex — Financial Intelligence for Australian Investors'
+  }, [])
+
   return (
     <>
       <TickerTape />

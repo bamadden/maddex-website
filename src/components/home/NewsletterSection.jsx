@@ -8,7 +8,7 @@ export default function NewsletterSection() {
   return (
     <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div className="relative bg-bg-surface border border-gold/20 rounded overflow-hidden">
+        <div className="relative w-full bg-bg-surface border border-gold/20 rounded overflow-hidden shadow-[0_0_40px_rgba(201,168,76,0.05)]">
           <div className="bg-gold px-5 py-4">
             <div className="font-mono text-[18px] font-bold text-bg-primary tracking-[0.1em]">MADDEN RESEARCH</div>
             <div className="font-mono text-[10px] text-bg-primary/70 mt-1">ISSUE #001 &nbsp;·&nbsp; MONDAY 14 JULY 2026</div>

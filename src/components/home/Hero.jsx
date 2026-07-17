@@ -168,20 +168,22 @@ export default function Hero() {
             7-DAY FREE TRIAL · NO CREDIT CARD REQUIRED · CORE LEVEL ACCESS
           </motion.div>
 
+          <div className="w-20 h-px bg-[rgba(201,168,76,0.15)] mt-4" />
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.5 }}
-            className="flex items-center mt-12 divide-x divide-[rgba(30,70,140,0.3)]"
+            className="flex items-center mt-4 divide-x divide-[rgba(30,70,140,0.3)]"
           >
             <div className="pr-8">
-              <AnimatedCounter to={19} prefix="A$" suffix="/mo" label="Starting price" />
+              <AnimatedCounter to={19} prefix="A$" suffix="/mo" label="Starting price" duration={1200} />
             </div>
             <div className="px-8">
-              <AnimatedCounter to={7} label="Intelligence modules" />
+              <AnimatedCounter to={7} label="Intelligence modules" duration={800} />
             </div>
             <div className="pl-8">
-              <AnimatedCounter to={200} suffix="+" label="Countries covered" />
+              <AnimatedCounter to={200} suffix="+" label="Countries covered" duration={1500} />
             </div>
           </motion.div>
         </div>

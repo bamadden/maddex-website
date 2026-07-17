@@ -109,6 +109,9 @@ body {
 .card-shimmer-sweep {
   animation: card-shimmer-sweep 8s ease-in-out infinite;
 }
+.card-shimmer-sweep-6s {
+  animation: card-shimmer-sweep 6s ease-in-out infinite;
+}
 
 @keyframes score-pulse {
   0%, 100% { transform: scale(1); }

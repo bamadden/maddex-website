@@ -39,7 +39,7 @@ function FactorBar({ label, weight, color = '#C9A84C' }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
   return (
-    <div ref={ref} className="flex items-center gap-3">
+    <div ref={ref} className="flex items-center gap-3 py-[10px] px-4">
       <span className="font-mono text-[11px] text-text-muted w-40 shrink-0">{label}</span>
       <div className="flex-1 h-1.5 rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden">
         <motion.div
@@ -47,6 +47,15 @@ function FactorBar({ label, weight, color = '#C9A84C' }) {
           animate={{ width: inView ? `${weight}%` : 0 }}
           transition={{ duration: 0.9, ease: 'easeOut' }}
           className="h-full rounded-full"
+          style={{ background: color }}
+        />
+      </div>
+      <div className="w-[60px] h-2 rounded-sm bg-[rgba(30,70,140,0.3)] overflow-hidden shrink-0">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: inView ? `${weight}%` : 0 }}
+          transition={{ duration: 0.9, ease: 'easeOut' }}
+          className="h-full rounded-sm"
           style={{ background: color }}
         />
       </div>
@@ -127,6 +136,10 @@ const SECTOR_FACTORS = [
 ]
 
 export default function MaddenAI() {
+  useEffect(() => {
+    document.title = 'MaddenAI — The Intelligence Engine'
+  }, [])
+
   return (
     <>
       <TickerTape />
@@ -254,7 +267,7 @@ export default function MaddenAI() {
                   <FactorBar key={label} label={label} weight={weight} />
                 ))}
               </div>
-              <div className="flex justify-between font-mono text-[10px] text-text-faint mt-3 pt-3 border-t border-[rgba(30,70,140,0.3)]">
+              <div className="flex justify-between font-mono text-[11px] font-bold text-gold mt-3 pt-3" style={{ borderTop: '2px solid rgba(201,168,76,0.3)' }}>
                 <span>TOTAL</span>
                 <span className="text-gold">100%</span>
               </div>
@@ -277,7 +290,7 @@ export default function MaddenAI() {
                   <FactorBar key={label} label={label} weight={weight} />
                 ))}
               </div>
-              <div className="flex justify-between font-mono text-[10px] text-text-faint mt-3 pt-3 border-t border-[rgba(30,70,140,0.3)]">
+              <div className="flex justify-between font-mono text-[11px] font-bold text-gold mt-3 pt-3" style={{ borderTop: '2px solid rgba(201,168,76,0.3)' }}>
                 <span>TOTAL</span>
                 <span className="text-gold">100%</span>
               </div>
@@ -314,7 +327,7 @@ export default function MaddenAI() {
                   <FactorBar key={label} label={label} weight={weight} />
                 ))}
               </div>
-              <div className="flex justify-between font-mono text-[10px] text-text-faint mt-3 pt-3 border-t border-[rgba(30,70,140,0.3)]">
+              <div className="flex justify-between font-mono text-[11px] font-bold text-gold mt-3 pt-3" style={{ borderTop: '2px solid rgba(201,168,76,0.3)' }}>
                 <span>TOTAL</span>
                 <span className="text-gold">100%</span>
               </div>

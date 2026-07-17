@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
@@ -319,12 +319,18 @@ function PlanCard({ plan, i, annual }) {
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: i * 0.1, duration: 0.4 }}
       whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
-      className={`relative bg-bg-surface rounded p-6 border transition-colors duration-200 flex flex-col ${
+      className={`relative overflow-hidden bg-bg-surface rounded p-8 border transition-colors duration-200 flex flex-col ${
         plan.popular ? 'border-[rgba(201,168,76,0.5)] scale-[1.02]' : 'border-[rgba(201,168,76,0.2)] hover:border-gold/40'
       }`}
     >
       {plan.popular && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
+        <div
+          className="absolute inset-0 pointer-events-none card-shimmer-sweep-6s"
+          style={{ background: 'linear-gradient(110deg, transparent 40%, rgba(201,168,76,0.08) 50%, transparent 60%)' }}
+        />
+      )}
+      {plan.popular && (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
           {plan.badge}
         </span>
       )}
@@ -334,7 +340,7 @@ function PlanCard({ plan, i, annual }) {
       </div>
       <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
       <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
-      <div className="mt-3">
+      <div className="mt-4">
         {annual ? (
           <>
             <span className="font-sans text-[13px] text-text-faint line-through mr-2">A${plan.monthly}</span>
@@ -349,9 +355,9 @@ function PlanCard({ plan, i, annual }) {
         )}
       </div>
       {plan.note && <div className="font-mono text-[9px] text-text-faint mt-1">{plan.note}</div>}
-      <div className="flex flex-col gap-2.5 mt-5">
+      <div className="flex flex-col mt-5">
         {plan.highlights.map((f) => (
-          <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
+          <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2 py-2">
             <span className="text-gold">◆</span>
             {f}
           </div>
@@ -430,6 +436,10 @@ function PlanCard({ plan, i, annual }) {
 export default function Pricing() {
   const [annual, setAnnual] = useState(false)
   const [openFaq, setOpenFaq] = useState(0)
+
+  useEffect(() => {
+    document.title = 'Maddex — Pricing'
+  }, [])
 
   return (
     <>

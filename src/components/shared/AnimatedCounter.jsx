@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
 
-export default function AnimatedCounter({ to, prefix = '', suffix = '', label, decimals = 0 }) {
+export default function AnimatedCounter({ to, prefix = '', suffix = '', label, decimals = 0, duration = 1500 }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-40px' })
   const [value, setValue] = useState(0)
 
   useEffect(() => {
     if (!isInView) return
-    const duration = 1500
     const start = performance.now()
 
     function tick(now) {
@@ -21,7 +20,7 @@ export default function AnimatedCounter({ to, prefix = '', suffix = '', label, d
     }
     const raf = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(raf)
-  }, [isInView, to])
+  }, [isInView, to, duration])
 
   const display = decimals > 0 ? value.toFixed(decimals) : Math.round(value).toLocaleString('en-AU')
 

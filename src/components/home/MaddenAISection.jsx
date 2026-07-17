@@ -104,12 +104,12 @@ export default function MaddenAISection() {
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ delay: i * 0.15, duration: 0.5 }}
                 whileHover={{ scale: 1.02 }}
-                className="relative z-10 m-px bg-bg-primary border border-gold/20 border-t-2 border-t-gold rounded p-6 h-[calc(100%-2px)] transition-colors"
+                className="relative z-10 m-px bg-bg-primary border border-gold/20 border-t-2 border-t-gold rounded p-7 min-h-[200px] h-[calc(100%-2px)] flex flex-col transition-colors"
               >
                 <span className="text-gold text-[20px]">◆</span>
-                <h3 className="font-sans text-[16px] font-bold text-text-primary mt-3">{card.title}</h3>
-                <p className="font-sans text-[13px] text-text-muted mt-2 leading-[1.7]">{card.body}</p>
-                <p className="font-mono text-[10px] text-text-faint mt-4">{card.footer}</p>
+                <h3 className="font-sans text-[17px] font-bold text-text-primary mt-3">{card.title}</h3>
+                <p className="font-sans text-[14px] text-text-muted mt-2 leading-[1.6]">{card.body}</p>
+                <p className="font-mono text-[11px] text-gold mt-auto pt-4">{card.footer}</p>
               </motion.div>
             </div>
           ))}

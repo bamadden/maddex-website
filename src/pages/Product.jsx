@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import TickerTape from '../components/layout/TickerTape'
@@ -11,9 +12,24 @@ import GoldButton from '../components/shared/GoldButton'
 
 function MiniHeader({ label, right }) {
   return (
-    <div className="bg-bg-surface border-b border-gold/12 px-4 py-[10px] flex justify-between items-center font-mono text-[10px]">
+    <div className="bg-bg-surface border-b border-gold/12 px-4 py-3 flex justify-between items-center font-mono text-[14px]">
       <span className="text-text-muted">{label}</span>
       {right && <span className="text-gold">{right}</span>}
+    </div>
+  )
+}
+
+function KeyStats({ stats }) {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+      {stats.map((s) => (
+        <div
+          key={s}
+          className="bg-bg-primary border border-gold/30 rounded-full px-3 py-2 text-center font-mono text-[10px] text-gold"
+        >
+          {s}
+        </div>
+      ))}
     </div>
   )
 }
@@ -21,12 +37,12 @@ function MiniHeader({ label, right }) {
 const MODULES = [
   {
     key: 'markets',
-    stats: '9 Indices · 200+ ASX Stocks · 11 GICS Sectors · 60s Refresh',
+    stats: ['9 INDICES', '200+ STOCKS', '11 SECTORS', '60s REFRESH'],
     title: 'Markets Module',
     body: 'ASX 200 as the primary index, alongside 9 global indices and full 11-sector GICS breakdown — refreshed continuously and scored by MaddenAI sentiment for context, not just numbers.',
     features: ['9 global indices tracked live', 'Full ASX 200 constituent list', '11 GICS sector heatmap', 'MaddenAI sentiment overlay'],
     visual: (
-      <TerminalCard className="min-h-[480px] flex flex-col">
+      <TerminalCard className="min-h-[520px] flex flex-col">
         <MiniHeader label="MARKETS · ASX 200" right="72/100" />
         <div className="p-4 flex-1 flex flex-col justify-center gap-3">
           {[
@@ -35,7 +51,7 @@ const MODULES = [
             ['NASDAQ', '18,921.56', '+0.50%', true],
             ['FTSE 100', '8,204.10', '-0.10%', false],
           ].map(([sym, price, chg, pos]) => (
-            <div key={sym} className="flex justify-between font-mono text-[12px] py-2">
+            <div key={sym} className="flex justify-between font-mono text-[12px] py-3">
               <span className="text-text-muted">{sym}</span>
               <span className="text-text-primary">{price}</span>
               <span className={pos ? 'text-gain' : 'text-loss'}>{pos ? '▲' : '▼'} {chg}</span>
@@ -44,7 +60,7 @@ const MODULES = [
         </div>
         <div className="grid grid-cols-4 gap-2 px-4 pb-4">
           {[['IT', true], ['MAT', true], ['ENRG', false], ['FIN', true]].map(([l, pos]) => (
-            <div key={l} className="font-mono text-[9px] text-center py-[10px] px-3 rounded-sm" style={{ background: pos ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)', color: pos ? '#2D8A50' : '#A83232' }}>{l}</div>
+            <div key={l} className="font-mono text-[11px] text-center py-[10px] px-3 rounded-sm" style={{ background: pos ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)', color: pos ? '#2D8A50' : '#A83232' }}>{l}</div>
           ))}
         </div>
       </TerminalCard>
@@ -52,12 +68,12 @@ const MODULES = [
   },
   {
     key: 'crypto',
-    stats: 'Top 20 AUD · 5-Factor Score · Live CoinGecko · 30s Refresh',
+    stats: ['TOP 20 AUD', '5-FACTOR SCORE', 'LIVE COINGECKO', '30s REFRESH'],
     title: 'Crypto Module',
     body: 'Top 20 assets by market cap in AUD, sourced live from CoinGecko, with the MaddenAI Crypto Momentum Index and Fear & Greed tracking — built for investors who treat crypto as a real allocation.',
     features: ['Top 20 by AUD market cap', 'MaddenAI Momentum Index', 'Fear & Greed reading', 'BTC dominance tracking'],
     visual: (
-      <TerminalCard className="min-h-[480px] flex flex-col">
+      <TerminalCard className="min-h-[520px] flex flex-col">
         <MiniHeader label="CRYPTO · TOP 20" right="68 BULLISH" />
         <div className="grid grid-cols-2 gap-3 p-4">
           <div>
@@ -71,7 +87,7 @@ const MODULES = [
         </div>
         <div className="px-4 pb-4 flex-1 flex flex-col justify-center gap-3">
           {[['BTC', 'A$162,400', '+1.80%'], ['ETH', 'A$6,124', '+2.10%']].map(([n, p, c]) => (
-            <div key={n} className="flex justify-between font-mono text-[12px] py-2">
+            <div key={n} className="flex justify-between font-mono text-[12px] py-3">
               <span className="text-text-primary">{n}</span>
               <span className="text-text-primary">{p}</span>
               <span className="text-gain">{c}</span>
@@ -83,16 +99,16 @@ const MODULES = [
   },
   {
     key: 'rates',
-    stats: '10 AUD Pairs · 8 Bond Tenors · 10+ Central Banks · 5min Refresh',
+    stats: ['10 AUD PAIRS', '8 BOND TENORS', '10+ CENTRAL BANKS', '5min REFRESH'],
     title: 'Rates Module',
     body: 'FX pairs sourced via the Frankfurter API, government bond yield curves, and central bank rates with the RBA as the primary reference rate — the macro plumbing most retail platforms skip entirely.',
     features: ['10 AUD currency pairs', 'AU Government Bond yield curve', '10+ central bank policy rates', 'Rate decision countdowns'],
     visual: (
-      <TerminalCard className="min-h-[480px] flex flex-col">
+      <TerminalCard className="min-h-[520px] flex flex-col">
         <MiniHeader label="RATES · FX & YIELDS" />
         <div className="p-4 flex-1 flex flex-col justify-center gap-2">
           {[['AUD/USD', '0.6452', '-0.12%', false], ['AUD/EUR', '0.5981', '+0.08%', true], ['AUD/JPY', '96.42', '+0.22%', true]].map(([p, r, c, pos]) => (
-            <div key={p} className="flex justify-between font-mono text-[12px] py-2">
+            <div key={p} className="flex justify-between font-mono text-[12px] py-3">
               <span className="text-text-muted">{p}</span>
               <span className="text-text-primary">{r}</span>
               <span className={pos ? 'text-gain' : 'text-loss'}>{c}</span>
@@ -107,12 +123,12 @@ const MODULES = [
   },
   {
     key: 'macro',
-    stats: '8 AU Indicators · RBA Primary · China Watch · Economic Calendar',
+    stats: ['8 AU INDICATORS', 'RBA PRIMARY', 'CHINA WATCH', '30-DAY CALENDAR'],
     title: 'Macro Module',
     body: 'A live RBA dashboard with cash rate, next meeting countdown, the eight Australian macro indicators that actually move markets, and a dedicated China Watch panel for commodity-linked demand signals.',
     features: ['RBA cash rate + next meeting countdown', '8 Australian macro indicators', 'China Watch commodity linkage', '30-day economic calendar'],
     visual: (
-      <TerminalCard className="min-h-[480px] flex flex-col">
+      <TerminalCard className="min-h-[520px] flex flex-col">
         <MiniHeader label="MACRO · RBA DASHBOARD" />
         <div className="text-center py-10 flex-1 flex flex-col justify-center">
           <div className="font-mono text-[40px] font-bold text-gold">4.35%</div>
@@ -131,12 +147,12 @@ const MODULES = [
   },
   {
     key: 'news',
-    stats: '28+ Sources · 9 Categories · 3min Refresh · AI Sentiment',
+    stats: ['28+ SOURCES', '9 CATEGORIES', '3min REFRESH', 'AI SENTIMENT'],
     title: 'News Module',
     body: '28+ sources filtered for financial relevance across 9 categories, refreshed every 3 minutes, with MaddenAI surfacing the themes that matter before they hit the front page.',
     features: ['28+ curated sources', 'Financial relevance filter', '9 news categories', 'MaddenAI Key Themes daily'],
     visual: (
-      <TerminalCard className="min-h-[480px] flex flex-col">
+      <TerminalCard className="min-h-[520px] flex flex-col">
         <MiniHeader label="NEWS · LIVE FEED" />
         <div className="p-4 flex-1 flex flex-col justify-center gap-4">
           {[['AFR', '2m ago', 'BULLISH', 'RBA holds rates at 4.35%'], ['REUTERS', '8m ago', 'BEARISH', 'Iron ore slides on China data']].map(([s, t, sent, h]) => (
@@ -151,16 +167,16 @@ const MODULES = [
   },
   {
     key: 'watchlist',
-    stats: 'Up to 100 Stocks · Live Prices · Supabase Sync · CSV Export',
+    stats: ['UP TO 100 STOCKS', 'LIVE PRICES', 'SUPABASE SYNC', 'CSV EXPORT'],
     title: 'Watchlist',
     body: 'Add any ASX or US stock, priced live via Yahoo Finance and Twelve Data, with full fundamental data synced through Supabase across every device you use.',
     features: ['ASX + US ticker support', 'Live price tracking', 'Full fundamental data', 'Synced across all devices'],
     visual: (
-      <TerminalCard className="min-h-[480px] flex flex-col">
+      <TerminalCard className="min-h-[520px] flex flex-col">
         <MiniHeader label="WATCHLIST" />
         <div className="p-4 flex-1 flex flex-col justify-center gap-2">
           {[['BHP.AX', 'A$43.82', '+0.85%'], ['CBA.AX', 'A$164.20', '+0.31%']].map(([s, p, c]) => (
-            <div key={s} className="flex justify-between font-mono text-[12px] py-2">
+            <div key={s} className="flex justify-between font-mono text-[12px] py-3">
               <span className="text-text-primary">{s}</span>
               <span className="text-text-primary">{p}</span>
               <span className="text-gain">{c}</span>
@@ -173,12 +189,12 @@ const MODULES = [
   },
   {
     key: 'global',
-    stats: '50+ Exchanges · 200+ Countries · 5 Layers · Live Chokepoints',
+    stats: ['50+ EXCHANGES', '200+ COUNTRIES', '5 LAYERS', 'LIVE CHOKEPOINTS'],
     title: 'Global Intelligence',
     body: 'A live 3D globe across 5 data layers covering 50+ exchanges, shipping chokepoints, and a 200+ country database — see geopolitical risk before it shows up in your portfolio.',
     features: ['Live 3D global exchange map', '50+ exchanges tracked', 'Shipping chokepoint monitoring', '200+ country risk database'],
     visual: (
-      <TerminalCard className="min-h-[480px] flex flex-col">
+      <TerminalCard className="min-h-[520px] flex flex-col">
         <MiniHeader label="GLOBAL INTELLIGENCE" right="RISK: MODERATE" />
         <div className="p-4 flex-1 flex items-center">
           <svg viewBox="0 0 100 60" className="w-full h-[280px]">
@@ -198,6 +214,10 @@ const MODULES = [
 ]
 
 export default function Product() {
+  useEffect(() => {
+    document.title = 'Maddex — The Terminal'
+  }, [])
+
   return (
     <>
       <TickerTape />
@@ -254,13 +274,14 @@ export default function Product() {
               </motion.div>
             </div>
 
-            <div className="max-w-[1200px] mx-auto mt-8 pt-6 border-t border-[rgba(30,70,140,0.2)] flex flex-col sm:flex-row items-center justify-between gap-3">
-              <div className="font-mono text-[10px] tracking-[0.1em] text-text-muted text-center sm:text-left">
-                <span className="text-gold">KEY STATS —</span> {mod.stats}
+            <div className="max-w-[1200px] mx-auto mt-8 pt-6 border-t border-[rgba(30,70,140,0.2)]">
+              <div className="font-mono text-[9px] tracking-[0.15em] text-text-faint mb-1">KEY STATS</div>
+              <KeyStats stats={mod.stats} />
+              <div className="flex justify-center sm:justify-end mt-4">
+                <Link to="/pricing" className="font-mono text-[11px] text-gold hover:opacity-70 transition-opacity whitespace-nowrap">
+                  TRY THIS MODULE FREE →
+                </Link>
               </div>
-              <Link to="/pricing" className="font-mono text-[11px] text-gold hover:opacity-70 transition-opacity whitespace-nowrap">
-                TRY THIS MODULE FREE →
-              </Link>
             </div>
           </section>
         ))}
