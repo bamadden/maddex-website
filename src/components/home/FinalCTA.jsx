@@ -22,8 +22,8 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[48px] md:text-[64px] lg:text-[80px] font-bold tracking-[0.08em] text-gold"
-          style={{ textShadow: '0 0 40px rgba(201,168,76,0.3)' }}
+          className="font-mono text-[48px] md:text-[72px] lg:text-[96px] font-bold tracking-[0.08em] text-gold"
+          style={{ textShadow: '0 0 60px rgba(201,168,76,0.4), 0 0 120px rgba(201,168,76,0.2)' }}
         >
           MADDEX
         </motion.div>
@@ -33,7 +33,7 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-sans text-[38px] md:text-[58px] lg:text-[70px] font-bold leading-tight tracking-tight text-text-primary mt-4"
+          className="font-sans text-[38px] md:text-[58px] lg:text-[72px] font-bold leading-tight tracking-tight text-text-primary mt-6"
         >
           Start your 7-day free trial today.
         </motion.h2>

@@ -50,7 +50,7 @@ function FlipCard({ front, back, index }) {
           className="absolute inset-0 bg-bg-primary border border-gold/30 rounded p-5 flex items-center justify-center text-center"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
-          <span className="font-sans text-[13px] text-text-muted leading-relaxed">{back}</span>
+          <span className="font-sans text-[13px] text-text-muted leading-[1.7]">{back}</span>
         </div>
       </motion.div>
     </motion.div>
@@ -116,12 +116,12 @@ export default function Research() {
 
               <div className="text-gold text-[9px] tracking-[0.1em] mt-7">MARKETS IN FOCUS</div>
               <div className="mt-2 text-text-primary font-bold text-[13px]">BHP.AX holds above A$63 as iron ore stabilises</div>
-              <p className="mt-2 text-text-muted leading-relaxed">
+              <p className="mt-2 text-text-muted leading-[1.7]">
                 BHP traded in a tight range this week as iron ore prices found support above US$95/t. Chinese steel mill margins improved
                 marginally on restocking demand ahead of the northern hemisphere construction season, while port inventories drew down for
                 a third consecutive week.
               </p>
-              <p className="mt-3 text-text-muted leading-relaxed">
+              <p className="mt-3 text-text-muted leading-[1.7]">
                 MaddenAI's Sector Strength Radar has Materials at 68/100, up four points week-on-week, with Energy the standout laggard
                 as WTI slipped below US$79/barrel on softening demand forecasts.
               </p>
@@ -151,7 +151,7 @@ export default function Research() {
           </h2>
 
           <div
-            className="text-left font-mono text-[11px] text-text-muted leading-relaxed mt-10 mb-8"
+            className="text-left font-mono text-[11px] text-text-muted leading-[1.7] mt-10 mb-8"
             style={{ background: 'rgba(201,168,76,0.04)', borderLeft: '2px solid #C9A84C', padding: '16px 20px' }}
           >
             <div className="text-gold tracking-[0.1em] mb-2">HOW MADDEN RESEARCH WORKS</div>
@@ -232,7 +232,7 @@ export default function Research() {
               >
                 <div className="font-mono text-[11px] text-gold">{issue}</div>
                 <div className="font-mono text-[10px] text-text-faint mt-1">{date}</div>
-                <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{summary}</p>
+                <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7]">{summary}</p>
               </motion.div>
             ))}
           </div>

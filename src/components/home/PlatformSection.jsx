@@ -15,7 +15,7 @@ const DESCRIPTIONS = {
 }
 
 function Row({ cols, className = '' }) {
-  return <div className={`flex items-center py-1.5 font-mono text-[11px] ${className}`}>{cols}</div>
+  return <div className={`flex items-center py-2.5 font-mono text-[11px] ${className}`}>{cols}</div>
 }
 
 function StripDivider() {
@@ -42,7 +42,7 @@ function MarketsPanel() {
   ]
   return (
     <div className="flex flex-col h-full">
-      <div className="bg-bg-surface border-b border-gold/12 px-4 py-1.5 flex flex-wrap justify-between gap-2 font-mono text-[10px]">
+      <div className="bg-bg-primary border-b border-gold/12 px-4 py-3 flex flex-wrap justify-between gap-2 font-mono text-[10px]">
         <span className="text-text-muted">
           MARKETS &nbsp;·&nbsp; ASX 200 <span className="text-gain">&nbsp;●&nbsp; OPEN</span> &nbsp;09:42 AEST
         </span>
@@ -80,7 +80,7 @@ function MarketsPanel() {
             }}
           >
             {s.label} {s.change}
-            <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 whitespace-nowrap bg-bg-primary border border-gold/30 text-text-primary text-[9px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-10">
+            <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 whitespace-nowrap bg-bg-surface border border-gold/30 text-text-primary text-[9px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-150 z-10">
               {s.full}
             </span>
           </div>
@@ -287,7 +287,7 @@ function MacroPanel() {
       </div>
       <div className="grid grid-cols-4 gap-3">
         {indicators.map((ind) => (
-          <div key={ind.label} className="bg-bg-surface rounded p-3 text-center">
+          <div key={ind.label} className="bg-bg-primary rounded p-3 text-center">
             <div className="font-mono text-[8px] text-text-muted">{ind.label}</div>
             <div className="font-mono text-[14px] text-text-primary font-bold mt-1.5">{ind.value}</div>
           </div>
@@ -321,7 +321,7 @@ function NewsPanel() {
     <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr] h-full overflow-hidden">
       <div className="relative p-3 flex flex-col gap-2 overflow-hidden">
         {articles.map((a) => (
-          <div key={a.headline} className="bg-bg-surface rounded p-2.5 shrink-0">
+          <div key={a.headline} className="bg-bg-primary rounded p-2.5 shrink-0">
             <div className="font-mono text-[9px] text-text-muted flex items-center gap-2">
               <span className="text-gold">{a.source}</span>
               <span>· {a.time} ·</span>
@@ -367,7 +367,7 @@ function WatchlistPanel() {
       <input
         type="text"
         placeholder="ADD TICKER..."
-        className="w-full font-mono text-[11px] text-text-muted bg-bg-surface border border-gold/30 rounded-sm px-3 py-2 outline-none focus:border-gold/60 transition-colors"
+        className="w-full font-mono text-[11px] text-text-muted bg-bg-primary border border-gold/30 rounded-sm px-3 py-2 outline-none focus:border-gold/60 transition-colors"
       />
       <div className="mt-3">
         {rows.map((row) => (
@@ -486,7 +486,7 @@ export default function PlatformSection() {
   const ActivePanel = PANELS[activeTab]
 
   return (
-    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>THE TERMINAL</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
@@ -519,8 +519,8 @@ export default function PlatformSection() {
           ))}
         </div>
 
-        <div className="relative bg-bg-primary border border-gold/20 rounded mt-10 h-[420px] text-left overflow-hidden flex flex-col">
-          <span className="absolute -top-3 right-4 z-30 flex items-center gap-1.5 font-mono text-[9px] tracking-[0.1em] text-gold bg-bg-primary border border-gold/30 px-2.5 py-1 rounded-full pointer-events-none">
+        <div className="relative bg-bg-surface border border-gold/20 rounded mt-10 min-h-[500px] text-left overflow-hidden flex flex-col">
+          <span className="absolute -top-3 right-4 z-30 flex items-center gap-1.5 font-mono text-[9px] tracking-[0.1em] text-gold bg-bg-surface border border-gold/30 px-2.5 py-1 rounded-full pointer-events-none">
             <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
             LIVE
           </span>
@@ -539,7 +539,7 @@ export default function PlatformSection() {
           </AnimatePresence>
         </div>
 
-        <p className="font-mono text-[11px] text-text-muted text-center mt-4">{DESCRIPTIONS[activeTab]}</p>
+        <p className="font-mono text-[14px] text-text-muted text-center mt-4 max-w-[600px] mx-auto">{DESCRIPTIONS[activeTab]}</p>
       </div>
     </section>
   )

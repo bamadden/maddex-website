@@ -120,7 +120,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.4 }}
-            className="font-mono text-[9px] tracking-[0.25em] text-gold mb-6"
+            className="font-mono text-[9px] tracking-[0.25em] text-gold mb-5"
           >
             AUSTRALIAN FINANCIAL INTELLIGENCE
           </motion.div>
@@ -153,7 +153,7 @@ export default function Hero() {
             transition={{ delay: 1.0, duration: 0.5 }}
             className="flex items-center gap-4 mt-9 flex-wrap"
           >
-            <GoldButton to="/pricing">START FREE TRIAL</GoldButton>
+            <GoldButton to="/pricing" className="!px-8 !py-4">START FREE TRIAL</GoldButton>
             <GoldButton to="/product" variant="ghost" className="!border-0 !bg-transparent !px-0 text-gold opacity-70 hover:opacity-100">
               SEE THE TERMINAL →
             </GoldButton>
@@ -196,7 +196,7 @@ export default function Hero() {
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <TerminalCard className="min-h-[560px] flex flex-col shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_80px_rgba(201,168,76,0.08),0_0_160px_rgba(201,168,76,0.04)]">
+            <TerminalCard className="min-h-[560px] flex flex-col !border-[rgba(201,168,76,0.4)] shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_100px_rgba(201,168,76,0.08),0_0_40px_rgba(201,168,76,0.05)]">
               <div className="flex items-center justify-between h-8 bg-bg-primary border-b border-gold/12 px-3">
                 <div className="flex items-baseline gap-1">
                   <span className="font-mono text-[11px] font-bold text-gold">MADDEX</span>

@@ -10,7 +10,11 @@ const PRE_FOOTER_ITEMS = [
 export default function Footer() {
   return (
     <footer>
-      <div className="h-9 bg-bg-surface border-t border-b border-gold/10 overflow-hidden relative">
+      <div
+        className="h-px w-full"
+        style={{ background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)' }}
+      />
+      <div className="h-9 bg-bg-elevated border-t border-b border-gold/20 overflow-hidden relative">
         <div className="flex ticker-track w-max h-full items-center">
           {[0, 1].map((copy) => (
             <div key={copy} className="flex items-center gap-6 pl-6">
@@ -37,7 +41,7 @@ export default function Footer() {
         <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
           <div>
             <div className="font-mono text-[15px] font-bold text-gold">MADDEX</div>
-            <p className="font-sans text-[12px] text-text-muted mt-3 leading-relaxed max-w-[220px]">
+            <p className="font-sans text-[12px] text-text-muted mt-3 leading-[1.7] max-w-[220px]">
               Professional financial intelligence for Australian investors.
             </p>
             <div className="flex gap-4 mt-5">
@@ -47,7 +51,7 @@ export default function Footer() {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group font-sans text-[11px] text-gold hover:text-gold/70 transition-colors inline-flex items-center gap-1"
+                  className="group font-sans text-[11px] text-gold hover:brightness-125 transition-all inline-flex items-center gap-1"
                 >
                   {s}
                   <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-150">↗</span>
@@ -58,7 +62,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <div className="font-mono text-[9px] tracking-[0.1em] text-gold mb-4">PRODUCT</div>
+            <div className="font-mono text-[9px] tracking-[0.2em] text-gold mb-4">PRODUCT</div>
             <div className="flex flex-col gap-3">
               {[
                 ['Terminal', '/product'],
@@ -75,7 +79,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <div className="font-mono text-[9px] tracking-[0.1em] text-gold mb-4">COMPANY</div>
+            <div className="font-mono text-[9px] tracking-[0.2em] text-gold mb-4">COMPANY</div>
             <div className="flex flex-col gap-3">
               {[
                 ['About', '/about'],
@@ -91,7 +95,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <div className="font-mono text-[9px] tracking-[0.1em] text-gold mb-4">LEGAL</div>
+            <div className="font-mono text-[9px] tracking-[0.2em] text-gold mb-4">LEGAL</div>
             <div className="flex flex-col gap-3">
               {['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'AFSL Disclaimer'].map((label) => (
                 <a key={label} href="#" className="font-sans text-[12px] text-text-muted hover:text-gold transition-colors">
@@ -103,7 +107,7 @@ export default function Footer() {
         </div>
 
         <div className="max-w-[1200px] mx-auto border-t border-[rgba(30,70,140,0.3)] mt-10 pt-5 flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
-          <p className="font-mono text-[9px] text-text-faint max-w-[560px] leading-relaxed">
+          <p className="font-mono text-[9px] text-text-faint max-w-[560px] leading-[1.7]">
             MADDEX PROVIDES GENERAL FINANCIAL INFORMATION ONLY AND DOES NOT CONSTITUTE FINANCIAL PRODUCT ADVICE.
           </p>
           <div className="flex items-center gap-4">

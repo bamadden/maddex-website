@@ -57,7 +57,7 @@ function ScoreItem({ value, color }) {
   return (
     <>
       <span ref={ref} className="text-gold w-16 shrink-0">{display}/100</span>
-      <div className="relative w-20 h-[3px] rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden">
+      <div className="relative w-20 h-[5px] rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: inView ? `${value}%` : 0 }}
@@ -78,7 +78,7 @@ function ScoreItem({ value, color }) {
 
 export default function MaddenAISection() {
   return (
-    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>MADDENAI</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[48px] lg:text-[58px] font-bold leading-tight tracking-tight text-text-primary">
@@ -104,19 +104,23 @@ export default function MaddenAISection() {
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ delay: i * 0.15, duration: 0.5 }}
                 whileHover={{ scale: 1.02 }}
-                className="relative z-10 m-px bg-bg-surface border border-gold/20 border-t-2 border-t-gold rounded p-6 h-[calc(100%-2px)] transition-colors"
+                className="relative z-10 m-px bg-bg-primary border border-gold/20 border-t-2 border-t-gold rounded p-6 h-[calc(100%-2px)] transition-colors"
               >
                 <span className="text-gold text-[20px]">◆</span>
                 <h3 className="font-sans text-[16px] font-bold text-text-primary mt-3">{card.title}</h3>
-                <p className="font-sans text-[13px] text-text-muted mt-2 leading-relaxed">{card.body}</p>
+                <p className="font-sans text-[13px] text-text-muted mt-2 leading-[1.7]">{card.body}</p>
                 <p className="font-mono text-[10px] text-text-faint mt-4">{card.footer}</p>
               </motion.div>
             </div>
           ))}
         </div>
 
-        <div className="max-w-[720px] mx-auto mt-10 bg-bg-surface border border-gold/25 rounded overflow-hidden text-left">
-          <div className="bg-bg-primary border-b border-gold/12 px-4 py-2 font-mono text-[10px] text-gold flex items-center gap-1.5">
+        <div className="relative max-w-[720px] mx-auto mt-10 bg-bg-primary border border-gold/25 rounded overflow-hidden text-left">
+          <div
+            className="absolute inset-0 pointer-events-none card-shimmer-sweep"
+            style={{ background: 'linear-gradient(110deg, transparent 40%, rgba(201,168,76,0.08) 50%, transparent 60%)' }}
+          />
+          <div className="bg-bg-surface border-b border-gold/12 px-4 py-2 font-mono text-[10px] text-gold flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
             MADDENAI &nbsp;·&nbsp; BHP.AX ANALYSIS &nbsp;·&nbsp; 07:42 AEST
           </div>
@@ -132,7 +136,7 @@ export default function MaddenAISection() {
 
             <div>
               <div className="text-gold text-[10px] mb-2">SENTIMENT:</div>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2.5">
                 {SCORES.map((s) => (
                   <div key={s.label} className="flex items-center gap-3 flex-wrap">
                     <span className="text-gold w-4">◆</span>

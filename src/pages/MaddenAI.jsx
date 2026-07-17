@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
@@ -7,6 +7,33 @@ import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import TerminalCard from '../components/shared/TerminalCard'
+
+function LiveAESTClock() {
+  const [time, setTime] = useState('')
+
+  useEffect(() => {
+    function update() {
+      const formatted = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Sydney',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      }).format(new Date())
+      setTime(`${formatted} AEST`)
+    }
+    update()
+    const id = setInterval(update, 1000)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <div className="flex items-center justify-center gap-1.5 font-mono text-[9px] text-text-faint mt-3">
+      <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
+      {time}
+    </div>
+  )
+}
 
 function FactorBar({ label, weight, color = '#C9A84C' }) {
   const ref = useRef(null)
@@ -123,7 +150,7 @@ export default function MaddenAI() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-[900px] mx-auto mt-12 bg-bg-surface border border-gold/25 rounded overflow-hidden text-left"
+          className="max-w-[1200px] mx-auto mt-12 bg-bg-surface border border-gold/25 rounded overflow-hidden text-left"
         >
           <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 flex-wrap">
             <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
@@ -132,25 +159,25 @@ export default function MaddenAI() {
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[rgba(30,70,140,0.3)]">
             <div className="p-6 text-center min-h-[160px] flex flex-col justify-center">
               <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">MARKET SENTIMENT</div>
-              <div className="font-mono text-[64px] font-bold text-gold mt-2 leading-none">
+              <div className="font-mono text-[72px] font-bold text-gold mt-2 leading-none">
                 <span className="score-pulse">72</span><span className="text-[20px] text-text-primary">/100</span>
               </div>
               <div className="font-mono text-[11px] text-text-primary mt-2">NEUTRAL-BULLISH</div>
-              <div className="font-mono text-[9px] text-text-faint mt-3">LAST CALCULATED: 09:42:18 AEST</div>
+              <LiveAESTClock />
             </div>
             <div className="p-6 text-center min-h-[160px] flex flex-col justify-center">
               <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">CRYPTO MOMENTUM</div>
-              <div className="font-mono text-[64px] font-bold text-gold mt-2 leading-none">
+              <div className="font-mono text-[72px] font-bold text-gold mt-2 leading-none">
                 <span className="score-pulse">68</span><span className="text-[20px] text-text-primary">/100</span>
               </div>
               <div className="font-mono text-[11px] text-gain mt-2">BULLISH</div>
-              <div className="font-mono text-[9px] text-text-faint mt-3">LAST CALCULATED: 09:42:18 AEST</div>
+              <LiveAESTClock />
             </div>
             <div className="p-6 text-center min-h-[160px] flex flex-col justify-center">
               <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">BEST PERFORMING SECTOR</div>
               <div className="font-mono text-[22px] font-bold text-gold mt-2">INFORMATION TECHNOLOGY</div>
               <div className="font-mono text-[11px] text-gain mt-2">81/100 STRONG</div>
-              <div className="font-mono text-[9px] text-text-faint mt-3">LAST CALCULATED: 09:42:18 AEST</div>
+              <LiveAESTClock />
             </div>
           </div>
         </motion.div>
@@ -168,12 +195,12 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5 }}
-              className="bg-bg-primary border border-gold/20 rounded p-10"
+              className="bg-bg-primary border border-gold/20 rounded p-10 min-h-[120px]"
             >
-              <span className="font-mono text-[9px] tracking-[0.25em] text-gold">LAYER ONE</span>
+              <span className="font-mono text-[9px] tracking-[0.25em] text-gold">QUANTITATIVE LAYER</span>
               <h3 className="font-sans text-[24px] font-bold text-text-primary mt-3">Data Ingestion</h3>
-              <p className="font-sans text-[14px] text-text-muted mt-3 leading-relaxed">
-                Prices, volumes, macro releases, central bank statements, and 28+ news sources are pulled continuously and normalised into a single structured dataset — refreshed as fast as the underlying markets move.
+              <p className="font-sans text-[14px] text-text-muted mt-3 leading-[1.7]">
+                Market Sentiment Score · Crypto Momentum Index · Sector Strength Radar · Real-time data processing · Zero API cost
               </p>
             </motion.div>
 
@@ -181,8 +208,8 @@ export default function MaddenAI() {
               <svg width="80" height="28" viewBox="0 0 80 28" overflow="visible">
                 <line x1="2" y1="14" x2="64" y2="14" stroke="#C9A84C" strokeWidth="2" />
                 <polygon points="64,7 78,14 64,21" fill="#C9A84C" />
-                <circle r="3.5" fill="#C9A84C">
-                  <animateMotion dur="2s" repeatCount="indefinite" path="M2,14 L64,14" />
+                <circle r="5" fill="#C9A84C">
+                  <animateMotion dur="1.4s" repeatCount="indefinite" path="M2,14 L64,14" />
                 </circle>
               </svg>
             </div>
@@ -192,12 +219,12 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="bg-bg-primary border border-gold/20 rounded p-10"
+              className="bg-bg-primary border border-gold/20 rounded p-10 min-h-[120px]"
             >
-              <span className="font-mono text-[9px] tracking-[0.25em] text-gold">LAYER TWO</span>
+              <span className="font-mono text-[9px] tracking-[0.25em] text-gold">AI LAYER</span>
               <h3 className="font-sans text-[24px] font-bold text-text-primary mt-3">Weighted Synthesis</h3>
-              <p className="font-sans text-[14px] text-text-muted mt-3 leading-relaxed">
-                That dataset is run through weighted scoring models — Sentiment, Momentum, and Sector Strength — producing a 0-100 reading with a structured breakdown of exactly what's driving it.
+              <p className="font-sans text-[14px] text-text-muted mt-3 leading-[1.7]">
+                Anthropic Claude Sonnet 4.6 · Real-time data injection · Structured response format · Experience personalisation · Research Note generation
               </p>
             </motion.div>
           </div>
@@ -220,7 +247,7 @@ export default function MaddenAI() {
               className="bg-bg-surface border border-gold/20 rounded p-6"
             >
               <h3 className="font-sans text-[17px] font-bold text-text-primary">Market Sentiment Score</h3>
-              <p className="font-sans text-[12px] text-text-muted mt-2 leading-relaxed">8-factor weighted composite. Updated every 60 seconds.</p>
+              <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">8-factor weighted composite. Updated every 60 seconds.</p>
               <div className="flex justify-center my-6"><ScoreDial value={72} label="/100" /></div>
               <div className="flex flex-col gap-2.5">
                 {SENTIMENT_FACTORS.map(([label, weight]) => (
@@ -243,7 +270,7 @@ export default function MaddenAI() {
               className="bg-bg-surface border border-gold/20 rounded p-6"
             >
               <h3 className="font-sans text-[17px] font-bold text-text-primary">Crypto Momentum Index</h3>
-              <p className="font-sans text-[12px] text-text-muted mt-2 leading-relaxed">5-factor composite across price, volume, and positioning.</p>
+              <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">5-factor composite across price, volume, and positioning.</p>
               <div className="flex justify-center my-6"><ScoreDial value={68} label="/100" /></div>
               <div className="flex flex-col gap-2.5">
                 {MOMENTUM_FACTORS.map(([label, weight]) => (
@@ -266,7 +293,7 @@ export default function MaddenAI() {
               className="bg-bg-surface border border-gold/20 rounded p-6"
             >
               <h3 className="font-sans text-[17px] font-bold text-text-primary">Sector Strength Radar</h3>
-              <p className="font-sans text-[12px] text-text-muted mt-2 leading-relaxed">All 11 GICS sectors scored simultaneously, every session.</p>
+              <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">All 11 GICS sectors scored simultaneously, every session.</p>
               <div className="grid grid-cols-3 gap-1.5 mt-6">
                 {[
                   ['IT', 82, true], ['FIN', 58, true], ['HLTH', 71, true],
@@ -363,7 +390,7 @@ export default function MaddenAI() {
               <div className="text-gold text-[15px] mt-2">★★★★☆</div>
             </div>
             <div className="px-6 py-4 border-b border-[rgba(30,70,140,0.3)]">
-              <p className="font-sans text-[12px] text-text-muted leading-relaxed">
+              <p className="font-sans text-[12px] text-text-muted leading-[1.7]">
                 BHP continues to trade constructively as iron ore holds above US$95/t, with Chinese steel margins improving modestly into the northern hemisphere construction season. Balance sheet strength and disciplined capital allocation support the current valuation. Near-term risk sits with a sharp deterioration in China demand data.
               </p>
             </div>
@@ -411,7 +438,7 @@ export default function MaddenAI() {
             ].map(([level, quote]) => (
               <div key={level} className="bg-bg-primary border border-gold/20 rounded p-6 min-h-[220px] flex flex-col">
                 <span className="font-mono text-[10px] tracking-[0.15em] text-gold">{level}</span>
-                <p className="font-sans text-[13px] text-text-muted mt-4 leading-relaxed italic">"{quote}"</p>
+                <p className="font-sans text-[13px] text-text-muted mt-4 leading-[1.7] italic">"{quote}"</p>
               </div>
             ))}
           </div>

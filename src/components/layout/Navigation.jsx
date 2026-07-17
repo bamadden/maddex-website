@@ -75,7 +75,15 @@ function Dropdown({ item, onNavigate }) {
       className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50"
     >
       <div
-        className={`bg-bg-surface border border-gold/20 rounded p-3 ${
+        className="absolute left-1/2 -translate-x-1/2 top-[7px] w-0 h-0"
+        style={{
+          borderLeft: '6px solid transparent',
+          borderRight: '6px solid transparent',
+          borderBottom: '6px solid #C9A84C',
+        }}
+      />
+      <div
+        className={`bg-bg-surface border border-gold/20 border-t-2 border-t-gold rounded p-3 ${
           item.columns === 2 ? 'grid grid-cols-2 gap-2 min-w-[640px]' : 'min-w-[320px]'
         }`}
       >
@@ -84,9 +92,9 @@ function Dropdown({ item, onNavigate }) {
             key={sub.title}
             to={sub.to}
             onClick={onNavigate}
-            className="flex gap-3 px-3 py-3 rounded-sm hover:bg-gold/[0.06] transition-colors duration-150 cursor-pointer"
+            className="group flex gap-3 px-4 py-3 rounded-sm hover:bg-gold/[0.06] transition-colors duration-150 cursor-pointer"
           >
-            <span className="text-gold text-[16px] leading-none mt-0.5">{sub.icon}</span>
+            <span className="text-gold text-[16px] leading-none mt-0.5 transition-transform duration-150 group-hover:translate-x-0.5">{sub.icon}</span>
             <div>
               <div className="font-sans text-[13px] font-medium text-text-primary">{sub.title}</div>
               <div className="font-sans text-[11px] text-text-muted mt-0.5">{sub.desc}</div>

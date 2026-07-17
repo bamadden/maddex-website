@@ -27,7 +27,7 @@ export default function AnimatedCounter({ to, prefix = '', suffix = '', label, d
 
   return (
     <div ref={ref} className="flex flex-col">
-      <span className="font-mono text-[36px] font-bold text-gold leading-none">
+      <span className="font-mono text-[42px] font-bold text-gold leading-none">
         {prefix}
         {display}
         {suffix}

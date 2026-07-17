@@ -6,12 +6,12 @@ export default function NewsletterSection() {
   const [email, setEmail] = useState('')
 
   return (
-    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-        <div className="relative bg-bg-primary border border-gold/20 rounded overflow-hidden">
-          <div className="bg-gold px-5 py-3">
-            <div className="font-mono text-[13px] font-bold text-bg-primary tracking-[0.1em]">MADDEN RESEARCH</div>
-            <div className="font-mono text-[10px] text-bg-primary/70 mt-0.5">ISSUE #024 &nbsp;·&nbsp; MONDAY 14 JULY 2026</div>
+        <div className="relative bg-bg-surface border border-gold/20 rounded overflow-hidden">
+          <div className="bg-gold px-5 py-4">
+            <div className="font-mono text-[18px] font-bold text-bg-primary tracking-[0.1em]">MADDEN RESEARCH</div>
+            <div className="font-mono text-[10px] text-bg-primary/70 mt-1">ISSUE #001 &nbsp;·&nbsp; MONDAY 14 JULY 2026</div>
           </div>
           <div className="p-5 font-mono text-[11px] relative" style={{ minHeight: 340 }}>
             <div className="text-gold text-[9px] tracking-[0.1em]">MADDENAI WEEKLY SENTIMENT</div>
@@ -30,7 +30,7 @@ export default function NewsletterSection() {
 
             <div
               className="absolute bottom-0 left-0 right-0 h-[30%] flex items-end justify-center pb-6"
-              style={{ background: 'linear-gradient(to bottom, transparent, #060D1A 85%)' }}
+              style={{ background: 'linear-gradient(to bottom, transparent 0%, transparent 50%, #060D1A 100%)' }}
             >
               <GoldButton>SUBSCRIBE TO READ MORE</GoldButton>
             </div>
@@ -72,7 +72,7 @@ export default function NewsletterSection() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="w-full font-mono text-[12px] text-text-primary bg-bg-primary border border-gold/30 rounded px-4 py-3 mt-8 outline-none focus:border-gold/60 transition-colors placeholder:text-text-faint"
+            className="w-full font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/30 rounded px-4 py-3 mt-8 outline-none focus:border-gold/60 transition-colors placeholder:text-text-faint"
           />
           <div className="mt-4">
             <GoldButton className="w-full sm:w-auto">SUBSCRIBE FREE</GoldButton>

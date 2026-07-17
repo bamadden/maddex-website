@@ -42,14 +42,14 @@ export default function PricingPreview() {
   const [annual, setAnnual] = useState(false)
 
   return (
-    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>PRICING</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
           Bloomberg costs A$42,000 a year. Maddex starts at A$19 a month.
         </h2>
 
-        <div className="relative inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-8">
+        <div className="relative inline-flex items-center gap-1 bg-bg-primary border border-gold/20 rounded-full p-1 mt-8">
           <button
             type="button"
             onClick={() => setAnnual(false)}
@@ -77,10 +77,15 @@ export default function PricingPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
-              whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
-              className={`relative bg-bg-surface rounded p-6 border transition-colors duration-200 ${
-                plan.popular ? 'border-[rgba(201,168,76,0.5)] scale-[1.02]' : 'border-[rgba(201,168,76,0.2)] hover:border-gold/40'
+              whileHover={{ scale: plan.popular ? 1.03 : 1.01 }}
+              className={`relative bg-bg-primary rounded p-6 border transition-colors duration-200 ${
+                plan.popular
+                  ? 'border-[rgba(201,168,76,0.6)] scale-[1.03]'
+                  : plan.name === 'APEX'
+                  ? 'border-[rgba(201,168,76,0.3)] hover:border-gold/50'
+                  : 'border-[rgba(201,168,76,0.2)] hover:border-gold/40'
               }`}
+              style={plan.popular ? { backgroundImage: 'linear-gradient(rgba(201,168,76,0.03), rgba(201,168,76,0.03))' } : undefined}
             >
               {plan.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
@@ -98,20 +103,25 @@ export default function PricingPreview() {
                     <span className="font-sans text-[13px] text-text-faint line-through mr-2">
                       A${plan.monthly}
                     </span>
-                    <span className="font-sans text-[28px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
+                    <span className="font-sans text-[52px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
                     <span className="font-sans text-[13px] text-text-muted">/mo</span>
                   </>
                 ) : (
                   <>
-                    <span className="font-sans text-[28px] font-bold text-text-primary">A${plan.monthly}</span>
+                    <span className="font-sans text-[52px] font-bold text-text-primary">A${plan.monthly}</span>
                     <span className="font-sans text-[13px] text-text-muted">/mo</span>
                   </>
                 )}
               </div>
               {plan.note && <div className="font-mono text-[9px] text-text-faint mt-1">{plan.note}</div>}
-              <div className="flex flex-col gap-2.5 mt-5">
-                {plan.features.map((f) => (
-                  <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2">
+              <div className="flex flex-col mt-5">
+                {plan.features.map((f, fi) => (
+                  <div
+                    key={f}
+                    className={`font-sans text-[12px] text-text-muted flex gap-2 py-2.5 ${
+                      fi > 0 ? 'border-t border-[rgba(30,70,140,0.2)]' : ''
+                    }`}
+                  >
                     <span className="text-gold">◆</span>
                     {f}
                   </div>
@@ -136,7 +146,7 @@ export default function PricingPreview() {
           </Link>
         </div>
 
-        <div className="max-w-[600px] mx-auto mt-10 bg-bg-surface border border-gold/20 rounded p-6 text-left">
+        <div className="max-w-[600px] mx-auto mt-10 bg-bg-primary border border-gold/20 rounded p-6 text-left">
           <div className="font-mono text-[12px] text-gold tracking-wide text-center mb-4">
             MADDENAI RESEARCH NOTES — From A$4.99
           </div>

@@ -67,11 +67,11 @@ export default function About() {
               <div
                 className="absolute inset-0 rounded-full"
                 style={{
-                  background: 'conic-gradient(from 0deg, transparent 0%, #C9A84C 30%, transparent 60%)',
+                  background: 'conic-gradient(from 0deg, transparent 0%, #C9A84C 45%, transparent 70%)',
                   animation: 'border-spin 4s linear infinite',
                 }}
               />
-              <div className="absolute inset-[6px] rounded-full bg-bg-primary border border-gold/10 flex items-center justify-center">
+              <div className="absolute inset-[10px] rounded-full bg-bg-primary border border-gold/10 flex items-center justify-center">
                 <span className="font-mono text-[64px] font-bold text-gold">BM</span>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function About() {
           <div>
             <span className="font-mono text-[9px] tracking-[0.25em] text-gold">FOUNDER</span>
             <h2 className="font-sans text-[26px] md:text-[32px] font-bold text-text-primary mt-2">Benjamin Andrew Madden</h2>
-            <div className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75] flex flex-col gap-4">
+            <div className="font-sans text-[16px] text-text-muted mt-4 leading-[1.8] flex flex-col gap-4">
               <p>I built Maddex because I needed it and it didn't exist.</p>
               <p>
                 As a finance professional, I wanted institutional-grade intelligence — the kind of analysis that Bloomberg provides — without the A$42,000 per year price tag. I looked at everything available to Australian investors and found a market split between tools that cost more than most people's annual rent, and broker apps that tell you the price but not what it means.
@@ -91,7 +91,7 @@ export default function About() {
               </p>
               <p>This is not a side project. This is the beginning of something serious.</p>
             </div>
-            <p className="font-sans text-[15px] text-text-primary mt-5 font-medium">— Benjamin Andrew Madden</p>
+            <p className="font-sans text-[22px] text-gold mt-6 italic font-medium border-l-2 border-gold/40 pl-4">— Benjamin Andrew Madden</p>
             <div className="inline-flex items-center gap-2 mt-6 font-mono text-[10px] tracking-[0.1em] text-text-muted border border-gold/20 rounded-full px-3 py-1.5">
               <span className="relative w-1.5 h-1.5">
                 <span className="pulse-ring absolute inset-0" />
@@ -128,18 +128,34 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10 text-center">
-        <SectionLabel center>MISSION</SectionLabel>
-        <div className="w-20 h-px bg-gold/50 mx-auto mb-6" />
-        <h2 className="font-sans text-[56px] font-bold text-text-primary max-w-3xl mx-auto leading-tight">
-          Australia first. The world next.
-        </h2>
-        <p className="font-sans text-[20px] text-text-primary max-w-2xl mx-auto mt-6 leading-relaxed">
-          Give every Australian investor the intelligence that used to be reserved for trading floors.
-        </p>
-        <p className="font-sans text-[16px] text-text-muted max-w-2xl mx-auto mt-6 leading-[1.75]">
-          Maddex launches with Australia at its core — the ASX, the RBA, the AUD, and the commodities that drive the Australian economy. But the platform is architected for the world. The same intelligence framework that serves Australian investors today is designed to scale across every major market, every currency, and every exchange globally.
-        </p>
+      <section className="relative bg-bg-surface py-20 md:py-[100px] px-6 md:px-10 text-center overflow-hidden">
+        <div
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 900,
+            height: 500,
+            background: 'radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%)',
+          }}
+        />
+        <div className="relative z-10">
+          <SectionLabel center>MISSION</SectionLabel>
+          <div className="w-20 h-px bg-gold/50 mx-auto mb-6" />
+          <h2
+            className="font-sans text-[40px] md:text-[64px] font-bold text-text-primary max-w-3xl mx-auto leading-tight"
+            style={{ textShadow: '0 0 60px rgba(201,168,76,0.25)' }}
+          >
+            Australia first. The world next.
+          </h2>
+          <p className="font-sans text-[20px] text-text-primary max-w-2xl mx-auto mt-6 leading-[1.7]">
+            Give every Australian investor the intelligence that used to be reserved for trading floors.
+          </p>
+          <p className="font-sans text-[16px] text-text-muted max-w-2xl mx-auto mt-6 leading-[1.75]">
+            Maddex launches with Australia at its core — the ASX, the RBA, the AUD, and the commodities that drive the Australian economy. But the platform is architected for the world. The same intelligence framework that serves Australian investors today is designed to scale across every major market, every currency, and every exchange globally.
+          </p>
+        </div>
       </section>
 
       <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
@@ -159,11 +175,11 @@ export default function About() {
                 className="bg-bg-surface border border-gold/20 rounded p-6 text-left"
               >
                 <span className="font-mono text-[11px] tracking-[0.05em] text-gold leading-snug">{name}</span>
-                <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{desc}</p>
+                <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7]">{desc}</p>
               </motion.div>
             ))}
           </div>
-          <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-relaxed">
+          <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-[1.7]">
             Enterprise packages (Adviser, Firm, Institutional) are planned for Q2-Q3 2027 as Phase 3 of the Maddex roadmap. Individual packages (Core, Pro, Apex) are available at launch in Q3 2026.
           </p>
         </div>
@@ -190,7 +206,7 @@ export default function About() {
                 className="bg-bg-primary border border-gold/20 rounded p-6 text-left"
               >
                 <span className="font-mono text-[9px] tracking-[0.25em] text-gold">{title}</span>
-                <p className="font-sans text-[13px] text-text-muted mt-3 leading-relaxed">{desc}</p>
+                <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7]">{desc}</p>
               </motion.div>
             ))}
           </div>
@@ -216,7 +232,7 @@ export default function About() {
               >
                 <span className="text-gold text-[24px]">{icon}</span>
                 <h3 className="font-sans text-[16px] font-bold text-text-primary mt-3">{title}</h3>
-                <p className="font-sans text-[13px] text-text-muted mt-2 leading-relaxed">{desc}</p>
+                <p className="font-sans text-[13px] text-text-muted mt-2 leading-[1.7]">{desc}</p>
               </motion.div>
             ))}
           </div>
@@ -230,7 +246,7 @@ export default function About() {
             What's coming, and when.
           </h2>
           <div className="relative">
-            <div className="hidden md:block absolute top-[46px] left-0 right-0 h-px bg-gold/20" />
+            <div className="hidden md:block absolute top-[46px] left-0 right-0 h-[2px]" style={{ background: 'rgba(201,168,76,0.3)' }} />
             <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
               {ROADMAP.map(([quarter, title, desc], i) => {
                 const isCurrent = i === 0
@@ -247,7 +263,7 @@ export default function About() {
                       <h3 className={`font-sans text-[13px] font-bold leading-snug ${isCurrent ? 'text-gold' : 'text-text-primary'}`}>{title}</h3>
                     </div>
                     <span
-                      className={`w-3.5 h-3.5 rounded-full z-10 mt-3 ${isCurrent ? 'bg-gold' : 'bg-bg-elevated border-2 border-gold/30'}`}
+                      className={`w-4 h-4 rounded-full z-10 mt-3 ${isCurrent ? 'bg-gold shadow-[0_0_12px_rgba(201,168,76,0.5)]' : 'bg-bg-elevated border-2 border-gold/30'}`}
                     />
                     {isCurrent && (
                       <span className="font-mono text-[8px] text-gold tracking-[0.1em] mt-2">YOU ARE HERE</span>

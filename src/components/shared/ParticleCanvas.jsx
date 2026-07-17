@@ -15,7 +15,7 @@ export default function ParticleCanvas() {
     }
 
     function initParticles() {
-      particles = Array.from({ length: 60 }, () => ({
+      particles = Array.from({ length: 80 }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         dx: (Math.random() - 0.5) * 0.3,
@@ -25,7 +25,7 @@ export default function ParticleCanvas() {
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.fillStyle = 'rgba(201,168,76,0.2)'
+      ctx.fillStyle = 'rgba(201,168,76,0.25)'
       for (const p of particles) {
         p.x += p.dx
         p.y += p.dy
@@ -68,7 +68,7 @@ export default function ParticleCanvas() {
           height: 850,
           top: '-18%',
           left: '-12%',
-          background: 'rgba(201,168,76,0.07)',
+          background: 'rgba(201,168,76,0.06)',
           filter: 'blur(90px)',
         }}
       />

@@ -301,7 +301,7 @@ function FAQItem({ question, answer, isOpen, onClick }) {
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <p className="font-sans text-[13px] text-text-muted pb-5 leading-relaxed max-w-2xl">{answer}</p>
+            <p className="font-sans text-[13px] text-text-muted pb-5 leading-[1.7] max-w-2xl">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -476,7 +476,7 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-relaxed">
+        <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-[1.7]">
           Daily message limits reset at midnight AEST. Limits are designed to be generous for all legitimate use — 200 messages is more than one query every 4 minutes during market hours.
         </p>
       </section>
@@ -628,7 +628,7 @@ export default function Pricing() {
             ))}
           </div>
 
-          <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-relaxed">
+          <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-[1.7]">
             Enterprise packages are available via direct enquiry. Current enterprise features are being developed for Q2-Q3 2027 release. Individual packages (Core, Pro, Apex) are available immediately via self-serve signup.
           </p>
         </div>

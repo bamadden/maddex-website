@@ -7,7 +7,7 @@ const CARDS = [
     label: 'BLOOMBERG TERMINAL',
     price: 'A$42,000 / YEAR',
     priceColor: 'text-text-primary',
-    bg: 'rgba(168,50,50,0.03)',
+    bg: 'rgba(168,50,50,0.05)',
     features: [
       { name: 'Real-time global data', value: '✓', color: '#2D8A50' },
       { name: 'Built for retail investors', value: '✗', color: '#A83232' },
@@ -45,7 +45,7 @@ const CARDS = [
 
 export default function ProblemSection() {
   return (
-    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
         <div>
           <SectionLabel>THE INFORMATION GAP</SectionLabel>
@@ -77,7 +77,7 @@ export default function ProblemSection() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 mt-12 lg:mt-0">
           {CARDS.map((card, i) => (
             <motion.div key={card.label}>
               <motion.div
@@ -87,12 +87,12 @@ export default function ProblemSection() {
                 transition={{ delay: i * 0.15, duration: 0.5 }}
                 className={`rounded p-7 min-h-[220px] flex flex-col justify-center ${
                   card.highlight
-                    ? 'scale-[1.02] shadow-[0_0_40px_rgba(201,168,76,0.14)]'
+                    ? 'scale-[1.02] shadow-[0_0_30px_rgba(201,168,76,0.1)]'
                     : ''
                 }`}
                 style={{
                   borderLeft: `3px solid ${card.border}`,
-                  backgroundColor: '#0B1628',
+                  backgroundColor: '#060D1A',
                   backgroundImage: card.bg ? `linear-gradient(${card.bg}, ${card.bg})` : 'none',
                 }}
               >
@@ -115,11 +115,11 @@ export default function ProblemSection() {
                   className="flex items-center justify-center gap-4 py-6"
                 >
                   <div className="text-center">
-                    <div className="font-mono text-[22px] sm:text-[28px] font-bold text-loss line-through decoration-2">A$42,000</div>
+                    <div className="font-mono text-[32px] font-bold text-loss line-through decoration-2">A$42,000</div>
                   </div>
                   <div className="font-mono text-[12px] text-text-faint">vs</div>
                   <div className="text-center">
-                    <div className="font-mono text-[28px] sm:text-[36px] font-bold text-gold">A$228</div>
+                    <div className="font-mono text-[32px] font-bold text-gold">A$228</div>
                   </div>
                   <div className="hidden sm:block font-mono text-[10px] text-text-muted max-w-[120px] leading-snug ml-2">
                     Per year · Bloomberg vs Maddex Core

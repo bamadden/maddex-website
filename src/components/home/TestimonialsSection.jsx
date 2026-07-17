@@ -18,7 +18,7 @@ const TESTIMONIALS = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto">
         <SectionLabel center>WHAT BETA USERS SAY</SectionLabel>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
@@ -29,7 +29,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.15, duration: 0.5 }}
-              className="bg-bg-surface border-l-[3px] border-gold rounded-r p-6"
+              className="bg-bg-primary border-l-[3px] border-gold rounded-r p-6"
             >
               <div className="text-gold text-[14px]">★★★★★</div>
               <p className="font-sans text-[18px] text-text-primary leading-[1.75] italic mt-3">
