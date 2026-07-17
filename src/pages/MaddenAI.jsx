@@ -8,6 +8,24 @@ import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import TerminalCard from '../components/shared/TerminalCard'
 
+function ScorePositionBar({ score }) {
+  return (
+    <div className="relative w-full h-1 rounded-full mt-3" style={{ background: 'rgba(30,70,140,0.3)' }}>
+      <div
+        className="absolute inset-0 rounded-full"
+        style={{ background: 'linear-gradient(to right, #A83232 0%, #A83232 33%, #C9A84C 33%, #C9A84C 66%, #2D8A50 66%, #2D8A50 100%)' }}
+      />
+      <motion.div
+        className="absolute top-1/2 w-1.5 h-1.5 rounded-full bg-white -translate-y-1/2 -translate-x-1/2"
+        style={{ boxShadow: '0 0 4px rgba(255,255,255,0.8)' }}
+        initial={{ left: '0%' }}
+        animate={{ left: `${score}%` }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+      />
+    </div>
+  )
+}
+
 function LiveAESTClock() {
   const [time, setTime] = useState('')
 
@@ -168,6 +186,7 @@ export default function MaddenAI() {
                 <span className="score-pulse">72</span><span className="text-[20px] text-text-primary">/100</span>
               </div>
               <div className="font-mono text-[11px] text-text-primary mt-2">NEUTRAL-BULLISH</div>
+              <ScorePositionBar score={72} />
               <LiveAESTClock />
             </div>
             <div className="p-6 text-center min-h-[160px] flex flex-col justify-center">
@@ -176,12 +195,14 @@ export default function MaddenAI() {
                 <span className="score-pulse">68</span><span className="text-[20px] text-text-primary">/100</span>
               </div>
               <div className="font-mono text-[11px] text-gain mt-2">BULLISH</div>
+              <ScorePositionBar score={68} />
               <LiveAESTClock />
             </div>
             <div className="p-6 text-center min-h-[160px] flex flex-col justify-center">
               <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">BEST PERFORMING SECTOR</div>
               <div className="font-mono text-[22px] font-bold text-gold mt-2">INFORMATION TECHNOLOGY</div>
               <div className="font-mono text-[11px] text-gain mt-2">81/100 STRONG</div>
+              <ScorePositionBar score={81} />
               <LiveAESTClock />
             </div>
           </div>

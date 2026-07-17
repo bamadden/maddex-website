@@ -42,7 +42,7 @@ const MODULES = [
     body: 'ASX 200 as the primary index, alongside 9 global indices and full 11-sector GICS breakdown — refreshed continuously and scored by MaddenAI sentiment for context, not just numbers.',
     features: ['9 global indices tracked live', 'Full ASX 200 constituent list', '11 GICS sector heatmap', 'MaddenAI sentiment overlay'],
     visual: (
-      <TerminalCard className="min-h-[520px] flex flex-col">
+      <TerminalCard className="min-h-[520px] w-full flex flex-col">
         <MiniHeader label="MARKETS · ASX 200" right="72/100" />
         <div className="p-4 flex-1 flex flex-col justify-center gap-3">
           {[
@@ -76,7 +76,7 @@ const MODULES = [
     body: 'Top 20 assets by market cap in AUD, sourced live from CoinGecko, with the MaddenAI Crypto Momentum Index and Fear & Greed tracking — built for investors who treat crypto as a real allocation.',
     features: ['Top 20 by AUD market cap', 'MaddenAI Momentum Index', 'Fear & Greed reading', 'BTC dominance tracking'],
     visual: (
-      <TerminalCard className="min-h-[520px] flex flex-col">
+      <TerminalCard className="min-h-[520px] w-full flex flex-col">
         <MiniHeader label="CRYPTO · TOP 20" right="68 BULLISH" />
         <div className="grid grid-cols-2 gap-3 p-4">
           <div>
@@ -112,7 +112,7 @@ const MODULES = [
     body: 'FX pairs sourced via the Frankfurter API, government bond yield curves, and central bank rates with the RBA as the primary reference rate — the macro plumbing most retail platforms skip entirely.',
     features: ['10 AUD currency pairs', 'AU Government Bond yield curve', '10+ central bank policy rates', 'Rate decision countdowns'],
     visual: (
-      <TerminalCard className="min-h-[520px] flex flex-col">
+      <TerminalCard className="min-h-[520px] w-full flex flex-col">
         <MiniHeader label="RATES · FX & YIELDS" />
         <div className="p-4 flex-1 flex flex-col justify-center gap-2">
           {[['AUD/USD', '0.6452', '-0.12%', false], ['AUD/EUR', '0.5981', '+0.08%', true], ['AUD/JPY', '96.42', '+0.22%', true]].map(([p, r, c, pos]) => (
@@ -139,7 +139,7 @@ const MODULES = [
     body: 'A live RBA dashboard with cash rate, next meeting countdown, the eight Australian macro indicators that actually move markets, and a dedicated China Watch panel for commodity-linked demand signals.',
     features: ['RBA cash rate + next meeting countdown', '8 Australian macro indicators', 'China Watch commodity linkage', '30-day economic calendar'],
     visual: (
-      <TerminalCard className="min-h-[520px] flex flex-col">
+      <TerminalCard className="min-h-[520px] w-full flex flex-col">
         <MiniHeader label="MACRO · RBA DASHBOARD" />
         <div className="text-center py-10 flex-1 flex flex-col justify-center">
           <div className="font-mono text-[40px] font-bold text-gold">4.35%</div>
@@ -166,7 +166,7 @@ const MODULES = [
     body: '28+ sources filtered for financial relevance across 9 categories, refreshed every 3 minutes, with MaddenAI surfacing the themes that matter before they hit the front page.',
     features: ['28+ curated sources', 'Financial relevance filter', '9 news categories', 'MaddenAI Key Themes daily'],
     visual: (
-      <TerminalCard className="min-h-[520px] flex flex-col">
+      <TerminalCard className="min-h-[520px] w-full flex flex-col">
         <MiniHeader label="NEWS · LIVE FEED" />
         <div className="p-4 flex-1 flex flex-col justify-center gap-4 overflow-hidden relative">
           {[
@@ -194,7 +194,7 @@ const MODULES = [
     body: 'Add any ASX or US stock, priced live via Yahoo Finance and Twelve Data, with full fundamental data synced through Supabase across every device you use.',
     features: ['ASX + US ticker support', 'Live price tracking', 'Full fundamental data', 'Synced across all devices'],
     visual: (
-      <TerminalCard className="min-h-[520px] flex flex-col">
+      <TerminalCard className="min-h-[520px] w-full flex flex-col">
         <MiniHeader label="WATCHLIST" />
         <div className="p-4 flex-1 flex flex-col justify-center gap-2">
           {[['BHP.AX', 'A$43.82', '+0.85%'], ['CBA.AX', 'A$164.20', '+0.31%']].map(([s, p, c]) => (
@@ -219,7 +219,7 @@ const MODULES = [
     body: 'A live 3D globe across 5 data layers covering 50+ exchanges, shipping chokepoints, and a 200+ country database — see geopolitical risk before it shows up in your portfolio.',
     features: ['Live 3D global exchange map', '50+ exchanges tracked', 'Shipping chokepoint monitoring', '200+ country risk database'],
     visual: (
-      <TerminalCard className="min-h-[520px] flex flex-col">
+      <TerminalCard className="min-h-[520px] w-full flex flex-col">
         <MiniHeader label="GLOBAL INTELLIGENCE" right="RISK: MODERATE" />
         <div className="grid grid-cols-1 sm:grid-cols-[58%_42%] flex-1 overflow-hidden">
           <div className="p-4 flex items-center justify-center border-r border-[rgba(30,70,140,0.2)]">
@@ -301,7 +301,7 @@ export default function Product() {
         {MODULES.map((mod, i) => (
           <section key={mod.key} className="py-16 md:py-[80px] px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
             <div
-              className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${
+              className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-stretch ${
                 i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
               }`}
             >
@@ -310,6 +310,7 @@ export default function Product() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5 }}
+                className="flex flex-col justify-center"
               >
                 <span className="font-mono text-[9px] tracking-[0.25em] text-gold">MODULE {String(i + 1).padStart(2, '0')}</span>
                 <h2 className="font-sans text-[30px] md:text-[42px] font-bold text-text-primary mt-3 leading-tight">{mod.title}</h2>
@@ -328,6 +329,7 @@ export default function Product() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex"
               >
                 {mod.visual}
               </motion.div>

@@ -141,13 +141,13 @@ export default function Hero() {
 
           <div className="hero-stats flex items-center mt-4 divide-x divide-[rgba(30,70,140,0.3)]">
             <div className="pr-8">
-              <AnimatedCounter to={19} prefix="A$" suffix="/mo" label="Starting price" duration={1200} />
+              <AnimatedCounter from={15} to={19} prefix="A$" suffix="/mo" label="Starting price" duration={600} />
             </div>
             <div className="px-8">
-              <AnimatedCounter to={7} label="Intelligence modules" duration={800} />
+              <AnimatedCounter from={5} to={7} label="Intelligence modules" duration={400} />
             </div>
             <div className="pl-8">
-              <AnimatedCounter to={200} suffix="+" label="Countries covered" duration={1500} />
+              <AnimatedCounter from={180} to={200} suffix="+" label="Countries covered" duration={800} />
             </div>
           </div>
         </div>

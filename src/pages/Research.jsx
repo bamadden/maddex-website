@@ -15,9 +15,24 @@ const FLIP_CARDS = [
 ]
 
 const PAST_ISSUES = [
-  ['Issue #023', '7 July 2026', 'Iron ore holds, tech leads a quiet week for the ASX 200.'],
-  ['Issue #022', '30 June 2026', 'FY26 close: what the reporting season means for dividend investors.'],
-  ['Issue #021', '23 June 2026', 'Crypto breadth improves as BTC dominance eases below 60%.'],
+  {
+    issue: 'Issue #023',
+    date: 'Monday 7 July 2026',
+    headline: 'RBA holds at 4.35% — what it means for the ASX',
+    summary: 'A look inside the hold decision, the language shift in the statement, and which sectors stand to benefit if the pause extends into Q4.',
+  },
+  {
+    issue: 'Issue #022',
+    date: 'Monday 30 June 2026',
+    headline: 'Iron ore at US$98 — support level or breakdown risk?',
+    summary: 'Chinese steel margins, port inventories, and what the technical picture says about the next leg for bulk commodities.',
+  },
+  {
+    issue: 'Issue #021',
+    date: 'Monday 23 June 2026',
+    headline: 'BTC consolidation above A$160k — breakout or fake-out?',
+    summary: 'Reading the Fear & Greed data alongside dominance trends to gauge whether crypto breadth is genuinely improving.',
+  },
 ]
 
 function FlipCard({ front, back, index }) {
@@ -227,18 +242,26 @@ export default function Research() {
             Catch up on what you missed.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12 text-left">
-            {PAST_ISSUES.map(([issue, date, summary], i) => (
+            {PAST_ISSUES.map(({ issue, date, headline, summary }, i) => (
               <motion.div
                 key={issue}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.1, duration: 0.4 }}
-                className="bg-bg-surface border border-gold/20 rounded p-6 hover:border-gold/40 transition-colors cursor-pointer"
+                whileHover={{ scale: 1.01, borderLeftColor: '#E8C878' }}
+                className="relative rounded p-5 cursor-pointer"
+                style={{ background: '#0B1628', borderLeft: '2px solid #C9A84C' }}
               >
-                <div className="font-mono text-[11px] text-gold">{issue}</div>
-                <div className="font-mono text-[10px] text-text-faint mt-1">{date}</div>
-                <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7]">{summary}</p>
+                <span className="absolute top-5 right-5 bg-gold/15 text-gold font-mono text-[8px] tracking-[0.1em] px-2 py-1 rounded-full">
+                  SUBSCRIBER ONLY
+                </span>
+                <div className="font-mono text-[9px] text-gold pr-24">{issue}</div>
+                <div className="font-mono text-[9px] text-text-faint mt-1">{date}</div>
+                <h3 className="font-sans text-[15px] font-bold text-text-primary mt-3 leading-snug">{headline}</h3>
+                <p className="font-sans text-[13px] text-text-muted mt-2 leading-[1.6]" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                  {summary}
+                </p>
               </motion.div>
             ))}
           </div>

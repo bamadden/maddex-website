@@ -447,7 +447,12 @@ function PlanCard({ plan, i, annual }) {
       </AnimatePresence>
 
       <div className="mt-6">
-        <GoldButton variant={plan.popular ? 'solid' : 'ghost'} className="w-full">GET STARTED</GoldButton>
+        <GoldButton
+          variant={plan.popular ? 'solid' : 'ghost'}
+          className="!w-full !font-mono !text-[13px] !tracking-[0.05em] !py-[14px] !px-[14px] !font-bold"
+        >
+          GET STARTED
+        </GoldButton>
       </div>
       </div>
     </motion.div>
