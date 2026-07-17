@@ -63,6 +63,9 @@ const MODULES = [
             <div key={l} className="font-mono text-[11px] text-center py-[10px] px-3 rounded-sm" style={{ background: pos ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)', color: pos ? '#2D8A50' : '#A83232' }}>{l}</div>
           ))}
         </div>
+        <div className="font-mono text-[10px] text-gold" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', padding: '8px 16px' }}>
+          MADDENAI MARKET SENTIMENT &nbsp; 72/100 &nbsp; NEUTRAL-BULLISH &nbsp; ─────────●────────
+        </div>
       </TerminalCard>
     ),
   },
@@ -85,7 +88,7 @@ const MODULES = [
             <div className="font-mono text-[26px] font-bold text-text-primary">42</div>
           </div>
         </div>
-        <div className="px-4 pb-4 flex-1 flex flex-col justify-center gap-3">
+        <div className="px-4 flex-1 flex flex-col justify-center gap-3">
           {[['BTC', 'A$162,400', '+1.80%'], ['ETH', 'A$6,124', '+2.10%']].map(([n, p, c]) => (
             <div key={n} className="flex justify-between font-mono text-[12px] py-3">
               <span className="text-text-primary">{n}</span>
@@ -93,6 +96,11 @@ const MODULES = [
               <span className="text-gain">{c}</span>
             </div>
           ))}
+        </div>
+        <div className="font-mono text-[10px] text-gold" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', padding: '8px 16px' }}>
+          TRENDING &nbsp; <span className="text-text-primary">PEPE</span> <span className="text-gain">▲+12.4%</span>
+          &nbsp; <span className="text-text-primary">WIF</span> <span className="text-gain">▲+8.2%</span>
+          &nbsp; <span className="text-text-primary">BONK</span> <span className="text-gain">▲+6.1%</span>
         </div>
       </TerminalCard>
     ),
@@ -118,6 +126,9 @@ const MODULES = [
             <span className="text-gold">RBA</span><span className="text-text-primary">4.35%</span><span className="text-text-faint">HOLD</span>
           </div>
         </div>
+        <div className="font-mono text-[10px] text-gold" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', padding: '8px 16px' }}>
+          NEXT RBA DECISION &nbsp; <span className="text-text-primary">5 AUGUST 2026</span> &nbsp; 22 DAYS REMAINING
+        </div>
       </TerminalCard>
     ),
   },
@@ -142,6 +153,9 @@ const MODULES = [
             </div>
           ))}
         </div>
+        <div className="font-mono text-[10px] text-gold" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', padding: '8px 16px' }}>
+          CHINA PMI 50.4 ▲ &nbsp;|&nbsp; IRON ORE IMPORTS 102Mt &nbsp;|&nbsp; STEEL PROD 88Mt
+        </div>
       </TerminalCard>
     ),
   },
@@ -154,13 +168,21 @@ const MODULES = [
     visual: (
       <TerminalCard className="min-h-[520px] flex flex-col">
         <MiniHeader label="NEWS · LIVE FEED" />
-        <div className="p-4 flex-1 flex flex-col justify-center gap-4">
-          {[['AFR', '2m ago', 'BULLISH', 'RBA holds rates at 4.35%'], ['REUTERS', '8m ago', 'BEARISH', 'Iron ore slides on China data']].map(([s, t, sent, h]) => (
-            <div key={h} className="font-mono text-[11px] bg-bg-surface rounded p-3">
+        <div className="p-4 flex-1 flex flex-col justify-center gap-4 overflow-hidden relative">
+          {[
+            ['AFR', '2m ago', 'BULLISH', 'RBA holds rates at 4.35%'],
+            ['REUTERS', '8m ago', 'BEARISH', 'Iron ore slides on China data'],
+            ['BLOOMBERG', '14m ago', 'BULLISH', 'ASX financials rally as yields ease'],
+          ].map(([s, t, sent, h]) => (
+            <div key={h} className="font-mono text-[11px] bg-bg-surface rounded p-3 shrink-0">
               <div className="text-text-muted"><span className="text-gold">{s}</span> · {t} · <span className={sent === 'BULLISH' ? 'text-gain' : 'text-loss'}>{sent}</span></div>
               <div className="text-text-primary mt-2 text-[12px]">{h}</div>
             </div>
           ))}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-8 pointer-events-none"
+            style={{ background: 'linear-gradient(to bottom, transparent, #060D1A)' }}
+          />
         </div>
       </TerminalCard>
     ),
@@ -184,6 +206,9 @@ const MODULES = [
           ))}
           <div className="font-mono text-[12px] text-gold mt-2 py-2">+ ADD SYMBOL</div>
         </div>
+        <div className="font-mono text-[10px] text-gold" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', padding: '8px 16px' }}>
+          PORTFOLIO &nbsp; TOTAL <span className="text-text-primary">A$284,521</span> &nbsp; DAY P&amp;L <span className="text-gain">▲ +A$4,218 (+1.5%)</span>
+        </div>
       </TerminalCard>
     ),
   },
@@ -196,17 +221,51 @@ const MODULES = [
     visual: (
       <TerminalCard className="min-h-[520px] flex flex-col">
         <MiniHeader label="GLOBAL INTELLIGENCE" right="RISK: MODERATE" />
-        <div className="p-4 flex-1 flex items-center">
-          <svg viewBox="0 0 100 60" className="w-full h-[280px]">
-            <path d="M15,15 Q22,10 30,14 L36,22 Q28,28 20,25 Z" fill="rgba(30,70,140,0.4)" />
-            <path d="M50,10 Q62,8 70,18 L64,30 Q52,26 50,15 Z" fill="rgba(30,70,140,0.4)" />
-            <path d="M70,15 Q82,14 88,24 L80,34 Q70,30 70,15 Z" fill="rgba(30,70,140,0.4)" />
-            {[[75,40],[58,20],[28,18]].map(([x,y], i) => (
-              <circle key={i} cx={x} cy={y} r="1.4" fill="#C9A84C">
-                <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
-              </circle>
-            ))}
-          </svg>
+        <div className="grid grid-cols-1 sm:grid-cols-[58%_42%] flex-1 overflow-hidden">
+          <div className="p-4 flex items-center justify-center border-r border-[rgba(30,70,140,0.2)]">
+            <svg viewBox="0 0 100 60" className="w-full h-[240px]">
+              <path d="M15,15 Q22,10 30,14 L36,22 Q28,28 20,25 Z" fill="rgba(30,70,140,0.4)" />
+              <path d="M50,10 Q62,8 70,18 L64,30 Q52,26 50,15 Z" fill="rgba(30,70,140,0.4)" />
+              <path d="M70,15 Q82,14 88,24 L80,34 Q70,30 70,15 Z" fill="rgba(30,70,140,0.4)" />
+              {[[75,40],[58,20],[28,18]].map(([x,y], i) => (
+                <circle key={i} cx={x} cy={y} r="1.4" fill="#C9A84C">
+                  <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
+                </circle>
+              ))}
+            </svg>
+          </div>
+          <div className="p-4 flex flex-col gap-4 font-mono text-[9px]">
+            <div>
+              <div className="text-gold tracking-[0.1em] mb-1.5">GLOBAL STATUS</div>
+              <div className="h-px bg-gold/20 mb-1.5" />
+              <div className="flex justify-between text-text-muted"><span>OPEN NOW</span><span className="text-gain">18/50</span></div>
+              <div className="flex justify-between text-text-muted"><span>CLOSING &lt; 1H</span><span className="text-text-primary">3</span></div>
+              <div className="flex justify-between text-text-muted"><span>CLOSED</span><span className="text-text-faint">29</span></div>
+            </div>
+            <div>
+              <div className="text-gold tracking-[0.1em] mb-1.5">ACTIVE LAYERS</div>
+              <div className="h-px bg-gold/20 mb-1.5" />
+              <div className="grid grid-cols-2 gap-1">
+                <span className="border border-gold/40 text-gold rounded-sm px-1.5 py-0.5">● MARKETS</span>
+                <span className="border border-[rgba(30,70,140,0.4)] text-text-faint rounded-sm px-1.5 py-0.5">MARITIME</span>
+                <span className="border border-[rgba(30,70,140,0.4)] text-text-faint rounded-sm px-1.5 py-0.5">AIR</span>
+                <span className="border border-[rgba(30,70,140,0.4)] text-text-faint rounded-sm px-1.5 py-0.5">GEO RISK</span>
+              </div>
+            </div>
+            <div>
+              <div className="text-gold tracking-[0.1em] mb-1.5">RISK PULSE</div>
+              <div className="h-px bg-gold/20 mb-1.5" />
+              <div className="text-text-muted mb-1">GLOBAL RISK: <span className="text-loss">ELEVATED</span> ████░░░░</div>
+              <div className="text-text-muted">🔴 Middle East — <span className="text-loss">CRITICAL</span></div>
+              <div className="text-text-muted">🟡 East Europe — <span className="text-gold">HIGH</span></div>
+            </div>
+            <div>
+              <div className="text-gold tracking-[0.1em] mb-1.5">TRADE FLOWS</div>
+              <div className="h-px bg-gold/20 mb-1.5" />
+              <div className="flex justify-between text-text-muted"><span>SUEZ CANAL</span><span className="text-gold">⚠ MONITORED</span></div>
+              <div className="flex justify-between text-text-muted"><span>PANAMA</span><span className="text-gain">✓ OPEN</span></div>
+            </div>
+          </div>
         </div>
       </TerminalCard>
     ),
@@ -240,7 +299,7 @@ export default function Product() {
 
       <div className="bg-bg-surface">
         {MODULES.map((mod, i) => (
-          <section key={mod.key} className="py-16 md:py-[100px] px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
+          <section key={mod.key} className="py-16 md:py-[80px] px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
             <div
               className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center ${
                 i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
@@ -274,7 +333,7 @@ export default function Product() {
               </motion.div>
             </div>
 
-            <div className="max-w-[1200px] mx-auto mt-8 pt-6 border-t border-[rgba(30,70,140,0.2)]">
+            <div className="max-w-[1200px] mx-auto mt-6 pt-4 border-t border-[rgba(30,70,140,0.2)]">
               <div className="font-mono text-[9px] tracking-[0.15em] text-text-faint mb-1">KEY STATS</div>
               <KeyStats stats={mod.stats} />
               <div className="flex justify-center sm:justify-end mt-4">

@@ -116,16 +116,21 @@ export default function Footer() {
           </div>
         </div>
 
-        <p
-          className="font-mono text-[9px] text-center mx-auto"
-          style={{ color: '#3D5070', maxWidth: 800, paddingTop: 20, borderTop: '1px solid rgba(30,70,140,0.2)', marginTop: 20 }}
+        <div
+          className="text-center mx-auto"
+          style={{ maxWidth: 800, paddingTop: 24, borderTop: '1px solid rgba(30,70,140,0.2)', marginTop: 20 }}
         >
-          Maddex provides general financial information only. Nothing on this platform
-          constitutes financial product advice, a recommendation, or an offer to buy or
-          sell any financial product. Past performance is not indicative of future results.
-          You should consider seeking independent financial advice before making any
-          investment decisions. © 2026 Madden Group Holdings Pty Ltd. All rights reserved.
-        </p>
+          <div className="font-mono text-[9px] text-gold mb-2" style={{ letterSpacing: '0.2em' }}>
+            IMPORTANT NOTICE
+          </div>
+          <p className="font-mono text-[9px]" style={{ color: '#3D5070' }}>
+            Maddex provides general financial information only. Nothing on this platform
+            constitutes financial product advice, a recommendation, or an offer to buy or
+            sell any financial product. Past performance is not indicative of future results.
+            You should consider seeking independent financial advice before making any
+            investment decisions. © 2026 Madden Group Holdings Pty Ltd. All rights reserved.
+          </p>
+        </div>
       </div>
     </footer>
   )

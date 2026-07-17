@@ -88,15 +88,24 @@ export default function About() {
             <h2 className="font-sans text-[26px] md:text-[32px] font-bold text-text-primary mt-2">Benjamin Andrew Madden</h2>
             <div className="font-sans text-[16px] text-text-muted mt-4 leading-[1.8] flex flex-col gap-4">
               <p>I built Maddex because I needed it and it didn't exist.</p>
-              <p>
-                As a finance professional, I wanted institutional-grade intelligence — the kind of analysis that Bloomberg provides — without the A$42,000 per year price tag. I looked at everything available to Australian investors and found a market split between tools that cost more than most people's annual rent, and broker apps that tell you the price but not what it means.
-              </p>
+              <div className="relative pl-2">
+                <span
+                  className="absolute -top-6 -left-2 font-serif text-gold pointer-events-none select-none"
+                  style={{ fontSize: 80, opacity: 0.3, lineHeight: 1 }}
+                  aria-hidden="true"
+                >
+                  "
+                </span>
+                <p className="relative text-[22px] text-text-primary leading-[1.6]">
+                  As a finance professional, I wanted institutional-grade intelligence — the kind of analysis that Bloomberg provides — without the A$42,000 per year price tag. I looked at everything available to Australian investors and found a market split between tools that cost more than most people's annual rent, and broker apps that tell you the price but not what it means.
+                </p>
+              </div>
               <p>
                 So I built the middle. Maddex is the terminal I wanted. Built from scratch, alongside a full-time government finance career, using modern technology that makes this possible for a solo founder in a way it never was before.
               </p>
               <p>This is not a side project. This is the beginning of something serious.</p>
             </div>
-            <p className="font-sans text-[22px] text-gold mt-6 italic font-medium border-l-2 border-gold/40 pl-4">— Benjamin Andrew Madden</p>
+            <p className="font-sans text-[14px] text-gold mt-6 italic text-right">— Benjamin Andrew Madden</p>
             <div className="inline-flex items-center gap-2 mt-6 font-mono text-[10px] tracking-[0.1em] text-text-muted border border-gold/20 rounded-full px-3 py-1.5">
               <span className="relative w-1.5 h-1.5">
                 <span className="pulse-ring absolute inset-0" />
@@ -137,6 +146,14 @@ export default function About() {
 
       <section className="relative bg-bg-surface py-20 md:py-[100px] px-6 md:px-10 text-center overflow-hidden">
         <div
+          className="absolute top-0 left-0 right-0 h-px"
+          style={{ background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent)' }}
+        />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px"
+          style={{ background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.3), transparent)' }}
+        />
+        <div
           className="absolute rounded-full pointer-events-none"
           style={{
             top: '50%',
@@ -154,13 +171,11 @@ export default function About() {
             className="font-sans text-[40px] md:text-[64px] font-bold text-text-primary max-w-3xl mx-auto leading-tight"
             style={{ textShadow: '0 0 60px rgba(201,168,76,0.25)' }}
           >
+            <span className="inline-block w-3 h-3 rounded-full bg-gold pulse-dot-slow mr-3 align-middle" />
             Australia first. The world next.
           </h2>
-          <p className="font-sans text-[20px] text-text-primary max-w-2xl mx-auto mt-6 leading-[1.7]">
-            Give every Australian investor the intelligence that used to be reserved for trading floors.
-          </p>
-          <p className="font-sans text-[16px] text-text-muted max-w-2xl mx-auto mt-6 leading-[1.75]">
-            Maddex launches with Australia at its core — the ASX, the RBA, the AUD, and the commodities that drive the Australian economy. But the platform is architected for the world. The same intelligence framework that serves Australian investors today is designed to scale across every major market, every currency, and every exchange globally.
+          <p className="font-sans text-[20px] text-text-muted max-w-[700px] mx-auto mt-6 leading-[1.7]">
+            Give every Australian investor the intelligence that used to be reserved for trading floors. Maddex launches with Australia at its core — the ASX, the RBA, the AUD, and the commodities that drive the Australian economy — but the platform is architected for the world.
           </p>
         </div>
       </section>

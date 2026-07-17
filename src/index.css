@@ -20,7 +20,8 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; visibility: visible !important; }
+#root { min-height: 100vh; background: #060D1A; }
 body {
   background: #060D1A;
   color: #E8EDF5;
@@ -100,6 +101,82 @@ body {
 
 @keyframes border-spin {
   to { transform: rotate(360deg); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow { animation: fadeUp 0.4s ease forwards; animation-delay: 0.1s; opacity: 0; }
+.hero-headline { animation: fadeUp 0.5s ease forwards; animation-delay: 0.2s; opacity: 0; }
+.hero-sub { animation: fadeUp 0.5s ease forwards; animation-delay: 0.4s; opacity: 0; }
+.hero-cta { animation: fadeUp 0.4s ease forwards; animation-delay: 0.5s; opacity: 0; }
+.hero-terminal { animation: fadeUp 0.6s ease forwards; animation-delay: 0.3s; opacity: 0; }
+.hero-trust { animation: fadeUp 0.4s ease forwards; animation-delay: 0.6s; opacity: 0; }
+.hero-stats { animation: fadeUp 0.4s ease forwards; animation-delay: 0.7s; opacity: 0; }
+
+@keyframes cardGradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.card-gradient-live {
+  background: linear-gradient(120deg, #0B1628, #0F1E36, #0B1628);
+  background-size: 200% 200%;
+  animation: cardGradientShift 8s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+.pulse-dot-slow {
+  animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.hero-float {
+  animation: heroFloat 4s ease-in-out infinite;
+}
+
+@keyframes heroScrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+.hero-scroll-bounce {
+  animation: heroScrollBounce 1.2s ease-in-out infinite;
+}
+
+@keyframes heroScrollFade {
+  0%, 60% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.hero-scroll-indicator {
+  animation: heroScrollFade 2s ease forwards;
+  animation-delay: 3s;
+}
+
+@keyframes heroWidthGrow {
+  from { width: 0; opacity: 0; }
+  to { width: 120px; opacity: 1; }
+}
+.hero-goldline {
+  animation: heroWidthGrow 0.5s ease forwards;
+  animation-delay: 0.15s;
+  width: 0;
+  opacity: 0;
+}
+
+@keyframes watermarkFadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.2; }
+}
+.pricing-watermark {
+  animation: watermarkFadeIn 0.6s ease forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
 }
 
 @keyframes card-shimmer-sweep {

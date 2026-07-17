@@ -319,20 +319,34 @@ function PlanCard({ plan, i, annual }) {
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: i * 0.1, duration: 0.4 }}
       whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
-      className={`relative overflow-hidden bg-bg-surface rounded p-8 border transition-colors duration-200 flex flex-col ${
-        plan.popular ? 'border-[rgba(201,168,76,0.5)] scale-[1.02]' : 'border-[rgba(201,168,76,0.2)] hover:border-gold/40'
-      }`}
+      className={`relative rounded flex flex-col ${plan.popular ? 'scale-[1.02]' : ''}`}
     >
+      {plan.popular && (
+        <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold text-bg-primary font-mono text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap z-10">
+          {plan.badge}
+        </span>
+      )}
+      <div
+        className={`relative overflow-hidden rounded p-8 transition-colors duration-200 flex flex-col flex-1 ${
+          plan.popular ? '' : 'card-gradient-live border border-[rgba(201,168,76,0.2)] hover:border-gold/40'
+        } ${plan.name === 'APEX' ? 'border border-[rgba(201,168,76,0.3)]' : ''}`}
+        style={
+          plan.popular
+            ? {
+                background:
+                  'linear-gradient(120deg, #0B1628, #0F1E36, #0B1628) padding-box, linear-gradient(135deg, #C9A84C, rgba(201,168,76,0.3)) border-box',
+                backgroundSize: '200% 200%, 100% 100%',
+                border: '1px solid transparent',
+                animation: 'cardGradientShift 8s ease-in-out infinite',
+              }
+            : undefined
+        }
+      >
       {plan.popular && (
         <div
           className="absolute inset-0 pointer-events-none card-shimmer-sweep-6s"
           style={{ background: 'linear-gradient(110deg, transparent 40%, rgba(201,168,76,0.08) 50%, transparent 60%)' }}
         />
-      )}
-      {plan.popular && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
-          {plan.badge}
-        </span>
       )}
       <div className="font-mono text-[9px] text-text-faint">
         <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
@@ -340,6 +354,12 @@ function PlanCard({ plan, i, annual }) {
       </div>
       <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
       <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
+      {plan.name === 'CORE' && (
+        <div className="font-mono text-[9px] mt-2" style={{ color: '#4A9B6E' }}>GREAT VALUE</div>
+      )}
+      {plan.name === 'APEX' && (
+        <div className="font-mono text-[9px] text-gold mt-2">MAXIMUM INTELLIGENCE</div>
+      )}
       <div className="mt-4">
         {annual ? (
           <>
@@ -429,6 +449,7 @@ function PlanCard({ plan, i, annual }) {
       <div className="mt-6">
         <GoldButton variant={plan.popular ? 'solid' : 'ghost'} className="w-full">GET STARTED</GoldButton>
       </div>
+      </div>
     </motion.div>
   )
 }
@@ -446,19 +467,24 @@ export default function Pricing() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
-        <SectionLabel center>PRICING</SectionLabel>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
+      <section className="relative bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center overflow-hidden">
+        <div
+          className="pricing-watermark absolute left-1/2 top-[140px] -translate-x-1/2 font-mono font-bold text-gold pointer-events-none select-none"
+          style={{ fontSize: 200, lineHeight: 1 }}
+          aria-hidden="true"
         >
-          Institutional intelligence. Retail pricing.
-        </motion.h1>
-        <p className="font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
-          No lock-in contracts. Cancel anytime. 7-day free trial with Core level access, no credit card required.
-        </p>
+          A$19
+        </div>
+        <div className="relative z-10">
+          <div className="hero-eyebrow"><SectionLabel center>PRICING</SectionLabel></div>
+          <h1 className="hero-headline font-sans font-bold leading-tight tracking-tight max-w-4xl mx-auto">
+            <span className="block text-[24px] md:text-[36px] text-text-muted font-bold">Bloomberg costs A$42,000 a year.</span>
+            <span className="block text-[36px] md:text-[56px] text-text-primary font-bold mt-2">Maddex starts at A$19 a month.</span>
+          </h1>
+          <p className="hero-sub font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
+            No lock-in contracts. Cancel anytime. 7-day free trial with Core level access, no credit card required.
+          </p>
+        </div>
 
         <div className="relative inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-8">
           <button

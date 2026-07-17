@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import ParticleCanvas from '../shared/ParticleCanvas'
 import TerminalCard from '../shared/TerminalCard'
 import AnimatedCounter from '../shared/AnimatedCounter'
@@ -109,73 +108,38 @@ export default function Hero() {
         style={{ minHeight: 'calc(100vh - 84px)', paddingTop: 84 }}
       >
         <div>
-          <motion.div
-            initial={{ opacity: 0, width: 0 }}
-            animate={{ opacity: 1, width: 120 }}
-            transition={{ delay: 0.15, duration: 0.5 }}
-            className="h-px bg-gold/50 mb-5"
-          />
+          <div className="hero-goldline h-px bg-gold/50 mb-5" />
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-            className="font-mono text-[9px] tracking-[0.25em] text-gold mb-5"
-          >
+          <div className="hero-eyebrow font-mono text-[9px] tracking-[0.25em] text-gold mb-5">
             AUSTRALIAN FINANCIAL INTELLIGENCE
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="font-sans text-[44px] sm:text-[60px] lg:text-[80px] font-bold leading-[0.95] tracking-[-0.03em] text-text-primary"
-          >
+          <h1 className="hero-headline font-sans text-[44px] sm:text-[60px] lg:text-[80px] font-bold leading-[0.95] tracking-[-0.03em] text-text-primary">
             The terminal
             <br />
             serious investors
             <br />
             have been waiting for.
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-            className="font-sans text-[18px] text-text-muted leading-[1.75] max-w-[460px] mt-6"
-          >
+          <p className="hero-sub font-sans text-[18px] text-text-muted leading-[1.75] max-w-[460px] mt-6">
             Maddex delivers institutional-grade financial intelligence to Australian investors at a fraction of Bloomberg's cost. Real-time data. MaddenAI analysis. Global intelligence.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.5 }}
-            className="flex items-center gap-4 mt-9 flex-wrap"
-          >
+          <div className="hero-cta flex items-center gap-4 mt-9 flex-wrap">
             <GoldButton to="/pricing" className="!px-8 !py-4">START FREE TRIAL</GoldButton>
             <GoldButton to="/product" variant="ghost" className="!border-0 !bg-transparent !px-0 text-gold opacity-70 hover:opacity-100">
               SEE THE TERMINAL →
             </GoldButton>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1, duration: 0.5 }}
-            className="font-mono text-[10px] text-text-faint mt-6 tracking-wide"
-          >
+          <div className="hero-trust font-mono text-[10px] text-text-faint mt-6 tracking-wide">
             7-DAY FREE TRIAL · NO CREDIT CARD REQUIRED · CORE LEVEL ACCESS
-          </motion.div>
+          </div>
 
           <div className="w-20 h-px bg-[rgba(201,168,76,0.15)] mt-4" />
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.5 }}
-            className="flex items-center mt-4 divide-x divide-[rgba(30,70,140,0.3)]"
-          >
+          <div className="hero-stats flex items-center mt-4 divide-x divide-[rgba(30,70,140,0.3)]">
             <div className="pr-8">
               <AnimatedCounter to={19} prefix="A$" suffix="/mo" label="Starting price" duration={1200} />
             </div>
@@ -185,19 +149,11 @@ export default function Hero() {
             <div className="pl-8">
               <AnimatedCounter to={200} suffix="+" label="Countries covered" duration={1500} />
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="hidden lg:block relative"
-        >
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          >
+        <div className="hero-terminal hidden lg:block relative">
+          <div className="hero-float">
             <TerminalCard className="min-h-[560px] flex flex-col !border-[rgba(201,168,76,0.4)] shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_100px_rgba(201,168,76,0.08),0_0_40px_rgba(201,168,76,0.05)]">
               <div className="flex items-center justify-between h-8 bg-bg-primary border-b border-gold/12 px-3">
                 <div className="flex items-baseline gap-1">
@@ -228,6 +184,14 @@ export default function Hero() {
                     flashed={flashIdx === i}
                   />
                 ))}
+              </div>
+
+              <div className="mx-3" style={{ borderTop: '1px solid rgba(30,70,140,0.2)', margin: '4px 12px 4px 12px' }} />
+              <div className="font-mono text-[9px] text-text-muted px-3 py-1.5">
+                <span className="text-gold">TOP MOVERS</span>
+                &nbsp; <span className="text-text-primary">CSL.AX</span> <span className="text-gain">▲+2.4%</span>
+                &nbsp; <span className="text-text-primary">BHP.AX</span> <span className="text-gain">▲+1.2%</span>
+                &nbsp; <span className="text-text-primary">WBC.AX</span> <span className="text-gain">▲+0.8%</span>
               </div>
 
               <div className="grid grid-cols-2 gap-2 px-3 pb-3">
@@ -269,26 +233,17 @@ export default function Hero() {
                 </div>
               </div>
             </TerminalCard>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 1 }}
-        animate={{ opacity: [1, 1, 0] }}
-        transition={{ duration: 2, delay: 3 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center hidden md:flex"
-      >
+      <div className="hero-scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center hidden md:flex">
         <span className="font-mono text-[9px] tracking-[0.2em] text-text-faint mb-2">SCROLL</span>
         <div className="w-px h-10 bg-gold/30 mb-2" />
-        <motion.span
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity }}
-          className="font-mono text-[12px] text-gold"
-        >
+        <span className="hero-scroll-bounce font-mono text-[12px] text-gold inline-block">
           ▼
-        </motion.span>
-      </motion.div>
+        </span>
+      </div>
     </section>
   )
 }

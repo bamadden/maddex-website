@@ -35,31 +35,23 @@ function LiveAESTClock() {
   )
 }
 
-function FactorBar({ label, weight, color = '#C9A84C' }) {
+function FactorBar({ label, weight }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
+  const fillColor = weight >= 15 ? '#C9A84C' : 'rgba(201,168,76,0.4)'
   return (
-    <div ref={ref} className="flex items-center gap-3 py-[10px] px-4">
-      <span className="font-mono text-[11px] text-text-muted w-40 shrink-0">{label}</span>
-      <div className="flex-1 h-1.5 rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden">
+    <div ref={ref} className="flex items-center justify-end gap-3 py-[10px] px-4">
+      <span className="font-mono text-[11px] text-text-muted w-40 shrink-0 text-left mr-auto">{label}</span>
+      <div className="w-[80px] max-w-[80px] h-[6px] rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden shrink-0">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: inView ? `${weight}%` : 0 }}
           transition={{ duration: 0.9, ease: 'easeOut' }}
           className="h-full rounded-full"
-          style={{ background: color }}
+          style={{ background: fillColor }}
         />
       </div>
-      <div className="w-[60px] h-2 rounded-sm bg-[rgba(30,70,140,0.3)] overflow-hidden shrink-0">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: inView ? `${weight}%` : 0 }}
-          transition={{ duration: 0.9, ease: 'easeOut' }}
-          className="h-full rounded-sm"
-          style={{ background: color }}
-        />
-      </div>
-      <span className="font-mono text-[11px] text-gold w-10 text-right shrink-0">{weight}%</span>
+      <span className="font-mono text-[11px] font-bold text-gold w-10 text-right shrink-0">{weight}%</span>
     </div>
   )
 }

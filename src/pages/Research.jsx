@@ -28,7 +28,7 @@ function FlipCard({ front, back, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
-      className="h-[180px] cursor-pointer"
+      className="min-h-[180px] cursor-pointer"
       style={{ perspective: 1000 }}
       onClick={() => setFlipped((f) => !f)}
       onMouseEnter={() => setFlipped(true)}
@@ -41,10 +41,12 @@ function FlipCard({ front, back, index }) {
         transition={{ duration: 0.5 }}
       >
         <div
-          className="absolute inset-0 bg-bg-surface border border-gold/20 rounded p-5 flex items-center justify-center text-center"
+          className="absolute inset-0 bg-bg-surface border border-gold/20 rounded p-5 flex flex-col items-center justify-center text-center gap-2"
           style={{ backfaceVisibility: 'hidden' }}
         >
-          <span className="font-mono text-[13px] tracking-wide text-gold">{front}</span>
+          <span className="text-gold text-[20px]">◆</span>
+          <span className="font-sans text-[16px] font-bold text-text-primary">{front}</span>
+          <span className="font-mono text-[11px] tracking-wide text-gold">HOVER TO REVEAL</span>
         </div>
         <div
           className="absolute inset-0 bg-bg-primary border border-gold/30 rounded p-5 flex items-center justify-center text-center"
