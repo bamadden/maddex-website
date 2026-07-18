@@ -171,7 +171,7 @@ body {
 
 @keyframes watermarkFadeIn {
   from { opacity: 0; }
-  to { opacity: 0.2; }
+  to { opacity: 0.04; }
 }
 .pricing-watermark {
   animation: watermarkFadeIn 0.6s ease forwards;

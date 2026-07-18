@@ -9,16 +9,19 @@ const CARDS = [
     title: 'Market Sentiment Score',
     body: 'An 8-factor weighted composite producing a 0-100 reading of market conditions. Updated every 60 seconds.',
     footer: 'ASX Breadth · Global Momentum · Volatility · Commodities',
+    watermark: '8',
   },
   {
     title: 'Asset Analysis On Demand',
     body: 'Type any ticker. Structured analysis in seconds — scores, levels, drivers, outlook, risk.',
     footer: 'Any stock, crypto, FX pair, or index',
+    watermark: '◆',
   },
   {
     title: 'MaddenAI Research Notes',
     body: 'Institutional-quality PDF research for any ASX or US stock.',
     footer: 'From A$4.99 · Unlimited in Apex tier',
+    watermark: '✦',
   },
 ]
 
@@ -84,7 +87,7 @@ export default function MaddenAISection() {
         <h2 className="font-sans text-[34px] md:text-[48px] lg:text-[58px] font-bold leading-tight tracking-tight text-text-primary">
           Intelligence, not just information.
         </h2>
-        <p className="font-sans text-[18px] text-text-muted max-w-[600px] mx-auto mt-4 leading-[1.75]">
+        <p className="font-sans text-[17px] text-text-muted max-w-[600px] mx-auto mt-4 leading-[1.75]">
           MaddenAI reads across markets, macro, and sentiment simultaneously — then hands you a structured, decision-ready view instead of a wall of numbers.
         </p>
         <Link to="/maddenai" className="inline-block font-mono text-[12px] text-gold mt-4 hover:opacity-70 transition-opacity">
@@ -104,12 +107,21 @@ export default function MaddenAISection() {
                 viewport={{ once: true, margin: '-80px' }}
                 transition={{ delay: i * 0.15, duration: 0.5 }}
                 whileHover={{ scale: 1.02 }}
-                className="relative z-10 m-px bg-bg-primary border border-gold/20 border-t-2 border-t-gold rounded p-7 min-h-[200px] h-[calc(100%-2px)] flex flex-col transition-colors"
+                className="relative z-10 m-px bg-bg-primary border border-gold/20 border-t-2 border-t-gold rounded p-7 min-h-[200px] h-[calc(100%-2px)] flex flex-col transition-colors overflow-hidden"
               >
-                <span className="text-gold text-[20px]">◆</span>
-                <h3 className="font-sans text-[17px] font-bold text-text-primary mt-3">{card.title}</h3>
-                <p className="font-sans text-[14px] text-text-muted mt-2 leading-[1.6]">{card.body}</p>
-                <p className="font-mono text-[11px] text-gold mt-auto pt-4">{card.footer}</p>
+                <span
+                  className="absolute -bottom-4 -right-2 font-mono font-bold text-gold pointer-events-none select-none"
+                  style={{ fontSize: 120, opacity: 0.04, lineHeight: 1, zIndex: 0 }}
+                  aria-hidden="true"
+                >
+                  {card.watermark}
+                </span>
+                <div className="relative z-10 flex flex-col flex-1">
+                  <span className="text-gold text-[20px]">◆</span>
+                  <h3 className="font-sans text-[17px] font-bold text-text-primary mt-3">{card.title}</h3>
+                  <p className="font-sans text-[14px] text-text-muted mt-2 leading-[1.6]">{card.body}</p>
+                  <p className="font-mono text-[11px] text-gold mt-auto pt-4">{card.footer}</p>
+                </div>
               </motion.div>
             </div>
           ))}

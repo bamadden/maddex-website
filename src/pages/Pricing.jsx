@@ -100,7 +100,6 @@ const PLANS = [
     name: 'APEX',
     monthly: 149,
     annual: 1490,
-    note: 'THIS PRICE IS CORRECT',
     tagline: 'Maximum intelligence. No limits.',
     highlights: [
       'Everything in Pro, plus',
@@ -281,6 +280,34 @@ function ComparisonCell({ value }) {
   return <span className="font-mono text-[12px]" style={{ color: '#E8EDF5' }}>{value}</span>
 }
 
+function ComparisonRow({ label, core, pro, apex, i }) {
+  return (
+    <tr
+      className="transition-colors duration-150 hover:bg-[rgba(201,168,76,0.04)]"
+      style={{
+        background: i % 2 === 0 ? 'transparent' : 'rgba(15,30,54,0.4)',
+        borderBottom: '1px solid rgba(30,70,140,0.15)',
+        height: 48,
+      }}
+    >
+      <td className="font-sans text-[13px] py-[10px] px-4" style={{ color: '#637899', width: '35%' }}>{label}</td>
+      <td className="text-center py-[10px] px-3" style={{ width: '21%' }}><ComparisonCell value={core} /></td>
+      <td
+        className="text-center py-[10px] px-3"
+        style={{
+          width: '22%',
+          background: pro === true ? 'rgba(45,138,80,0.06)' : 'rgba(201,168,76,0.02)',
+          borderLeft: '1px solid rgba(201,168,76,0.15)',
+          borderRight: '1px solid rgba(201,168,76,0.15)',
+        }}
+      >
+        <ComparisonCell value={pro} />
+      </td>
+      <td className="text-center py-[10px] px-3" style={{ width: '22%' }}><ComparisonCell value={apex} /></td>
+    </tr>
+  )
+}
+
 function FAQItem({ question, answer, isOpen, onClick }) {
   return (
     <div className="border-b border-[rgba(30,70,140,0.3)]">
@@ -322,7 +349,7 @@ function PlanCard({ plan, i, annual }) {
       className={`relative rounded flex flex-col ${plan.popular ? 'scale-[1.02]' : ''}`}
     >
       {plan.popular && (
-        <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gold text-bg-primary font-mono text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap z-10">
+        <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap z-10">
           {plan.badge}
         </span>
       )}
@@ -330,17 +357,11 @@ function PlanCard({ plan, i, annual }) {
         className={`relative overflow-hidden rounded p-8 transition-colors duration-200 flex flex-col flex-1 ${
           plan.popular ? '' : 'card-gradient-live border border-[rgba(201,168,76,0.2)] hover:border-gold/40'
         } ${plan.name === 'APEX' ? 'border border-[rgba(201,168,76,0.3)]' : ''}`}
-        style={
-          plan.popular
-            ? {
+        style={{ minHeight: 560, ...(plan.popular ? {
                 background:
-                  'linear-gradient(120deg, #0B1628, #0F1E36, #0B1628) padding-box, linear-gradient(135deg, #C9A84C, rgba(201,168,76,0.3)) border-box',
-                backgroundSize: '200% 200%, 100% 100%',
+                  'rgba(201,168,76,0.02) padding-box, linear-gradient(135deg, #C9A84C, rgba(201,168,76,0.3)) border-box',
                 border: '1px solid transparent',
-                animation: 'cardGradientShift 8s ease-in-out infinite',
-              }
-            : undefined
-        }
+              } : {}) }}
       >
       {plan.popular && (
         <div
@@ -348,11 +369,7 @@ function PlanCard({ plan, i, annual }) {
           style={{ background: 'linear-gradient(110deg, transparent 40%, rgba(201,168,76,0.08) 50%, transparent 60%)' }}
         />
       )}
-      <div className="font-mono text-[9px] text-text-faint">
-        <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
-        <span className="text-gold"> → {plan.name}: A${plan.annual}/yr</span>
-      </div>
-      <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
+      <div className="font-mono text-[12px] tracking-wide text-gold">{plan.name}</div>
       <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
       {plan.name === 'CORE' && (
         <div className="font-mono text-[9px] mt-2" style={{ color: '#4A9B6E' }}>GREAT VALUE</div>
@@ -374,8 +391,7 @@ function PlanCard({ plan, i, annual }) {
           </>
         )}
       </div>
-      {plan.note && <div className="font-mono text-[9px] text-text-faint mt-1">{plan.note}</div>}
-      <div className="flex flex-col mt-5">
+      <div className="flex flex-col mt-5 flex-1">
         {plan.highlights.map((f) => (
           <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2 py-2">
             <span className="text-gold">◆</span>
@@ -446,10 +462,10 @@ function PlanCard({ plan, i, annual }) {
         )}
       </AnimatePresence>
 
-      <div className="mt-6">
+      <div className="mt-auto pt-6">
         <GoldButton
           variant={plan.popular ? 'solid' : 'ghost'}
-          className="!w-full !font-mono !text-[13px] !tracking-[0.05em] !py-[14px] !px-[14px] !font-bold"
+          className="!w-full"
         >
           GET STARTED
         </GoldButton>
@@ -474,19 +490,19 @@ export default function Pricing() {
 
       <section className="relative bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center overflow-hidden">
         <div
-          className="pricing-watermark absolute left-1/2 top-[140px] -translate-x-1/2 font-mono font-bold text-gold pointer-events-none select-none"
-          style={{ fontSize: 200, lineHeight: 1 }}
+          className="pricing-watermark absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono font-bold text-gold pointer-events-none select-none"
+          style={{ fontSize: 220, lineHeight: 1, zIndex: 0 }}
           aria-hidden="true"
         >
           A$19
         </div>
-        <div className="relative z-10">
+        <div className="relative" style={{ zIndex: 1 }}>
           <div className="hero-eyebrow"><SectionLabel center>PRICING</SectionLabel></div>
           <h1 className="hero-headline font-sans font-bold leading-tight tracking-tight max-w-4xl mx-auto">
             <span className="block text-[24px] md:text-[36px] text-text-muted font-bold">Bloomberg costs A$42,000 a year.</span>
             <span className="block text-[36px] md:text-[56px] text-text-primary font-bold mt-2">Maddex starts at A$19 a month.</span>
           </h1>
-          <p className="hero-sub font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
+          <p className="hero-sub font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
             No lock-in contracts. Cancel anytime. 7-day free trial with Core level access, no credit card required.
           </p>
         </div>
@@ -532,16 +548,16 @@ export default function Pricing() {
             className="mt-10 overflow-auto rounded max-h-[600px]"
             style={{ background: '#0B1628', border: '1px solid rgba(201,168,76,0.2)' }}
           >
-            <table className="w-full min-w-[640px] border-collapse">
+            <table className="w-full min-w-[640px] border-collapse" style={{ tableLayout: 'fixed' }}>
               <thead>
                 <tr style={{ background: '#060D1A', borderBottom: '2px solid rgba(201,168,76,0.3)' }}>
                   <th
                     className="sticky text-left py-3 px-4"
-                    style={{ top: 0, background: '#060D1A', zIndex: 30 }}
+                    style={{ top: 0, background: '#060D1A', zIndex: 30, width: '35%' }}
                   />
                   <th
                     className="sticky font-mono text-[13px] text-center py-3 px-3"
-                    style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#637899' }}
+                    style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#637899', width: '21%' }}
                   >
                     CORE
                   </th>
@@ -552,6 +568,7 @@ export default function Pricing() {
                       background: '#060D1A',
                       zIndex: 30,
                       color: '#C9A84C',
+                      width: '22%',
                       borderLeft: '1px solid rgba(201,168,76,0.15)',
                       borderRight: '1px solid rgba(201,168,76,0.15)',
                     }}
@@ -563,7 +580,7 @@ export default function Pricing() {
                   </th>
                   <th
                     className="sticky font-mono text-[13px] text-center py-3 px-3"
-                    style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#E8EDF5' }}
+                    style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#E8EDF5', width: '22%' }}
                   >
                     APEX
                   </th>
@@ -580,6 +597,7 @@ export default function Pricing() {
                           background: 'rgba(201,168,76,0.05)',
                           borderTop: '1px solid rgba(201,168,76,0.15)',
                           borderBottom: '1px solid rgba(201,168,76,0.1)',
+                          borderLeft: '3px solid #C9A84C',
                           color: '#C9A84C',
                         }}
                       >
@@ -587,28 +605,7 @@ export default function Pricing() {
                       </td>
                     </tr>
                     {group.rows.map(([label, core, pro, apex], i) => (
-                      <tr
-                        key={label}
-                        className="transition-colors duration-150 hover:bg-[rgba(201,168,76,0.04)]"
-                        style={{
-                          background: i % 2 === 0 ? '#0B1628' : 'rgba(15,30,54,0.5)',
-                          borderBottom: '1px solid rgba(30,70,140,0.15)',
-                        }}
-                      >
-                        <td className="font-sans text-[13px] py-[10px] px-4" style={{ color: '#637899' }}>{label}</td>
-                        <td className="text-center py-[10px] px-3"><ComparisonCell value={core} /></td>
-                        <td
-                          className="text-center py-[10px] px-3"
-                          style={{
-                            background: 'rgba(201,168,76,0.02)',
-                            borderLeft: '1px solid rgba(201,168,76,0.15)',
-                            borderRight: '1px solid rgba(201,168,76,0.15)',
-                          }}
-                        >
-                          <ComparisonCell value={pro} />
-                        </td>
-                        <td className="text-center py-[10px] px-3"><ComparisonCell value={apex} /></td>
-                      </tr>
+                      <ComparisonRow key={label} label={label} core={core} pro={pro} apex={apex} i={i} />
                     ))}
                   </Fragment>
                 ))}
@@ -644,7 +641,7 @@ export default function Pricing() {
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             For adviser practices, firms, and institutions
           </h2>
-          <p className="font-sans text-[18px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
+          <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
             Enterprise packages with multiple seats, dedicated support, and commercial-grade features. Contact us to discuss.
           </p>
 

@@ -96,7 +96,7 @@ export default function Research() {
         >
           The weekly brief serious Australian investors read first.
         </motion.h1>
-        <p className="font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
+        <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
           Every Monday at 7:00am AEST. MaddenAI-powered market intelligence. Free to subscribe.
         </p>
       </section>

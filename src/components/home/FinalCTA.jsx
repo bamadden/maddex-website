@@ -3,7 +3,7 @@ import GoldButton from '../shared/GoldButton'
 
 export default function FinalCTA() {
   return (
-    <section className="relative min-h-[60vh] bg-bg-primary overflow-hidden flex items-center">
+    <section className="relative min-h-[70vh] bg-bg-primary overflow-hidden flex items-center">
       <div
         className="absolute rounded-full pointer-events-none"
         style={{
@@ -16,14 +16,14 @@ export default function FinalCTA() {
         }}
       />
 
-      <div className="relative z-10 max-w-[900px] mx-auto px-6 md:px-10 text-center py-20 md:py-[100px]">
+      <div className="relative z-10 max-w-[900px] mx-auto px-6 md:px-10 text-center py-20 md:py-[140px]">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-mono text-[48px] md:text-[72px] lg:text-[96px] font-bold tracking-[0.08em] text-gold"
-          style={{ textShadow: '0 0 60px rgba(201,168,76,0.4), 0 0 120px rgba(201,168,76,0.2)' }}
+          className="font-mono text-[56px] md:text-[88px] lg:text-[120px] font-bold tracking-[0.08em] text-gold"
+          style={{ textShadow: '0 0 80px rgba(201,168,76,0.5), 0 0 160px rgba(201,168,76,0.25)' }}
         >
           MADDEX
         </motion.div>
@@ -33,7 +33,7 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="font-sans text-[38px] md:text-[58px] lg:text-[72px] font-bold leading-tight tracking-tight text-text-primary mt-6"
+          className="font-sans text-[36px] md:text-[52px] lg:text-[68px] font-bold leading-tight tracking-tight text-text-primary mt-8"
         >
           Start your 7-day free trial today.
         </motion.h2>
@@ -43,7 +43,7 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-sans text-[18px] text-text-muted mt-5 leading-[1.75]"
+          className="font-sans text-[17px] text-text-muted mt-5 leading-[1.75]"
         >
           No credit card. Core level access for 7 days. First month 50% off when you subscribe.
         </motion.p>

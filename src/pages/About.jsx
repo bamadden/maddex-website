@@ -54,7 +54,7 @@ export default function About() {
         >
           Built by an investor, for investors.
         </motion.h1>
-        <p className="font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
+        <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
           Maddex exists because the gap between "free broker app" and "A$42,000-a-year terminal" was never supposed to be this wide.
         </p>
       </section>
@@ -76,8 +76,12 @@ export default function About() {
                   animation: 'border-spin 4s linear infinite',
                 }}
               />
-              <div className="absolute inset-[10px] rounded-full bg-bg-primary border border-gold/10 flex items-center justify-center">
-                <span className="font-mono text-[64px] font-bold text-gold">BM</span>
+              <div className="absolute inset-[10px] rounded-full bg-bg-primary border border-gold/10 flex items-center justify-center overflow-hidden">
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%)' }}
+                />
+                <span className="relative font-mono text-[64px] font-bold text-gold">BM</span>
               </div>
             </div>
             <div className="font-mono text-[11px] tracking-[0.15em] text-gold mt-5">FOUNDER &amp; CEO</div>
@@ -131,12 +135,14 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.1, duration: 0.4 }}
-                whileHover={{ y: -2, borderLeftColor: '#E8C878' }}
+                whileHover={{ y: -3, borderLeftColor: '#E8C878', transition: { duration: 0.2 } }}
                 className="min-h-[110px] flex flex-col justify-center transition-colors"
                 style={{ background: '#0B1628', borderLeft: '2px solid #C9A84C', padding: '16px 20px' }}
               >
-                <div className="font-mono text-[11px]" style={{ color: '#C9A84C' }}>{title}</div>
-                <div className="font-sans text-[14px] font-bold mt-1.5" style={{ color: '#E8EDF5' }}>{institution}</div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.1em]" style={{ color: '#C9A84C' }}>
+                  <span className="text-gold text-[8px] mr-1.5">◆</span>{title}
+                </div>
+                <div className="font-sans text-[16px] font-bold mt-1.5" style={{ color: '#E8EDF5' }}>{institution}</div>
                 {detail && <div className="font-sans text-[13px] text-text-muted mt-1">{detail}</div>}
               </motion.div>
             ))}
@@ -164,14 +170,21 @@ export default function About() {
             background: 'radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%)',
           }}
         />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'rgba(201,168,76,0.02)' }}
+        />
         <div className="relative z-10">
           <SectionLabel center>MISSION</SectionLabel>
           <div className="w-20 h-px bg-gold/50 mx-auto mb-6" />
           <h2
-            className="font-sans text-[40px] md:text-[64px] font-bold text-text-primary max-w-3xl mx-auto leading-tight"
-            style={{ textShadow: '0 0 60px rgba(201,168,76,0.25)' }}
+            className="font-sans text-[40px] md:text-[64px] font-bold text-text-primary max-w-3xl mx-auto"
+            style={{ textShadow: '0 0 60px rgba(201,168,76,0.25)', lineHeight: 1.0 }}
           >
-            <span className="inline-block w-3 h-3 rounded-full bg-gold pulse-dot-slow mr-3 align-middle" />
+            <span className="relative inline-block w-2 h-2 mr-3 align-middle">
+              <span className="pulse-ring absolute inset-0" />
+              <span className="absolute inset-0 rounded-full bg-gold" />
+            </span>
             Australia first. The world next.
           </h2>
           <p className="font-sans text-[20px] text-text-muted max-w-[700px] mx-auto mt-6 leading-[1.7]">
@@ -305,7 +318,7 @@ export default function About() {
         <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Get in touch with Ben directly.
         </h2>
-        <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">
+        <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75]">
           Questions, feedback, or a partnership idea — every message reaches the founder, not a support queue.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-[600px] mx-auto mt-8 text-left">

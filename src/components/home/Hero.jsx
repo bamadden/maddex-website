@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import ParticleCanvas from '../shared/ParticleCanvas'
 import TerminalCard from '../shared/TerminalCard'
-import AnimatedCounter from '../shared/AnimatedCounter'
 import GoldButton from '../shared/GoldButton'
 import TypewriterText from '../shared/TypewriterText'
 
@@ -122,12 +121,12 @@ export default function Hero() {
             have been waiting for.
           </h1>
 
-          <p className="hero-sub font-sans text-[18px] text-text-muted leading-[1.75] max-w-[460px] mt-6">
+          <p className="hero-sub font-sans text-[17px] text-text-muted leading-[1.75] max-w-[460px] mt-6">
             Maddex delivers institutional-grade financial intelligence to Australian investors at a fraction of Bloomberg's cost. Real-time data. MaddenAI analysis. Global intelligence.
           </p>
 
           <div className="hero-cta flex items-center gap-4 mt-9 flex-wrap">
-            <GoldButton to="/pricing" className="!px-8 !py-4">START FREE TRIAL</GoldButton>
+            <GoldButton to="/pricing">START FREE TRIAL</GoldButton>
             <GoldButton to="/product" variant="ghost" className="!border-0 !bg-transparent !px-0 text-gold opacity-70 hover:opacity-100">
               SEE THE TERMINAL →
             </GoldButton>
@@ -137,17 +136,22 @@ export default function Hero() {
             7-DAY FREE TRIAL · NO CREDIT CARD REQUIRED · CORE LEVEL ACCESS
           </div>
 
-          <div className="w-20 h-px bg-[rgba(201,168,76,0.15)] mt-4" />
+          <div className="w-20 h-px bg-[rgba(201,168,76,0.15)] mt-3" />
 
-          <div className="hero-stats flex items-center mt-4 divide-x divide-[rgba(30,70,140,0.3)]">
-            <div className="pr-8">
-              <AnimatedCounter from={15} to={19} prefix="A$" suffix="/mo" label="Starting price" duration={600} />
+          <div className="hero-stats flex items-center mt-3 divide-x divide-[rgba(30,70,140,0.3)]">
+            <div className="pr-8 flex flex-col">
+              <span className="font-mono text-[42px] font-bold leading-none">
+                <span className="text-gold">A$19</span><span className="text-text-muted">/mo</span>
+              </span>
+              <span className="font-sans text-[12px] text-text-muted mt-2">Starting price</span>
             </div>
-            <div className="px-8">
-              <AnimatedCounter from={5} to={7} label="Intelligence modules" duration={400} />
+            <div className="px-8 flex flex-col">
+              <span className="font-mono text-[42px] font-bold text-gold leading-none">7</span>
+              <span className="font-sans text-[12px] text-text-muted mt-2">Intelligence modules</span>
             </div>
-            <div className="pl-8">
-              <AnimatedCounter from={180} to={200} suffix="+" label="Countries covered" duration={800} />
+            <div className="pl-8 flex flex-col">
+              <span className="font-mono text-[42px] font-bold text-gold leading-none">200+</span>
+              <span className="font-sans text-[12px] text-text-muted mt-2">Countries covered</span>
             </div>
           </div>
         </div>

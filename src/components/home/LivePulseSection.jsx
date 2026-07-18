@@ -98,7 +98,7 @@ export default function LivePulseSection() {
             <span className="pulse-ring absolute inset-0" />
             <span className="absolute inset-0 rounded-full bg-gold" />
           </span>
-          <p className="font-sans text-[18px] text-text-muted leading-[1.75]">
+          <p className="font-sans text-[17px] text-text-muted leading-[1.75]">
             Data updates every 60 seconds. Powered by MaddenAI.
           </p>
         </div>

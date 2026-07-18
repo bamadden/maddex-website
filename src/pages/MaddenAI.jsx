@@ -53,12 +53,28 @@ function LiveAESTClock() {
   )
 }
 
+function FactorTableHeader() {
+  return (
+    <div
+      className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.05em] text-gold px-4 py-2 rounded-t"
+      style={{ background: 'rgba(201,168,76,0.06)' }}
+    >
+      <span>Factor</span>
+      <span>Weight</span>
+    </div>
+  )
+}
+
 function FactorBar({ label, weight }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
   const fillColor = weight >= 15 ? '#C9A84C' : 'rgba(201,168,76,0.4)'
   return (
-    <div ref={ref} className="flex items-center justify-end gap-3 py-[10px] px-4">
+    <div
+      ref={ref}
+      className="flex items-center justify-end gap-3 py-[10px] px-4 transition-colors hover:bg-[rgba(201,168,76,0.03)]"
+      style={{ borderBottom: '1px solid rgba(30,70,140,0.2)' }}
+    >
       <span className="font-mono text-[11px] text-text-muted w-40 shrink-0 text-left mr-auto">{label}</span>
       <div className="w-[80px] max-w-[80px] h-[6px] rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden shrink-0">
         <motion.div
@@ -165,7 +181,7 @@ export default function MaddenAI() {
         >
           The intelligence layer behind every module.
         </motion.h1>
-        <p className="font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
+        <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
           MaddenAI isn't a chatbot bolted onto a data feed. It's a structured scoring engine that reads markets, sentiment, and macro simultaneously — then hands you the synthesis.
         </p>
 
@@ -221,7 +237,9 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5 }}
-              className="bg-bg-primary border border-gold/20 rounded p-10 min-h-[120px]"
+              whileHover={{ boxShadow: '0 0 20px rgba(201,168,76,0.1)' }}
+              className="rounded p-8 min-h-[180px] transition-shadow"
+              style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.25)' }}
             >
               <span className="font-mono text-[9px] tracking-[0.25em] text-gold">QUANTITATIVE LAYER</span>
               <h3 className="font-sans text-[24px] font-bold text-text-primary mt-3">Data Ingestion</h3>
@@ -230,14 +248,15 @@ export default function MaddenAI() {
               </p>
             </motion.div>
 
-            <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center z-10">
+            <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center z-10">
               <svg width="80" height="28" viewBox="0 0 80 28" overflow="visible">
                 <line x1="2" y1="14" x2="64" y2="14" stroke="#C9A84C" strokeWidth="2" />
                 <polygon points="64,7 78,14 64,21" fill="#C9A84C" />
-                <circle r="5" fill="#C9A84C">
+                <circle r="4" fill="#C9A84C" style={{ filter: 'drop-shadow(0 0 8px #C9A84C)' }}>
                   <animateMotion dur="1.4s" repeatCount="indefinite" path="M2,14 L64,14" />
                 </circle>
               </svg>
+              <span className="font-mono text-[9px] text-gold mt-2 whitespace-nowrap">REAL-TIME DATA FLOW</span>
             </div>
 
             <motion.div
@@ -245,7 +264,9 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="bg-bg-primary border border-gold/20 rounded p-10 min-h-[120px]"
+              whileHover={{ boxShadow: '0 0 20px rgba(201,168,76,0.1)' }}
+              className="rounded p-8 min-h-[180px] transition-shadow"
+              style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.25)' }}
             >
               <span className="font-mono text-[9px] tracking-[0.25em] text-gold">AI LAYER</span>
               <h3 className="font-sans text-[24px] font-bold text-text-primary mt-3">Weighted Synthesis</h3>
@@ -275,7 +296,8 @@ export default function MaddenAI() {
               <h3 className="font-sans text-[17px] font-bold text-text-primary">Market Sentiment Score</h3>
               <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">8-factor weighted composite. Updated every 60 seconds.</p>
               <div className="flex justify-center my-6"><ScoreDial value={72} label="/100" /></div>
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col rounded overflow-hidden">
+                <FactorTableHeader />
                 {SENTIMENT_FACTORS.map(([label, weight]) => (
                   <FactorBar key={label} label={label} weight={weight} />
                 ))}
@@ -298,7 +320,8 @@ export default function MaddenAI() {
               <h3 className="font-sans text-[17px] font-bold text-text-primary">Crypto Momentum Index</h3>
               <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">5-factor composite across price, volume, and positioning.</p>
               <div className="flex justify-center my-6"><ScoreDial value={68} label="/100" /></div>
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col rounded overflow-hidden">
+                <FactorTableHeader />
                 {MOMENTUM_FACTORS.map(([label, weight]) => (
                   <FactorBar key={label} label={label} weight={weight} />
                 ))}
@@ -335,7 +358,8 @@ export default function MaddenAI() {
                   )
                 ))}
               </div>
-              <div className="flex flex-col gap-2.5 mt-5 pt-5 border-t border-[rgba(30,70,140,0.3)]">
+              <div className="flex flex-col rounded overflow-hidden mt-5 pt-5 border-t border-[rgba(30,70,140,0.3)]">
+                <FactorTableHeader />
                 {SECTOR_FACTORS.map(([label, weight]) => (
                   <FactorBar key={label} label={label} weight={weight} />
                 ))}
@@ -358,7 +382,7 @@ export default function MaddenAI() {
             <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
               Type any ticker. Get a full structured read in seconds.
             </h2>
-            <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
+            <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
               Stock, crypto, FX pair, or index — MaddenAI returns the same five-part structure every time, so you always know where to look.
             </p>
             <div className="flex flex-col gap-3 mt-7">
@@ -395,7 +419,7 @@ export default function MaddenAI() {
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Institutional-quality PDF research, generated on demand.
         </h2>
-        <p className="font-sans text-[18px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
+        <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
           Any ASX or US ticker. From A$4.99 a note — or unlimited on the Apex tier.
         </p>
 
@@ -452,7 +476,7 @@ export default function MaddenAI() {
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             MaddenAI speaks your language — whatever your experience level.
           </h2>
-          <p className="font-sans text-[18px] text-text-muted max-w-2xl mx-auto mt-4 leading-[1.75]">
+          <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-4 leading-[1.75]">
             The same underlying analysis, adapted in tone and depth to how you actually think about markets.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-14 text-left">

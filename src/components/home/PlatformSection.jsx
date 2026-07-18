@@ -492,7 +492,7 @@ export default function PlatformSection() {
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
           Seven modules. One platform. Everything you need to know.
         </h2>
-        <p className="font-sans text-[18px] text-text-muted mt-4 leading-[1.75]">Click any module to explore.</p>
+        <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75]">Click any module to explore.</p>
 
         <div className="flex flex-wrap justify-center gap-2 mt-10">
           {TABS.map((tab) => (
@@ -503,7 +503,7 @@ export default function PlatformSection() {
               className={`relative font-mono text-[11px] tracking-[0.05em] px-5 py-2 rounded-full transition-colors duration-150 opacity-100 ${
                 activeTab === tab
                   ? 'text-bg-primary font-bold'
-                  : 'border border-[rgba(201,168,76,0.35)] text-gold bg-[rgba(201,168,76,0.08)] hover:bg-[rgba(201,168,76,0.15)] hover:border-[rgba(201,168,76,0.5)]'
+                  : 'border border-[rgba(201,168,76,0.4)] text-gold bg-[rgba(201,168,76,0.1)] opacity-100 hover:bg-[rgba(201,168,76,0.18)] hover:border-[rgba(201,168,76,0.6)]'
               }`}
             >
               {activeTab === tab && (
@@ -519,7 +519,7 @@ export default function PlatformSection() {
           ))}
         </div>
 
-        <div className="relative bg-bg-surface border border-gold/20 rounded mt-10 min-h-[500px] text-left overflow-hidden flex flex-col">
+        <div className="relative max-w-[900px] mx-auto bg-bg-surface border border-gold/20 rounded mt-10 min-h-[480px] text-left overflow-hidden flex flex-col">
           <span className="absolute -top-3 right-4 z-30 flex items-center gap-1.5 font-mono text-[9px] tracking-[0.1em] text-gold bg-bg-surface border border-gold/30 px-2.5 py-1 rounded-full pointer-events-none">
             <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
             LIVE
