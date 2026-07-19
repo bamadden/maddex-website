@@ -7,8 +7,9 @@ import { supabase, supabaseConfigured } from '../../lib/supabase'
 // flow (src/components/auth/AuthModal.jsx + OnboardingFlow.jsx over there),
 // which also bootstraps the profiles row correctly. This modal just lets an
 // existing user authenticate; once supabase.auth fires its state-change
-// event, useProfile's listener picks up the session automatically and
-// Navigation swaps the LOG IN button for ProfileNavItem.
+// event, useProfile's listener picks up the session automatically and the
+// nav's PROFILE dropdown switches from LOG IN/START FREE TRIAL to the
+// signed-in menu (name, email, Settings, Sign Out).
 export default function AuthModal({ onClose }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

@@ -23,7 +23,7 @@ function Toggle({ checked, onChange }) {
       className={`relative w-11 h-6 rounded-full transition-colors shrink-0 ${checked ? 'bg-gain' : 'bg-[rgba(30,70,140,0.4)]'}`}
     >
       <span
-        className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${checked ? 'translate-x-5' : 'translate-x-0.5'}`}
+        className={`absolute left-0 top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${checked ? 'translate-x-5' : 'translate-x-0.5'}`}
       />
     </button>
   )
