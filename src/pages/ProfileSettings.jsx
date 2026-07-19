@@ -92,11 +92,20 @@ export default function ProfileSettings() {
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="font-mono text-[10px] text-text-muted tracking-wider block mb-2">FULL NAME</label>
+                    <label className="font-mono text-[10px] text-text-muted tracking-wider block mb-2">FIRST NAME</label>
                     <input
                       type="text"
-                      value={current.full_name ?? ''}
-                      onChange={(e) => setForm((f) => ({ ...f, full_name: e.target.value }))}
+                      value={current.first_name ?? ''}
+                      onChange={(e) => setForm((f) => ({ ...f, first_name: e.target.value }))}
+                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="font-mono text-[10px] text-text-muted tracking-wider block mb-2">LAST NAME</label>
+                    <input
+                      type="text"
+                      value={current.last_name ?? ''}
+                      onChange={(e) => setForm((f) => ({ ...f, last_name: e.target.value }))}
                       className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
                     />
                   </div>
@@ -108,6 +117,45 @@ export default function ProfileSettings() {
                       onChange={(e) => setForm((f) => ({ ...f, display_name: e.target.value }))}
                       placeholder="How you appear in the terminal"
                       className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint"
+                    />
+                  </div>
+                  <div>
+                    <label className="font-mono text-[10px] text-text-muted tracking-wider block mb-2">EMAIL</label>
+                    <input
+                      type="email"
+                      value={current.email ?? ''}
+                      disabled
+                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-muted opacity-60 focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="font-mono text-[10px] text-text-muted tracking-wider block mb-2">COUNTRY</label>
+                    <input
+                      type="text"
+                      value={current.country ?? ''}
+                      onChange={(e) => setForm((f) => ({ ...f, country: e.target.value }))}
+                      placeholder="Australia"
+                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint"
+                    />
+                  </div>
+                  <div>
+                    <label className="font-mono text-[10px] text-text-muted tracking-wider block mb-2">PHONE</label>
+                    <input
+                      type="tel"
+                      value={current.phone ?? ''}
+                      onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+                      placeholder="+61 4XX XXX XXX"
+                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label className="font-mono text-[10px] text-text-muted tracking-wider block mb-2">BIO</label>
+                    <textarea
+                      value={current.bio ?? ''}
+                      onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
+                      placeholder="A short bio — visible on your profile"
+                      rows={3}
+                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint resize-none"
                     />
                   </div>
                 </div>
