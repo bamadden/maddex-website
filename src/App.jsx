@@ -9,6 +9,7 @@ import MaddenAIPage from './pages/MaddenAI'
 import Pricing from './pages/Pricing'
 import About from './pages/About'
 import Research from './pages/Research'
+import ProfileSettings from './pages/ProfileSettings'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -42,6 +43,7 @@ function AnimatedRoutes() {
         <Route path="/pricing" element={<PageTransition><Pricing /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/research" element={<PageTransition><Research /></PageTransition>} />
+        <Route path="/settings" element={<PageTransition><ProfileSettings /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   )

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import GoldButton from '../shared/GoldButton'
+import ProfileNavItem from './ProfileNavItem'
+import { useProfileContext } from '../../context/ProfileContext'
 
 const NAV_ITEMS = [
   {
@@ -111,6 +113,7 @@ export default function Navigation() {
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
+  const { profile } = useProfileContext()
 
   useEffect(() => {
     function onScroll() {
@@ -185,12 +188,18 @@ export default function Navigation() {
         </div>
 
         <div className="hidden lg:flex items-center">
-          <button
-            type="button"
-            className="font-sans text-[13px] text-text-muted hover:text-text-primary transition-colors duration-150 mr-5"
-          >
-            LOG IN
-          </button>
+          {profile ? (
+            <div className="mr-5">
+              <ProfileNavItem />
+            </div>
+          ) : (
+            <button
+              type="button"
+              className="font-sans text-[13px] text-text-muted hover:text-text-primary transition-colors duration-150 mr-5"
+            >
+              LOG IN
+            </button>
+          )}
           <GoldButton to="/pricing">START FREE TRIAL</GoldButton>
         </div>
 
