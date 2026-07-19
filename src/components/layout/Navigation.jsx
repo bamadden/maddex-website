@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import GoldButton from '../shared/GoldButton'
 import ProfileNavItem from './ProfileNavItem'
+import AuthModal from './AuthModal'
 import { useProfileContext } from '../../context/ProfileContext'
 
 const NAV_ITEMS = [
@@ -112,6 +113,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [authModalOpen, setAuthModalOpen] = useState(false)
   const location = useLocation()
   const { profile } = useProfileContext()
 
@@ -195,6 +197,7 @@ export default function Navigation() {
           ) : (
             <button
               type="button"
+              onClick={() => setAuthModalOpen(true)}
               className="font-sans text-[13px] text-text-muted hover:text-text-primary transition-colors duration-150 mr-5"
             >
               LOG IN
@@ -255,6 +258,8 @@ export default function Navigation() {
           </>
         )}
       </AnimatePresence>
+
+      {authModalOpen && <AuthModal onClose={() => setAuthModalOpen(false)} />}
     </nav>
   )
 }
