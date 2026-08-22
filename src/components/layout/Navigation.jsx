@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import GoldButton from '../shared/GoldButton'
@@ -6,108 +7,12 @@ import AuthModal from './AuthModal'
 import { useProfileContext } from '../../context/ProfileContext'
 import { supabase } from '../../lib/supabase'
 
-const NAV_ITEMS = [
-  {
-    label: 'PRODUCT',
-    to: '/product',
-    columns: 2,
-    items: [
-      { icon: '◆', title: 'Markets Module', desc: 'Global indices, sectors, top movers', to: '/product' },
-      { icon: '◆', title: 'Crypto Module', desc: 'Top 20 AUD, momentum index, F&G', to: '/product' },
-      { icon: '◆', title: 'Rates Module', desc: 'FX, yield curves, central banks', to: '/product' },
-      { icon: '◆', title: 'Macro Module', desc: 'RBA dashboard, AU indicators', to: '/product' },
-      { icon: '◆', title: 'News Module', desc: '28 sources, AI analysis, breaking alerts', to: '/product' },
-      { icon: '◆', title: 'Watchlist', desc: 'Live tracking, synced across devices', to: '/product' },
-      { icon: '◆', title: 'Global Intelligence', desc: '3D globe, geopolitical risk', to: '/product' },
-      { icon: '◆', title: 'Command Bar', desc: 'Bloomberg-style terminal interface', to: '/product' },
-    ],
-  },
-  {
-    label: 'MADDENAI',
-    to: '/maddenai',
-    columns: 1,
-    items: [
-      { icon: '◆', title: 'How It Works', desc: 'Two-layer intelligence system', to: '/maddenai' },
-      { icon: '◆', title: 'Market Sentiment Score', desc: '8-factor weighted composite', to: '/maddenai' },
-      { icon: '◆', title: 'Crypto Momentum Index', desc: '5-factor composite', to: '/maddenai' },
-      { icon: '◆', title: 'Sector Strength Radar', desc: '11 GICS sectors simultaneously', to: '/maddenai' },
-      { icon: '◆', title: 'Asset Analysis', desc: 'Any ticker, structured output instantly', to: '/maddenai' },
-      { icon: '◆', title: 'Research Notes', desc: 'Coming soon — institutional PDFs from A$9.99', to: '/maddenai' },
-    ],
-  },
-  {
-    label: 'PRICING',
-    to: '/pricing',
-    columns: 1,
-    items: [
-      { icon: '◆', title: 'Terminal Plans', desc: 'Core, Prime, and Apex', to: '/pricing' },
-      { icon: '◆', title: 'Research Notes', desc: 'Coming soon — from A$9.99 per note', to: '/pricing#research-notes' },
-      { icon: '◆', title: 'Newsletter', desc: 'Coming soon — free and paid tiers', to: '/pricing#newsletter' },
-      { icon: '◆', title: 'Bundles', desc: 'Terminal + notes + newsletter', to: '/pricing#bundles' },
-    ],
-  },
-  {
-    label: 'NEWSLETTER',
-    to: '/research',
-    columns: 1,
-    items: [
-      { icon: '◆', title: 'MaddenAI Newsletter', desc: 'Coming soon — Phase 3', to: '/research' },
-      { icon: '◆', title: 'Sample Issue', desc: 'Preview what an issue looks like', to: '/research' },
-      { icon: '◆', title: 'Get Notified', desc: 'Join the launch waitlist', to: '/research' },
-    ],
-  },
-  {
-    label: 'COMPANY',
-    to: '/about',
-    columns: 1,
-    items: [
-      { icon: '◆', title: 'About', desc: 'The story behind Maddex', to: '/about' },
-      { icon: '◆', title: 'Roadmap', desc: 'What is coming and when', to: '/about' },
-      { icon: '◆', title: 'Contact', desc: 'Get in touch with Ben directly', to: '/about' },
-    ],
-  },
+const NAV_LINKS = [
+  { label: 'TERMINAL', to: '/product' },
+  { label: 'PRICING', to: '/pricing' },
+  { label: 'ABOUT', to: '/about' },
+  { label: 'MADDENAI', to: '/maddenai' },
 ]
-
-function Dropdown({ item, onNavigate }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: -4 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -4 }}
-      transition={{ duration: 0.15 }}
-      className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50"
-    >
-      <div
-        className="absolute left-1/2 -translate-x-1/2 top-[7px] w-0 h-0"
-        style={{
-          borderLeft: '6px solid transparent',
-          borderRight: '6px solid transparent',
-          borderBottom: '6px solid #C9A84C',
-        }}
-      />
-      <div
-        className={`bg-bg-surface border border-gold/20 border-t-2 border-t-gold rounded p-3 ${
-          item.columns === 2 ? 'grid grid-cols-2 gap-2 min-w-[640px]' : 'min-w-[320px]'
-        }`}
-      >
-        {item.items.map((sub) => (
-          <Link
-            key={sub.title}
-            to={sub.to}
-            onClick={onNavigate}
-            className="group flex gap-3 px-4 py-3 rounded-sm hover:bg-gold/[0.06] transition-colors duration-150 cursor-pointer"
-          >
-            <span className="text-gold text-[16px] leading-none mt-0.5 transition-transform duration-150 group-hover:translate-x-0.5">{sub.icon}</span>
-            <div>
-              <div className="font-sans text-[13px] font-medium text-text-primary">{sub.title}</div>
-              <div className="font-sans text-[11px] text-text-muted mt-0.5">{sub.desc}</div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </motion.div>
-  )
-}
 
 // profiles.first_name/last_name/country come from the same Supabase row the
 // terminal reads/writes via useAuthStore — display_name is used as a fallback
@@ -119,7 +24,7 @@ function profileDisplayName(profile) {
   return fromParts || profile.display_name || profile.email?.split('@')[0] || ''
 }
 
-function ProfileMenu({ onOpenAuth }) {
+function ProfileMenu() {
   const [open, setOpen] = useState(false)
   const { profile } = useProfileContext()
 
@@ -151,53 +56,32 @@ function ProfileMenu({ onOpenAuth }) {
             className="absolute top-full right-0 pt-3 z-50"
           >
             <div className="bg-bg-surface border border-gold/20 border-t-2 border-t-gold rounded p-1 min-w-[220px]">
-              {profile ? (
-                <>
-                  <div className="px-4 py-3 border-b border-[rgba(30,70,140,0.3)]">
-                    <div className="font-sans text-[13px] font-medium text-text-primary">
-                      {profileDisplayName(profile)}
-                    </div>
-                    <div className="font-sans text-[11px] text-text-muted mt-0.5 truncate">{profile.email}</div>
-                    {profile.country && (
-                      <div className="font-mono text-[9px] text-text-faint mt-1 tracking-wide">
-                        {profile.country}
-                        {profile.preferred_currency ? ` · ${profile.preferred_currency}` : ''}
-                      </div>
-                    )}
+              <div className="px-4 py-3 border-b border-[rgba(30,70,140,0.3)]">
+                <div className="font-sans text-[13px] font-medium text-text-primary">
+                  {profileDisplayName(profile)}
+                </div>
+                <div className="font-sans text-[11px] text-text-muted mt-0.5 truncate">{profile.email}</div>
+                {profile.country && (
+                  <div className="font-mono text-[9px] text-text-faint mt-1 tracking-wide">
+                    {profile.country}
+                    {profile.preferred_currency ? ` · ${profile.preferred_currency}` : ''}
                   </div>
-                  <Link
-                    to="/settings"
-                    onClick={() => setOpen(false)}
-                    className="block px-4 py-2.5 rounded-sm text-[13px] font-sans text-text-primary hover:bg-gold/[0.06] transition-colors"
-                  >
-                    Settings
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={handleSignOut}
-                    className="w-full text-left px-4 py-2.5 rounded-sm text-[13px] font-sans text-loss hover:bg-loss/10 transition-colors"
-                  >
-                    Sign Out
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => { onOpenAuth(); setOpen(false) }}
-                    className="w-full text-left px-4 py-2.5 rounded-sm text-[13px] font-sans text-text-primary hover:bg-gold/[0.06] transition-colors"
-                  >
-                    LOG IN
-                  </button>
-                  <Link
-                    to="/pricing"
-                    onClick={() => setOpen(false)}
-                    className="block px-4 py-2.5 rounded-sm text-[13px] font-sans text-gold hover:bg-gold/[0.06] transition-colors"
-                  >
-                    START FREE TRIAL
-                  </Link>
-                </>
-              )}
+                )}
+              </div>
+              <Link
+                to="/settings"
+                onClick={() => setOpen(false)}
+                className="block px-4 py-2.5 rounded-sm text-[13px] font-sans text-text-primary hover:bg-gold/[0.06] transition-colors"
+              >
+                Settings
+              </Link>
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="w-full text-left px-4 py-2.5 rounded-sm text-[13px] font-sans text-loss hover:bg-loss/10 transition-colors"
+              >
+                Sign Out
+              </button>
             </div>
           </motion.div>
         )}
@@ -206,12 +90,29 @@ function ProfileMenu({ onOpenAuth }) {
   )
 }
 
+function AuthButtons({ onOpenAuth }) {
+  return (
+    <div className="flex items-center gap-3">
+      <button
+        type="button"
+        onClick={onOpenAuth}
+        className="font-mono text-[11px] font-bold tracking-[0.05em] text-gold border border-[rgba(201,168,76,0.4)] rounded-sm px-4 py-2 hover:bg-[rgba(201,168,76,0.08)] hover:border-[rgba(201,168,76,0.7)] transition-all duration-150"
+      >
+        SIGN IN
+      </button>
+      <GoldButton to="/pricing" className="!px-4 !py-2 !text-[11px]">
+        START FREE TRIAL
+      </GoldButton>
+    </div>
+  )
+}
+
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
-  const [activeDropdown, setActiveDropdown] = useState(null)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const location = useLocation()
+  const { profile } = useProfileContext()
 
   useEffect(() => {
     function onScroll() {
@@ -224,8 +125,8 @@ export default function Navigation() {
   useEffect(() => {
     function onKeyDown(e) {
       if (e.key === 'Escape') {
-        setActiveDropdown(null)
         setMobileOpen(false)
+        setAuthModalOpen(false)
       }
     }
     window.addEventListener('keydown', onKeyDown)
@@ -251,42 +152,31 @@ export default function Navigation() {
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">
-          {NAV_ITEMS.map((item) => {
+          {NAV_LINKS.map((item) => {
             const isActive = location.pathname === item.to
             return (
-              <div
+              <Link
                 key={item.label}
-                className="relative py-2"
-                onMouseEnter={() => setActiveDropdown(item.label)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                to={item.to}
+                className={`relative py-2 font-sans text-[13px] transition-colors duration-150 ${
+                  isActive ? 'text-gold' : 'text-text-muted hover:text-gold'
+                }`}
               >
-                <Link
-                  to={item.to}
-                  className={`relative font-sans text-[13px] transition-colors duration-150 ${
-                    isActive ? 'text-gold' : 'text-text-muted hover:text-gold'
-                  }`}
-                >
-                  {item.label}
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-active-underline"
-                      className="absolute left-0 right-0 -bottom-2 h-px bg-gold"
-                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                    />
-                  )}
-                </Link>
-                <AnimatePresence>
-                  {activeDropdown === item.label && (
-                    <Dropdown item={item} onNavigate={() => setActiveDropdown(null)} />
-                  )}
-                </AnimatePresence>
-              </div>
+                {item.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active-underline"
+                    className="absolute left-0 right-0 -bottom-0.5 h-px bg-gold"
+                    transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                  />
+                )}
+              </Link>
             )
           })}
         </div>
 
         <div className="hidden lg:flex items-center">
-          <ProfileMenu onOpenAuth={() => setAuthModalOpen(true)} />
+          {profile ? <ProfileMenu /> : <AuthButtons onOpenAuth={() => setAuthModalOpen(true)} />}
         </div>
 
         <button
@@ -299,48 +189,70 @@ export default function Navigation() {
         </button>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/60 z-[110]"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'tween', duration: 0.25 }}
-              className="fixed top-0 right-0 bottom-0 w-[280px] bg-bg-surface border-l border-gold/20 z-[120] p-6 flex flex-col gap-6"
-            >
-              <button
-                type="button"
-                className="self-end text-gold text-xl"
+      {createPortal(
+        <AnimatePresence>
+          {mobileOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 bg-black/60 z-[110]"
                 onClick={() => setMobileOpen(false)}
-                aria-label="Close menu"
+              />
+              <motion.div
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'tween', duration: 0.25 }}
+                className="fixed top-0 right-0 bottom-0 w-[280px] bg-bg-surface border-l border-gold/20 z-[120] p-6 flex flex-col gap-6"
               >
-                ✕
-              </button>
-              {NAV_ITEMS.map((item) => (
-                <Link
-                  key={item.label}
-                  to={item.to}
+                <button
+                  type="button"
+                  className="self-end text-gold text-xl"
                   onClick={() => setMobileOpen(false)}
-                  className="font-sans text-[15px] text-text-primary"
+                  aria-label="Close menu"
                 >
-                  {item.label}
-                </Link>
-              ))}
-              <GoldButton to="/pricing" onClick={() => setMobileOpen(false)} className="w-full">
-                START FREE TRIAL
-              </GoldButton>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+                  ✕
+                </button>
+                {NAV_LINKS.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-sans text-[15px] text-text-primary"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+
+                {profile ? (
+                  <Link
+                    to="/settings"
+                    onClick={() => setMobileOpen(false)}
+                    className="font-sans text-[15px] text-text-primary"
+                  >
+                    Settings
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => { setAuthModalOpen(true); setMobileOpen(false) }}
+                    className="font-mono text-[12px] font-bold tracking-[0.05em] text-gold border border-[rgba(201,168,76,0.4)] rounded-sm px-4 py-2.5 text-left"
+                  >
+                    SIGN IN
+                  </button>
+                )}
+
+                <GoldButton to="/pricing" onClick={() => setMobileOpen(false)} className="w-full">
+                  START FREE TRIAL
+                </GoldButton>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
       {authModalOpen && <AuthModal onClose={() => setAuthModalOpen(false)} />}
     </nav>

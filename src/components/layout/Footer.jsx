@@ -38,30 +38,14 @@ export default function Footer() {
       </div>
 
       <div className="bg-bg-primary px-6 md:px-10 py-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10">
-          <div>
-            <div className="font-mono text-[15px] font-bold text-gold">MADDEX</div>
-            <p className="font-sans text-[12px] text-text-muted mt-3 leading-[1.7] max-w-[220px]">
-              Professional financial intelligence for Australian investors.
-            </p>
-            <div className="flex gap-4 mt-5">
-              {['LinkedIn', 'X', 'YouTube'].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group font-sans text-[11px] text-gold hover:brightness-125 transition-all inline-flex items-center gap-1"
-                >
-                  {s}
-                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-150">↗</span>
-                </a>
-              ))}
-            </div>
-            <p className="font-mono text-[10px] text-text-faint mt-6">© 2026 Madden Group Holdings Pty Ltd. All rights reserved.</p>
-            <p className="font-mono text-[9px] text-text-faint mt-1">ABN [XX XXX XXX XXX]</p>
-          </div>
+        <div className="max-w-[1200px] mx-auto">
+          <div className="font-mono text-[15px] font-bold text-gold">MADDEX</div>
+          <p className="font-sans text-[12px] text-text-muted mt-3 leading-[1.7] max-w-[420px]">
+            Professional financial intelligence for Australian investors.
+          </p>
+        </div>
 
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 mt-10">
           <div>
             <div className="font-mono text-[9px] tracking-[0.2em] text-gold mb-4">PRODUCT</div>
             <div className="flex flex-col gap-3">
@@ -82,15 +66,12 @@ export default function Footer() {
           <div>
             <div className="font-mono text-[9px] tracking-[0.2em] text-gold mb-4">COMPANY</div>
             <div className="flex flex-col gap-3">
-              {[
-                ['About', '/about'],
-                ['Roadmap', '/about'],
-                ['Contact', '/about'],
-              ].map(([label, to]) => (
-                <Link key={label} to={to} className="font-sans text-[12px] text-text-muted hover:text-gold transition-colors">
-                  {label}
-                </Link>
-              ))}
+              <Link to="/about" className="font-sans text-[12px] text-text-muted hover:text-gold transition-colors">
+                About
+              </Link>
+              <a href="mailto:ben@maddex.com.au" className="font-sans text-[12px] text-text-muted hover:text-gold transition-colors">
+                Contact
+              </a>
             </div>
           </div>
 
@@ -108,15 +89,32 @@ export default function Footer() {
               ))}
             </div>
           </div>
+
+          <div>
+            <div className="font-mono text-[9px] tracking-[0.2em] text-gold mb-4">CONNECT</div>
+            <div className="flex flex-col gap-3">
+              {['LinkedIn', 'Twitter/X'].map((s) => (
+                <a
+                  key={s}
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group font-sans text-[12px] text-text-muted hover:text-gold transition-all inline-flex items-center gap-1"
+                >
+                  {s}
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-150">↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="max-w-[1200px] mx-auto border-t border-[rgba(30,70,140,0.3)] mt-10 pt-5 flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
           <p className="font-mono text-[9px] text-text-faint max-w-[560px] leading-[1.7]">
-            MADDEX PROVIDES GENERAL FINANCIAL INFORMATION ONLY AND DOES NOT CONSTITUTE FINANCIAL PRODUCT ADVICE.
+            General information only. Not financial advice.
           </p>
           <div className="flex items-center gap-4">
-            <p className="font-mono text-[9px] text-text-faint">© 2026 MADDEN GROUP HOLDINGS PTY LTD</p>
-            <p className="font-mono text-[9px] text-text-faint">BUILD: JULY 2026</p>
+            <p className="font-mono text-[9px] text-text-faint">© 2026 Madden Group Holdings Pty Ltd · ABN [pending]</p>
           </div>
         </div>
 
