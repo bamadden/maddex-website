@@ -171,25 +171,25 @@ export default function MaddenAI() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-20 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[84px] pb-14 px-6 md:px-10 text-center">
         <SectionLabel center>MADDENAI</SectionLabel>
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.2 }}
           className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
         >
-          The intelligence layer behind every module.
+          Ask anything. Get a professional read back.
         </motion.h1>
         <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
-          MaddenAI isn't a chatbot bolted onto a data feed. It's a structured scoring engine that reads markets, sentiment, and macro simultaneously — then hands you the synthesis.
+          Type any ticker or question and MaddenAI reads markets, sentiment, and macro data simultaneously — then hands you a structured answer, not a wall of numbers.
         </p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-[1200px] mx-auto mt-12 bg-bg-surface border border-gold/25 rounded overflow-hidden text-left"
+          className="max-w-[1200px] mx-auto mt-9 bg-bg-surface border border-gold/25 rounded overflow-hidden text-left"
         >
           <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 flex-wrap">
             <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
@@ -225,20 +225,59 @@ export default function MaddenAI() {
         </motion.div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <SectionLabel>ASSET ANALYSIS</SectionLabel>
+            <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
+              Type any ticker. Get a full structured read in seconds.
+            </h2>
+            <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
+              Stock, crypto, FX pair, or index — MaddenAI returns the same five-part structure every time, so you always know where to look.
+            </p>
+            <div className="flex flex-col gap-3 mt-7">
+              {[
+                ['ASSESSMENT', 'A one-line read on current conditions'],
+                ['SENTIMENT', 'Overall, Momentum, Volume, Macro, Risk scores'],
+                ['LEVELS', 'Support and resistance, calculated live'],
+                ['OUTLOOK', 'A near-term directional view with a range'],
+                ['RISK', 'The specific scenario that would invalidate it'],
+              ].map(([title, desc]) => (
+                <div key={title} className="flex gap-3">
+                  <span className="font-mono text-[11px] text-gold w-24 shrink-0 pt-0.5">{title}</span>
+                  <span className="font-sans text-[13px] text-text-muted">{desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <TerminalCard>
+            <div className="bg-bg-surface border-b border-gold/12 px-4 py-2 font-mono text-[10px] text-gold">
+              MADDENAI · CBA.AX ANALYSIS
+            </div>
+            <div className="p-5 font-mono text-[12px] flex flex-col gap-3">
+              <div className="font-bold text-[15px] text-text-primary">CBA.AX &nbsp;A$164.20 &nbsp;<span className="text-gain">▲ +0.31%</span></div>
+              <div><span className="text-gold text-[10px]">ASSESSMENT: </span><span className="text-text-muted">Steady institutional accumulation into result season.</span></div>
+              <div><span className="text-gold text-[10px]">OUTLOOK: </span><span className="text-text-primary">Range-bound A$158–170 into FY results.</span></div>
+              <div><span className="text-gold text-[10px]">RISK: </span><span className="text-text-muted">Valuation multiple compression on rate repricing.</span></div>
+            </div>
+          </TerminalCard>
+        </div>
+      </section>
+
+      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>HOW IT WORKS</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             A two-layer intelligence system.
           </h2>
-          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mt-14 text-left">
+          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 mt-10 text-left">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.2 }}
               whileHover={{ boxShadow: '0 0 20px rgba(201,168,76,0.1)' }}
-              className="rounded p-8 min-h-[180px] transition-shadow"
+              className="rounded p-6 min-h-[180px] transition-shadow"
               style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.25)' }}
             >
               <span className="font-mono text-[9px] tracking-[0.25em] text-gold">QUANTITATIVE LAYER</span>
@@ -260,12 +299,12 @@ export default function MaddenAI() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: 0.15 }}
               whileHover={{ boxShadow: '0 0 20px rgba(201,168,76,0.1)' }}
-              className="rounded p-8 min-h-[180px] transition-shadow"
+              className="rounded p-6 min-h-[180px] transition-shadow"
               style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.25)' }}
             >
               <span className="font-mono text-[9px] tracking-[0.25em] text-gold">AI LAYER</span>
@@ -278,19 +317,19 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <SectionLabel center>SCORING MODELS</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary text-center max-w-2xl mx-auto leading-tight">
             Three composite models. Fully transparent.
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-14">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.2 }}
               className="bg-bg-surface border border-gold/20 rounded p-6"
             >
               <h3 className="font-sans text-[17px] font-bold text-text-primary">Market Sentiment Score</h3>
@@ -311,7 +350,7 @@ export default function MaddenAI() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -335,7 +374,7 @@ export default function MaddenAI() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -375,46 +414,7 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-          <div>
-            <SectionLabel>ASSET ANALYSIS</SectionLabel>
-            <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
-              Type any ticker. Get a full structured read in seconds.
-            </h2>
-            <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
-              Stock, crypto, FX pair, or index — MaddenAI returns the same five-part structure every time, so you always know where to look.
-            </p>
-            <div className="flex flex-col gap-3 mt-7">
-              {[
-                ['ASSESSMENT', 'A one-line read on current conditions'],
-                ['SENTIMENT', 'Overall, Momentum, Volume, Macro, Risk scores'],
-                ['LEVELS', 'Support and resistance, calculated live'],
-                ['OUTLOOK', 'A near-term directional view with a range'],
-                ['RISK', 'The specific scenario that would invalidate it'],
-              ].map(([title, desc]) => (
-                <div key={title} className="flex gap-3">
-                  <span className="font-mono text-[11px] text-gold w-24 shrink-0 pt-0.5">{title}</span>
-                  <span className="font-sans text-[13px] text-text-muted">{desc}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <TerminalCard>
-            <div className="bg-bg-surface border-b border-gold/12 px-4 py-2 font-mono text-[10px] text-gold">
-              MADDENAI · CBA.AX ANALYSIS
-            </div>
-            <div className="p-5 font-mono text-[12px] flex flex-col gap-3">
-              <div className="font-bold text-[15px] text-text-primary">CBA.AX &nbsp;A$164.20 &nbsp;<span className="text-gain">▲ +0.31%</span></div>
-              <div><span className="text-gold text-[10px]">ASSESSMENT: </span><span className="text-text-muted">Steady institutional accumulation into result season.</span></div>
-              <div><span className="text-gold text-[10px]">OUTLOOK: </span><span className="text-text-primary">Range-bound A$158–170 into FY results.</span></div>
-              <div><span className="text-gold text-[10px]">RISK: </span><span className="text-text-muted">Valuation multiple compression on rate repricing.</span></div>
-            </div>
-          </TerminalCard>
-        </div>
-      </section>
-
-      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 text-center">
         <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-5">
           PHASE 2 · COMING SOON
         </span>
@@ -427,10 +427,10 @@ export default function MaddenAI() {
         </p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.2 }}
           className="relative max-w-[520px] mx-auto mt-10 text-left"
         >
           <div className="relative bg-bg-surface border border-gold/25 rounded-sm shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden">
@@ -473,7 +473,7 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>PERSONALISATION</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -482,7 +482,7 @@ export default function MaddenAI() {
           <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-4 leading-[1.75]">
             The same underlying analysis, adapted in tone and depth to how you actually think about markets.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-14 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-10 text-left">
             {[
               ['BEGINNER', 'BHP is a mining company — when iron ore prices rise, BHP usually does well.'],
               ['INTERMEDIATE', 'BHP is trading above its 50-day moving average with positive momentum.'],

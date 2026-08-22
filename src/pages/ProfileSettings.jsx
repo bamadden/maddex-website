@@ -60,7 +60,7 @@ export default function ProfileSettings() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-20 px-6 md:px-10 min-h-screen">
+      <section className="bg-bg-primary pt-[84px] pb-14 px-6 md:px-10 min-h-screen">
         <div className="max-w-2xl mx-auto">
           {loading && (
             <div className="font-mono text-[13px] text-text-muted py-20 text-center">Loading profile...</div>

@@ -14,7 +14,7 @@ export default function FAQSection() {
   const [openFaq, setOpenFaq] = useState(0)
 
   return (
-    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
       <div className="max-w-[720px] mx-auto">
         <SectionLabel center>FAQ</SectionLabel>
         <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-8">

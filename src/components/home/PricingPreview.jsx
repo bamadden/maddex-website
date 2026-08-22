@@ -11,7 +11,7 @@ export default function PricingPreview() {
   const [showComparison, setShowComparison] = useState(false)
 
   return (
-    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>PRICING</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
@@ -42,10 +42,10 @@ export default function PricingPreview() {
           {TERMINAL_PLANS.map((plan, i) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ delay: i * 0.1, duration: 0.4 }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
               whileHover={{ y: -4, scale: plan.popular ? 1.03 : 1.01 }}
               className={`relative bg-bg-primary rounded p-6 border transition-colors duration-200 ${
                 plan.popular

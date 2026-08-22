@@ -19,7 +19,7 @@ function FlipCard({ front, back, index }) {
   const [flipped, setFlipped] = useState(false)
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
@@ -33,7 +33,7 @@ function FlipCard({ front, back, index }) {
         className="relative w-full h-full"
         style={{ transformStyle: 'preserve-3d' }}
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.2 }}
       >
         <div
           className="absolute inset-0 bg-bg-surface border border-gold/20 rounded p-5 flex flex-col items-center justify-center text-center gap-2"
@@ -72,9 +72,9 @@ export default function Research() {
         </span>
         <SectionLabel center>MADDENAI NEWSLETTER</SectionLabel>
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.2 }}
           className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto"
         >
           The market brief serious Australian investors will read first.
@@ -84,13 +84,13 @@ export default function Research() {
         </p>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>WHAT'S INSIDE</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
             Four sections. Every issue. Hover to preview.
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-9">
             {FLIP_CARDS.map((card, i) => (
               <FlipCard key={card.front} front={card.front} back={card.back} index={i} />
             ))}
@@ -98,7 +98,7 @@ export default function Research() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[760px] mx-auto">
           <SectionLabel center>SAMPLE ISSUE PREVIEW</SectionLabel>
           <div className="relative bg-bg-surface border border-gold/20 rounded overflow-hidden mt-6" style={{ minHeight: 560 }}>
@@ -150,7 +150,7 @@ export default function Research() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto text-center">
           <SectionLabel center>PLANNED PRICING</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">

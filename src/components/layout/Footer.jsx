@@ -37,15 +37,15 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="bg-bg-primary px-6 md:px-10 py-10">
+      <div className="bg-bg-primary px-6 md:px-10 py-8">
         <div className="max-w-[1200px] mx-auto">
           <div className="font-mono text-[15px] font-bold text-gold">MADDEX</div>
-          <p className="font-sans text-[12px] text-text-muted mt-3 leading-[1.7] max-w-[420px]">
+          <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.6] max-w-[420px]">
             Professional financial intelligence for Australian investors.
           </p>
         </div>
 
-        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 mt-10">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mt-7">
           <div>
             <div className="font-mono text-[9px] tracking-[0.2em] text-gold mb-4">PRODUCT</div>
             <div className="flex flex-col gap-3">
@@ -109,29 +109,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="max-w-[1200px] mx-auto border-t border-[rgba(30,70,140,0.3)] mt-10 pt-5 flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
-          <p className="font-mono text-[9px] text-text-faint max-w-[560px] leading-[1.7]">
-            General information only. Not financial advice.
+        <div className="max-w-[1200px] mx-auto border-t border-[rgba(30,70,140,0.3)] mt-8 pt-4 flex flex-col md:flex-row gap-2 justify-between items-start md:items-center">
+          <p className="font-mono text-[9px] text-text-faint max-w-[560px] leading-[1.6]">
+            General information only. Not financial advice — nothing here is a recommendation to buy or sell any financial product.
           </p>
-          <div className="flex items-center gap-4">
-            <p className="font-mono text-[9px] text-text-faint">© 2026 Madden Group Holdings Pty Ltd · ABN [pending]</p>
-          </div>
-        </div>
-
-        <div
-          className="text-center mx-auto"
-          style={{ maxWidth: 800, paddingTop: 24, borderTop: '1px solid rgba(30,70,140,0.2)', marginTop: 20 }}
-        >
-          <div className="font-mono text-[9px] text-gold mb-2" style={{ letterSpacing: '0.2em' }}>
-            IMPORTANT NOTICE
-          </div>
-          <p className="font-mono text-[9px]" style={{ color: '#3D5070' }}>
-            Maddex provides general financial information only. Nothing on this platform
-            constitutes financial product advice, a recommendation, or an offer to buy or
-            sell any financial product. Past performance is not indicative of future results.
-            You should consider seeking independent financial advice before making any
-            investment decisions. © 2026 Madden Group Holdings Pty Ltd. All rights reserved.
-          </p>
+          <p className="font-mono text-[9px] text-text-faint shrink-0">© 2026 Madden Group Holdings Pty Ltd · ABN [pending]</p>
         </div>
       </div>
     </footer>

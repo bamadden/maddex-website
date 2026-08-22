@@ -216,7 +216,7 @@ export default function FeaturesSection() {
   const ActiveVisual = VISUALS[activeTab]
 
   return (
-    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>WHAT'S INSIDE</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
@@ -248,7 +248,7 @@ export default function FeaturesSection() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-12 text-left items-center max-w-[1000px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-9 text-left items-center max-w-[1000px] mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={`list-${activeTab}`}
@@ -280,11 +280,11 @@ export default function FeaturesSection() {
           </AnimatePresence>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-20 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-14 text-left">
           {CARDS.map((card, i) => (
             <motion.div
               key={card.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: (i % 3) * 0.08, duration: 0.4 }}

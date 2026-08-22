@@ -22,8 +22,8 @@ export default function Disclaimer() {
         <p className="font-mono text-[11px] text-text-faint mt-4">Last updated: August 2026</p>
       </section>
 
-      <section className="bg-bg-surface py-16 px-6 md:px-10">
-        <div className="max-w-[760px] mx-auto flex flex-col gap-10">
+      <section className="bg-bg-surface py-14 px-6 md:px-10">
+        <div className="max-w-[760px] mx-auto flex flex-col gap-7">
           <div>
             <h2 className="font-sans text-[19px] font-bold text-gold">General information only</h2>
             <p className="font-sans text-[15px] text-text-muted mt-3 leading-[1.8]">

@@ -61,8 +61,8 @@ export default function Terms() {
         <p className="font-mono text-[11px] text-text-faint mt-4">Last updated: August 2026</p>
       </section>
 
-      <section className="bg-bg-surface py-16 px-6 md:px-10">
-        <div className="max-w-[760px] mx-auto flex flex-col gap-10">
+      <section className="bg-bg-surface py-14 px-6 md:px-10">
+        <div className="max-w-[760px] mx-auto flex flex-col gap-7">
           {SECTIONS.map((s) => (
             <div key={s.title}>
               <h2 className="font-sans text-[19px] font-bold text-gold">{s.title}</h2>

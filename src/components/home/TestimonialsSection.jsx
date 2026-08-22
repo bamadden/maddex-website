@@ -18,8 +18,24 @@ const TESTIMONIALS = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.2 }}
+          className="max-w-[720px] mx-auto text-center border-l-[3px] border-gold pl-6 text-left mb-10"
+        >
+          <p className="font-sans text-[22px] md:text-[28px] font-bold text-text-primary leading-[1.35]">
+            "The financial intelligence terminal Australian retail investors have always deserved."
+          </p>
+          <div className="mt-3">
+            <span className="font-sans text-[14px] font-semibold text-gold">Ben Madden</span>
+            <span className="font-mono text-[10px] text-text-muted ml-2 tracking-wide">FOUNDER, MADDEX</span>
+          </div>
+        </motion.div>
+
         <SectionLabel center>WHAT BETA USERS SAY</SectionLabel>
         <p className="font-mono text-[12px] text-text-muted text-center max-w-xl mx-auto">
           Powered by the same data feeds used by professional traders.
@@ -31,10 +47,10 @@ export default function TestimonialsSection() {
           {TESTIMONIALS.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ delay: i * 0.15, duration: 0.5 }}
+              transition={{ delay: i * 0.055, duration: 0.5 }}
               className="bg-bg-primary border-l-[3px] border-gold rounded-r p-6"
             >
               <div className="text-gold text-[14px]">★★★★★</div>

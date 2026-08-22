@@ -6,7 +6,7 @@ export default function NewsletterSection() {
   const [email, setEmail] = useState('')
 
   return (
-    <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         <div className="relative w-full bg-bg-surface border border-gold/20 rounded overflow-hidden shadow-[0_0_40px_rgba(201,168,76,0.05)] flex flex-col" style={{ minHeight: 420 }}>
           <div className="bg-gold px-5 py-5 flex items-center justify-between">

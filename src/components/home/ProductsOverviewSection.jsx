@@ -34,7 +34,7 @@ const PRODUCTS = [
 
 export default function ProductsOverviewSection() {
   return (
-    <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+    <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>THE MADDEX ECOSYSTEM</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
@@ -44,14 +44,14 @@ export default function ProductsOverviewSection() {
           Maddex launches with the Terminal. Research Notes and the Newsletter follow as standalone products in the months ahead.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14 text-left items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10 text-left items-stretch">
           {PRODUCTS.map((p, i) => (
             <motion.div
               key={p.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ delay: i * 0.1, duration: 0.4 }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
               className={`relative rounded p-7 flex flex-col min-h-[320px] ${
                 p.live
                   ? 'border border-gold/40 bg-bg-primary shadow-[0_0_30px_rgba(201,168,76,0.08)]'

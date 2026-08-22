@@ -297,12 +297,12 @@ export default function Product() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-20 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[84px] pb-14 px-6 md:px-10 text-center">
         <SectionLabel center>THE TERMINAL</SectionLabel>
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.2 }}
           className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
         >
           Seven modules. Zero compromises.
@@ -314,7 +314,7 @@ export default function Product() {
 
       <div className="bg-bg-surface">
         {MODULES.map((mod, i) => (
-          <section key={mod.key} className="relative py-16 md:py-[80px] px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
+          <section key={mod.key} className="relative py-12 md:py-14 px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
             <span
               className="absolute top-6 right-6 font-mono select-none pointer-events-none"
               style={{ fontSize: 9, color: '#3D5070' }}
@@ -322,7 +322,7 @@ export default function Product() {
               MODULE {String(i + 1).padStart(2, '0')}
             </span>
             <div
-              className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-stretch ${
+              className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch ${
                 i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
               }`}
             >
@@ -330,7 +330,7 @@ export default function Product() {
                 initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.2 }}
                 className="flex flex-col justify-center"
               >
                 <span className="font-mono text-[9px] tracking-[0.25em] text-gold">MODULE {String(i + 1).padStart(2, '0')}</span>
@@ -371,7 +371,7 @@ export default function Product() {
         ))}
       </div>
 
-      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 text-center">
         <SectionLabel center>COMMAND BAR</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Bloomberg-style command interface. Built for speed.
@@ -392,8 +392,8 @@ export default function Product() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div>
             <SectionLabel>MOBILE</SectionLabel>
             <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">

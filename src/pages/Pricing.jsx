@@ -22,10 +22,10 @@ const FAQS = [
 function PlanCard({ plan, i, annual }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ delay: i * 0.1, duration: 0.4 }}
+      transition={{ delay: i * 0.05, duration: 0.4 }}
       whileHover={{ y: -4, scale: plan.popular ? 1.02 : 1.01 }}
       className={`relative rounded flex flex-col ${plan.popular ? 'scale-[1.02]' : ''}`}
     >
@@ -40,7 +40,7 @@ function PlanCard({ plan, i, annual }) {
         </span>
       )}
       <div
-        className={`relative overflow-hidden rounded p-8 transition-colors duration-200 flex flex-col flex-1 ${
+        className={`relative overflow-hidden rounded p-6 transition-colors duration-200 flex flex-col flex-1 ${
           plan.popular ? '' : 'card-gradient-live border border-[rgba(201,168,76,0.2)] hover:border-gold/40'
         } ${plan.name === 'APEX' ? 'border border-[rgba(201,168,76,0.3)]' : ''}`}
         style={{ minHeight: 480, ...(plan.popular ? {
@@ -102,7 +102,7 @@ export default function Pricing() {
       <TickerTape />
       <Navigation />
 
-      <section className="relative bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center overflow-hidden">
+      <section className="relative bg-bg-primary pt-[84px] pb-10 px-6 md:px-10 text-center overflow-hidden">
         <div
           className="pricing-watermark absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono font-bold text-gold pointer-events-none select-none"
           style={{ fontSize: 220, lineHeight: 1, zIndex: 0 }}
@@ -113,15 +113,15 @@ export default function Pricing() {
         <div className="relative" style={{ zIndex: 1 }}>
           <div className="hero-eyebrow"><SectionLabel center>TERMINAL PRICING</SectionLabel></div>
           <h1 className="hero-headline font-sans font-bold leading-tight tracking-tight max-w-4xl mx-auto">
-            <span className="block text-[24px] md:text-[36px] text-text-muted font-bold">Bloomberg costs A$42,000 a year.</span>
-            <span className="block text-[36px] md:text-[56px] text-text-primary font-bold mt-2">Maddex starts at A$29 a month.</span>
+            <span className="block text-[22px] md:text-[32px] text-text-muted font-bold">Bloomberg costs A$42,000 a year.</span>
+            <span className="block text-[32px] md:text-[48px] text-text-primary font-bold mt-1">Maddex starts at A$29 a month.</span>
           </h1>
-          <p className="hero-sub font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
-            No lock-in contracts. Cancel anytime. The Maddex Terminal is live today — Research Notes and the Newsletter are coming soon.
+          <p className="hero-sub font-sans text-[15px] text-text-muted max-w-xl mx-auto mt-3 leading-[1.6]">
+            No lock-in. Cancel anytime. Live today — Research Notes and the Newsletter are coming soon.
           </p>
         </div>
 
-        <div className="relative inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-8">
+        <div className="relative inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-6">
           <button
             type="button"
             onClick={() => setAnnual(false)}
@@ -152,7 +152,7 @@ export default function Pricing() {
         </p>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto">
           <SectionLabel center>FULL COMPARISON</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight">
@@ -164,7 +164,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section id="research-notes" className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 scroll-mt-[84px]">
+      <section id="research-notes" className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
             PHASE 2 · COMING SOON
@@ -193,7 +193,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section id="newsletter" className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10 scroll-mt-[84px]">
+      <section id="newsletter" className="bg-bg-surface py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
             PHASE 3 · COMING SOON
@@ -227,7 +227,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section id="bundles" className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 scroll-mt-[84px]">
+      <section id="bundles" className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
             COMING SOON — REQUIRES PHASE 2 &amp; 3
@@ -239,7 +239,7 @@ export default function Pricing() {
           <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
             Once Research Notes and the Newsletter are live, bundle pricing will look like this.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-9 text-left">
             {BUNDLES.map((b) => (
               <div key={b.name} className="bg-bg-surface border border-[rgba(201,168,76,0.15)] rounded p-6 flex flex-col">
                 <div className="font-mono text-[11px] tracking-wide text-gold">{b.name}</div>
@@ -251,7 +251,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
+      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[720px] mx-auto">
           <SectionLabel center>FAQ</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-8">

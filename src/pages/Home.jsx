@@ -9,7 +9,6 @@ import LivePulseSection from '../components/home/LivePulseSection'
 import ProductsOverviewSection from '../components/home/ProductsOverviewSection'
 import PricingPreview from '../components/home/PricingPreview'
 import NewsletterSection from '../components/home/NewsletterSection'
-import QuoteSection from '../components/home/QuoteSection'
 import TestimonialsSection from '../components/home/TestimonialsSection'
 import FAQSection from '../components/home/FAQSection'
 import FinalCTA from '../components/home/FinalCTA'
@@ -30,7 +29,6 @@ export default function Home() {
       <ProductsOverviewSection />
       <PricingPreview />
       <NewsletterSection />
-      <QuoteSection />
       <TestimonialsSection />
       <FAQSection />
       <FinalCTA />

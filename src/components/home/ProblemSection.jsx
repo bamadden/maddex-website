@@ -45,15 +45,15 @@ const CARDS = [
 
 export default function ProblemSection() {
   return (
-    <section className="bg-bg-surface py-20 px-6 md:px-10">
+    <section className="bg-bg-surface py-14 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch">
         <div className="flex flex-col justify-center">
           <SectionLabel>THE INFORMATION GAP</SectionLabel>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.2 }}
             className="font-sans text-[34px] md:text-[48px] lg:text-[58px] font-bold leading-[1.05] tracking-tight text-text-primary"
           >
             Bloomberg: A$42,000/yr.
@@ -77,14 +77,14 @@ export default function ProblemSection() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 mt-12 lg:mt-0">
+        <div className="flex flex-col gap-5 mt-9 lg:mt-0">
           {CARDS.map((card, i) => (
             <motion.div key={card.label}>
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-80px' }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
+                transition={{ delay: i * 0.055, duration: 0.5 }}
                 className={`rounded p-7 min-h-[220px] flex flex-col justify-center ${
                   card.highlight
                     ? 'scale-[1.02] shadow-[0_0_30px_rgba(201,168,76,0.1)]'
