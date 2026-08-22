@@ -3,7 +3,11 @@ import GoldButton from '../shared/GoldButton'
 
 export default function FinalCTA() {
   return (
-    <section className="relative min-h-[70vh] bg-bg-primary overflow-hidden flex items-center">
+    <section className="relative min-h-[70vh] bg-bg-surface overflow-hidden flex items-center">
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)' }}
+      />
       <div
         className="absolute rounded-full pointer-events-none"
         style={{
@@ -35,7 +39,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="font-sans text-[36px] md:text-[52px] lg:text-[68px] font-bold leading-tight tracking-tight text-text-primary mt-8"
         >
-          Start your 7-day free trial today.
+          Ready to get your edge?
         </motion.h2>
 
         <motion.p
@@ -45,7 +49,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="font-sans text-[17px] text-text-muted mt-5 leading-[1.75]"
         >
-          No credit card. Core level access for 7 days. First month 50% off when you subscribe.
+          Join Maddex. Start your free trial today.
         </motion.p>
 
         <motion.div
@@ -56,7 +60,7 @@ export default function FinalCTA() {
           className="flex flex-wrap items-center justify-center gap-4 mt-9"
         >
           <GoldButton to="/pricing">START FREE TRIAL</GoldButton>
-          <GoldButton to="/about" variant="ghost">REQUEST A DEMO</GoldButton>
+          <GoldButton to="/pricing" variant="ghost">VIEW PRICING</GoldButton>
         </motion.div>
 
         <motion.div
