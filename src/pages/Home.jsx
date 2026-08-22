@@ -4,8 +4,7 @@ import Navigation from '../components/layout/Navigation'
 import Footer from '../components/layout/Footer'
 import Hero from '../components/home/Hero'
 import ProblemSection from '../components/home/ProblemSection'
-import PlatformSection from '../components/home/PlatformSection'
-import MaddenAISection from '../components/home/MaddenAISection'
+import FeaturesSection from '../components/home/FeaturesSection'
 import LivePulseSection from '../components/home/LivePulseSection'
 import ProductsOverviewSection from '../components/home/ProductsOverviewSection'
 import PricingPreview from '../components/home/PricingPreview'
@@ -25,8 +24,7 @@ export default function Home() {
       <Navigation />
       <Hero />
       <ProblemSection />
-      <PlatformSection />
-      <MaddenAISection />
+      <FeaturesSection />
       <LivePulseSection />
       <ProductsOverviewSection />
       <PricingPreview />
