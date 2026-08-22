@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
 import ScrollProgress from './components/shared/ScrollProgress'
@@ -46,10 +46,12 @@ function AnimatedRoutes() {
         <Route path="/pricing" element={<PageTransition><Pricing /></PageTransition>} />
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/research" element={<PageTransition><Research /></PageTransition>} />
+        <Route path="/newsletter" element={<Navigate to="/research" replace />} />
         <Route path="/settings" element={<PageTransition><ProfileSettings /></PageTransition>} />
         <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
         <Route path="/disclaimer" element={<PageTransition><Disclaimer /></PageTransition>} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
   )
