@@ -13,11 +13,11 @@ const VALUES = [
 ]
 
 const ROADMAP = [
-  ['Q3 2026', 'Commercial Launch', 'Maddex opens to the public — Core, Pro, and Apex tiers live.'],
-  ['Q4 2026', 'Mobile App', 'Native iOS and Android apps for Pro and Apex subscribers, with push alerts.'],
-  ['Q1 2027', '500 Subscribers', 'Growing the individual investor base across all three tiers.'],
-  ['Q2 2027', 'API Launch', 'Programmatic access to MaddenAI scores and market data for Apex subscribers.'],
-  ['Q3 2027', 'Adviser Tier', 'Multi-client dashboards and white-label reporting for financial advisers.'],
+  ['PHASE 1 · NOW', 'Terminal Launch', 'Maddex Terminal opens to the public — Core, Prime, and Apex tiers live today.'],
+  ['Q4 2026', 'Mobile App', 'Native iOS and Android apps for Prime and Apex subscribers, with push alerts.'],
+  ['PHASE 2 · 3–6mo', 'Research Notes', 'MaddenAI Research Notes launch à la carte, priced from A$9.99 per note.'],
+  ['PHASE 3 · 6–12mo', 'MaddenAI Newsletter', 'The standalone daily and weekly newsletter opens for subscriptions, plus Terminal bundles.'],
+  ['Q3 2027', 'API + Adviser Tier', 'Programmatic API access for Apex subscribers, and multi-client dashboards for advisers.'],
   ['2028', 'International Expansion', 'Extending MaddenAI intelligence beyond the ASX to global markets.'],
 ]
 
@@ -215,7 +215,7 @@ export default function About() {
             ))}
           </div>
           <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-[1.7]">
-            Enterprise packages (Adviser, Firm, Institutional) are planned for Q2-Q3 2027 as Phase 3 of the Maddex roadmap. Individual packages (Core, Pro, Apex) are available at launch in Q3 2026.
+            Enterprise packages (Adviser, Firm, Institutional) are a future consideration beyond the current three-phase roadmap. Individual Terminal packages (Core, Prime, Apex) are available now.
           </p>
         </div>
       </section>

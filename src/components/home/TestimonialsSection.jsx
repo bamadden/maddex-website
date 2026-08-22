@@ -21,6 +21,12 @@ export default function TestimonialsSection() {
     <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto">
         <SectionLabel center>WHAT BETA USERS SAY</SectionLabel>
+        <p className="font-mono text-[12px] text-text-muted text-center max-w-xl mx-auto">
+          Powered by the same data feeds used by professional traders.
+        </p>
+        <p className="font-mono text-[9px] text-text-faint text-center mt-2">
+          General information only. Not financial advice.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
           {TESTIMONIALS.map((t, i) => (
             <motion.div

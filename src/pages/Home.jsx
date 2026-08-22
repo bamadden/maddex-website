@@ -7,9 +7,11 @@ import ProblemSection from '../components/home/ProblemSection'
 import PlatformSection from '../components/home/PlatformSection'
 import MaddenAISection from '../components/home/MaddenAISection'
 import LivePulseSection from '../components/home/LivePulseSection'
+import ProductsOverviewSection from '../components/home/ProductsOverviewSection'
 import PricingPreview from '../components/home/PricingPreview'
 import NewsletterSection from '../components/home/NewsletterSection'
 import TestimonialsSection from '../components/home/TestimonialsSection'
+import FAQSection from '../components/home/FAQSection'
 import FinalCTA from '../components/home/FinalCTA'
 
 export default function Home() {
@@ -26,9 +28,11 @@ export default function Home() {
       <PlatformSection />
       <MaddenAISection />
       <LivePulseSection />
+      <ProductsOverviewSection />
       <PricingPreview />
       <NewsletterSection />
       <TestimonialsSection />
+      <FAQSection />
       <FinalCTA />
       <Footer />
     </>

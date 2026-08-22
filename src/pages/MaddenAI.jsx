@@ -415,12 +415,15 @@ export default function MaddenAI() {
       </section>
 
       <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10 text-center">
+        <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-5">
+          PHASE 2 · COMING SOON
+        </span>
         <SectionLabel center>RESEARCH NOTES</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
           Institutional-quality PDF research, generated on demand.
         </h2>
         <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
-          Any ASX or US ticker. From A$4.99 a note — or unlimited on the Apex tier.
+          Any ASX or US ticker. From A$9.99 a note — or 1 included every month on the Apex tier.
         </p>
 
         <motion.div
@@ -466,7 +469,7 @@ export default function MaddenAI() {
         </motion.div>
 
         <div className="mt-10">
-          <GoldButton to="/research">EXPLORE RESEARCH NOTES →</GoldButton>
+          <GoldButton to="/pricing#research-notes">SEE PLANNED PRICING →</GoldButton>
         </div>
       </section>
 

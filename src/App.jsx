@@ -10,6 +10,9 @@ import Pricing from './pages/Pricing'
 import About from './pages/About'
 import Research from './pages/Research'
 import ProfileSettings from './pages/ProfileSettings'
+import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
+import Disclaimer from './pages/Disclaimer'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -44,6 +47,9 @@ function AnimatedRoutes() {
         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
         <Route path="/research" element={<PageTransition><Research /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><ProfileSettings /></PageTransition>} />
+        <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
+        <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
+        <Route path="/disclaimer" element={<PageTransition><Disclaimer /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   )

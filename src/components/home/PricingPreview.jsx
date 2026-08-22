@@ -3,40 +3,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SectionLabel from '../shared/SectionLabel'
 import GoldButton from '../shared/GoldButton'
-
-const PLANS = [
-  {
-    name: 'CORE',
-    monthly: 19,
-    annual: 190,
-    popular: false,
-    features: ['All 7 intelligence modules', 'MaddenAI chat — 50 messages/day', 'Watchlist — 50 stocks', 'Full MaddenAI Sentiment, Crypto & Sector scores', 'Data export — full JSON'],
-  },
-  {
-    name: 'PRO',
-    monthly: 49,
-    annual: 490,
-    popular: true,
-    badge: 'MOST POPULAR',
-    features: ['Everything in Core, plus real-time prices', 'MaddenAI chat — 200 messages/day', 'AI analysis on every article & stock', 'Watchlist — 100 stocks, full fundamentals', '3 Research Notes/month included'],
-  },
-  {
-    name: 'APEX',
-    monthly: 149,
-    annual: 1490,
-    popular: false,
-    note: 'THIS PRICE IS CORRECT',
-    features: ['Everything in Pro, plus', 'MaddenAI chat — 500 messages/day', 'Unlimited price alerts & Research Notes', 'Personalised MaddenAI scoring', 'Priority support — 24hr guaranteed'],
-  },
-]
-
-const RESEARCH_ROWS = [
-  ['Single Note', 'A$4.99'],
-  ['5-Pack', 'A$19.99'],
-  ['10-Pack', 'A$34.99'],
-  ['Pro Tier', '3 / month included'],
-  ['Apex Tier', 'Unlimited'],
-]
+import { TERMINAL_PLANS } from '../../data/pricing'
 
 export default function PricingPreview() {
   const [annual, setAnnual] = useState(false)
@@ -46,7 +13,7 @@ export default function PricingPreview() {
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>PRICING</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
-          Bloomberg costs A$42,000 a year. Maddex starts at A$19 a month.
+          Bloomberg costs A$42,000 a year. Maddex starts at A$29 a month.
         </h2>
 
         <div className="relative inline-flex items-center gap-1 bg-bg-primary border border-gold/20 rounded-full p-1 mt-8">
@@ -65,12 +32,12 @@ export default function PricingPreview() {
           >
             {annual && <motion.span layoutId="home-toggle-pill" className="absolute inset-0 bg-gold rounded-full" style={{ zIndex: 0 }} transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
             <span className="relative z-10">ANNUAL</span>
-            <span className="relative z-10 bg-gold/20 text-gold text-[9px] px-1.5 py-0.5 rounded-full">SAVE 17%</span>
+            <span className="relative z-10 bg-gold/20 text-gold text-[9px] px-1.5 py-0.5 rounded-full">SAVE 20%</span>
           </button>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 text-left max-w-[1000px] mx-auto">
-          {PLANS.map((plan, i) => (
+          {TERMINAL_PLANS.map((plan, i) => (
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}
@@ -92,28 +59,24 @@ export default function PricingPreview() {
                   {plan.badge}
                 </span>
               )}
-              <div className="font-mono text-[9px] text-text-faint">
-                <span className="line-through decoration-loss/60">Bloomberg: A$42,000/yr</span>
-                <span className="text-gold"> → {plan.name}: A${plan.annual}/yr</span>
-              </div>
-              <div className="font-mono text-[12px] tracking-wide text-gold mt-2">{plan.name}</div>
+              <div className="font-mono text-[12px] tracking-wide text-gold">{plan.name}</div>
+              <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
               <div className="mt-3">
                 {annual ? (
                   <>
                     <span className="font-sans text-[13px] text-text-faint line-through mr-2">
                       A${plan.monthly}
                     </span>
-                    <span className="font-sans text-[52px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
+                    <span className="font-sans text-[44px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
                     <span className="font-sans text-[13px] text-text-muted">/mo</span>
                   </>
                 ) : (
                   <>
-                    <span className="font-sans text-[52px] font-bold text-text-primary">A${plan.monthly}</span>
+                    <span className="font-sans text-[44px] font-bold text-text-primary">A${plan.monthly}</span>
                     <span className="font-sans text-[13px] text-text-muted">/mo</span>
                   </>
                 )}
               </div>
-              {plan.note && <div className="font-mono text-[9px] text-text-faint mt-1">{plan.note}</div>}
               <div className="flex flex-col mt-5">
                 {plan.features.map((f, fi) => (
                   <div
@@ -140,26 +103,9 @@ export default function PricingPreview() {
           COMPARE ALL FEATURES →
         </Link>
 
-        <div>
-          <Link to="/pricing#enterprise" className="inline-block font-mono text-[11px] text-text-muted hover:text-gold transition-colors mt-3">
-            For adviser practices, firms, and institutions → View enterprise plans
-          </Link>
-        </div>
-
-        <div className="max-w-[600px] mx-auto mt-10 bg-bg-primary border border-gold/20 rounded p-6 text-left">
-          <div className="font-mono text-[12px] text-gold tracking-wide text-center mb-4">
-            MADDENAI RESEARCH NOTES — From A$4.99
-          </div>
-          {RESEARCH_ROWS.map(([label, price], i) => (
-            <div
-              key={label}
-              className={`flex justify-between py-2.5 font-mono text-[12px] ${i > 0 ? 'border-t border-[rgba(30,70,140,0.3)]' : ''}`}
-            >
-              <span className="text-text-muted">{label}</span>
-              <span className="text-text-primary">{price}</span>
-            </div>
-          ))}
-        </div>
+        <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-6 leading-[1.7]">
+          Research Notes and the MaddenAI Newsletter are separate products, coming in Phase 2 and Phase 3 of the Maddex roadmap.
+        </p>
       </div>
     </section>
   )

@@ -32,7 +32,7 @@ const NAV_ITEMS = [
       { icon: '◆', title: 'Crypto Momentum Index', desc: '5-factor composite', to: '/maddenai' },
       { icon: '◆', title: 'Sector Strength Radar', desc: '11 GICS sectors simultaneously', to: '/maddenai' },
       { icon: '◆', title: 'Asset Analysis', desc: 'Any ticker, structured output instantly', to: '/maddenai' },
-      { icon: '◆', title: 'Research Notes', desc: 'Institutional PDF reports from A$4.99', to: '/maddenai' },
+      { icon: '◆', title: 'Research Notes', desc: 'Coming soon — institutional PDFs from A$9.99', to: '/maddenai' },
     ],
   },
   {
@@ -40,20 +40,20 @@ const NAV_ITEMS = [
     to: '/pricing',
     columns: 1,
     items: [
-      { icon: '◆', title: 'Individual Plans', desc: 'Core, Pro, and Apex', to: '/pricing' },
-      { icon: '◆', title: 'Enterprise Plans', desc: 'Adviser, Firm, Institutional', to: '/pricing#enterprise' },
-      { icon: '◆', title: 'Research Notes', desc: 'From A$4.99 per note', to: '/pricing' },
-      { icon: '◆', title: 'Newsletter', desc: 'Free and A$29/mo', to: '/research' },
+      { icon: '◆', title: 'Terminal Plans', desc: 'Core, Prime, and Apex', to: '/pricing' },
+      { icon: '◆', title: 'Research Notes', desc: 'Coming soon — from A$9.99 per note', to: '/pricing#research-notes' },
+      { icon: '◆', title: 'Newsletter', desc: 'Coming soon — free and paid tiers', to: '/pricing#newsletter' },
+      { icon: '◆', title: 'Bundles', desc: 'Terminal + notes + newsletter', to: '/pricing#bundles' },
     ],
   },
   {
-    label: 'RESEARCH',
+    label: 'NEWSLETTER',
     to: '/research',
     columns: 1,
     items: [
-      { icon: '◆', title: 'Madden Research', desc: 'Weekly Monday brief, free', to: '/research' },
-      { icon: '◆', title: 'Paid Brief', desc: 'Full analysis A$29/mo', to: '/research' },
-      { icon: '◆', title: 'MaddenAI Insights', desc: 'AI-generated market themes', to: '/research' },
+      { icon: '◆', title: 'MaddenAI Newsletter', desc: 'Coming soon — Phase 3', to: '/research' },
+      { icon: '◆', title: 'Sample Issue', desc: 'Preview what an issue looks like', to: '/research' },
+      { icon: '◆', title: 'Get Notified', desc: 'Join the launch waitlist', to: '/research' },
     ],
   },
   {

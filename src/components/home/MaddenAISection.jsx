@@ -19,8 +19,8 @@ const CARDS = [
   },
   {
     title: 'MaddenAI Research Notes',
-    body: 'Institutional-quality PDF research for any ASX or US stock.',
-    footer: 'From A$4.99 · Unlimited in Apex tier',
+    body: 'Institutional-quality PDF research for any ASX or US stock. Coming in Phase 2.',
+    footer: 'From A$9.99 · 1/month included in Apex',
     watermark: '✦',
   },
 ]

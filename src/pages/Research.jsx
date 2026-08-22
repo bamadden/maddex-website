@@ -6,33 +6,13 @@ import Footer from '../components/layout/Footer'
 import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
+import { NEWSLETTER_PLANS } from '../data/pricing'
 
 const FLIP_CARDS = [
   { front: 'MADDENAI SENTIMENT', back: 'A weekly 0-100 sentiment score with a full factor breakdown — not just a number.' },
-  { front: 'THREE KEY THEMES', back: 'The three macro or market themes actually worth your attention that week, explained plainly.' },
+  { front: 'KEY THEMES', back: 'The macro or market themes actually worth your attention that week, explained plainly.' },
   { front: 'ASX WATCH LIST', back: 'A curated list of ASX names in focus, with the reasoning behind each inclusion.' },
   { front: 'RBA CALENDAR', back: 'Every upcoming rate decision and data release that could move your portfolio.' },
-]
-
-const PAST_ISSUES = [
-  {
-    issue: 'Issue #023',
-    date: 'Monday 7 July 2026',
-    headline: 'RBA holds at 4.35% — what it means for the ASX',
-    summary: 'A look inside the hold decision, the language shift in the statement, and which sectors stand to benefit if the pause extends into Q4.',
-  },
-  {
-    issue: 'Issue #022',
-    date: 'Monday 30 June 2026',
-    headline: 'Iron ore at US$98 — support level or breakdown risk?',
-    summary: 'Chinese steel margins, port inventories, and what the technical picture says about the next leg for bulk commodities.',
-  },
-  {
-    issue: 'Issue #021',
-    date: 'Monday 23 June 2026',
-    headline: 'BTC consolidation above A$160k — breakout or fake-out?',
-    summary: 'Reading the Fear & Greed data alongside dominance trends to gauge whether crypto breadth is genuinely improving.',
-  },
 ]
 
 function FlipCard({ front, back, index }) {
@@ -78,7 +58,7 @@ export default function Research() {
   const [email, setEmail] = useState('')
 
   useEffect(() => {
-    document.title = 'Madden Research — Weekly Market Brief'
+    document.title = 'MaddenAI Newsletter — Coming Soon'
   }, [])
 
   return (
@@ -87,17 +67,20 @@ export default function Research() {
       <Navigation />
 
       <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
-        <SectionLabel center>MADDEN RESEARCH</SectionLabel>
+        <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-5">
+          PHASE 3 · COMING SOON, 6–12 MONTHS OUT
+        </span>
+        <SectionLabel center>MADDENAI NEWSLETTER</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto"
         >
-          The weekly brief serious Australian investors read first.
+          The market brief serious Australian investors will read first.
         </motion.h1>
         <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
-          Every Monday at 7:00am AEST. MaddenAI-powered market intelligence. Free to subscribe.
+          A standalone product, separate from the Maddex Terminal — MaddenAI-powered market intelligence, delivered to your inbox. Not yet open for subscriptions.
         </p>
       </section>
 
@@ -105,7 +88,7 @@ export default function Research() {
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>WHAT'S INSIDE</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
-            Four sections. Every Monday. Hover to preview.
+            Four sections. Every issue. Hover to preview.
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
             {FLIP_CARDS.map((card, i) => (
@@ -117,11 +100,16 @@ export default function Research() {
 
       <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
         <div className="max-w-[760px] mx-auto">
-          <SectionLabel center>SAMPLE ISSUE</SectionLabel>
-          <div className="relative bg-bg-surface border border-gold/20 rounded overflow-hidden mt-6" style={{ minHeight: 640 }}>
-            <div className="bg-gold px-6 py-4">
-              <div className="font-mono text-[14px] font-bold text-bg-primary tracking-[0.1em]">MADDEN RESEARCH</div>
-              <div className="font-mono text-[10px] text-bg-primary/70 mt-0.5">ISSUE #024 &nbsp;·&nbsp; MONDAY 14 JULY 2026 &nbsp;·&nbsp; 7 MIN READ</div>
+          <SectionLabel center>SAMPLE ISSUE PREVIEW</SectionLabel>
+          <div className="relative bg-bg-surface border border-gold/20 rounded overflow-hidden mt-6" style={{ minHeight: 560 }}>
+            <div className="bg-gold px-6 py-4 flex items-center justify-between">
+              <div>
+                <div className="font-mono text-[14px] font-bold text-bg-primary tracking-[0.1em]">MADDENAI NEWSLETTER</div>
+                <div className="font-mono text-[10px] text-bg-primary/70 mt-0.5">PREVIEW · NOT YET PUBLISHED</div>
+              </div>
+              <span className="font-mono text-[9px] font-bold text-bg-primary bg-bg-primary/15 rounded-full px-2.5 py-1 whitespace-nowrap">
+                COMING SOON
+              </span>
             </div>
             <div className="p-6 font-mono text-[11px] relative">
               <div className="text-gold text-[9px] tracking-[0.1em]">MADDENAI WEEKLY SENTIMENT</div>
@@ -142,10 +130,6 @@ export default function Research() {
                 marginally on restocking demand ahead of the northern hemisphere construction season, while port inventories drew down for
                 a third consecutive week.
               </p>
-              <p className="mt-3 text-text-muted leading-[1.7]">
-                MaddenAI's Sector Strength Radar has Materials at 68/100, up four points week-on-week, with Energy the standout laggard
-                as WTI slipped below US$79/barrel on softening demand forecasts.
-              </p>
 
               <div className="text-gold text-[9px] tracking-[0.1em] mt-7">ASX WATCH LIST</div>
               <div className="text-text-primary font-bold mt-2">CSL.AX · BHP.AX · WBC.AX · RIO.AX · WOW.AX</div>
@@ -157,7 +141,9 @@ export default function Research() {
                 className="absolute bottom-0 left-0 right-0 flex items-end justify-center pb-8"
                 style={{ height: '35%', background: 'linear-gradient(to bottom, transparent 0%, transparent 40%, #0B1628 100%)' }}
               >
-                <GoldButton>SUBSCRIBE TO READ MORE</GoldButton>
+                <span className="font-mono text-[11px] text-gold border border-gold/40 rounded-full px-4 py-2">
+                  ILLUSTRATIVE PREVIEW — NOT A PUBLISHED ISSUE
+                </span>
               </div>
             </div>
           </div>
@@ -165,57 +151,38 @@ export default function Research() {
       </section>
 
       <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
-        <div className="max-w-[900px] mx-auto text-center">
-          <SectionLabel center>SUBSCRIBE</SectionLabel>
+        <div className="max-w-[1000px] mx-auto text-center">
+          <SectionLabel center>PLANNED PRICING</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
-            Free brief, or full paid access.
+            Free brief, or paid tiers.
           </h2>
 
           <div
             className="text-left font-mono text-[11px] text-text-muted leading-[1.7] mt-10 mb-8"
             style={{ background: 'rgba(201,168,76,0.04)', borderLeft: '2px solid #C9A84C', padding: '16px 20px' }}
           >
-            <div className="text-gold tracking-[0.1em] mb-2">HOW MADDEN RESEARCH WORKS</div>
+            <div className="text-gold tracking-[0.1em] mb-2">HOW THE MADDENAI NEWSLETTER WILL WORK</div>
             <p>
-              Madden Research is a standalone newsletter — it is not part of your Maddex terminal subscription. You can subscribe to Madden Research independently, whether or not you have a Maddex terminal subscription.
-            </p>
-            <p className="mt-3">
-              <span className="text-gold">FREE NEWSLETTER</span> — available to everyone, no Maddex subscription required
-              <br />
-              <span className="text-gold">PAID NEWSLETTER</span> — A$29/month standalone, no Maddex subscription required
-            </p>
-            <p className="mt-3">
-              Maddex terminal subscribers receive the free newsletter tier automatically with their account.
+              The MaddenAI Newsletter is a standalone product — it is not part of your Maddex Terminal subscription. You'll be able to subscribe independently, whether or not you have a Terminal subscription. Pricing below is indicative and may change before launch.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-left">
-            <div className="border border-gold/20 rounded p-6 bg-bg-primary">
-              <div className="font-mono text-[13px] font-bold text-gold">FREE</div>
-              <div className="flex flex-col gap-2 mt-4 font-sans text-[12px] text-text-muted">
-                <div>◆ Weekly Monday brief</div>
-                <div>◆ MaddenAI sentiment score</div>
-                <div>◆ Three market themes</div>
-                <div>◆ RBA calendar</div>
-              </div>
-            </div>
-            <div>
-              <div className="border border-gold rounded p-6 bg-bg-primary">
-                <div className="font-mono text-[13px] font-bold text-gold">PAID A$29/MO</div>
-                <div className="flex flex-col gap-2 mt-4 font-sans text-[12px] text-text-muted">
-                  <div>◆ Everything in Free</div>
-                  <div>◆ Mid-week update</div>
-                  <div>◆ Full ASX watch list</div>
-                  <div>◆ Archive access</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+            {NEWSLETTER_PLANS.map((plan) => (
+              <div key={plan.name} className="border border-gold/20 rounded p-5 bg-bg-primary flex flex-col">
+                <div className="font-mono text-[12px] font-bold text-gold">{plan.name}</div>
+                <div className="font-sans text-[18px] font-bold text-text-primary mt-2">
+                  {plan.price || `A$${plan.monthly}/mo`}
+                </div>
+                <div className="flex flex-col gap-2 mt-3 font-sans text-[11px] text-text-muted">
+                  {plan.features.map((f) => <div key={f}>◆ {f}</div>)}
                 </div>
               </div>
-              <p className="font-sans text-[11px] text-text-faint mt-2">
-                A$29/month · Billed monthly · Cancel anytime · Independent of Maddex terminal subscription
-              </p>
-            </div>
+            ))}
           </div>
+
           <div className="font-mono text-[10px] tracking-[0.1em] text-gold mt-10">
-            JOIN 2,000+ AUSTRALIAN INVESTORS
+            BE FIRST TO KNOW WHEN IT LAUNCHES
           </div>
           <div className="max-w-[440px] mx-auto mt-4">
             <input
@@ -226,44 +193,11 @@ export default function Research() {
               className="w-full font-mono text-[12px] text-text-primary bg-bg-primary border border-gold/30 rounded px-4 py-3 outline-none focus:border-gold/60 transition-colors placeholder:text-text-faint"
             />
             <div className="mt-4">
-              <GoldButton className="w-full">SUBSCRIBE FREE</GoldButton>
+              <GoldButton className="w-full">NOTIFY ME AT LAUNCH</GoldButton>
             </div>
             <p className="font-sans text-[11px] text-text-faint mt-4">
-              Madden Research is independent of your Maddex terminal subscription. Subscribe separately or as a complement to your terminal access.
+              No spam — just a heads-up when the MaddenAI Newsletter opens for subscriptions.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-bg-primary py-20 md:py-[100px] px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <SectionLabel center>PAST ISSUES</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
-            Catch up on what you missed.
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12 text-left">
-            {PAST_ISSUES.map(({ issue, date, headline, summary }, i) => (
-              <motion.div
-                key={issue}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ delay: i * 0.1, duration: 0.4 }}
-                whileHover={{ scale: 1.01, borderLeftColor: '#E8C878' }}
-                className="relative rounded p-5 cursor-pointer"
-                style={{ background: '#0B1628', borderLeft: '2px solid #C9A84C' }}
-              >
-                <span className="absolute top-5 right-5 bg-gold/15 text-gold font-mono text-[8px] tracking-[0.1em] px-2 py-1 rounded-full">
-                  SUBSCRIBER ONLY
-                </span>
-                <div className="font-mono text-[9px] text-gold pr-24">{issue}</div>
-                <div className="font-mono text-[9px] text-text-faint mt-1">{date}</div>
-                <h3 className="font-sans text-[15px] font-bold text-text-primary mt-3 leading-snug">{headline}</h3>
-                <p className="font-sans text-[13px] text-text-muted mt-2 leading-[1.6]" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                  {summary}
-                </p>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>

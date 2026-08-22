@@ -113,22 +113,22 @@ export default function Hero() {
             AUSTRALIAN FINANCIAL INTELLIGENCE
           </div>
 
-          <h1 className="hero-headline font-sans text-[44px] sm:text-[60px] lg:text-[80px] font-bold leading-[0.95] tracking-[-0.03em] text-text-primary">
-            The terminal
+          <h1 className="hero-headline font-sans text-[40px] sm:text-[56px] lg:text-[72px] font-bold leading-[0.98] tracking-[-0.03em] text-text-primary">
+            The Financial Intelligence
             <br />
-            serious investors
+            Terminal Built for
             <br />
-            have been waiting for.
+            Australian Investors
           </h1>
 
           <p className="hero-sub font-sans text-[17px] text-text-muted leading-[1.75] max-w-[460px] mt-6">
-            Maddex delivers institutional-grade financial intelligence to Australian investors at a fraction of Bloomberg's cost. Real-time data. MaddenAI analysis. Global intelligence.
+            Institutional-grade market data, AI-powered analysis, and global intelligence — in one terminal.
           </p>
 
           <div className="hero-cta flex items-center gap-4 mt-9 flex-wrap">
             <GoldButton to="/pricing">START FREE TRIAL</GoldButton>
-            <GoldButton to="/product" variant="ghost" className="!border-0 !bg-transparent !px-0 text-gold opacity-70 hover:opacity-100">
-              SEE THE TERMINAL →
+            <GoldButton to="/product" variant="ghost">
+              SEE HOW IT WORKS
             </GoldButton>
           </div>
 
@@ -141,7 +141,7 @@ export default function Hero() {
           <div className="hero-stats flex items-center mt-3 divide-x divide-[rgba(30,70,140,0.3)]">
             <div className="pr-8 flex flex-col">
               <span className="font-mono text-[42px] font-bold leading-none">
-                <span className="text-gold">A$19</span><span className="text-text-muted">/mo</span>
+                <span className="text-gold">A$29</span><span className="text-text-muted">/mo</span>
               </span>
               <span className="font-sans text-[12px] text-text-muted mt-2">Starting price</span>
             </div>

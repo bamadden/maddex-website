@@ -59,6 +59,7 @@ export default function Footer() {
               ))}
             </div>
             <p className="font-mono text-[10px] text-text-faint mt-6">© 2026 Madden Group Holdings Pty Ltd. All rights reserved.</p>
+            <p className="font-mono text-[9px] text-text-faint mt-1">ABN [XX XXX XXX XXX]</p>
           </div>
 
           <div>
@@ -68,8 +69,8 @@ export default function Footer() {
                 ['Terminal', '/product'],
                 ['MaddenAI', '/maddenai'],
                 ['Pricing', '/pricing'],
-                ['Research', '/research'],
-                ['Roadmap', '/about'],
+                ['Research Notes (Coming Soon)', '/pricing#research-notes'],
+                ['Newsletter (Coming Soon)', '/research'],
               ].map(([label, to]) => (
                 <Link key={label} to={to} className="font-sans text-[12px] text-text-muted hover:text-gold transition-colors">
                   {label}
@@ -83,9 +84,8 @@ export default function Footer() {
             <div className="flex flex-col gap-3">
               {[
                 ['About', '/about'],
+                ['Roadmap', '/about'],
                 ['Contact', '/about'],
-                ['Press', '/about'],
-                ['Careers', '/about'],
               ].map(([label, to]) => (
                 <Link key={label} to={to} className="font-sans text-[12px] text-text-muted hover:text-gold transition-colors">
                   {label}
@@ -97,10 +97,14 @@ export default function Footer() {
           <div>
             <div className="font-mono text-[9px] tracking-[0.2em] text-gold mb-4">LEGAL</div>
             <div className="flex flex-col gap-3">
-              {['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'AFSL Disclaimer'].map((label) => (
-                <a key={label} href="#" className="font-sans text-[12px] text-text-muted hover:text-gold transition-colors">
+              {[
+                ['Privacy Policy', '/privacy'],
+                ['Terms of Service', '/terms'],
+                ['Disclaimer', '/disclaimer'],
+              ].map(([label, to]) => (
+                <Link key={label} to={to} className="font-sans text-[12px] text-text-muted hover:text-gold transition-colors">
                   {label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

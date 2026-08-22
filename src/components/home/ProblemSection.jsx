@@ -30,7 +30,7 @@ const CARDS = [
   {
     border: '#C9A84C',
     label: 'MADDEX',
-    price: 'FROM A$19 / MONTH',
+    price: 'FROM A$29 / MONTH',
     priceColor: 'text-gold',
     highlight: true,
     bg: 'rgba(201,168,76,0.03)',
@@ -119,7 +119,7 @@ export default function ProblemSection() {
                   </div>
                   <div className="font-mono text-[12px] text-text-faint">vs</div>
                   <div className="text-center">
-                    <div className="font-mono text-[32px] font-bold text-gold">A$228</div>
+                    <div className="font-mono text-[32px] font-bold text-gold">A$348</div>
                   </div>
                   <div className="hidden sm:block font-mono text-[10px] text-text-muted max-w-[120px] leading-snug ml-2">
                     Per year · Bloomberg vs Maddex Core
