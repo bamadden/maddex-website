@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SectionLabel from '../shared/SectionLabel'
 import GoldButton from '../shared/GoldButton'
+import PricingComparisonTable from '../shared/PricingComparisonTable'
 import { TERMINAL_PLANS } from '../../data/pricing'
 
 export default function PricingPreview() {
   const [annual, setAnnual] = useState(false)
+  const [showComparison, setShowComparison] = useState(false)
 
   return (
     <section className="bg-bg-surface py-20 md:py-[100px] px-6 md:px-10">
@@ -44,7 +46,7 @@ export default function PricingPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
-              whileHover={{ scale: plan.popular ? 1.03 : 1.01 }}
+              whileHover={{ y: -4, scale: plan.popular ? 1.03 : 1.01 }}
               className={`relative bg-bg-primary rounded p-6 border transition-colors duration-200 ${
                 plan.popular
                   ? 'border-[rgba(201,168,76,0.6)] scale-[1.03]'
@@ -56,6 +58,11 @@ export default function PricingPreview() {
             >
               {plan.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
+                  {plan.badge}
+                </span>
+              )}
+              {!plan.popular && plan.badge && (
+                <span className="absolute -top-3 right-4 border border-gold/50 bg-bg-primary text-gold font-mono text-[8px] font-bold px-2 py-1 rounded-full whitespace-nowrap tracking-[0.05em]">
                   {plan.badge}
                 </span>
               )}
@@ -78,30 +85,60 @@ export default function PricingPreview() {
                 )}
               </div>
               <div className="flex flex-col mt-5">
-                {plan.features.map((f, fi) => (
+                {plan.features.slice(0, 6).map((f, fi) => (
                   <div
                     key={f}
                     className={`font-sans text-[12px] text-text-muted flex gap-2 py-2.5 ${
                       fi > 0 ? 'border-t border-[rgba(30,70,140,0.2)]' : ''
                     }`}
                   >
-                    <span className="text-gold">◆</span>
+                    <span className="text-gain">✓</span>
                     {f}
                   </div>
                 ))}
               </div>
               <div className="mt-6">
                 <GoldButton to="/pricing" variant={plan.popular ? 'solid' : 'ghost'} className="w-full">
-                  GET STARTED
+                  START 7-DAY FREE TRIAL
                 </GoldButton>
               </div>
             </motion.div>
           ))}
         </div>
 
-        <Link to="/pricing" className="inline-block font-mono text-[12px] text-gold mt-8 hover:opacity-70 transition-opacity">
-          COMPARE ALL FEATURES →
-        </Link>
+        <p className="font-mono text-[11px] text-text-muted max-w-2xl mx-auto mt-8 leading-[1.7]">
+          All plans include a 7-day free trial. No credit card required to start.
+        </p>
+
+        <button
+          type="button"
+          onClick={() => setShowComparison((s) => !s)}
+          className="inline-flex items-center gap-1.5 font-mono text-[12px] text-gold mt-6 hover:opacity-70 transition-opacity"
+        >
+          {showComparison ? 'HIDE FULL COMPARISON ▴' : 'SEE FULL COMPARISON ▾'}
+        </button>
+
+        <AnimatePresence>
+          {showComparison && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden"
+            >
+              <div className="max-w-[1000px] mx-auto mt-8 text-left">
+                <PricingComparisonTable />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <div>
+          <Link to="/pricing" className="inline-block font-mono text-[12px] text-gold mt-6 hover:opacity-70 transition-opacity">
+            VIEW FULL PRICING PAGE →
+          </Link>
+        </div>
 
         <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-6 leading-[1.7]">
           Research Notes and the MaddenAI Newsletter are separate products, coming in Phase 2 and Phase 3 of the Maddex roadmap.

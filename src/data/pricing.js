@@ -30,13 +30,13 @@ export const TERMINAL_PLANS = [
       'Advanced charting',
       'Watchlist — unlimited',
       'Rates + Macro intelligence modules',
-      'Priority data refresh',
     ],
   },
   {
     name: 'APEX',
     monthly: 149,
     annual: Math.round(149 * 12 * 0.8),
+    badge: 'BEST VALUE',
     tagline: 'Maximum intelligence. Real-time streaming. White glove.',
     features: [
       'Everything in Prime',
@@ -109,6 +109,23 @@ export const BUNDLES = [
     price: 199,
     desc: 'Apex + Full Suite newsletter + 2 notes/mo',
   },
+]
+
+export const COMPARISON_ROWS = [
+  ['MaddenAI chat', 'Basic', 'Unlimited', 'Unlimited'],
+  ['Watchlist', 'Up to 20 assets', 'Unlimited', 'Unlimited'],
+  ['Portfolio tracker', true, true, true],
+  ['News feed', true, true, true],
+  ['Global intelligence globe', true, true, true],
+  ['Sector heatmaps + analysis', false, true, true],
+  ['Advanced charting', false, true, true],
+  ['Rates + Macro intelligence modules', false, true, true],
+  ['Priority data refresh', false, true, true],
+  ['MaddenAI Research Notes', 'Buy à la carte (Phase 2)', 'Buy à la carte (Phase 2)', '1/month included'],
+  ['Real-time WebSocket streaming', false, false, true],
+  ['API access', false, false, 'Coming soon'],
+  ['White glove onboarding', false, false, true],
+  ['Priority support', false, false, true],
 ]
 
 export const LAUNCH_PHASES = [

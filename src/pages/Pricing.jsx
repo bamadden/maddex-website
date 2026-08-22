@@ -7,24 +7,8 @@ import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import FAQItem from '../components/shared/FAQItem'
+import PricingComparisonTable from '../components/shared/PricingComparisonTable'
 import { TERMINAL_PLANS, NEWSLETTER_PLANS, RESEARCH_NOTES_PRICING, BUNDLES } from '../data/pricing'
-
-const COMPARISON_ROWS = [
-  ['MaddenAI chat', 'Basic', 'Unlimited', 'Unlimited'],
-  ['Watchlist', 'Up to 20 assets', 'Unlimited', 'Unlimited'],
-  ['Portfolio tracker', true, true, true],
-  ['News feed', true, true, true],
-  ['Global intelligence globe', true, true, true],
-  ['Sector heatmaps + analysis', false, true, true],
-  ['Advanced charting', false, true, true],
-  ['Rates + Macro intelligence modules', false, true, true],
-  ['Priority data refresh', false, true, true],
-  ['MaddenAI Research Notes', 'Buy à la carte (Phase 2)', 'Buy à la carte (Phase 2)', '1/month included'],
-  ['Real-time WebSocket streaming', false, false, true],
-  ['API access', false, false, 'Coming soon'],
-  ['White glove onboarding', false, false, true],
-  ['Priority support', false, false, true],
-]
 
 const FAQS = [
   ['Is this financial advice?', 'No. Maddex provides general financial information only and does not constitute financial product advice or a personal recommendation. Always consider seeking independent financial advice before making investment decisions.'],
@@ -35,12 +19,6 @@ const FAQS = [
   ['When do Research Notes and the Newsletter launch?', 'Research Notes are planned for Phase 2, roughly 3–6 months after Terminal launch. The MaddenAI Newsletter follows in Phase 3, roughly 6–12 months out. Pricing shown for both is indicative and may change before launch.'],
 ]
 
-function ComparisonCell({ value }) {
-  if (value === true) return <span className="font-bold" style={{ color: '#2D8A50' }}>✓</span>
-  if (value === false) return <span style={{ color: '#3D5070' }}>✗</span>
-  return <span className="font-mono text-[11px]" style={{ color: '#E8EDF5' }}>{value}</span>
-}
-
 function PlanCard({ plan, i, annual }) {
   return (
     <motion.div
@@ -48,11 +26,16 @@ function PlanCard({ plan, i, annual }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: i * 0.1, duration: 0.4 }}
-      whileHover={{ scale: plan.popular ? 1.02 : 1.01 }}
+      whileHover={{ y: -4, scale: plan.popular ? 1.02 : 1.01 }}
       className={`relative rounded flex flex-col ${plan.popular ? 'scale-[1.02]' : ''}`}
     >
       {plan.popular && (
         <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap z-10">
+          {plan.badge}
+        </span>
+      )}
+      {!plan.popular && plan.badge && (
+        <span className="absolute -top-3 right-6 border border-gold/50 bg-bg-primary text-gold font-mono text-[9px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap z-10 tracking-[0.05em]">
           {plan.badge}
         </span>
       )}
@@ -91,14 +74,14 @@ function PlanCard({ plan, i, annual }) {
         <div className="flex flex-col mt-5 flex-1">
           {plan.features.map((f) => (
             <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2 py-2">
-              <span className="text-gold">◆</span>
+              <span className="text-gain">✓</span>
               {f}
             </div>
           ))}
         </div>
         <div className="mt-auto pt-6">
           <GoldButton variant={plan.popular ? 'solid' : 'ghost'} className="!w-full">
-            START FREE TRIAL
+            START 7-DAY FREE TRIAL
           </GoldButton>
         </div>
       </div>
@@ -164,8 +147,8 @@ export default function Pricing() {
           ))}
         </div>
 
-        <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-8 leading-[1.7]">
-          7-day free trial with Core level access. No credit card required.
+        <p className="font-mono text-[11px] text-text-muted max-w-2xl mx-auto mt-8 leading-[1.7]">
+          All plans include a 7-day free trial. No credit card required to start.
         </p>
       </section>
 
@@ -175,48 +158,8 @@ export default function Pricing() {
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight">
             Every feature, side by side.
           </h2>
-          <div
-            className="mt-10 overflow-auto rounded max-h-[600px]"
-            style={{ background: '#0B1628', border: '1px solid rgba(201,168,76,0.2)' }}
-          >
-            <table className="w-full min-w-[640px] border-collapse" style={{ tableLayout: 'fixed' }}>
-              <thead>
-                <tr style={{ background: '#060D1A', borderBottom: '2px solid rgba(201,168,76,0.3)' }}>
-                  <th className="sticky text-left py-3 px-4" style={{ top: 0, background: '#060D1A', zIndex: 30, width: '35%' }} />
-                  <th className="sticky font-mono text-[13px] text-center py-3 px-3" style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#637899', width: '21%' }}>
-                    CORE
-                  </th>
-                  <th
-                    className="sticky font-mono text-[13px] text-center py-3 px-3"
-                    style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#C9A84C', width: '22%', borderLeft: '1px solid rgba(201,168,76,0.15)', borderRight: '1px solid rgba(201,168,76,0.15)' }}
-                  >
-                    <div>PRIME</div>
-                    <span className="inline-block mt-1 bg-gold text-bg-primary font-mono text-[8px] font-bold px-2 py-0.5 rounded-full">
-                      MOST POPULAR
-                    </span>
-                  </th>
-                  <th className="sticky font-mono text-[13px] text-center py-3 px-3" style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#E8EDF5', width: '22%' }}>
-                    APEX
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON_ROWS.map(([label, core, prime, apex], i) => (
-                  <tr
-                    key={label}
-                    className="transition-colors duration-150 hover:bg-[rgba(201,168,76,0.04)]"
-                    style={{ background: i % 2 === 0 ? 'transparent' : 'rgba(15,30,54,0.4)', borderBottom: '1px solid rgba(30,70,140,0.15)', height: 48 }}
-                  >
-                    <td className="font-sans text-[13px] py-[10px] px-4" style={{ color: '#637899', width: '35%' }}>{label}</td>
-                    <td className="text-center py-[10px] px-3" style={{ width: '21%' }}><ComparisonCell value={core} /></td>
-                    <td className="text-center py-[10px] px-3" style={{ width: '22%', background: prime === true ? 'rgba(45,138,80,0.06)' : 'rgba(201,168,76,0.02)', borderLeft: '1px solid rgba(201,168,76,0.15)', borderRight: '1px solid rgba(201,168,76,0.15)' }}>
-                      <ComparisonCell value={prime} />
-                    </td>
-                    <td className="text-center py-[10px] px-3" style={{ width: '22%' }}><ComparisonCell value={apex} /></td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-10">
+            <PricingComparisonTable />
           </div>
         </div>
       </section>
