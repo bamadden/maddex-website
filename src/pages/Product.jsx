@@ -41,6 +41,17 @@ function KeyStats({ stats }) {
   )
 }
 
+// RBA meets on published dates — computed from today rather than a fixed
+// date + "days remaining" that both go wrong the moment the meeting passes.
+const RBA_MEETINGS_2026 = ['2026-09-16', '2026-11-04', '2026-12-09']
+const nextRbaMeeting = RBA_MEETINGS_2026
+  .map((d) => new Date(`${d}T00:00:00`))
+  .find((d) => d.getTime() > Date.now())
+const rbaDaysRemaining = nextRbaMeeting ? Math.ceil((nextRbaMeeting - Date.now()) / 86400000) : null
+const rbaDateLabel = nextRbaMeeting
+  ? nextRbaMeeting.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase()
+  : ''
+
 const MODULES = [
   {
     key: 'markets',
@@ -137,7 +148,7 @@ const MODULES = [
           </div>
         </div>
         <div className="font-mono text-[10px] text-gold" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', padding: '8px 16px' }}>
-          NEXT RBA DECISION &nbsp; <span className="text-text-primary">5 AUGUST 2026</span> &nbsp; 22 DAYS REMAINING
+          NEXT RBA DECISION &nbsp; <span className="text-text-primary">{rbaDateLabel}</span> &nbsp; {rbaDaysRemaining} DAYS REMAINING
         </div>
       </TerminalCard>
     ),

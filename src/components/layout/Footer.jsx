@@ -113,7 +113,7 @@ export default function Footer() {
           <p className="font-mono text-[9px] text-text-faint max-w-[560px] leading-[1.6]">
             General information only. Not financial advice — nothing here is a recommendation to buy or sell any financial product.
           </p>
-          <p className="font-mono text-[9px] text-text-faint shrink-0">© 2026 Madden Group Holdings Pty Ltd · ABN [pending]</p>
+          <p className="font-mono text-[9px] text-text-faint shrink-0">© 2026 Madden Group Holdings Pty Ltd</p>
         </div>
       </div>
     </footer>

@@ -8,6 +8,12 @@ import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import TerminalCard from '../components/shared/TerminalCard'
 
+// Computed at module load rather than hardcoded — a "TODAY'S READINGS" label
+// with a fixed date reads as broken the moment the page is viewed on any
+// other day, which is most days.
+const TODAY_LABEL = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase()
+const SAMPLE_NOTE_DATE = new Date(Date.now() - 2 * 86400000).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })
+
 function ScorePositionBar({ score }) {
   return (
     <div className="relative w-full h-1 rounded-full mt-3" style={{ background: 'rgba(30,70,140,0.3)' }}>
@@ -193,7 +199,7 @@ export default function MaddenAI() {
         >
           <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 flex-wrap">
             <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
-            TODAY'S MADDENAI READINGS &nbsp;·&nbsp; 15 JULY 2026 &nbsp;·&nbsp; 09:42 AEST
+            TODAY'S MADDENAI READINGS &nbsp;·&nbsp; {TODAY_LABEL} &nbsp;·&nbsp; 09:42 AEST
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[rgba(30,70,140,0.3)]">
             <div className="p-6 text-center min-h-[160px] flex flex-col justify-center">
@@ -438,7 +444,7 @@ export default function MaddenAI() {
               <div className="font-mono text-[10px] tracking-[0.15em] text-gold">MADDENAI RESEARCH NOTE</div>
               <div className="font-sans text-[20px] font-bold text-text-primary mt-2">BHP GROUP LIMITED (BHP.AX)</div>
               <div className="font-mono text-[11px] text-text-muted mt-2">
-                Current price: <span className="text-text-primary">A$63.42</span> &nbsp;|&nbsp; Rating: <span className="text-gain">BULLISH</span> &nbsp;|&nbsp; Date: <span className="text-text-primary">14 July 2026</span>
+                Current price: <span className="text-text-primary">A$63.42</span> &nbsp;|&nbsp; Rating: <span className="text-gain">BULLISH</span> &nbsp;|&nbsp; Date: <span className="text-text-primary">{SAMPLE_NOTE_DATE}</span>
               </div>
               <div className="text-gold text-[15px] mt-2">★★★★☆</div>
             </div>

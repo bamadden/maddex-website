@@ -135,7 +135,7 @@ export default function Research() {
               <div className="text-text-primary font-bold mt-2">CSL.AX · BHP.AX · WBC.AX · RIO.AX · WOW.AX</div>
 
               <div className="text-gold text-[9px] tracking-[0.1em] mt-7">RBA CALENDAR</div>
-              <div className="text-text-muted mt-2">Next meeting: 5 AUG 2026 · Cash rate held at 4.35% since May</div>
+              <div className="text-text-muted mt-2">Next meeting: 16 SEP 2026 · Cash rate held at 4.35% since May</div>
 
               <div
                 className="absolute bottom-0 left-0 right-0 flex items-end justify-center pb-8"
