@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import SectionLabel from '../shared/SectionLabel'
-import TypewriterText from '../shared/TypewriterText'
 
 const TABS = ['MARKETS', 'MADDENAI', 'GLOBAL']
 
@@ -101,26 +100,61 @@ function MaddenAIVisual() {
         </div>
         <div className="font-mono text-[11px] text-text-primary leading-[1.7] min-h-[40px]">
           <span className="text-gold">MADDENAI</span> ·{' '}
-          <TypewriterText strings={['Iron ore strength and steady Chinese demand data are lifting the miners this session.']} />
-          <span className="blink-cursor">▍</span>
+          Iron ore strength and steady Chinese demand data are lifting the miners this session.
         </div>
       </div>
     </div>
   )
 }
 
+// Equirectangular projection: x = (lon+180)/360 * 800, y = (90-lat)/180 * 400
 const WORLD_CITIES = [
-  { name: 'LONDON', x: 47, y: 20 },
-  { name: 'FRANKFURT', x: 51, y: 23 },
-  { name: 'NEW YORK', x: 24, y: 28 },
-  { name: 'SINGAPORE', x: 78, y: 44 },
-  { name: 'HONG KONG', x: 81, y: 33 },
-  { name: 'TOKYO', x: 90, y: 26 },
-  { name: 'SYDNEY', x: 87, y: 52 },
-]
+  { name: 'SYDNEY', lat: -33.87, lon: 151.21, dx: 0, dy: 18, anchor: 'middle' },
+  { name: 'TOKYO', lat: 35.68, lon: 139.69, dx: 8, dy: -8, anchor: 'start' },
+  { name: 'SINGAPORE', lat: 1.35, lon: 103.82, dx: 0, dy: 18, anchor: 'middle' },
+  { name: 'LONDON', lat: 51.51, lon: -0.13, dx: -8, dy: -6, anchor: 'end' },
+  { name: 'NEW YORK', lat: 40.71, lon: -74.01, dx: 0, dy: -10, anchor: 'middle' },
+  { name: 'FRANKFURT', lat: 50.11, lon: 8.68, dx: 8, dy: 16, anchor: 'start' },
+  { name: 'DUBAI', lat: 25.20, lon: 55.27, dx: 0, dy: -10, anchor: 'middle' },
+  { name: 'HONG KONG', lat: 22.32, lon: 114.17, dx: 8, dy: -8, anchor: 'start' },
+].map((c) => ({
+  ...c,
+  x: ((c.lon + 180) / 360) * 800,
+  y: ((90 - c.lat) / 180) * 400,
+}))
+
+const cityByName = (name) => WORLD_CITIES.find((c) => c.name === name)
 
 const WORLD_ROUTES = [
-  [0, 1], [1, 2], [2, 6], [6, 5], [5, 4], [4, 3], [3, 0],
+  ['NEW YORK', 'LONDON'],
+  ['LONDON', 'FRANKFURT'],
+  ['FRANKFURT', 'DUBAI'],
+  ['DUBAI', 'HONG KONG'],
+  ['HONG KONG', 'SINGAPORE'],
+  ['HONG KONG', 'TOKYO'],
+  ['HONG KONG', 'SYDNEY'],
+  ['SINGAPORE', 'SYDNEY'],
+]
+
+const CONTINENTS = [
+  // North America
+  'M60,50 L110,35 L180,40 L230,55 L262,72 L270,100 L250,132 L210,152 L160,155 L120,140 L88,110 L68,80 Z',
+  // South America
+  'M235,180 L270,175 L292,202 L296,242 L282,292 L260,317 L246,300 L235,258 L230,218 Z',
+  // Europe
+  'M375,55 L410,40 L448,48 L458,70 L448,98 L412,106 L384,92 L376,70 Z',
+  // Africa
+  'M398,135 L442,130 L468,148 L476,188 L466,230 L448,266 L420,278 L402,252 L392,205 L390,168 Z',
+  // Asia
+  'M498,50 L570,32 L655,38 L725,58 L745,98 L725,140 L685,160 L622,170 L562,164 L505,138 L490,95 Z',
+  // Australia
+  'M660,240 L710,229 L742,246 L746,272 L720,292 L680,286 L654,265 Z',
+]
+
+const GLOBAL_STATS = [
+  { value: '70+', label: 'Global Markets' },
+  { value: '24/7', label: 'Coverage' },
+  { value: 'Live', label: 'Real-time Intelligence' },
 ]
 
 function GlobalVisual() {
@@ -130,45 +164,50 @@ function GlobalVisual() {
         <span>GLOBAL INTELLIGENCE</span>
         <span className="text-gold">18/50 OPEN</span>
       </div>
-      <div className="flex-1 flex items-center justify-center p-4">
-        <svg viewBox="0 0 100 65" className="w-full h-full">
-          {/* simplified landmasses, subtle backdrop only */}
-          <path d="M10,22 Q18,16 28,20 L34,30 Q24,36 14,32 Z" fill="rgba(30,70,140,0.22)" />
-          <path d="M38,8 Q50,6 58,16 L52,32 Q40,28 38,16 Z" fill="rgba(30,70,140,0.22)" />
-          <path d="M42,36 Q54,34 58,46 L48,60 Q38,52 42,36 Z" fill="rgba(30,70,140,0.22)" />
-          <path d="M62,14 Q80,12 90,24 L82,38 Q68,32 62,14 Z" fill="rgba(30,70,140,0.22)" />
-          <path d="M72,46 Q86,48 84,60 L72,56 Z" fill="rgba(30,70,140,0.22)" />
+      <div className="flex-1 flex items-center justify-center p-3">
+        <svg viewBox="0 0 800 400" className="w-full h-full">
+          {CONTINENTS.map((d, i) => (
+            <path key={i} d={d} fill="rgba(30,70,140,0.28)" stroke="rgba(30,70,140,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
+          ))}
 
           {WORLD_ROUTES.map(([a, b], i) => {
-            const ca = WORLD_CITIES[a]
-            const cb = WORLD_CITIES[b]
+            const ca = cityByName(a)
+            const cb = cityByName(b)
             return (
               <line
                 key={i}
                 x1={ca.x} y1={ca.y} x2={cb.x} y2={cb.y}
-                stroke="rgba(201,168,76,0.3)"
-                strokeWidth="0.3"
+                stroke="rgba(201,168,76,0.25)"
+                strokeWidth="1"
               />
             )
           })}
 
           {WORLD_CITIES.map((c, i) => (
             <g key={c.name}>
-              <circle cx={c.x} cy={c.y} r="3" fill="#C9A84C" opacity="0.15">
-                <animate attributeName="r" values="1.2;3.2;1.2" dur="2.4s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0.3;0;0.3" dur="2.4s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
-              </circle>
-              <circle cx={c.x} cy={c.y} r="1.1" fill="#C9A84C" />
-              <text x={c.x} y={c.y - 2.2} fontSize="2.1" fill="#8A9BB5" textAnchor="middle" fontFamily="IBM Plex Mono">
+              <circle
+                cx={c.x} cy={c.y} r="4" fill="none" stroke="#C9A84C" strokeWidth="1.5"
+                className="global-dot-ripple"
+                style={{ animationDelay: `${i * 0.3}s` }}
+              />
+              <circle cx={c.x} cy={c.y} r="3" fill="#C9A84C" />
+              <text
+                x={c.x + c.dx} y={c.y + c.dy} fill="#8A9BB5" textAnchor={c.anchor}
+                fontSize="15" fontFamily="IBM Plex Mono, monospace"
+              >
                 {c.name}
               </text>
             </g>
           ))}
         </svg>
       </div>
-      <div className="border-t border-[rgba(30,70,140,0.25)] px-4 py-2.5 font-mono text-[9px] text-text-muted flex justify-between shrink-0">
-        <span>SUEZ <span className="text-gold">⚠ MONITORED</span></span>
-        <span>PANAMA <span className="text-gain">✓ OPEN</span></span>
+      <div className="border-t border-[rgba(30,70,140,0.25)] grid grid-cols-3 divide-x divide-[rgba(30,70,140,0.25)] shrink-0">
+        {GLOBAL_STATS.map((s) => (
+          <div key={s.label} className="px-3 py-3 text-center">
+            <div className="font-mono text-[16px] font-bold text-gold">{s.value}</div>
+            <div className="font-mono text-[8px] tracking-[0.08em] text-text-muted mt-1">{s.label.toUpperCase()}</div>
+          </div>
+        ))}
       </div>
     </div>
   )

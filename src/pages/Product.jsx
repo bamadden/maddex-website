@@ -7,7 +7,6 @@ import Footer from '../components/layout/Footer'
 import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import TerminalCard from '../components/shared/TerminalCard'
-import TypewriterText from '../components/shared/TypewriterText'
 
 function MiniHeader({ label, right }) {
   return (
@@ -394,8 +393,8 @@ export default function Product() {
             <div className="px-4 py-3 flex items-center gap-2">
               <span className="font-mono text-[13px] font-bold text-gold">CMD&gt;</span>
               <span className="font-mono text-[13px] text-text-primary">
-                <TypewriterText strings={['BHP.AX', 'MACRO', 'What is the RBA outlook?', 'CRYPTO']} />
-                <span className="blink-cursor">▍</span>
+                BHP.AX
+                <span className="text-gold">▍</span>
               </span>
             </div>
           </TerminalCard>

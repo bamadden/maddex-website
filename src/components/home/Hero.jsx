@@ -25,7 +25,7 @@ export default function Hero() {
             FINANCIAL INTELLIGENCE TERMINAL
           </div>
 
-          <h1 className="hero-headline font-sans text-[34px] sm:text-[42px] lg:text-[46px] font-bold leading-[1.05] tracking-[-0.02em] text-text-primary max-w-[560px]">
+          <h1 className="hero-headline font-sans text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight text-text-primary max-w-[680px]">
             The terminal built for
             <br className="hidden md:block" />
             <span className="md:hidden"> </span>
@@ -57,7 +57,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero-terminal hidden lg:block relative">
+        <div className="hero-terminal relative mt-10 lg:mt-0">
           <div className="hero-float">
             <AnimatedTerminalMockup />
           </div>
