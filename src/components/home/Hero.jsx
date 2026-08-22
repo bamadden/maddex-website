@@ -3,10 +3,10 @@ import GoldButton from '../shared/GoldButton'
 import AnimatedTerminalMockup from './AnimatedTerminalMockup'
 
 const HERO_STATS = [
-  { value: '8', label: 'Modules' },
   { value: '70+', label: 'Global markets' },
+  { value: '8', label: 'Modules' },
   { value: 'AI', label: 'MaddenAI powered' },
-  { value: 'AUD', label: 'Priced in AUD' },
+  { value: 'A$29', label: 'Per month' },
 ]
 
 export default function Hero() {
@@ -15,7 +15,7 @@ export default function Hero() {
       <ParticleCanvas />
 
       <div
-        className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-8 items-center"
+        className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
         style={{ minHeight: 'calc(100vh - 84px)', paddingTop: 84 }}
       >
         <div>
@@ -25,21 +25,31 @@ export default function Hero() {
             FINANCIAL INTELLIGENCE TERMINAL
           </div>
 
-          <h1 className="hero-headline font-sans text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight text-text-primary max-w-[680px]">
+          <h1
+            className="hero-headline font-sans"
+            style={{
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              color: 'white',
+              maxWidth: '600px',
+            }}
+          >
             The terminal built for
             <br className="hidden md:block" />
             <span className="md:hidden"> </span>
             the everyday investor.
           </h1>
 
-          <p className="hero-sub font-sans text-[17px] text-text-muted leading-[1.75] max-w-[460px] mt-6">
-            ASX and global markets. Crypto. Macro. AI analysis. Everything a serious investor needs — without the Bloomberg price tag.
+          <p className="hero-sub font-sans text-base text-text-muted leading-relaxed max-w-sm mt-6">
+            ASX and global markets. AI analysis. No Bloomberg price tag.
           </p>
 
           <div className="hero-cta flex items-center gap-4 mt-9 flex-wrap">
-            <GoldButton to="/pricing">START FREE TRIAL</GoldButton>
-            <GoldButton to="/product" variant="ghost">
-              SEE HOW IT WORKS
+            <GoldButton to="/pricing">Start Free Trial</GoldButton>
+            <GoldButton to="/pricing" variant="ghost">
+              See Pricing
             </GoldButton>
           </div>
 
@@ -53,14 +63,15 @@ export default function Hero() {
           </div>
 
           <div className="hero-trust font-mono text-[10px] text-text-faint mt-8 tracking-wide leading-[1.8]">
-            General information only · Not financial advice · Built in Australia · Secured by Supabase
+            General information only · Not financial advice
           </div>
         </div>
 
-        <div className="hero-terminal relative mt-10 lg:mt-0">
-          <div className="hero-float">
-            <AnimatedTerminalMockup />
-          </div>
+        <div
+          className="hero-terminal relative mt-10 lg:mt-0 w-full max-w-[640px] mx-auto lg:mx-0 lg:ml-auto"
+          style={{ transform: 'translateY(-8px)' }}
+        >
+          <AnimatedTerminalMockup />
         </div>
       </div>
 

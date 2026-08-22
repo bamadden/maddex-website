@@ -136,12 +136,16 @@ body {
   animation: pulseDot 1.5s ease-in-out infinite;
 }
 
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+.ticker-track-hero {
+  animation: ticker-scroll 25s linear infinite;
 }
-.hero-float {
-  animation: heroFloat 4s ease-in-out infinite;
+
+@keyframes typingDotFade {
+  0%, 80%, 100% { opacity: 0.25; }
+  40% { opacity: 1; }
+}
+.typing-dot-fade {
+  animation: typingDotFade 1.2s ease-in-out infinite;
 }
 
 @keyframes heroScrollBounce {
