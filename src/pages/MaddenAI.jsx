@@ -336,7 +336,7 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.2 }}
-              className="bg-bg-surface border border-gold/20 rounded p-6"
+              className="bg-bg-surface border border-gold/20 rounded p-6 flex flex-col"
             >
               <h3 className="font-sans text-[17px] font-bold text-text-primary">Market Sentiment Score</h3>
               <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">8-factor weighted composite. Updated every 60 seconds.</p>
@@ -352,7 +352,7 @@ export default function MaddenAI() {
                 <span className="text-gold">100%</span>
               </div>
               <ExampleReading examples={[['ASX Breadth Today', 78], ['Volatility Today', 45], ['News Sentiment Today', 25]]} />
-              <ClassificationBands />
+              <div className="mt-auto"><ClassificationBands /></div>
             </motion.div>
 
             <motion.div
@@ -360,7 +360,7 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-bg-surface border border-gold/20 rounded p-6"
+              className="bg-bg-surface border border-gold/20 rounded p-6 flex flex-col"
             >
               <h3 className="font-sans text-[17px] font-bold text-text-primary">Crypto Momentum Index</h3>
               <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">5-factor composite across price, volume, and positioning.</p>
@@ -376,7 +376,7 @@ export default function MaddenAI() {
                 <span className="text-gold">100%</span>
               </div>
               <ExampleReading examples={[['24H Momentum Today', 85], ['Volume Conviction Today', 52]]} />
-              <ClassificationBands />
+              <div className="mt-auto"><ClassificationBands /></div>
             </motion.div>
 
             <motion.div
@@ -384,7 +384,7 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-bg-surface border border-gold/20 rounded p-6"
+              className="bg-bg-surface border border-gold/20 rounded p-6 flex flex-col"
             >
               <h3 className="font-sans text-[17px] font-bold text-text-primary">Sector Strength Radar</h3>
               <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">All 11 GICS sectors scored simultaneously, every session.</p>
@@ -414,7 +414,7 @@ export default function MaddenAI() {
                 <span className="text-gold">100%</span>
               </div>
               <ExampleReading examples={[['Day Change Today', 72], ['Volume Conviction Today', 48]]} />
-              <ClassificationBands />
+              <div className="mt-auto"><ClassificationBands /></div>
             </motion.div>
           </div>
         </div>
