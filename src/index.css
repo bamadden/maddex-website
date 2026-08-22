@@ -136,8 +136,8 @@ body {
   animation: pulseDot 1.5s ease-in-out infinite;
 }
 
-.ticker-track-hero {
-  animation: ticker-scroll 25s linear infinite;
+.ticker-track-20s {
+  animation: ticker-scroll 20s linear infinite;
 }
 
 @keyframes typingDotFade {
@@ -148,33 +148,6 @@ body {
   animation: typingDotFade 1.2s ease-in-out infinite;
 }
 
-@keyframes heroScrollBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); }
-}
-.hero-scroll-bounce {
-  animation: heroScrollBounce 1.2s ease-in-out infinite;
-}
-
-@keyframes heroScrollFade {
-  0%, 60% { opacity: 1; }
-  100% { opacity: 0; }
-}
-.hero-scroll-indicator {
-  animation: heroScrollFade 2s ease forwards;
-  animation-delay: 3s;
-}
-
-@keyframes heroWidthGrow {
-  from { width: 0; opacity: 0; }
-  to { width: 120px; opacity: 1; }
-}
-.hero-goldline {
-  animation: heroWidthGrow 0.5s ease forwards;
-  animation-delay: 0.15s;
-  width: 0;
-  opacity: 0;
-}
 
 @keyframes watermarkFadeIn {
   from { opacity: 0; }
