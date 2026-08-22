@@ -38,7 +38,9 @@ export default function ProductsOverviewSection() {
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>THE MADDEX ECOSYSTEM</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
-          One terminal today. Three products, over time.
+          One terminal today.
+          <br />
+          Three products coming soon.
         </h2>
         <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-4 leading-[1.75]">
           Maddex launches with the Terminal. Research Notes and the Newsletter follow as standalone products in the months ahead.

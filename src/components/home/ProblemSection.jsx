@@ -73,7 +73,7 @@ export default function ProblemSection() {
           </div>
 
           <div className="font-mono text-[11px] text-text-muted bg-gold/5 border-l-2 border-gold px-4 py-2.5 mt-8">
-            Bloomberg Terminal annual price increase (2024): +8.6% ▲
+            Less than a Bloomberg in a single day.
           </div>
         </div>
 

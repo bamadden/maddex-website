@@ -4,15 +4,18 @@ import SectionLabel from '../shared/SectionLabel'
 const TESTIMONIALS = [
   {
     quote: 'I have been looking for something between CommSec and Bloomberg for years. Maddex is exactly that. The MaddenAI analysis alone is worth the subscription.',
-    name: 'S.M. — Finance Professional, Brisbane',
+    name: 'S.M.',
+    title: 'Finance Professional, Brisbane',
   },
   {
     quote: 'The Global Intelligence Map changed how I think about commodity exposure. I can see exactly what is happening with iron ore flows and translate that to my BHP and RIO positions.',
-    name: 'J.T. — SMSF Trustee, Sydney',
+    name: 'J.T.',
+    title: 'SMSF Trustee, Sydney',
   },
   {
     quote: 'As a financial adviser I have five clients asking about the RBA every month. MaddenAI gives me a structured, data-backed view every time.',
-    name: 'A.K. — Financial Adviser, Melbourne',
+    name: 'A.K.',
+    title: 'Financial Adviser, Melbourne',
   },
 ]
 
@@ -25,39 +28,40 @@ export default function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.2 }}
-          className="max-w-[720px] mx-auto text-center border-l-[3px] border-gold pl-6 text-left mb-10"
+          className="max-w-[720px] mx-auto text-left border-l-[3px] border-gold pl-6 mb-7"
         >
-          <p className="font-sans text-[22px] md:text-[28px] font-bold text-text-primary leading-[1.35]">
+          <p className="font-sans text-[18px] md:text-[22px] font-bold text-text-primary leading-[1.35]">
             "The financial intelligence terminal Australian retail investors have always deserved."
           </p>
-          <div className="mt-3">
-            <span className="font-sans text-[14px] font-semibold text-gold">Ben Madden</span>
-            <span className="font-mono text-[10px] text-text-muted ml-2 tracking-wide">FOUNDER, MADDEX</span>
+          <div className="mt-2">
+            <span className="font-sans text-[13px] font-semibold text-gold">Ben Madden</span>
+            <span className="font-mono text-[9px] text-text-muted ml-2 tracking-wide">FOUNDER, MADDEX</span>
           </div>
         </motion.div>
 
         <SectionLabel center>WHAT BETA USERS SAY</SectionLabel>
-        <p className="font-mono text-[12px] text-text-muted text-center max-w-xl mx-auto">
+        <p className="font-mono text-[11px] text-text-muted text-center max-w-xl mx-auto">
           Powered by the same data feeds used by professional traders.
         </p>
-        <p className="font-mono text-[9px] text-text-faint text-center mt-2">
+        <p className="font-mono text-[9px] text-text-faint text-center mt-1.5">
           General information only. Not financial advice.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
           {TESTIMONIALS.map((t, i) => (
             <motion.div
               key={t.name}
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ delay: i * 0.055, duration: 0.5 }}
-              className="bg-bg-primary border-l-[3px] border-gold rounded-r p-6"
+              transition={{ delay: i * 0.05, duration: 0.2 }}
+              className="bg-bg-primary border-l-[3px] border-gold rounded-r p-5"
             >
-              <div className="text-gold text-[14px]">★★★★★</div>
-              <p className="font-sans text-[18px] text-text-primary leading-[1.75] italic mt-3">
+              <div className="text-gold text-[11px]">★★★★★</div>
+              <p className="font-sans text-[13px] text-text-primary leading-[1.6] italic mt-2.5">
                 "{t.quote}"
               </p>
-              <p className="font-sans text-[12px] text-text-muted mt-4">{t.name}</p>
+              <p className="font-sans text-[11px] text-text-primary mt-3">{t.name}</p>
+              <p className="font-sans text-[11px] text-text-muted">{t.title}</p>
             </motion.div>
           ))}
         </div>

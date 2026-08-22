@@ -36,14 +36,16 @@ const HEATMAP = [
   { label: 'ENRG', change: '-0.4%', positive: false },
 ]
 
+const PANEL_HEIGHT = 380
+
 function MarketsVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden">
-      <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col" style={{ height: PANEL_HEIGHT }}>
+      <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>MARKETS · ASX 200</span>
         <span className="text-gain">● OPEN</span>
       </div>
-      <div className="p-4 flex flex-col gap-2.5">
+      <div className="p-4 flex flex-col gap-2.5 flex-1 justify-center">
         {[
           ['ASX 200', '8,412.40', '+0.42%', true],
           ['S&P 500', '5,847.23', '+0.40%', true],
@@ -56,8 +58,8 @@ function MarketsVisual() {
           </div>
         ))}
       </div>
-      <div className="px-4 pb-2 font-mono text-[9px] tracking-[0.1em] text-gold">SECTOR HEATMAP</div>
-      <div className="grid grid-cols-4 gap-1.5 px-4 pb-4">
+      <div className="px-4 pb-2 font-mono text-[9px] tracking-[0.1em] text-gold shrink-0">SECTOR HEATMAP</div>
+      <div className="grid grid-cols-4 gap-1.5 px-4 pb-4 shrink-0">
         {HEATMAP.map((tile) => (
           <div
             key={tile.label}
@@ -72,7 +74,7 @@ function MarketsVisual() {
           </div>
         ))}
       </div>
-      <div className="border-t border-[rgba(30,70,140,0.25)] px-4 py-2.5 font-mono text-[9px] text-text-muted flex justify-between">
+      <div className="border-t border-[rgba(30,70,140,0.25)] px-4 py-2.5 font-mono text-[9px] text-text-muted flex justify-between shrink-0">
         <span>BHP.AX <span className="text-text-primary">A$43.21</span></span>
         <span className="text-text-faint">P/E 11.2</span>
         <span>US$ <span className="text-text-primary">28.10</span></span>
@@ -83,12 +85,12 @@ function MarketsVisual() {
 
 function MaddenAIVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden">
-      <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col" style={{ height: PANEL_HEIGHT }}>
+      <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 shrink-0">
         <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
         MADDENAI CHAT
       </div>
-      <div className="p-4 flex flex-col gap-4 min-h-[220px]">
+      <div className="p-4 flex flex-col gap-4 flex-1 justify-center">
         <div className="font-mono text-[11px] text-text-muted">
           <span className="text-gold">USER</span> · Should I be worried about CBA's valuation?
         </div>
@@ -109,33 +111,64 @@ function MaddenAIVisual() {
   )
 }
 
+const WORLD_CITIES = [
+  { name: 'LONDON', x: 47, y: 20 },
+  { name: 'FRANKFURT', x: 51, y: 23 },
+  { name: 'NEW YORK', x: 24, y: 28 },
+  { name: 'SINGAPORE', x: 78, y: 44 },
+  { name: 'HONG KONG', x: 81, y: 33 },
+  { name: 'TOKYO', x: 90, y: 26 },
+  { name: 'SYDNEY', x: 87, y: 52 },
+]
+
+const WORLD_ROUTES = [
+  [0, 1], [1, 2], [2, 6], [6, 5], [5, 4], [4, 3], [3, 0],
+]
+
 function GlobalVisual() {
-  const points = [
-    [80, 58], [88, 24], [76, 30], [68, 52], [42, 16], [48, 36], [16, 32],
-  ]
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden">
-      <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col" style={{ height: PANEL_HEIGHT }}>
+      <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>GLOBAL INTELLIGENCE</span>
         <span className="text-gold">18/50 OPEN</span>
       </div>
-      <div className="p-4">
-        <svg viewBox="0 0 100 80" className="w-full h-[260px]">
-          <path d="M10,24 Q16,18 24,22 L30,30 Q24,36 16,34 Z" fill="rgba(30,70,140,0.35)" />
-          <path d="M38,10 Q48,8 54,16 L50,30 Q40,28 38,18 Z" fill="rgba(30,70,140,0.35)" />
-          <path d="M42,38 Q54,36 56,48 L48,62 Q40,54 42,38 Z" fill="rgba(30,70,140,0.35)" />
-          <path d="M62,16 Q78,14 86,24 L80,38 Q68,32 62,16 Z" fill="rgba(30,70,140,0.35)" />
-          <path d="M70,48 Q82,50 80,62 L70,58 Z" fill="rgba(30,70,140,0.35)" />
-          {points.map(([x, y], i) => (
-            <circle key={i} cx={x} cy={y} r="1.3" fill="#C9A84C">
-              <animate attributeName="opacity" values="1;0.3;1" dur="2s" begin={`${i * 0.2}s`} repeatCount="indefinite" />
-            </circle>
+      <div className="flex-1 flex items-center justify-center p-4">
+        <svg viewBox="0 0 100 65" className="w-full h-full">
+          {/* simplified landmasses, subtle backdrop only */}
+          <path d="M10,22 Q18,16 28,20 L34,30 Q24,36 14,32 Z" fill="rgba(30,70,140,0.22)" />
+          <path d="M38,8 Q50,6 58,16 L52,32 Q40,28 38,16 Z" fill="rgba(30,70,140,0.22)" />
+          <path d="M42,36 Q54,34 58,46 L48,60 Q38,52 42,36 Z" fill="rgba(30,70,140,0.22)" />
+          <path d="M62,14 Q80,12 90,24 L82,38 Q68,32 62,14 Z" fill="rgba(30,70,140,0.22)" />
+          <path d="M72,46 Q86,48 84,60 L72,56 Z" fill="rgba(30,70,140,0.22)" />
+
+          {WORLD_ROUTES.map(([a, b], i) => {
+            const ca = WORLD_CITIES[a]
+            const cb = WORLD_CITIES[b]
+            return (
+              <line
+                key={i}
+                x1={ca.x} y1={ca.y} x2={cb.x} y2={cb.y}
+                stroke="rgba(201,168,76,0.3)"
+                strokeWidth="0.3"
+              />
+            )
+          })}
+
+          {WORLD_CITIES.map((c, i) => (
+            <g key={c.name}>
+              <circle cx={c.x} cy={c.y} r="3" fill="#C9A84C" opacity="0.15">
+                <animate attributeName="r" values="1.2;3.2;1.2" dur="2.4s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.3;0;0.3" dur="2.4s" begin={`${i * 0.3}s`} repeatCount="indefinite" />
+              </circle>
+              <circle cx={c.x} cy={c.y} r="1.1" fill="#C9A84C" />
+              <text x={c.x} y={c.y - 2.2} fontSize="2.1" fill="#8A9BB5" textAnchor="middle" fontFamily="IBM Plex Mono">
+                {c.name}
+              </text>
+            </g>
           ))}
-          <line x1="80" y1="58" x2="76" y2="30" stroke="#C9A84C" strokeWidth="0.25" strokeDasharray="1,1" />
-          <line x1="80" y1="58" x2="16" y2="32" stroke="#C9A84C" strokeWidth="0.25" strokeDasharray="1,1" />
         </svg>
       </div>
-      <div className="border-t border-[rgba(30,70,140,0.25)] px-4 py-2.5 font-mono text-[9px] text-text-muted flex justify-between">
+      <div className="border-t border-[rgba(30,70,140,0.25)] px-4 py-2.5 font-mono text-[9px] text-text-muted flex justify-between shrink-0">
         <span>SUEZ <span className="text-gold">⚠ MONITORED</span></span>
         <span>PANAMA <span className="text-gain">✓ OPEN</span></span>
       </div>
@@ -220,8 +253,13 @@ export default function FeaturesSection() {
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>WHAT'S INSIDE</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
-          Everything a serious investor needs. One terminal.
+          Built for investors
+          <br />
+          who take it seriously.
         </h2>
+        <p className="font-sans text-[16px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.6]">
+          Everything a serious investor needs. One terminal.
+        </p>
 
         <div className="flex flex-wrap justify-center gap-2 mt-10">
           {TABS.map((tab) => (
@@ -248,7 +286,7 @@ export default function FeaturesSection() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-9 text-left items-center max-w-[1000px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-9 text-left max-w-[1000px] mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={`list-${activeTab}`}
@@ -256,7 +294,8 @@ export default function FeaturesSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -16 }}
               transition={{ duration: 0.25 }}
-              className="flex flex-col gap-4"
+              className="flex flex-col justify-center gap-4"
+              style={{ minHeight: 380 }}
             >
               {TAB_CONTENT[activeTab].map((f) => (
                 <div key={f} className="flex gap-3 items-start">

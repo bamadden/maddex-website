@@ -15,8 +15,13 @@ export default function PricingPreview() {
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>PRICING</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
-          Bloomberg costs A$42,000 a year. Maddex starts at A$29 a month.
+          Simple pricing.
+          <br />
+          No surprises.
         </h2>
+        <p className="font-sans text-[15px] text-text-muted max-w-xl mx-auto mt-3">
+          Bloomberg costs A$42,000 a year. Maddex starts at A$29 a month.
+        </p>
 
         <div className="relative inline-flex items-center gap-1 bg-bg-primary border border-gold/20 rounded-full p-1 mt-8">
           <button
@@ -47,7 +52,7 @@ export default function PricingPreview() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.05, duration: 0.4 }}
               whileHover={{ y: -4, scale: plan.popular ? 1.03 : 1.01 }}
-              className={`relative bg-bg-primary rounded p-6 border transition-colors duration-200 ${
+              className={`relative bg-bg-primary rounded p-6 border transition-colors duration-200 flex flex-col h-full ${
                 plan.popular
                   ? 'border-[rgba(201,168,76,0.6)] scale-[1.03]'
                   : plan.name === 'APEX'
@@ -67,8 +72,10 @@ export default function PricingPreview() {
                 </span>
               )}
               <div className="font-mono text-[12px] tracking-wide text-gold">{plan.name}</div>
-              <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
-              <div className="mt-3">
+              <div style={{ minHeight: 54 }}>
+                <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
+              </div>
+              <div className="mt-3" style={{ minHeight: 56 }}>
                 {annual ? (
                   <>
                     <span className="font-sans text-[13px] text-text-faint line-through mr-2">
@@ -84,7 +91,7 @@ export default function PricingPreview() {
                   </>
                 )}
               </div>
-              <div className="flex flex-col mt-5">
+              <div className="flex flex-col mt-5 flex-1">
                 {plan.features.slice(0, 6).map((f, fi) => (
                   <div
                     key={f}
@@ -97,7 +104,7 @@ export default function PricingPreview() {
                   </div>
                 ))}
               </div>
-              <div className="mt-6">
+              <div className="mt-auto pt-6">
                 <GoldButton to="/pricing" variant={plan.popular ? 'solid' : 'ghost'} className="w-full">
                   START 7-DAY FREE TRIAL
                 </GoldButton>

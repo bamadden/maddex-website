@@ -6,7 +6,7 @@ const HERO_STATS = [
   { value: '8', label: 'Modules' },
   { value: '70+', label: 'Global markets' },
   { value: 'AI', label: 'MaddenAI powered' },
-  { value: 'ASX', label: 'ASX-first' },
+  { value: 'AUD', label: 'Priced in AUD' },
 ]
 
 export default function Hero() {
@@ -22,19 +22,17 @@ export default function Hero() {
           <div className="hero-goldline h-px bg-gold/50 mb-5" />
 
           <div className="hero-eyebrow font-mono text-[9px] tracking-[0.25em] text-gold mb-5">
-            AUSTRALIAN FINANCIAL INTELLIGENCE
+            FINANCIAL INTELLIGENCE TERMINAL
           </div>
 
           <h1 className="hero-headline font-sans text-[40px] sm:text-[56px] lg:text-[72px] font-bold leading-[0.98] tracking-[-0.03em] text-text-primary">
-            The Financial Intelligence
+            The terminal built for
             <br />
-            Terminal Built for
-            <br />
-            Australian Investors
+            the everyday investor.
           </h1>
 
           <p className="hero-sub font-sans text-[17px] text-text-muted leading-[1.75] max-w-[460px] mt-6">
-            Institutional-grade market data, AI-powered analysis, and global intelligence — in one terminal.
+            ASX and global markets. Crypto. Macro. AI analysis. Everything a serious investor needs — without the Bloomberg price tag.
           </p>
 
           <div className="hero-cta flex items-center gap-4 mt-9 flex-wrap">
