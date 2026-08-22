@@ -74,6 +74,9 @@ body {
 .ticker-track {
   animation: ticker-scroll 60s linear infinite;
 }
+.ticker-track-fast {
+  animation: ticker-scroll 30s linear infinite;
+}
 .ticker-track-keywords {
   animation: ticker-scroll 120s linear infinite;
 }

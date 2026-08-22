@@ -25,9 +25,10 @@ export default function Hero() {
             FINANCIAL INTELLIGENCE TERMINAL
           </div>
 
-          <h1 className="hero-headline font-sans text-[40px] sm:text-[56px] lg:text-[72px] font-bold leading-[0.98] tracking-[-0.03em] text-text-primary">
+          <h1 className="hero-headline font-sans text-[34px] sm:text-[42px] lg:text-[46px] font-bold leading-[1.05] tracking-[-0.02em] text-text-primary max-w-[560px]">
             The terminal built for
-            <br />
+            <br className="hidden md:block" />
+            <span className="md:hidden"> </span>
             the everyday investor.
           </h1>
 

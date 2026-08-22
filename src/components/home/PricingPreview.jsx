@@ -6,6 +6,18 @@ import GoldButton from '../shared/GoldButton'
 import PricingComparisonTable from '../shared/PricingComparisonTable'
 import { TERMINAL_PLANS } from '../../data/pricing'
 
+// Approximate indicative FX rates off AUD — not live, just enough to show
+// international visitors roughly what they'd pay in their own currency.
+const FX_RATES = { usd: 0.653, gbp: 0.518, eur: 0.604 }
+
+function convertAud(aud) {
+  return {
+    usd: Math.round(aud * FX_RATES.usd),
+    gbp: Math.round(aud * FX_RATES.gbp),
+    eur: Math.round(aud * FX_RATES.eur),
+  }
+}
+
 export default function PricingPreview() {
   const [annual, setAnnual] = useState(false)
   const [showComparison, setShowComparison] = useState(false)
@@ -75,21 +87,25 @@ export default function PricingPreview() {
               <div style={{ minHeight: 54 }}>
                 <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
               </div>
-              <div className="mt-3" style={{ minHeight: 56 }}>
-                {annual ? (
-                  <>
-                    <span className="font-sans text-[13px] text-text-faint line-through mr-2">
-                      A${plan.monthly}
-                    </span>
-                    <span className="font-sans text-[44px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
-                    <span className="font-sans text-[13px] text-text-muted">/mo</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="font-sans text-[44px] font-bold text-text-primary">A${plan.monthly}</span>
-                    <span className="font-sans text-[13px] text-text-muted">/mo</span>
-                  </>
-                )}
+              <div className="mt-3" style={{ minHeight: 72 }}>
+                {(() => {
+                  const displayedAud = annual ? Math.round(plan.annual / 12) : plan.monthly
+                  const fx = convertAud(displayedAud)
+                  return (
+                    <>
+                      {annual && (
+                        <span className="font-sans text-[13px] text-text-faint line-through mr-2">
+                          A${plan.monthly}
+                        </span>
+                      )}
+                      <span className="font-sans text-[44px] font-bold text-text-primary">A${displayedAud}</span>
+                      <span className="font-sans text-[13px] text-text-muted">/mo</span>
+                      <div className="font-mono text-[10px] text-text-faint mt-1">
+                        USD ~${fx.usd} · GBP ~£{fx.gbp} · EUR ~€{fx.eur}
+                      </div>
+                    </>
+                  )
+                })()}
               </div>
               <div className="flex flex-col mt-5 flex-1">
                 {plan.features.slice(0, 6).map((f, fi) => (
