@@ -1,103 +1,15 @@
-import { useEffect, useState } from 'react'
 import ParticleCanvas from '../shared/ParticleCanvas'
-import TerminalCard from '../shared/TerminalCard'
 import GoldButton from '../shared/GoldButton'
-import TypewriterText from '../shared/TypewriterText'
+import AnimatedTerminalMockup from './AnimatedTerminalMockup'
 
-function LiveClock() {
-  const [time, setTime] = useState('')
-
-  useEffect(() => {
-    function update() {
-      const now = new Date()
-      const formatted = new Intl.DateTimeFormat('en-AU', {
-        timeZone: 'Australia/Sydney',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      }).format(now)
-      setTime(`${formatted} AEST`)
-    }
-    update()
-    const id = setInterval(update, 1000)
-    return () => clearInterval(id)
-  }, [])
-
-  return (
-    <div className="flex items-center gap-1.5 font-mono text-[10px] text-text-muted">
-      <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
-      {time}
-    </div>
-  )
-}
-
-function TerminalDataRow({ symbol, price, change, positive, status, flashed }) {
-  return (
-    <div
-      className="grid items-center py-1 px-1 rounded-sm transition-colors duration-300"
-      style={{
-        gridTemplateColumns: '80px 90px 80px 1fr',
-        background: flashed ? 'rgba(201,168,76,0.08)' : 'transparent',
-      }}
-    >
-      <span className="font-mono text-[12px] text-text-muted">{symbol}</span>
-      <span className="font-mono text-[12px] text-text-primary text-right">{price}</span>
-      <span className={`font-mono text-[12px] text-right ${positive ? 'text-gain' : 'text-loss'}`}>
-        {positive ? '▲' : '▼'} {change}
-      </span>
-      <span
-        className={`font-mono text-[9px] text-right ${
-          status === 'LIVE' ? 'text-gold blink-dot' : 'text-text-muted'
-        }`}
-      >
-        {status}
-      </span>
-    </div>
-  )
-}
-
-const INITIAL_ROWS = [
-  { symbol: 'ASX 200', price: 8412.4, change: '+0.42%', positive: true, status: 'LIVE' },
-  { symbol: 'BHP.AX', price: 43.82, change: '+0.85%', positive: true, status: 'LIVE' },
-  { symbol: 'BTC/AUD', price: 162400, change: '+1.80%', positive: true, status: '09:42' },
-  { symbol: 'AUD/USD', price: 0.6452, change: '-0.12%', positive: false, status: '09:42' },
-  { symbol: 'CBA.AX', price: 164.2, change: '+0.31%', positive: true, status: 'LIVE' },
-]
-
-const SECTOR_TILES = [
-  { label: 'IT', change: '+1.8%', positive: true },
-  { label: 'MAT', change: '+0.9%', positive: true },
-  { label: 'ENRG', change: '-0.4%', positive: false },
-  { label: 'FIN', change: '+0.3%', positive: true },
+const HERO_STATS = [
+  { value: '8', label: 'Modules' },
+  { value: '70+', label: 'Global markets' },
+  { value: 'AI', label: 'MaddenAI powered' },
+  { value: 'ASX', label: 'ASX-first' },
 ]
 
 export default function Hero() {
-  const [rows, setRows] = useState(INITIAL_ROWS)
-  const [flashIdx, setFlashIdx] = useState(null)
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      const idx = Math.floor(Math.random() * INITIAL_ROWS.length)
-      setFlashIdx(idx)
-      setRows((prev) =>
-        prev.map((row, i) => {
-          if (i !== idx) return row
-          const delta = row.price * (Math.random() * 0.004 - 0.002)
-          return { ...row, price: row.price + delta }
-        })
-      )
-      setTimeout(() => setFlashIdx(null), 400)
-    }, 8000)
-    return () => clearInterval(id)
-  }, [])
-
-  function formatPrice(row) {
-    if (row.symbol === 'BTC/AUD') return `A$${row.price.toLocaleString('en-AU', { maximumFractionDigits: 0 })}`
-    if (row.symbol === 'AUD/USD') return row.price.toFixed(4)
-    return row.price.toFixed(2)
-  }
-
   return (
     <section className="relative min-h-screen bg-bg-primary overflow-hidden">
       <ParticleCanvas />
@@ -132,111 +44,23 @@ export default function Hero() {
             </GoldButton>
           </div>
 
-          <div className="hero-trust font-mono text-[10px] text-text-faint mt-6 tracking-wide">
-            7-DAY FREE TRIAL · NO CREDIT CARD REQUIRED · CORE LEVEL ACCESS
+          <div className="hero-stats flex items-center mt-9 divide-x divide-[rgba(30,70,140,0.3)] flex-wrap gap-y-4">
+            {HERO_STATS.map((stat, i) => (
+              <div key={stat.label} className={`flex flex-col ${i === 0 ? 'pr-6' : 'px-6'}`}>
+                <span className="font-mono text-[32px] font-bold text-gold leading-none">{stat.value}</span>
+                <span className="font-sans text-[12px] text-text-muted mt-2 whitespace-nowrap">{stat.label}</span>
+              </div>
+            ))}
           </div>
 
-          <div className="w-20 h-px bg-[rgba(201,168,76,0.15)] mt-3" />
-
-          <div className="hero-stats flex items-center mt-3 divide-x divide-[rgba(30,70,140,0.3)]">
-            <div className="pr-8 flex flex-col">
-              <span className="font-mono text-[42px] font-bold leading-none">
-                <span className="text-gold">A$29</span><span className="text-text-muted">/mo</span>
-              </span>
-              <span className="font-sans text-[12px] text-text-muted mt-2">Starting price</span>
-            </div>
-            <div className="px-8 flex flex-col">
-              <span className="font-mono text-[42px] font-bold text-gold leading-none">7</span>
-              <span className="font-sans text-[12px] text-text-muted mt-2">Intelligence modules</span>
-            </div>
-            <div className="pl-8 flex flex-col">
-              <span className="font-mono text-[42px] font-bold text-gold leading-none">200+</span>
-              <span className="font-sans text-[12px] text-text-muted mt-2">Countries covered</span>
-            </div>
+          <div className="hero-trust font-mono text-[10px] text-text-faint mt-8 tracking-wide leading-[1.8]">
+            General information only · Not financial advice · Built in Australia · Secured by Supabase
           </div>
         </div>
 
         <div className="hero-terminal hidden lg:block relative">
           <div className="hero-float">
-            <TerminalCard className="min-h-[560px] flex flex-col !border-[rgba(201,168,76,0.4)] shadow-[0_20px_60px_rgba(0,0,0,0.5),0_0_100px_rgba(201,168,76,0.08),0_0_40px_rgba(201,168,76,0.05)]">
-              <div className="flex items-center justify-between h-8 bg-bg-primary border-b border-gold/12 px-3">
-                <div className="flex items-baseline gap-1">
-                  <span className="font-mono text-[11px] font-bold text-gold">MADDEX</span>
-                  <span className="font-mono text-[11px] text-text-faint">FINANCIAL INTELLIGENCE</span>
-                </div>
-                <LiveClock />
-              </div>
-
-              <div className="bg-gold/5 border-b border-gold/12 px-3 py-2.5 flex items-center gap-3">
-                <span className="font-mono text-[9px] tracking-wide text-text-muted">MADDENAI SENTIMENT</span>
-                <span className="font-mono text-[14px] font-bold text-gold">72/100</span>
-                <span className="font-mono text-[10px] text-text-primary">NEUTRAL-BULLISH</span>
-                <div className="ml-auto relative w-[100px] h-1 rounded-full" style={{ background: 'linear-gradient(to right, #A83232, #C9A84C, #2D8A50)' }}>
-                  <div className="absolute top-1/2 -translate-y-1/2 w-px h-2 bg-white" style={{ left: '72%' }} />
-                </div>
-              </div>
-
-              <div className="p-3 flex-1 flex flex-col justify-center gap-3">
-                {rows.map((row, i) => (
-                  <TerminalDataRow
-                    key={row.symbol}
-                    symbol={row.symbol}
-                    price={formatPrice(row)}
-                    change={row.change}
-                    positive={row.positive}
-                    status={row.status}
-                    flashed={flashIdx === i}
-                  />
-                ))}
-              </div>
-
-              <div className="mx-3" style={{ borderTop: '1px solid rgba(30,70,140,0.2)', margin: '4px 12px 4px 12px' }} />
-              <div className="font-mono text-[9px] text-text-muted px-3 py-1.5">
-                <span className="text-gold">TOP MOVERS</span>
-                &nbsp; <span className="text-text-primary">CSL.AX</span> <span className="text-gain">▲+2.4%</span>
-                &nbsp; <span className="text-text-primary">BHP.AX</span> <span className="text-gain">▲+1.2%</span>
-                &nbsp; <span className="text-text-primary">WBC.AX</span> <span className="text-gain">▲+0.8%</span>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2 px-3 pb-3">
-                {SECTOR_TILES.map((tile) => (
-                  <div
-                    key={tile.label}
-                    className="px-3 py-[10px] rounded-sm font-mono text-[10px] font-bold"
-                    style={{
-                      background: tile.positive ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)',
-                      border: `1px solid ${tile.positive ? 'rgba(45,138,80,0.25)' : 'rgba(168,50,50,0.25)'}`,
-                      color: tile.positive ? '#2D8A50' : '#A83232',
-                    }}
-                  >
-                    {tile.label} {tile.change}
-                  </div>
-                ))}
-              </div>
-
-              <div className="border-t border-gold/12 bg-bg-primary px-3 py-3 flex items-center gap-2">
-                <span className="font-mono text-[12px] font-bold text-gold">CMD&gt;</span>
-                <span className="font-mono text-[12px] text-text-primary">
-                  <TypewriterText strings={['BHP.AX', 'MACRO', 'What is the RBA outlook?']} />
-                  <span className="blink-cursor">▍</span>
-                </span>
-              </div>
-
-              <div className="grid grid-cols-3 divide-x divide-[rgba(30,70,140,0.3)] border-t border-gold/12">
-                <div className="px-3 py-2.5">
-                  <div className="font-mono text-[9px] text-text-muted">MADDENAI</div>
-                  <div className="font-mono text-[12px] font-bold text-gold mt-0.5">72/100 BULLISH</div>
-                </div>
-                <div className="px-3 py-2.5">
-                  <div className="font-mono text-[9px] text-text-muted">ASX 200</div>
-                  <div className="font-mono text-[12px] font-bold text-text-primary mt-0.5">8,412 <span className="text-gain">▲ +0.42%</span></div>
-                </div>
-                <div className="px-3 py-2.5">
-                  <div className="font-mono text-[9px] text-text-muted">BTC/AUD</div>
-                  <div className="font-mono text-[12px] font-bold text-gain mt-0.5">A$162,400</div>
-                </div>
-              </div>
-            </TerminalCard>
+            <AnimatedTerminalMockup />
           </div>
         </div>
       </div>
