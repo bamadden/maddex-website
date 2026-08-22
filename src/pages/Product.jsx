@@ -8,7 +8,6 @@ import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import TerminalCard from '../components/shared/TerminalCard'
 import TypewriterText from '../components/shared/TypewriterText'
-import GoldButton from '../components/shared/GoldButton'
 
 function MiniHeader({ label, right }) {
   return (
@@ -395,28 +394,57 @@ export default function Product() {
       <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <div>
-            <SectionLabel>MOBILE</SectionLabel>
+            <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
+              iOS &amp; ANDROID · COMING 2027
+            </span>
+            <SectionLabel>COMPANION APP</SectionLabel>
             <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
-              The full terminal. In your pocket.
+              Maddex Companion App
             </h2>
-            <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
-              Every module, every score, every watchlist entry — synced in real time between desktop and mobile, so the terminal is with you between meetings, not just at your desk.
+            <p className="font-mono text-[12px] text-gold mt-2 tracking-wide">
+              Coming soon — stay informed on the go
             </p>
-            <div className="mt-8">
-              <GoldButton to="/pricing">START FREE TRIAL</GoldButton>
+            <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
+              The Maddex companion app keeps you connected to your portfolio and the markets when you're away from the terminal. Receive price alerts, breaking news, and daily market briefs directly to your phone. For deep analysis and research, return to the terminal — that's where the real work happens.
+            </p>
+            <div className="flex flex-col gap-2 mt-6">
+              {[
+                'Price alerts for your watchlist',
+                'Push notifications for breaking news',
+                'Daily market brief at 7am AEST',
+                'Portfolio P&L at a glance',
+                'MaddenAI daily summary',
+                'Seamless sync with your terminal',
+              ].map((f) => (
+                <div key={f} className="font-sans text-[13px] text-text-muted flex gap-2">
+                  <span className="text-gain">✓</span>
+                  {f}
+                </div>
+              ))}
             </div>
           </div>
           <div className="flex justify-center">
             <div className="w-[220px] h-[440px] bg-bg-primary border-4 border-bg-elevated rounded-[32px] p-3 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-              <div className="w-full h-full bg-bg-surface rounded-[20px] border border-gold/15 overflow-hidden">
-                <div className="bg-bg-primary border-b border-gold/12 px-3 py-2 font-mono text-[9px] text-gold">MADDEX</div>
-                <div className="p-3 flex flex-col gap-2">
-                  {[['ASX 200', '+0.42%'], ['BTC/AUD', '+1.80%'], ['AUD/USD', '-0.12%']].map(([s, c]) => (
-                    <div key={s} className="flex justify-between font-mono text-[9px]">
-                      <span className="text-text-muted">{s}</span>
-                      <span className={c.startsWith('+') ? 'text-gain' : 'text-loss'}>{c}</span>
+              <div className="w-full h-full bg-bg-surface rounded-[20px] border border-gold/15 overflow-hidden flex flex-col">
+                <div className="bg-bg-primary border-b border-gold/12 px-3 py-2 font-mono text-[9px] text-gold flex items-center justify-between">
+                  <span>MADDEX</span>
+                  <span className="text-text-faint">9:42 AM</span>
+                </div>
+                <div className="p-2.5 flex flex-col gap-2 flex-1">
+                  {[
+                    ['PRICE ALERT', 'BHP.AX up 2.1% — above your A$44 alert'],
+                    ['BREAKING NEWS', 'RBA holds cash rate at 4.35%'],
+                    ['DAILY BRIEF', "Today's 3-minute market brief is ready"],
+                    ['MADDENAI SUMMARY', 'Sentiment 72/100 — neutral-bullish'],
+                  ].map(([tag, msg]) => (
+                    <div key={tag} className="bg-bg-primary border border-gold/15 rounded-sm px-2.5 py-2">
+                      <div className="font-mono text-[7px] text-gold tracking-wide">{tag}</div>
+                      <div className="font-sans text-[9px] text-text-primary mt-1 leading-snug">{msg}</div>
                     </div>
                   ))}
+                </div>
+                <div className="border-t border-gold/12 px-3 py-2 font-mono text-[8px] text-text-faint text-center">
+                  Full analysis in the Maddex Terminal
                 </div>
               </div>
             </div>
