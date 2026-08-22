@@ -11,13 +11,10 @@ const HERO_STATS = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-bg-primary overflow-hidden">
+    <section className="relative min-h-[90vh] bg-bg-primary overflow-hidden flex items-center">
       <ParticleCanvas />
 
-      <div
-        className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
-        style={{ minHeight: 'calc(100vh - 84px)', paddingTop: 84 }}
-      >
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full pt-24 pb-16">
         <div>
           <div className="hero-goldline h-px bg-gold/50 mb-5" />
 
