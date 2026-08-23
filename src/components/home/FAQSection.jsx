@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import SectionLabel from '../shared/SectionLabel'
+import SectionHeading from '../shared/SectionHeading'
 import FAQItem from '../shared/FAQItem'
 
 const FAQS = [
@@ -14,12 +15,12 @@ export default function FAQSection() {
   const [openFaq, setOpenFaq] = useState(0)
 
   return (
-    <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
+    <section className="bg-bg-primary py-20 px-6 md:px-10">
       <div className="max-w-[720px] mx-auto">
         <SectionLabel center>FAQ</SectionLabel>
-        <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-8">
+        <SectionHeading center className="mb-8">
           Questions, answered.
-        </h2>
+        </SectionHeading>
         {FAQS.map((faq, i) => (
           <FAQItem
             key={faq[0]}

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import SectionLabel from '../shared/SectionLabel'
+import SectionHeading from '../shared/SectionHeading'
+import SectionSubheading from '../shared/SectionSubheading'
 import GoldButton from '../shared/GoldButton'
 
 const TIERS = [
@@ -27,18 +29,18 @@ export default function NewsletterSection() {
   const [email, setEmail] = useState('')
 
   return (
-    <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
+    <section className="bg-bg-primary py-20 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
           PHASE 3 · COMING SOON
         </span>
         <SectionLabel center>MADDENAI NEWSLETTER</SectionLabel>
-        <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-2xl mx-auto">
+        <SectionHeading center>
           A standalone market brief, delivered to your inbox.
-        </h2>
-        <p className="font-sans text-[15px] text-text-muted max-w-xl mx-auto mt-3">
+        </SectionHeading>
+        <SectionSubheading center className="mt-3">
           Separate from the Terminal. Launches roughly 6–12 months after the Terminal.
-        </p>
+        </SectionSubheading>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10 text-left max-w-[900px] mx-auto items-stretch">
           {TIERS.map((tier, i) => (

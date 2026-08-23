@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import SectionLabel from '../shared/SectionLabel'
+import SectionHeading from '../shared/SectionHeading'
+import SectionSubheading from '../shared/SectionSubheading'
 import GoldButton from '../shared/GoldButton'
 
 const PRODUCTS = [
@@ -34,17 +36,17 @@ const PRODUCTS = [
 
 export default function ProductsOverviewSection() {
   return (
-    <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+    <section className="bg-bg-surface py-20 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>THE MADDEX ECOSYSTEM</SectionLabel>
-        <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
+        <SectionHeading center>
           One terminal today.
           <br />
           Three products coming soon.
-        </h2>
-        <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-4 leading-[1.75]">
+        </SectionHeading>
+        <SectionSubheading center className="mt-4">
           Maddex launches with the Terminal. Research Notes and the Newsletter follow as standalone products in the months ahead.
-        </p>
+        </SectionSubheading>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-10 text-left items-stretch">
           {PRODUCTS.map((p, i) => (
@@ -63,8 +65,8 @@ export default function ProductsOverviewSection() {
               <span className={`font-mono text-[9px] tracking-[0.15em] ${p.live ? 'text-gold' : 'text-text-faint'}`}>
                 {p.tag}
               </span>
-              <h3 className="font-sans text-[22px] font-bold text-text-primary mt-3">{p.name}</h3>
-              <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7] flex-1">{p.desc}</p>
+              <h3 className="font-sans text-[1.125rem] font-semibold text-white mt-3">{p.name}</h3>
+              <p className="font-sans text-[0.875rem] text-[#8BA3C4] mt-3 leading-[1.6] flex-1">{p.desc}</p>
               <div className="font-mono text-[13px] text-gold mt-5">{p.price}</div>
               <div className="mt-5">
                 {p.live ? (

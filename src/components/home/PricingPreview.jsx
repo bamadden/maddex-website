@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import SectionLabel from '../shared/SectionLabel'
+import SectionHeading from '../shared/SectionHeading'
+import SectionSubheading from '../shared/SectionSubheading'
 import GoldButton from '../shared/GoldButton'
 import PricingComparisonTable from '../shared/PricingComparisonTable'
 import { TERMINAL_PLANS } from '../../data/pricing'
@@ -23,17 +25,17 @@ export default function PricingPreview() {
   const [showComparison, setShowComparison] = useState(false)
 
   return (
-    <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+    <section className="bg-bg-surface py-20 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>PRICING</SectionLabel>
-        <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
+        <SectionHeading center>
           Simple pricing.
           <br />
           No surprises.
-        </h2>
-        <p className="font-sans text-[15px] text-text-muted max-w-xl mx-auto mt-3">
+        </SectionHeading>
+        <SectionSubheading center className="mt-3">
           Bloomberg costs A$42,000 a year. Maddex starts at A$29 a month.
-        </p>
+        </SectionSubheading>
 
         <div className="relative inline-flex items-center gap-1 bg-bg-primary border border-gold/20 rounded-full p-1 mt-8">
           <button

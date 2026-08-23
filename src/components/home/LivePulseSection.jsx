@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import SectionLabel from '../shared/SectionLabel'
+import SectionHeading from '../shared/SectionHeading'
 
 function Sparkline({ points, color = '#C9A84C' }) {
   const ref = useRef(null)
@@ -87,18 +88,18 @@ export default function LivePulseSection() {
   const dots = Array.from({ length: 22 }, (_, i) => i < 18)
 
   return (
-    <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
+    <section className="bg-bg-primary py-20 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>LIVE MARKET PULSE</SectionLabel>
-        <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary">
+        <SectionHeading center>
           Markets don't sleep. Neither does Maddex.
-        </h2>
+        </SectionHeading>
         <div className="flex items-center justify-center gap-2 mt-4">
           <span className="relative w-2 h-2">
             <span className="pulse-ring absolute inset-0" />
             <span className="absolute inset-0 rounded-full bg-gold" />
           </span>
-          <p className="font-sans text-[17px] text-text-muted leading-[1.75]">
+          <p className="font-sans text-base text-[#8BA3C4] leading-[1.6]">
             Data updates every 60 seconds. Powered by MaddenAI.
           </p>
         </div>

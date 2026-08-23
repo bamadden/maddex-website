@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import SectionLabel from '../shared/SectionLabel'
+import SectionHeading from '../shared/SectionHeading'
+import SectionSubheading from '../shared/SectionSubheading'
 
 const TABS = ['MARKETS', 'MADDENAI', 'GLOBAL']
 
@@ -37,7 +39,7 @@ const HEATMAP = [
 
 function MarketsVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col lg:h-[380px]">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-full min-h-[400px]">
       <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>MARKETS · ASX 200</span>
         <span className="text-gain">● OPEN</span>
@@ -82,7 +84,7 @@ function MarketsVisual() {
 
 function MaddenAIVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col lg:h-[380px]">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-full min-h-[400px]">
       <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 shrink-0">
         <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
         MADDENAI CHAT
@@ -159,7 +161,7 @@ const GLOBAL_STATS = [
 
 function GlobalVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col lg:h-[380px]">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-full min-h-[400px]">
       <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>GLOBAL INTELLIGENCE</span>
         <span className="text-gold">18/50 OPEN</span>
@@ -286,19 +288,19 @@ export default function FeaturesSection() {
   const ActiveVisual = VISUALS[activeTab]
 
   return (
-    <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
+    <section className="bg-bg-primary py-20 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>WHAT'S INSIDE</SectionLabel>
-        <h2 className="font-sans text-[34px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
+        <SectionHeading center>
           Built for investors
           <br />
           who take it seriously.
-        </h2>
-        <p className="font-sans text-[16px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.6]">
+        </SectionHeading>
+        <SectionSubheading center className="mt-4">
           Everything a serious investor needs. One terminal.
-        </p>
+        </SectionSubheading>
 
-        <div className="flex flex-wrap justify-center gap-2 mt-10">
+        <div className="grid grid-cols-3 gap-2 max-w-[480px] mx-auto mt-10">
           {TABS.map((tab) => (
             <button
               key={tab}
@@ -323,7 +325,7 @@ export default function FeaturesSection() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-9 text-left max-w-[1000px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-9 text-left max-w-[1000px] mx-auto items-stretch">
           <AnimatePresence mode="wait">
             <motion.div
               key={`list-${activeTab}`}
@@ -331,7 +333,7 @@ export default function FeaturesSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -16 }}
               transition={{ duration: 0.25 }}
-              className="flex flex-col justify-center gap-4 lg:min-h-[380px]"
+              className="flex flex-col justify-center gap-4 min-h-[400px]"
             >
               {TAB_CONTENT[activeTab].map((f) => (
                 <div key={f} className="flex gap-3 items-start">
@@ -349,6 +351,7 @@ export default function FeaturesSection() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.25 }}
+              className="min-h-[400px]"
             >
               <ActiveVisual />
             </motion.div>
@@ -367,8 +370,8 @@ export default function FeaturesSection() {
               className="bg-bg-surface border border-gold/15 hover:border-gold/40 rounded p-6 transition-colors duration-200"
             >
               <span className="text-gold">{card.icon}</span>
-              <h3 className="font-sans text-[16px] font-bold text-text-primary mt-4">{card.name}</h3>
-              <p className="font-sans text-[13px] text-text-muted mt-2 leading-[1.6]">{card.desc}</p>
+              <h3 className="font-sans text-[1.125rem] font-semibold text-white mt-4">{card.name}</h3>
+              <p className="font-sans text-[0.875rem] text-[#8BA3C4] mt-2 leading-[1.6]">{card.desc}</p>
             </motion.div>
           ))}
         </div>

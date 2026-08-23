@@ -3,78 +3,82 @@ import GoldButton from '../shared/GoldButton'
 import AnimatedTerminalMockup from './AnimatedTerminalMockup'
 
 const HERO_STATS = [
-  { value: '70+', label: 'Global markets' },
+  { value: '70+', label: 'Markets' },
   { value: '8', label: 'Modules' },
-  { value: 'MaddenAI', label: 'Powered' },
-  { value: 'A$29/mo', label: 'From' },
+  { value: 'A$29', label: '/mo' },
+  { value: '7-day', label: 'Trial' },
 ]
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] bg-bg-primary overflow-hidden flex items-center">
+    <section className="relative bg-bg-primary overflow-hidden">
       <ParticleCanvas />
 
-      <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-10 w-full pt-24 pb-16 text-center">
-        <div className="hero-eyebrow font-mono text-[11px] tracking-[0.2em] text-gold uppercase mb-6">
-          Financial Intelligence Terminal
-        </div>
-
-        <h1
-          className="hero-headline font-sans mx-auto"
-          style={{
-            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-            fontWeight: 700,
-            lineHeight: 1.08,
-            letterSpacing: '-0.03em',
-            color: 'white',
-            textAlign: 'center',
-            maxWidth: 800,
-            marginBottom: 24,
-          }}
+      <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 pt-[84px]">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 items-center"
+          style={{ gap: 48, minHeight: '80vh' }}
         >
-          The terminal built for
-          <br />
-          the everyday investor.
-        </h1>
-
-        <p
-          className="hero-sub font-sans mx-auto"
-          style={{
-            fontSize: '1.125rem',
-            color: '#8BA3C4',
-            textAlign: 'center',
-            maxWidth: 500,
-            marginBottom: 40,
-            lineHeight: 1.6,
-          }}
-        >
-          ASX and global markets. AI-powered analysis. No Bloomberg price tag.
-        </p>
-
-        <div className="hero-cta flex items-center justify-center gap-3 mb-12 flex-wrap">
-          <GoldButton to="/pricing">Start Free Trial</GoldButton>
-          <GoldButton to="/pricing" variant="ghost">
-            View Pricing
-          </GoldButton>
-        </div>
-
-        <div className="hero-terminal text-left">
-          <AnimatedTerminalMockup />
-        </div>
-
-        <div className="hero-stats flex items-center justify-center divide-x divide-[rgba(30,70,140,0.3)] flex-wrap gap-y-4 mt-12">
-          {HERO_STATS.map((stat) => (
-            <div key={stat.label} className="flex flex-col px-6">
-              <span className="font-mono text-2xl font-bold text-gold leading-none">{stat.value}</span>
-              <span className="font-mono text-[11px] text-text-muted mt-1 whitespace-nowrap uppercase tracking-wide">
-                {stat.label}
-              </span>
+          <div>
+            <div className="hero-eyebrow font-mono text-[10px] tracking-[0.2em] text-gold uppercase mb-4">
+              Financial Intelligence Terminal
             </div>
-          ))}
-        </div>
 
-        <div className="hero-trust font-mono text-xs text-text-muted text-center mt-6">
-          General information only · Not financial advice · Built in Australia
+            <h1
+              className="hero-headline font-sans"
+              style={{
+                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontWeight: 700,
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+                color: 'white',
+                maxWidth: 500,
+              }}
+            >
+              The terminal built for
+              <br />
+              the everyday investor.
+            </h1>
+
+            <p
+              className="hero-sub font-sans"
+              style={{
+                fontSize: '1rem',
+                color: '#8BA3C4',
+                maxWidth: 380,
+                marginTop: 16,
+                lineHeight: 1.6,
+              }}
+            >
+              ASX and global markets. AI-powered analysis. No Bloomberg price tag.
+            </p>
+
+            <div className="hero-stats grid grid-cols-4 mt-8 mb-8 max-w-[420px]">
+              {HERO_STATS.map((stat) => (
+                <div key={stat.label} className="flex flex-col">
+                  <span className="font-mono text-xl font-bold text-gold leading-none">{stat.value}</span>
+                  <span className="font-mono text-[10px] text-text-muted mt-1.5 uppercase tracking-wide">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="hero-cta flex items-center flex-wrap" style={{ gap: 12 }}>
+              <GoldButton to="/pricing">Start Free Trial</GoldButton>
+              <GoldButton to="/pricing" variant="ghost">
+                View Pricing
+              </GoldButton>
+            </div>
+
+            <div className="hero-trust font-mono text-[10px] text-text-muted mt-6">
+              General information only · Not financial advice
+            </div>
+          </div>
+
+          <div className="hero-terminal self-stretch text-left">
+            <AnimatedTerminalMockup />
+          </div>
         </div>
       </div>
     </section>

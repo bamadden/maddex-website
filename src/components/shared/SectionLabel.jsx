@@ -7,7 +7,7 @@ export default function SectionLabel({ children, center = false }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.2 }}
-      className={`font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] text-gold mb-4 flex items-center gap-2 ${
+      className={`font-mono text-[10px] uppercase tracking-[0.2em] text-gold mb-3 flex items-center gap-2 ${
         center ? 'justify-center text-center' : ''
       }`}
     >

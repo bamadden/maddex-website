@@ -211,10 +211,12 @@ function IntelligenceColumn() {
 export default function AnimatedTerminalMockup() {
   return (
     <div
-      className="w-full max-w-[1000px] mx-auto bg-bg-primary overflow-hidden"
+      className="w-full h-full flex flex-col bg-bg-primary overflow-hidden"
       style={{
         border: '1px solid rgba(201,168,76,0.2)',
         borderRadius: 8,
+        minHeight: 480,
+        maxHeight: 600,
         boxShadow:
           '0 0 0 1px rgba(201,168,76,0.05), 0 20px 60px rgba(0,0,0,0.5), 0 0 100px rgba(201,168,76,0.03)',
       }}
@@ -222,7 +224,7 @@ export default function AnimatedTerminalMockup() {
       <WindowBar />
       <TickerTape />
 
-      <div className="grid grid-cols-3 h-[380px]">
+      <div className="grid grid-cols-3 flex-1 min-h-[380px]">
         <MarketsColumn />
         <MaddenAIColumn />
         <IntelligenceColumn />
