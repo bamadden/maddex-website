@@ -7,6 +7,25 @@ const PRE_FOOTER_ITEMS = [
   { symbol: 'GOLD', price: 'A$4,821', change: '+0.30%', positive: true },
 ]
 
+function tickerItems(copy) {
+  return [
+    <span key={`${copy}-live`} className="font-mono text-[9px] text-gold flex items-center gap-1.5 shrink-0">
+      <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
+      LIVE
+    </span>,
+    ...PRE_FOOTER_ITEMS.map((item) => (
+      <span key={`${copy}-${item.symbol}`} className="font-mono text-[10px] text-text-muted flex items-center gap-1.5 shrink-0">
+        <span className="text-gold font-semibold">{item.symbol}</span>
+        <span className="text-text-primary">{item.price}</span>
+        <span className={item.positive ? 'text-gain' : 'text-loss'}>
+          {item.positive ? '▲' : '▼'} {item.change}
+        </span>
+      </span>
+    )),
+    <span key={`${copy}-score`} className="font-mono text-[10px] text-gold shrink-0">MaddenAI 72/100</span>,
+  ]
+}
+
 export default function Footer() {
   return (
     <footer>
@@ -15,25 +34,9 @@ export default function Footer() {
         style={{ background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)' }}
       />
       <div className="h-9 bg-bg-elevated border-t border-b border-gold/20 overflow-hidden relative">
-        <div className="flex ticker-track w-max h-full items-center">
-          {[0, 1].map((copy) => (
-            <div key={copy} className="flex items-center gap-6 pl-6">
-              <span className="font-mono text-[9px] text-gold flex items-center gap-1.5 shrink-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
-                LIVE
-              </span>
-              {PRE_FOOTER_ITEMS.map((item) => (
-                <span key={item.symbol} className="font-mono text-[10px] text-text-muted flex items-center gap-1.5 shrink-0">
-                  <span className="text-gold font-semibold">{item.symbol}</span>
-                  <span className="text-text-primary">{item.price}</span>
-                  <span className={item.positive ? 'text-gain' : 'text-loss'}>
-                    {item.positive ? '▲' : '▼'} {item.change}
-                  </span>
-                </span>
-              ))}
-              <span className="font-mono text-[10px] text-gold shrink-0 pr-6">MaddenAI 72/100</span>
-            </div>
-          ))}
+        <div className="flex ticker-track h-full items-center" style={{ gap: '32px', width: 'max-content', paddingLeft: '24px' }}>
+          {tickerItems(0)}
+          {tickerItems(1)}
         </div>
       </div>
 

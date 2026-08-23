@@ -246,7 +246,7 @@ export default function Hero() {
             <div style={{
               display: 'inline-flex',
               gap: '32px',
-              animation: 'ticker 25s linear infinite',
+              animation: 'ticker 35s linear infinite',
               fontSize: '9px',
               color: '#B8C8D8',
             }}>
@@ -420,6 +420,27 @@ export default function Hero() {
                   ))}
                 </div>
               </div>
+
+              {/* Divider + Quick Actions */}
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', marginTop: '10px', paddingTop: '8px' }}>
+                <div style={{
+                  fontSize: '7px', color: '#4A6080',
+                  letterSpacing: '0.15em', marginBottom: '6px',
+                }}>QUICK ACTIONS</div>
+                <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                  {['+ WATCHLIST', 'RESEARCH NOTE'].map((label) => (
+                    <div key={label} style={{
+                      border: '1px solid rgba(255,255,255,0.12)',
+                      borderRadius: '10px',
+                      padding: '3px 7px',
+                      fontSize: '7px',
+                      color: '#8BA3C4',
+                    }}>
+                      {label}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Column 3 — Intelligence */}
@@ -484,17 +505,17 @@ export default function Hero() {
               {/* Upcoming */}
               <div style={{ marginTop: '10px' }}>
                 <div style={{
-                  fontSize: '7px', color: '#4A6080',
+                  fontSize: '7px', color: '#C9A84C',
                   letterSpacing: '0.15em', marginBottom: '6px',
-                }}>UPCOMING</div>
+                }}>UPCOMING EVENTS</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   {[
-                    ['16 Sep', 'RBA Decision', 'HOLD 4.35% expected'],
-                    ['17 Sep', 'FOMC Decision', 'Hold or cut — 65/35'],
+                    ['16 Sep', 'RBA Decision', 'HOLD expected'],
+                    ['17 Sep', 'FOMC Decision', '65% Hold'],
                   ].map(([date, title, desc]) => (
                     <div key={date} style={{ fontSize: '7px', lineHeight: 1.5 }}>
-                      <span style={{ color: '#C9A84C' }}>📅 {date} — {title}</span>
-                      <span style={{ color: '#637899' }}> / {desc}</span>
+                      <span style={{ color: '#C9A84C' }}>📅 {date}</span>
+                      <span style={{ color: '#637899' }}> · {title} · {desc}</span>
                     </div>
                   ))}
                 </div>

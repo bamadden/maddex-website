@@ -48,7 +48,7 @@ export default function ProblemSection() {
   return (
     <section className="bg-bg-surface py-20 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch">
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-start">
           <SectionLabel>THE INFORMATION GAP</SectionLabel>
           <SectionHeading>
             Bloomberg: A$42,000/yr.
@@ -69,6 +69,19 @@ export default function ProblemSection() {
 
           <div className="font-mono text-[11px] text-text-muted bg-gold/5 border-l-2 border-gold px-4 py-2.5 mt-8">
             Less than a Bloomberg in a single day.
+          </div>
+
+          <div className="grid grid-cols-3 gap-4 mt-auto pt-10">
+            {[
+              ['70+', 'Markets covered'],
+              ['8', 'Modules included'],
+              ['A$29', 'Starting price'],
+            ].map(([n, l]) => (
+              <div key={l} className="border-t border-[rgba(30,70,140,0.3)] pt-4">
+                <div className="font-mono text-[22px] font-bold text-gold">{n}</div>
+                <div className="font-mono text-[9px] text-text-muted uppercase tracking-[0.08em] mt-1.5">{l}</div>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -154,6 +154,57 @@ function ClassificationBands() {
   )
 }
 
+function SparklineIcon() {
+  return (
+    <svg width="44" height="44" viewBox="0 0 44 44">
+      <polyline points="4,34 14,28 22,30 30,16 40,8" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function CandlestickIcon() {
+  const candles = [
+    { x: 10, bodyTop: 26, bodyBot: 34, wickTop: 20, wickBot: 38 },
+    { x: 22, bodyTop: 18, bodyBot: 28, wickTop: 12, wickBot: 32 },
+    { x: 34, bodyTop: 8, bodyBot: 20, wickTop: 4, wickBot: 24 },
+  ]
+  return (
+    <svg width="44" height="44" viewBox="0 0 44 44">
+      {candles.map((c, i) => (
+        <g key={i}>
+          <line x1={c.x} y1={c.wickTop} x2={c.x} y2={c.wickBot} stroke="#2D8A50" strokeWidth="1.5" />
+          <rect x={c.x - 3} y={c.bodyTop} width="6" height={c.bodyBot - c.bodyTop} fill="#2D8A50" rx="1" />
+        </g>
+      ))}
+    </svg>
+  )
+}
+
+function BarsIcon() {
+  const bars = [{ x: 6, h: 12 }, { x: 18, h: 22 }, { x: 30, h: 32 }]
+  return (
+    <svg width="44" height="44" viewBox="0 0 44 44">
+      {bars.map((b, i) => (
+        <rect key={i} x={b.x} y={38 - b.h} width="8" height={b.h} fill="#C9A84C" rx="1" />
+      ))}
+    </svg>
+  )
+}
+
+function WavyLineIcon() {
+  return (
+    <svg width="44" height="44" viewBox="0 0 44 44">
+      <defs>
+        <linearGradient id="wavyGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#1A7FE8" />
+          <stop offset="100%" stopColor="#C9A84C" />
+        </linearGradient>
+      </defs>
+      <path d="M4,26 Q10,32 16,24 T28,20 Q34,16 40,8" fill="none" stroke="url(#wavyGrad)" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 const ASSET_EXAMPLES = [
   {
     category: 'EQUITY',
@@ -164,6 +215,7 @@ const ASSET_EXAMPLES = [
     up: true,
     text: 'Strong iron ore data lifting the majors — spot price up 2.3% on renewed China stimulus hopes. Volume running 1.4x the 30-day average, with the stock holding above its 50-day moving average.',
     tags: ['ASX', 'Materials', 'Bullish'],
+    icon: <SparklineIcon />,
   },
   {
     category: 'CRYPTO',
@@ -174,6 +226,7 @@ const ASSET_EXAMPLES = [
     up: true,
     text: 'Consolidating above key support with ETF inflows steady and funding rates neutral — no sign of excess leverage building. Fear & Greed reads 42, still short of euphoric territory.',
     tags: ['Crypto', 'L1', 'Neutral'],
+    icon: <CandlestickIcon />,
   },
   {
     category: 'COMMODITY',
@@ -184,6 +237,7 @@ const ASSET_EXAMPLES = [
     up: true,
     text: 'China steel margins improving into the northern construction season, with port inventories drawing down for a third straight week. Demand signal is constructive but remains policy-sensitive.',
     tags: ['Commodity', 'China', 'Bullish'],
+    icon: <BarsIcon />,
   },
   {
     category: 'MACRO',
@@ -194,6 +248,7 @@ const ASSET_EXAMPLES = [
     up: true,
     text: 'Firming on rate-differential support as the RBA holds at 4.35% while the Fed signals a slower cutting path. Range-bound 0.645–0.660 into the next data print.',
     tags: ['FX', 'Macro', 'Mildly Bullish'],
+    icon: <WavyLineIcon />,
   },
 ]
 
@@ -206,22 +261,25 @@ function AssetExampleCard({ ex }) {
       <div className="bg-bg-surface border-b border-gold/12 px-4 py-2 font-mono text-[9px] text-gold tracking-[0.15em]">
         {ex.category}
       </div>
-      <div className="p-4 flex flex-col gap-2.5 flex-1">
-        <div className="flex items-baseline justify-between gap-2 flex-wrap">
-          <span className="font-sans text-[15px] font-bold text-text-primary">{ex.name}</span>
-          <span className="font-mono text-[10px] text-text-muted">{ex.ticker}</span>
-        </div>
-        <div className="font-mono text-[12px]">
-          <span className="text-text-primary font-bold">{ex.price}</span>
-          <span className={`ml-2 ${ex.up ? 'text-gain' : 'text-loss'}`}>{ex.up ? '▲' : '▼'} {ex.change}</span>
-        </div>
-        <p className="font-sans text-[12px] text-text-muted leading-[1.7]">{ex.text}</p>
-        <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
-          {ex.tags.map((t) => (
-            <span key={t} className="font-mono text-[9px] text-gold border border-gold/25 rounded-full px-2 py-0.5">
-              {t}
-            </span>
-          ))}
+      <div className="p-4 flex gap-3 items-start flex-1">
+        <div className="shrink-0 mt-0.5">{ex.icon}</div>
+        <div className="flex flex-col gap-2.5 flex-1 min-w-0">
+          <div className="flex items-baseline justify-between gap-2 flex-wrap">
+            <span className="font-sans text-[15px] font-bold text-text-primary">{ex.name}</span>
+            <span className="font-mono text-[10px] text-text-muted">{ex.ticker}</span>
+          </div>
+          <div className="font-mono text-[12px]">
+            <span className="text-text-primary font-bold">{ex.price}</span>
+            <span className={`ml-2 ${ex.up ? 'text-gain' : 'text-loss'}`}>{ex.up ? '▲' : '▼'} {ex.change}</span>
+          </div>
+          <p className="font-sans text-[12px] text-text-muted leading-[1.7]">{ex.text}</p>
+          <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
+            {ex.tags.map((t) => (
+              <span key={t} className="font-mono text-[9px] text-gold border border-gold/25 rounded-full px-2 py-0.5">
+                {t}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </div>

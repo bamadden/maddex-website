@@ -39,7 +39,7 @@ const HEATMAP = [
 
 function MarketsVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-full min-h-[400px]">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col min-h-[220px] max-h-[280px]">
       <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>MARKETS · ASX 200</span>
         <span className="text-gain">● OPEN</span>
@@ -84,7 +84,7 @@ function MarketsVisual() {
 
 function MaddenAIVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-full min-h-[400px]">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col min-h-[220px] max-h-[280px]">
       <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 shrink-0">
         <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
         MADDENAI CHAT
@@ -161,7 +161,7 @@ const GLOBAL_STATS = [
 
 function GlobalVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-full min-h-[400px]">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col min-h-[220px] max-h-[280px]">
       <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>GLOBAL INTELLIGENCE</span>
         <span className="text-gold">18/50 OPEN</span>
@@ -325,7 +325,7 @@ export default function FeaturesSection() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-9 text-left max-w-[1000px] mx-auto items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-9 text-left max-w-[1000px] mx-auto items-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={`list-${activeTab}`}
@@ -333,7 +333,7 @@ export default function FeaturesSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -16 }}
               transition={{ duration: 0.25 }}
-              className="flex flex-col justify-center gap-4 min-h-[400px]"
+              className="flex flex-col justify-center gap-4 min-h-[320px]"
             >
               {TAB_CONTENT[activeTab].map((f) => (
                 <div key={f} className="flex gap-3 items-start">
@@ -351,7 +351,6 @@ export default function FeaturesSection() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.25 }}
-              className="min-h-[400px]"
             >
               <ActiveVisual />
             </motion.div>

@@ -26,8 +26,8 @@ function PlanCard({ plan, i, annual }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: i * 0.05, duration: 0.4 }}
-      whileHover={{ y: -4, scale: plan.popular ? 1.02 : 1.01 }}
-      className={`relative rounded flex flex-col ${plan.popular ? 'scale-[1.02]' : ''}`}
+      whileHover={{ y: -4, scale: plan.popular ? 1.015 : 1.01 }}
+      className="relative rounded flex flex-col"
     >
       {plan.popular && (
         <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap z-10">
@@ -40,12 +40,12 @@ function PlanCard({ plan, i, annual }) {
         </span>
       )}
       <div
-        className={`relative overflow-hidden rounded p-6 transition-colors duration-200 flex flex-col flex-1 ${
-          plan.popular ? '' : 'card-gradient-live border border-[rgba(201,168,76,0.2)] hover:border-gold/40'
-        } ${plan.name === 'APEX' ? 'border border-[rgba(201,168,76,0.3)]' : ''}`}
+        className={`relative overflow-hidden rounded p-6 transition-colors duration-200 flex flex-col flex-1 bg-bg-primary ${
+          plan.popular ? '' : 'border border-[rgba(201,168,76,0.15)] hover:border-gold/40'
+        }`}
         style={{ minHeight: 480, ...(plan.popular ? {
                 background:
-                  'rgba(201,168,76,0.02) padding-box, linear-gradient(135deg, #C9A84C, rgba(201,168,76,0.3)) border-box',
+                  'rgba(201,168,76,0.04) padding-box, linear-gradient(135deg, #C9A84C, rgba(201,168,76,0.3)) border-box',
                 border: '1px solid transparent',
               } : {}) }}
       >
@@ -103,13 +103,6 @@ export default function Pricing() {
       <Navigation />
 
       <section className="relative bg-bg-primary pt-[84px] pb-10 px-6 md:px-10 text-center overflow-hidden">
-        <div
-          className="pricing-watermark absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono font-bold text-gold pointer-events-none select-none"
-          style={{ fontSize: 220, lineHeight: 1, zIndex: 0 }}
-          aria-hidden="true"
-        >
-          A$29
-        </div>
         <div className="relative" style={{ zIndex: 1 }}>
           <div className="hero-eyebrow"><SectionLabel center>TERMINAL PRICING</SectionLabel></div>
           <h1 className="hero-headline font-sans font-bold leading-tight tracking-tight max-w-4xl mx-auto">
@@ -141,10 +134,20 @@ export default function Pricing() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 text-left max-w-[1000px] mx-auto">
-          {TERMINAL_PLANS.map((plan, i) => (
-            <PlanCard key={plan.name} plan={plan} i={i} annual={annual} />
-          ))}
+        <div
+          className="mt-10 max-w-[1000px] mx-auto"
+          style={{
+            border: '1px solid rgba(201,168,76,0.2)',
+            borderRadius: '8px',
+            padding: '2px',
+            background: 'rgba(201,168,76,0.02)',
+          }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 text-left">
+            {TERMINAL_PLANS.map((plan, i) => (
+              <PlanCard key={plan.name} plan={plan} i={i} annual={annual} />
+            ))}
+          </div>
         </div>
 
         <p className="font-mono text-[11px] text-text-muted max-w-2xl mx-auto mt-8 leading-[1.7]">
@@ -170,8 +173,8 @@ export default function Pricing() {
             PHASE 2 · COMING SOON
           </span>
           <SectionLabel center>MADDENAI RESEARCH NOTES</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
-            Institutional-quality research, à la carte.
+          <h2 className="font-sans text-[24px] sm:text-[32px] md:text-[44px] font-bold text-text-primary max-w-3xl mx-auto leading-tight md:whitespace-nowrap">
+            Institutional-quality research. On demand.
           </h2>
           <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
             AI-powered equity and crypto research notes, delivered as professionally designed PDFs. Planned pricing below.
