@@ -89,7 +89,7 @@ body {
   animation: ticker-scroll 30s linear infinite;
 }
 .ticker-track-keywords {
-  animation: ticker-scroll 120s linear infinite;
+  animation: ticker-scroll 60s linear infinite;
 }
 
 @keyframes pulse-ring {
@@ -161,6 +161,30 @@ body {
   .hero-simulator {
     max-width: 600px;
     margin: 0 auto;
+  }
+}
+
+.hero-sim-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.hero-sim-col {
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+.hero-sim-col:last-child {
+  border-right: none;
+}
+
+@media (max-width: 640px) {
+  .hero-sim-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-sim-col {
+    border-right: none;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .hero-sim-col:last-child {
+    border-bottom: none;
   }
 }
 

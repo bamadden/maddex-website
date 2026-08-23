@@ -267,17 +267,14 @@ export default function Hero() {
           </div>
 
           {/* Main Dashboard — 3 columns */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
+          <div className="hero-sim-grid" style={{
             background: '#060D1A',
             minHeight: '360px',
           }}>
 
             {/* Column 1 — Markets */}
-            <div style={{
+            <div className="hero-sim-col" style={{
               padding: '14px',
-              borderRight: '1px solid rgba(255,255,255,0.05)',
             }}>
               <div style={{
                 fontSize: '8px', color: '#C9A84C',
@@ -345,9 +342,8 @@ export default function Hero() {
             </div>
 
             {/* Column 2 — MaddenAI */}
-            <div style={{
+            <div className="hero-sim-col" style={{
               padding: '14px',
-              borderRight: '1px solid rgba(255,255,255,0.05)',
               display: 'flex',
               flexDirection: 'column',
             }}>
@@ -444,7 +440,7 @@ export default function Hero() {
             </div>
 
             {/* Column 3 — Intelligence */}
-            <div style={{ padding: '14px' }}>
+            <div className="hero-sim-col" style={{ padding: '14px' }}>
               <div style={{
                 fontSize: '8px', color: '#C9A84C',
                 letterSpacing: '0.2em', marginBottom: '10px',
