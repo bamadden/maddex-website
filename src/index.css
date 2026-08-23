@@ -71,6 +71,17 @@ body {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Referenced by inline `animation: pulse ...` styles in the hero terminal simulator */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
 .ticker-track {
   animation: ticker-scroll 60s linear infinite;
 }
@@ -113,10 +124,6 @@ body {
 .hero-eyebrow { animation: fadeUp 0.4s ease forwards; animation-delay: 0.1s; opacity: 0; }
 .hero-headline { animation: fadeUp 0.5s ease forwards; animation-delay: 0.2s; opacity: 0; }
 .hero-sub { animation: fadeUp 0.5s ease forwards; animation-delay: 0.4s; opacity: 0; }
-.hero-cta { animation: fadeUp 0.4s ease forwards; animation-delay: 0.5s; opacity: 0; }
-.hero-terminal { animation: fadeUp 0.6s ease forwards; animation-delay: 0.3s; opacity: 0; }
-.hero-trust { animation: fadeUp 0.4s ease forwards; animation-delay: 0.6s; opacity: 0; }
-.hero-stats { animation: fadeUp 0.4s ease forwards; animation-delay: 0.7s; opacity: 0; }
 
 @keyframes cardGradientShift {
   0%, 100% { background-position: 0% 50%; }
@@ -135,19 +142,6 @@ body {
 .pulse-dot-slow {
   animation: pulseDot 1.5s ease-in-out infinite;
 }
-
-.ticker-track-20s {
-  animation: ticker-scroll 20s linear infinite;
-}
-
-@keyframes typingDotFade {
-  0%, 80%, 100% { opacity: 0.25; }
-  40% { opacity: 1; }
-}
-.typing-dot-fade {
-  animation: typingDotFade 1.2s ease-in-out infinite;
-}
-
 
 @keyframes watermarkFadeIn {
   from { opacity: 0; }
