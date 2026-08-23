@@ -55,18 +55,7 @@ export default function Hero() {
         pointerEvents: 'none',
       }} />
 
-      <div style={{
-        maxWidth: '1280px',
-        margin: '0 auto',
-        padding: '0 40px',
-        width: '100%',
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '64px',
-        alignItems: 'center',
-        position: 'relative',
-        zIndex: 1,
-      }}>
+      <div className="hero-grid">
 
         {/* LEFT COLUMN */}
         <div>
@@ -206,7 +195,7 @@ export default function Hero() {
         </div>
 
         {/* RIGHT COLUMN — Terminal Simulator */}
-        <div style={{
+        <div className="hero-simulator" style={{
           width: '100%',
           border: '1px solid rgba(201,168,76,0.18)',
           borderRadius: '6px',
