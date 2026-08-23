@@ -9,26 +9,26 @@ function ComparisonCell({ value }) {
 export default function PricingComparisonTable() {
   return (
     <div
-      className="overflow-auto rounded max-h-[600px]"
+      className="overflow-x-auto rounded"
       style={{ background: '#0B1628', border: '1px solid rgba(201,168,76,0.2)' }}
     >
       <table className="w-full min-w-[640px] border-collapse" style={{ tableLayout: 'fixed' }}>
         <thead>
           <tr style={{ background: '#060D1A', borderBottom: '2px solid rgba(201,168,76,0.3)' }}>
-            <th className="sticky text-left py-3 px-4" style={{ top: 0, background: '#060D1A', zIndex: 30, width: '35%' }} />
-            <th className="sticky font-mono text-[13px] text-center py-3 px-3" style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#637899', width: '21%' }}>
+            <th className="text-left py-3 px-4" style={{ width: '35%' }} />
+            <th className="font-mono text-[13px] text-center py-3 px-3" style={{ color: '#637899', width: '21%' }}>
               CORE
             </th>
             <th
-              className="sticky font-mono text-[13px] text-center py-3 px-3"
-              style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#C9A84C', width: '22%', borderLeft: '1px solid rgba(201,168,76,0.15)', borderRight: '1px solid rgba(201,168,76,0.15)' }}
+              className="font-mono text-[13px] text-center py-3 px-3"
+              style={{ color: '#C9A84C', width: '22%', borderLeft: '1px solid rgba(201,168,76,0.15)', borderRight: '1px solid rgba(201,168,76,0.15)' }}
             >
               <div>PRIME</div>
               <span className="inline-block mt-1 bg-gold text-bg-primary font-mono text-[8px] font-bold px-2 py-0.5 rounded-full">
                 MOST POPULAR
               </span>
             </th>
-            <th className="sticky font-mono text-[13px] text-center py-3 px-3" style={{ top: 0, background: '#060D1A', zIndex: 30, color: '#E8EDF5', width: '22%' }}>
+            <th className="font-mono text-[13px] text-center py-3 px-3" style={{ color: '#E8EDF5', width: '22%' }}>
               APEX
             </th>
           </tr>
