@@ -9,12 +9,12 @@ const PRE_FOOTER_ITEMS = [
 
 function tickerItems(copy) {
   return [
-    <span key={`${copy}-live`} className="font-mono text-[9px] text-gold flex items-center gap-1.5 shrink-0">
+    <span key={`${copy}-live`} className="font-mono text-[9px] text-gold flex items-center gap-1.5 shrink-0 pr-8">
       <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
       LIVE
     </span>,
     ...PRE_FOOTER_ITEMS.map((item) => (
-      <span key={`${copy}-${item.symbol}`} className="font-mono text-[10px] text-text-muted flex items-center gap-1.5 shrink-0">
+      <span key={`${copy}-${item.symbol}`} className="font-mono text-[10px] text-text-muted flex items-center gap-1.5 shrink-0 pr-8">
         <span className="text-gold font-semibold">{item.symbol}</span>
         <span className="text-text-primary">{item.price}</span>
         <span className={item.positive ? 'text-gain' : 'text-loss'}>
@@ -22,7 +22,7 @@ function tickerItems(copy) {
         </span>
       </span>
     )),
-    <span key={`${copy}-score`} className="font-mono text-[10px] text-gold shrink-0">MaddenAI 72/100</span>,
+    <span key={`${copy}-score`} className="font-mono text-[10px] text-gold shrink-0 pr-8">MaddenAI 72/100</span>,
   ]
 }
 
@@ -33,8 +33,8 @@ export default function Footer() {
         className="h-px w-full"
         style={{ background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)' }}
       />
-      <div className="h-9 bg-bg-elevated border-t border-b border-gold/20 overflow-hidden relative">
-        <div className="flex ticker-track h-full items-center" style={{ gap: '32px', width: 'max-content', paddingLeft: '24px' }}>
+      <div className="h-9 bg-bg-elevated border-t border-b border-gold/20 overflow-hidden relative pl-6">
+        <div className="flex ticker-track h-full items-center" style={{ width: 'max-content' }}>
           {tickerItems(0)}
           {tickerItems(1)}
         </div>

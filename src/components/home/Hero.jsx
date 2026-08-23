@@ -82,7 +82,7 @@ export default function Hero() {
 
           {/* Headline */}
           <h1 style={{
-            fontSize: 'clamp(2.8rem, 4vw, 3.8rem)',
+            fontSize: 'clamp(2.8rem, 4.6vw, 4.2rem)',
             fontWeight: 800,
             lineHeight: 1.05,
             letterSpacing: '-0.03em',
@@ -92,7 +92,8 @@ export default function Hero() {
           }}>
             The terminal<br />
             built for the<br />
-            everyday investor.
+            everyday<br />
+            investor.
           </h1>
 
           {/* Subheadline */}
@@ -245,22 +246,24 @@ export default function Hero() {
           }}>
             <div style={{
               display: 'inline-flex',
-              gap: '32px',
               animation: 'ticker 35s linear infinite',
               fontSize: '9px',
               color: '#B8C8D8',
             }}>
-              {/* Duplicate for seamless loop */}
+              {/* Duplicate for seamless loop — each item carries its own trailing
+                  margin (rather than a flex `gap`) so the two copies are each a
+                  self-contained, identically-sized block. That's required for the
+                  -50% translateX loop to land exactly on the seam with no jump. */}
               {[...Array(2)].map((_, i) => (
-                <span key={i} style={{ display: 'inline-flex', gap: '32px' }}>
-                  <span>ASX 200 <span style={{ color: '#2D8A50' }}>▲ 0.42%</span> 8,247</span>
-                  <span>BHP <span style={{ color: '#2D8A50' }}>▲ 1.27%</span> A$43.21</span>
-                  <span>CBA <span style={{ color: '#A83232' }}>▼ 0.72%</span> A$168.45</span>
-                  <span>S&P 500 <span style={{ color: '#2D8A50' }}>▲ 0.32%</span> 5,842</span>
-                  <span>NVDA <span style={{ color: '#2D8A50' }}>▲ 2.85%</span> US$138.42</span>
-                  <span>XRP <span style={{ color: '#2D8A50' }}>▲ 0.90%</span> A$1.57</span>
-                  <span>BTC <span style={{ color: '#2D8A50' }}>▲ 0.52%</span> A$92,285</span>
-                  <span>Gold <span style={{ color: '#2D8A50' }}>▲ 0.8%</span> US$2,487</span>
+                <span key={i} style={{ display: 'inline-flex' }}>
+                  <span style={{ marginRight: 32 }}>ASX 200 <span style={{ color: '#2D8A50' }}>▲ 0.42%</span> 8,247</span>
+                  <span style={{ marginRight: 32 }}>BHP <span style={{ color: '#2D8A50' }}>▲ 1.27%</span> A$43.21</span>
+                  <span style={{ marginRight: 32 }}>CBA <span style={{ color: '#A83232' }}>▼ 0.72%</span> A$168.45</span>
+                  <span style={{ marginRight: 32 }}>S&P 500 <span style={{ color: '#2D8A50' }}>▲ 0.32%</span> 5,842</span>
+                  <span style={{ marginRight: 32 }}>NVDA <span style={{ color: '#2D8A50' }}>▲ 2.85%</span> US$138.42</span>
+                  <span style={{ marginRight: 32 }}>XRP <span style={{ color: '#2D8A50' }}>▲ 0.90%</span> A$1.57</span>
+                  <span style={{ marginRight: 32 }}>BTC <span style={{ color: '#2D8A50' }}>▲ 0.52%</span> A$92,285</span>
+                  <span style={{ marginRight: 32 }}>Gold <span style={{ color: '#2D8A50' }}>▲ 0.8%</span> US$2,487</span>
                 </span>
               ))}
             </div>

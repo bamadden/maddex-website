@@ -534,8 +534,10 @@ export default function MaddenAI() {
                 <span>TOTAL</span>
                 <span className="text-gold">100%</span>
               </div>
-              <ExampleReading examples={[['ASX Breadth Today', 78], ['Volatility Today', 45], ['News Sentiment Today', 25]]} />
-              <div className="mt-auto"><ClassificationBands /></div>
+              <div className="flex-1 flex flex-col justify-center">
+                <ExampleReading examples={[['ASX Breadth Today', 78], ['Volatility Today', 45], ['News Sentiment Today', 25]]} />
+                <ClassificationBands />
+              </div>
             </motion.div>
 
             <motion.div
@@ -558,8 +560,10 @@ export default function MaddenAI() {
                 <span>TOTAL</span>
                 <span className="text-gold">100%</span>
               </div>
-              <ExampleReading examples={[['24H Momentum Today', 85], ['Volume Conviction Today', 52]]} />
-              <div className="mt-auto"><ClassificationBands /></div>
+              <div className="flex-1 flex flex-col justify-center">
+                <ExampleReading examples={[['24H Momentum Today', 85], ['Volume Conviction Today', 52]]} />
+                <ClassificationBands />
+              </div>
             </motion.div>
 
             <motion.div
@@ -596,8 +600,10 @@ export default function MaddenAI() {
                 <span>TOTAL</span>
                 <span className="text-gold">100%</span>
               </div>
-              <ExampleReading examples={[['Day Change Today', 72], ['Volume Conviction Today', 48]]} />
-              <div className="mt-auto"><ClassificationBands /></div>
+              <div className="flex-1 flex flex-col justify-center">
+                <ExampleReading examples={[['Day Change Today', 72], ['Volume Conviction Today', 48]]} />
+                <ClassificationBands />
+              </div>
             </motion.div>
           </div>
         </div>
