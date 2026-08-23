@@ -335,7 +335,7 @@ export default function Hero() {
                     borderRadius: '2px',
                     textAlign: 'center',
                   }}>
-                    <div style={{ fontSize: '7px', color: '#637899' }}>{name}</div>
+                    <div style={{ fontSize: '8px', color: '#637899' }}>{name}</div>
                     <div style={{ fontSize: '9px', fontWeight: 600, color: up ? '#2D8A50' : '#A83232' }}>
                       {pct}
                     </div>
@@ -442,7 +442,7 @@ export default function Hero() {
                 marginBottom: '5px',
                 borderRadius: '0 2px 2px 0',
               }}>
-                <div style={{ fontSize: '7px', color: '#2D8A50', letterSpacing: '0.15em', marginBottom: '2px' }}>
+                <div style={{ fontSize: '8px', color: '#2D8A50', letterSpacing: '0.15em', marginBottom: '2px' }}>
                   AI SUPERCYCLE
                 </div>
                 <div style={{ fontSize: '9px', color: '#8BA3C4' }}>NVDA +18% earnings beat</div>
@@ -454,7 +454,7 @@ export default function Hero() {
                 padding: '7px 10px',
                 borderRadius: '0 2px 2px 0',
               }}>
-                <div style={{ fontSize: '7px', color: '#A83232', letterSpacing: '0.15em', marginBottom: '2px' }}>
+                <div style={{ fontSize: '8px', color: '#A83232', letterSpacing: '0.15em', marginBottom: '2px' }}>
                   GEOPOLITICAL
                 </div>
                 <div style={{ fontSize: '9px', color: '#8BA3C4' }}>Middle East easing</div>
