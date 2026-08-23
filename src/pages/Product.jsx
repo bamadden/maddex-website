@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import TickerTape from '../components/layout/TickerTape'
@@ -7,6 +7,139 @@ import Footer from '../components/layout/Footer'
 import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import TerminalCard from '../components/shared/TerminalCard'
+
+function MiniTypewriter({ text, speed = 35, pauseMs = 3000 }) {
+  const [displayed, setDisplayed] = useState('')
+  const [idx, setIdx] = useState(0)
+  const [pausing, setPausing] = useState(false)
+
+  useEffect(() => {
+    if (pausing) {
+      const t = setTimeout(() => { setDisplayed(''); setIdx(0); setPausing(false) }, pauseMs)
+      return () => clearTimeout(t)
+    }
+    if (idx < text.length) {
+      const t = setTimeout(() => { setDisplayed((p) => p + text[idx]); setIdx((i) => i + 1) }, speed)
+      return () => clearTimeout(t)
+    }
+    setPausing(true)
+  }, [idx, pausing, text, speed, pauseMs])
+
+  return (
+    <span>
+      {displayed}
+      <span style={{ opacity: pausing ? 0 : 1, transition: 'opacity 0.3s' }}>|</span>
+    </span>
+  )
+}
+
+function MiniBarChart() {
+  const bars = [
+    ['Materials', 1.8, true],
+    ['Financials', 0.4, true],
+    ['Tech', -0.6, false],
+    ['Energy', 2.1, true],
+    ['Health', 0.2, true],
+  ]
+  const max = 2.1
+  return (
+    <div className="flex flex-col gap-1.5">
+      {bars.map(([name, val, pos]) => (
+        <div key={name} className="flex items-center gap-2">
+          <span className="font-mono text-[8px] text-text-muted w-14 shrink-0">{name}</span>
+          <div style={{ width: 120, height: 6, background: 'rgba(30,70,140,0.25)', borderRadius: 3, overflow: 'hidden' }}>
+            <div style={{
+              width: `${(Math.abs(val) / max) * 100}%`,
+              height: '100%',
+              background: pos ? '#C9A84C' : '#A83232',
+            }} />
+          </div>
+          <span className="font-mono text-[8px] w-9 text-right shrink-0" style={{ color: pos ? '#2D8A50' : '#A83232' }}>
+            {val > 0 ? '+' : ''}{val}%
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function MiniChatPreview() {
+  return (
+    <div className="flex flex-col justify-center gap-2.5" style={{ height: 180 }}>
+      <div className="self-end bg-gold/10 border border-gold/25 rounded px-2.5 py-1.5 font-mono text-[9px] text-text-primary max-w-[85%]">
+        What's driving BTC today?
+      </div>
+      <div className="font-mono text-[9px] text-text-muted leading-[1.6]">
+        <span className="text-gold">MADDENAI · </span>
+        <MiniTypewriter text="BTC +1.8% as risk appetite improves. ETF inflows accelerating, funding rates neutral. Bias: constructive near-term." />
+      </div>
+    </div>
+  )
+}
+
+function MiniRateChart() {
+  const w = 160, h = 46
+  const pts = [
+    { x: 8, rate: 4.35 },
+    { x: 84, rate: 3.60 },
+    { x: 152, rate: 4.35 },
+  ]
+  const min = 3.4, max = 4.5
+  const y = (r) => h - ((r - min) / (max - min)) * (h - 10) - 5
+  const path = `M${pts[0].x},${y(pts[0].rate)} L${pts[1].x},${y(pts[0].rate)} L${pts[1].x},${y(pts[1].rate)} L${pts[2].x},${y(pts[1].rate)} L${pts[2].x},${y(pts[2].rate)}`
+  return (
+    <div>
+      <div className="font-mono text-[8px] text-gold tracking-[0.1em] mb-1.5">RBA CASH RATE · 2023–2026</div>
+      <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
+        <path d={path} fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+        {pts.map((p, i) => (
+          <circle key={i} cx={p.x} cy={y(p.rate)} r="2.5" fill="#C9A84C" />
+        ))}
+      </svg>
+    </div>
+  )
+}
+
+// Mini world map — same equirectangular projection + continent shapes as the
+// Global tab visual on the Home page, filtered to four hub cities.
+const MINI_GLOBE_CONTINENTS = [
+  'M60,50 L110,35 L180,40 L230,55 L262,72 L270,100 L250,132 L210,152 L160,155 L120,140 L88,110 L68,80 Z',
+  'M235,180 L270,175 L292,202 L296,242 L282,292 L260,317 L246,300 L235,258 L230,218 Z',
+  'M375,55 L410,40 L448,48 L458,70 L448,98 L412,106 L384,92 L376,70 Z',
+  'M398,135 L442,130 L468,148 L476,188 L466,230 L448,266 L420,278 L402,252 L392,205 L390,168 Z',
+  'M498,50 L570,32 L655,38 L725,58 L745,98 L725,140 L685,160 L622,170 L562,164 L505,138 L490,95 Z',
+  'M660,240 L710,229 L742,246 L746,272 L720,292 L680,286 L654,265 Z',
+]
+const MINI_GLOBE_CITIES = [
+  { name: 'SYDNEY', lat: -33.87, lon: 151.21, dx: 0, dy: 16, anchor: 'middle' },
+  { name: 'TOKYO', lat: 35.68, lon: 139.69, dx: 8, dy: -8, anchor: 'start' },
+  { name: 'LONDON', lat: 51.51, lon: -0.13, dx: -8, dy: -6, anchor: 'end' },
+  { name: 'NEW YORK', lat: 40.71, lon: -74.01, dx: 0, dy: -10, anchor: 'middle' },
+].map((c) => ({ ...c, x: ((c.lon + 180) / 360) * 800, y: ((90 - c.lat) / 180) * 400 }))
+const MINI_GLOBE_ROUTES = [['NEW YORK', 'LONDON'], ['LONDON', 'TOKYO'], ['TOKYO', 'SYDNEY'], ['SYDNEY', 'NEW YORK']]
+const miniCityByName = (name) => MINI_GLOBE_CITIES.find((c) => c.name === name)
+
+function MiniWorldMap() {
+  return (
+    <svg viewBox="0 0 800 400" className="w-full h-full">
+      {MINI_GLOBE_CONTINENTS.map((d, i) => (
+        <path key={i} d={d} fill="rgba(30,70,140,0.28)" stroke="rgba(30,70,140,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
+      ))}
+      {MINI_GLOBE_ROUTES.map(([a, b], i) => {
+        const ca = miniCityByName(a)
+        const cb = miniCityByName(b)
+        return <line key={i} x1={ca.x} y1={ca.y} x2={cb.x} y2={cb.y} stroke="rgba(201,168,76,0.3)" strokeWidth="1.2" />
+      })}
+      {MINI_GLOBE_CITIES.map((c, i) => (
+        <g key={c.name}>
+          <circle cx={c.x} cy={c.y} r="4" fill="none" stroke="#C9A84C" strokeWidth="1.5" className="global-dot-ripple" style={{ animationDelay: `${i * 0.3}s` }} />
+          <circle cx={c.x} cy={c.y} r="3" fill="#C9A84C" />
+          <text x={c.x + c.dx} y={c.y + c.dy} fill="#8A9BB5" textAnchor={c.anchor} fontSize="15" fontFamily="IBM Plex Mono, monospace">{c.name}</text>
+        </g>
+      ))}
+    </svg>
+  )
+}
 
 function MiniHeader({ label, right }) {
   return (
@@ -76,10 +209,9 @@ const MODULES = [
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-4 gap-2 px-4 pb-4">
-          {[['IT', true], ['MAT', true], ['ENRG', false], ['FIN', true]].map(([l, pos]) => (
-            <div key={l} className="font-mono text-[11px] text-center py-[10px] px-3 rounded-sm" style={{ background: pos ? 'rgba(45,138,80,0.12)' : 'rgba(168,50,50,0.12)', color: pos ? '#2D8A50' : '#A83232' }}>{l}</div>
-          ))}
+        <div className="px-4 pb-4">
+          <div className="font-mono text-[8px] text-gold tracking-[0.1em] mb-1.5">SECTOR MOVES</div>
+          <MiniBarChart />
         </div>
         <div className="font-mono text-[10px] text-gold" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', padding: '8px 16px' }}>
           MADDENAI MARKET SENTIMENT &nbsp; 72/100 &nbsp; NEUTRAL-BULLISH &nbsp; ─────────●────────
@@ -116,6 +248,10 @@ const MODULES = [
             </div>
           ))}
         </div>
+        <div className="px-4 pb-2 border-t border-[rgba(201,168,76,0.12)] pt-3">
+          <div className="font-mono text-[8px] text-gold tracking-[0.1em] mb-1">MADDENAI ANALYST</div>
+          <MiniChatPreview />
+        </div>
         <div className="font-mono text-[10px] text-gold" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', padding: '8px 16px' }}>
           TRENDING &nbsp; <span className="text-text-primary">PEPE</span> <span className="text-gain">▲+12.4%</span>
           &nbsp; <span className="text-text-primary">WIF</span> <span className="text-gain">▲+8.2%</span>
@@ -144,6 +280,9 @@ const MODULES = [
           ))}
           <div className="flex justify-between font-mono text-[11px] mt-2 pt-3 border-t border-[rgba(30,70,140,0.3)]">
             <span className="text-gold">RBA</span><span className="text-text-primary">4.35%</span><span className="text-text-faint">HOLD</span>
+          </div>
+          <div className="mt-3 pt-3 border-t border-[rgba(30,70,140,0.3)] flex justify-center">
+            <MiniRateChart />
           </div>
         </div>
         <div className="font-mono text-[10px] text-gold" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', padding: '8px 16px' }}>
@@ -247,16 +386,7 @@ const MODULES = [
         <MiniHeader label="GLOBAL INTELLIGENCE" right="RISK: MODERATE" />
         <div className="grid grid-cols-1 sm:grid-cols-[58%_42%] flex-1 overflow-hidden">
           <div className="p-4 flex items-center justify-center border-r border-[rgba(30,70,140,0.2)]">
-            <svg viewBox="0 0 100 60" className="w-full h-[240px]">
-              <path d="M15,15 Q22,10 30,14 L36,22 Q28,28 20,25 Z" fill="rgba(30,70,140,0.4)" />
-              <path d="M50,10 Q62,8 70,18 L64,30 Q52,26 50,15 Z" fill="rgba(30,70,140,0.4)" />
-              <path d="M70,15 Q82,14 88,24 L80,34 Q70,30 70,15 Z" fill="rgba(30,70,140,0.4)" />
-              {[[75,40],[58,20],[28,18]].map(([x,y], i) => (
-                <circle key={i} cx={x} cy={y} r="1.4" fill="#C9A84C">
-                  <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" />
-                </circle>
-              ))}
-            </svg>
+            <MiniWorldMap />
           </div>
           <div className="p-4 flex flex-col gap-4 font-mono text-[9px]">
             <div>
@@ -402,8 +532,8 @@ export default function Product() {
       </section>
 
       <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div>
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+          <div className="flex flex-col justify-center">
             <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
               iOS &amp; ANDROID · COMING 2027
             </span>
@@ -433,8 +563,8 @@ export default function Product() {
               ))}
             </div>
           </div>
-          <div className="flex justify-center">
-            <div className="w-[220px] h-[440px] bg-bg-primary border-4 border-bg-elevated rounded-[32px] p-3 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+          <div className="flex justify-center items-stretch">
+            <div className="w-[260px] h-full min-h-[480px] bg-bg-primary border-4 border-bg-elevated rounded-[32px] p-3 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
               <div className="w-full h-full bg-bg-surface rounded-[20px] border border-gold/15 overflow-hidden flex flex-col">
                 <div className="bg-bg-primary border-b border-gold/12 px-3 py-2 font-mono text-[9px] text-gold flex items-center justify-between">
                   <span>MADDEX</span>

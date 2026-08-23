@@ -6,13 +6,11 @@ import Footer from '../components/layout/Footer'
 import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
-import TerminalCard from '../components/shared/TerminalCard'
 
 // Computed at module load rather than hardcoded — a "TODAY'S READINGS" label
 // with a fixed date reads as broken the moment the page is viewed on any
 // other day, which is most days.
 const TODAY_LABEL = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase()
-const SAMPLE_NOTE_DATE = new Date(Date.now() - 2 * 86400000).toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' })
 
 function ScorePositionBar({ score }) {
   return (
@@ -156,6 +154,139 @@ function ClassificationBands() {
   )
 }
 
+const ASSET_EXAMPLES = [
+  {
+    category: 'EQUITY',
+    name: 'BHP Group',
+    ticker: 'BHP.AX',
+    price: 'A$43.21',
+    change: '+1.27%',
+    up: true,
+    text: 'Strong iron ore data lifting the majors — spot price up 2.3% on renewed China stimulus hopes. Volume running 1.4x the 30-day average, with the stock holding above its 50-day moving average.',
+    tags: ['ASX', 'Materials', 'Bullish'],
+  },
+  {
+    category: 'CRYPTO',
+    name: 'Bitcoin',
+    ticker: 'BTC',
+    price: 'A$162,400',
+    change: '+1.80%',
+    up: true,
+    text: 'Consolidating above key support with ETF inflows steady and funding rates neutral — no sign of excess leverage building. Fear & Greed reads 42, still short of euphoric territory.',
+    tags: ['Crypto', 'L1', 'Neutral'],
+  },
+  {
+    category: 'COMMODITY',
+    name: 'Iron Ore',
+    ticker: 'Spot, 62% Fe',
+    price: 'US$98.40/t',
+    change: '+2.3%',
+    up: true,
+    text: 'China steel margins improving into the northern construction season, with port inventories drawing down for a third straight week. Demand signal is constructive but remains policy-sensitive.',
+    tags: ['Commodity', 'China', 'Bullish'],
+  },
+  {
+    category: 'MACRO',
+    name: 'AUD/USD',
+    ticker: 'FX',
+    price: '0.6520',
+    change: '+0.18%',
+    up: true,
+    text: 'Firming on rate-differential support as the RBA holds at 4.35% while the Fed signals a slower cutting path. Range-bound 0.645–0.660 into the next data print.',
+    tags: ['FX', 'Macro', 'Mildly Bullish'],
+  },
+]
+
+function AssetExampleCard({ ex }) {
+  return (
+    <div
+      className="bg-bg-primary border border-gold/15 rounded overflow-hidden flex flex-col"
+      style={{ borderTop: '2px solid #C9A84C' }}
+    >
+      <div className="bg-bg-surface border-b border-gold/12 px-4 py-2 font-mono text-[9px] text-gold tracking-[0.15em]">
+        {ex.category}
+      </div>
+      <div className="p-4 flex flex-col gap-2.5 flex-1">
+        <div className="flex items-baseline justify-between gap-2 flex-wrap">
+          <span className="font-sans text-[15px] font-bold text-text-primary">{ex.name}</span>
+          <span className="font-mono text-[10px] text-text-muted">{ex.ticker}</span>
+        </div>
+        <div className="font-mono text-[12px]">
+          <span className="text-text-primary font-bold">{ex.price}</span>
+          <span className={`ml-2 ${ex.up ? 'text-gain' : 'text-loss'}`}>{ex.up ? '▲' : '▼'} {ex.change}</span>
+        </div>
+        <p className="font-sans text-[12px] text-text-muted leading-[1.7]">{ex.text}</p>
+        <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
+          {ex.tags.map((t) => (
+            <span key={t} className="font-mono text-[9px] text-gold border border-gold/25 rounded-full px-2 py-0.5">
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const RESEARCH_NOTE_EXAMPLES = [
+  {
+    category: 'EQUITY',
+    title: 'BHP Group Limited',
+    noteType: 'Equity Research Note',
+    pages: '8 pages · PDF',
+    sections: ['Executive Summary', 'Price Analysis', 'Fundamental Analysis', 'Risk Factors', 'Outlook'],
+    tags: ['ASX', 'Materials', 'BUY'],
+    date: 'Aug 2026',
+  },
+  {
+    category: 'CRYPTO',
+    title: 'Bitcoin (BTC/AUD)',
+    noteType: 'Crypto Intelligence Note',
+    pages: '6 pages · PDF',
+    sections: ['Market Structure', 'On-Chain Analysis', 'Macro Context', 'Price Targets', 'Risk Assessment'],
+    tags: ['Crypto', 'L1', 'NEUTRAL'],
+    date: 'Aug 2026',
+  },
+  {
+    category: 'MACRO',
+    title: 'RBA Policy Outlook Q3 2026',
+    noteType: 'Macro Research Note',
+    pages: '5 pages · PDF',
+    sections: ['Rate Decision Analysis', 'CPI Review', 'Labour Market', 'Forward Guidance', 'Implications'],
+    tags: ['RBA', 'Macro', 'HOLD'],
+    date: 'Aug 2026',
+  },
+]
+
+function ResearchNoteCard({ note }) {
+  return (
+    <div className="bg-bg-surface border border-gold/20 rounded-sm overflow-hidden flex flex-col h-full">
+      <div className="px-5 py-4 border-b border-gold/15">
+        <div className="font-mono text-[9px] tracking-[0.15em] text-gold">{note.noteType.toUpperCase()}</div>
+        <div className="font-sans text-[16px] font-bold text-text-primary mt-2 leading-snug">{note.title}</div>
+        <div className="font-mono text-[10px] text-text-muted mt-2">{note.pages} &nbsp;|&nbsp; {note.date}</div>
+      </div>
+      <div className="px-5 py-4 flex-1">
+        <div className="font-mono text-[9px] text-gold tracking-[0.1em] mb-2">CONTENTS</div>
+        <div className="flex flex-col gap-1.5">
+          {note.sections.map((s) => (
+            <div key={s} className="font-sans text-[11px] text-text-muted flex gap-2">
+              <span className="text-gold shrink-0">◆</span>{s}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="px-5 py-3 border-t border-[rgba(30,70,140,0.25)] flex flex-wrap gap-1.5">
+        {note.tags.map((t) => (
+          <span key={t} className="font-mono text-[9px] text-gold border border-gold/25 rounded-full px-2 py-0.5">
+            {t}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 const SENTIMENT_FACTORS = [
   ['ASX Market Breadth', 20], ['US Market Breadth', 15], ['Crypto Fear & Greed', 15], ['Crypto Breadth', 10],
   ['Global Index Momentum', 15], ['Volatility (VIX)', 10], ['Commodity Momentum', 10], ['News Sentiment', 5],
@@ -232,8 +363,8 @@ export default function MaddenAI() {
       </section>
 
       <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div>
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-left max-w-[720px]">
             <SectionLabel>ASSET ANALYSIS</SectionLabel>
             <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
               Type any ticker. Get a full structured read in seconds.
@@ -256,17 +387,11 @@ export default function MaddenAI() {
               ))}
             </div>
           </div>
-          <TerminalCard>
-            <div className="bg-bg-surface border-b border-gold/12 px-4 py-2 font-mono text-[10px] text-gold">
-              MADDENAI · CBA.AX ANALYSIS
-            </div>
-            <div className="p-5 font-mono text-[12px] flex flex-col gap-3">
-              <div className="font-bold text-[15px] text-text-primary">CBA.AX &nbsp;A$164.20 &nbsp;<span className="text-gain">▲ +0.31%</span></div>
-              <div><span className="text-gold text-[10px]">ASSESSMENT: </span><span className="text-text-muted">Steady institutional accumulation into result season.</span></div>
-              <div><span className="text-gold text-[10px]">OUTLOOK: </span><span className="text-text-primary">Range-bound A$158–170 into FY results.</span></div>
-              <div><span className="text-gold text-[10px]">RISK: </span><span className="text-text-muted">Valuation multiple compression on rate repricing.</span></div>
-            </div>
-          </TerminalCard>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 items-stretch">
+            {ASSET_EXAMPLES.map((ex) => (
+              <AssetExampleCard key={ex.ticker} ex={ex} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -301,7 +426,6 @@ export default function MaddenAI() {
                   <animateMotion dur="1.4s" repeatCount="indefinite" path="M2,14 L64,14" />
                 </circle>
               </svg>
-              <span className="font-mono text-[9px] text-gold mt-2 whitespace-nowrap">REAL-TIME DATA FLOW</span>
             </div>
 
             <motion.div
@@ -326,8 +450,9 @@ export default function MaddenAI() {
       <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <SectionLabel center>SCORING MODELS</SectionLabel>
-          <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary text-center max-w-2xl mx-auto leading-tight">
-            Three composite models. Fully transparent.
+          <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary text-center max-w-3xl mx-auto leading-tight">
+            <span className="block md:whitespace-nowrap">Three composite models.</span>
+            <span className="block">Fully transparent.</span>
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
@@ -432,47 +557,19 @@ export default function MaddenAI() {
           Any ASX or US ticker. From A$9.99 a note — or 1 included every month on the Apex tier.
         </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.2 }}
-          className="relative max-w-[520px] mx-auto mt-10 text-left"
-        >
-          <div className="relative bg-bg-surface border border-gold/25 rounded-sm shadow-[0_25px_60px_rgba(0,0,0,0.6)] overflow-hidden">
-            <div className="px-6 py-4 border-b border-gold/20">
-              <div className="font-mono text-[10px] tracking-[0.15em] text-gold">MADDENAI RESEARCH NOTE</div>
-              <div className="font-sans text-[20px] font-bold text-text-primary mt-2">BHP GROUP LIMITED (BHP.AX)</div>
-              <div className="font-mono text-[11px] text-text-muted mt-2">
-                Current price: <span className="text-text-primary">A$63.42</span> &nbsp;|&nbsp; Rating: <span className="text-gain">BULLISH</span> &nbsp;|&nbsp; Date: <span className="text-text-primary">{SAMPLE_NOTE_DATE}</span>
-              </div>
-              <div className="text-gold text-[15px] mt-2">★★★★☆</div>
-            </div>
-            <div className="px-6 py-4 border-b border-[rgba(30,70,140,0.3)]">
-              <p className="font-sans text-[12px] text-text-muted leading-[1.7]">
-                BHP continues to trade constructively as iron ore holds above US$95/t, with Chinese steel margins improving modestly into the northern hemisphere construction season. Balance sheet strength and disciplined capital allocation support the current valuation. Near-term risk sits with a sharp deterioration in China demand data.
-              </p>
-            </div>
-            <div className="px-6 py-4 border-b border-[rgba(30,70,140,0.3)]">
-              <div className="flex flex-wrap gap-x-4 gap-y-1.5 font-mono text-[10px] text-text-muted">
-                {['PRICE ACTION', 'FUNDAMENTALS', 'SECTOR CONTEXT', 'MACRO', 'OUTLOOK', 'RISK'].map((s) => (
-                  <span key={s}>◆ {s}</span>
-                ))}
-              </div>
-            </div>
-            <div className="px-6 py-4 flex items-center justify-between">
-              <span className="font-mono text-[9px] text-text-faint tracking-[0.1em]">MADDEN GROUP HOLDINGS</span>
-              <span className="font-mono text-[13px] font-bold text-gold">71/100 BULLISH</span>
-            </div>
-          </div>
-          <div
-            className="absolute bottom-0 right-0 w-5 h-5"
-            style={{
-              background: 'linear-gradient(135deg, transparent 50%, #060D1A 50%)',
-              boxShadow: '-3px -3px 8px rgba(0,0,0,0.4)',
-            }}
-          />
-        </motion.div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-10 max-w-[1000px] mx-auto text-left items-stretch">
+          {RESEARCH_NOTE_EXAMPLES.map((note, i) => (
+            <motion.div
+              key={note.title}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ delay: i * 0.06, duration: 0.2 }}
+            >
+              <ResearchNoteCard note={note} />
+            </motion.div>
+          ))}
+        </div>
 
         <div className="mt-10">
           <GoldButton to="/pricing#research-notes">SEE PLANNED PRICING →</GoldButton>

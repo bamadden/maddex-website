@@ -399,6 +399,27 @@ export default function Hero() {
                   }} />
                 ))}
               </div>
+
+              {/* Quick Analysis */}
+              <div style={{ marginTop: '10px' }}>
+                <div style={{
+                  fontSize: '7px', color: '#4A6080',
+                  letterSpacing: '0.15em', marginBottom: '6px',
+                }}>QUICK ANALYSIS</div>
+                <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                  {[['BIAS', 'BULLISH'], ['CONF', '78%'], ['HORIZON', '1-5D']].map(([k, v]) => (
+                    <div key={k} style={{
+                      border: '1px solid rgba(201,168,76,0.35)',
+                      borderRadius: '10px',
+                      padding: '3px 7px',
+                      fontSize: '7px',
+                      color: '#C9A84C',
+                    }}>
+                      {k}: {v}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Column 3 — Intelligence */}
@@ -458,6 +479,25 @@ export default function Hero() {
                   GEOPOLITICAL
                 </div>
                 <div style={{ fontSize: '9px', color: '#8BA3C4' }}>Middle East easing</div>
+              </div>
+
+              {/* Upcoming */}
+              <div style={{ marginTop: '10px' }}>
+                <div style={{
+                  fontSize: '7px', color: '#4A6080',
+                  letterSpacing: '0.15em', marginBottom: '6px',
+                }}>UPCOMING</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  {[
+                    ['16 Sep', 'RBA Decision', 'HOLD 4.35% expected'],
+                    ['17 Sep', 'FOMC Decision', 'Hold or cut — 65/35'],
+                  ].map(([date, title, desc]) => (
+                    <div key={date} style={{ fontSize: '7px', lineHeight: 1.5 }}>
+                      <span style={{ color: '#C9A84C' }}>📅 {date} — {title}</span>
+                      <span style={{ color: '#637899' }}> / {desc}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

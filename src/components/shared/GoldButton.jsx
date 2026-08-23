@@ -18,6 +18,13 @@ export default function GoldButton({
       ? 'bg-gold text-bg-primary hover:brightness-110 hover:shadow-[0_0_20px_rgba(201,168,76,0.3)]'
       : 'bg-transparent text-gold border border-[rgba(201,168,76,0.4)] hover:bg-[rgba(201,168,76,0.08)] hover:border-[rgba(201,168,76,0.7)]'
 
+  // The inner span can be told to go full-width via a `w-full` class, but an
+  // `inline-block` wrapper shrinks to fit its content regardless — a
+  // percentage width on an indefinitely-sized box resolves to auto. So the
+  // wrapper has to switch to a block box whenever full width is requested.
+  const isFullWidth = className.includes('w-full')
+  const wrapperClass = isFullWidth ? 'block w-full text-center' : 'inline-block'
+
   const content = (
     <motion.span
       whileTap={{ scale: 0.97 }}
@@ -31,20 +38,20 @@ export default function GoldButton({
 
   if (to) {
     return (
-      <Link to={to} className="inline-block">
+      <Link to={to} className={wrapperClass}>
         {content}
       </Link>
     )
   }
   if (href) {
     return (
-      <a href={href} className="inline-block">
+      <a href={href} className={wrapperClass}>
         {content}
       </a>
     )
   }
   return (
-    <button type="button" onClick={onClick} className="inline-block">
+    <button type="button" onClick={onClick} className={wrapperClass}>
       {content}
     </button>
   )

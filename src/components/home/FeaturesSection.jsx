@@ -358,7 +358,7 @@ export default function FeaturesSection() {
           </AnimatePresence>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-14 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-14 text-left items-stretch">
           {CARDS.map((card, i) => (
             <motion.div
               key={card.name}
@@ -367,11 +367,11 @@ export default function FeaturesSection() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: (i % 3) * 0.08, duration: 0.4 }}
               whileHover={{ y: -4 }}
-              className="bg-bg-surface border border-gold/15 hover:border-gold/40 rounded p-6 transition-colors duration-200"
+              className="bg-bg-surface border border-gold/15 hover:border-gold/40 rounded p-6 transition-colors duration-200 flex flex-col h-full"
             >
-              <span className="text-gold">{card.icon}</span>
-              <h3 className="font-sans text-[1.125rem] font-semibold text-white mt-4">{card.name}</h3>
-              <p className="font-sans text-[0.875rem] text-[#8BA3C4] mt-2 leading-[1.6]">{card.desc}</p>
+              <span className="text-gold shrink-0 [&>svg]:w-5 [&>svg]:h-5">{card.icon}</span>
+              <h3 className="font-sans text-[1.125rem] font-semibold text-white mt-4 shrink-0">{card.name}</h3>
+              <p className="font-sans text-[0.875rem] text-[#8BA3C4] mt-2 leading-[1.6] flex-1">{card.desc}</p>
             </motion.div>
           ))}
         </div>

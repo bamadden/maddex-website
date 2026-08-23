@@ -200,7 +200,9 @@ export default function Pricing() {
           </span>
           <SectionLabel center>MADDENAI NEWSLETTER</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
-            A standalone product. Own inbox, own subscription.
+            A standalone product.
+            <br />
+            <span className="whitespace-nowrap">Own inbox, own subscription.</span>
           </h2>
           <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
             Free weekly brief for everyone, with paid tiers for daily briefings and the full monthly recap.
