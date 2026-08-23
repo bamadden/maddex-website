@@ -334,12 +334,65 @@ const rbaDateLabel = nextRbaMeeting
   ? nextRbaMeeting.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase()
   : ''
 
+function ModuleIcon({ children }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" className="w-9 h-9 md:w-10 md:h-10 text-gold shrink-0">
+      {children}
+    </svg>
+  )
+}
+
+const MODULE_ICONS = {
+  markets: (
+    <ModuleIcon>
+      <path d="M4 19V5M4 19h16M8 15l3-4 3 2 4-6" strokeLinecap="round" strokeLinejoin="round" />
+    </ModuleIcon>
+  ),
+  crypto: (
+    <ModuleIcon>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 15.5c0-1.4 1.1-2 2.5-2s2.5-.7 2.5-2-1.1-2-2.5-2-2.5.6-2.5 2M12 7v1.5M12 15.5V17" strokeLinecap="round" strokeLinejoin="round" />
+    </ModuleIcon>
+  ),
+  rates: (
+    <ModuleIcon>
+      <path d="M3 17l5.5-6 4 4L21 5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M15 5h6v6" strokeLinecap="round" strokeLinejoin="round" />
+    </ModuleIcon>
+  ),
+  macro: (
+    <ModuleIcon>
+      <circle cx="7" cy="7" r="2.5" />
+      <circle cx="17" cy="17" r="2.5" />
+      <path d="M19 5 5 19" strokeLinecap="round" />
+    </ModuleIcon>
+  ),
+  news: (
+    <ModuleIcon>
+      <rect x="4" y="4" width="16" height="16" rx="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M8 9h8M8 13h8M8 17h5" strokeLinecap="round" />
+    </ModuleIcon>
+  ),
+  watchlist: (
+    <ModuleIcon>
+      <rect x="3" y="8" width="18" height="12" rx="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18" strokeLinecap="round" strokeLinejoin="round" />
+    </ModuleIcon>
+  ),
+  global: (
+    <ModuleIcon>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3c2.5 2.5 4 6 4 9s-1.5 6.5-4 9c-2.5-2.5-4-6-4-9s1.5-6.5 4-9Z" strokeLinecap="round" strokeLinejoin="round" />
+    </ModuleIcon>
+  ),
+}
+
 const MODULES = [
   {
     key: 'markets',
     stats: ['9 INDICES', '200+ STOCKS', '11 SECTORS', '60s REFRESH'],
     title: 'Markets Module',
-    icon: '🏛',
+    icon: MODULE_ICONS.markets,
     body: 'ASX 200 as the primary index, alongside 9 global indices and full 11-sector GICS breakdown — refreshed continuously and scored by MaddenAI sentiment for context, not just numbers.',
     features: ['9 global indices tracked live', 'Full ASX 200 constituent list', '11 GICS sector heatmap', 'MaddenAI sentiment overlay'],
     visual: <MarketsMiniVisual />,
@@ -348,7 +401,7 @@ const MODULES = [
     key: 'crypto',
     stats: ['TOP 20 AUD', '5-FACTOR SCORE', 'LIVE COINGECKO', '30s REFRESH'],
     title: 'Crypto Module',
-    icon: '₿',
+    icon: MODULE_ICONS.crypto,
     body: 'Top 20 assets by market cap in AUD, sourced live from CoinGecko, with the MaddenAI Crypto Momentum Index and Fear & Greed tracking — built for investors who treat crypto as a real allocation.',
     features: ['Top 20 by AUD market cap', 'MaddenAI Momentum Index', 'Fear & Greed reading', 'BTC dominance tracking'],
     visual: <CryptoMiniVisual />,
@@ -357,7 +410,7 @@ const MODULES = [
     key: 'rates',
     stats: ['10 AUD PAIRS', '8 BOND TENORS', '10+ CENTRAL BANKS', '5min REFRESH'],
     title: 'Rates Module',
-    icon: '📊',
+    icon: MODULE_ICONS.rates,
     body: 'FX pairs sourced via the Frankfurter API, government bond yield curves, and central bank rates with the RBA as the primary reference rate — the macro plumbing most retail platforms skip entirely.',
     features: ['10 AUD currency pairs', 'AU Government Bond yield curve', '10+ central bank policy rates', 'Rate decision countdowns'],
     visual: <RatesMiniVisual />,
@@ -366,7 +419,7 @@ const MODULES = [
     key: 'macro',
     stats: ['8 AU INDICATORS', 'RBA PRIMARY', 'CHINA WATCH', '30-DAY CALENDAR'],
     title: 'Macro Module',
-    icon: '🌏',
+    icon: MODULE_ICONS.macro,
     body: 'A live RBA dashboard with cash rate, next meeting countdown, the eight Australian macro indicators that actually move markets, and a dedicated China Watch panel for commodity-linked demand signals.',
     features: ['RBA cash rate + next meeting countdown', '8 Australian macro indicators', 'China Watch commodity linkage', '30-day economic calendar'],
     visual: <MacroMiniVisual />,
@@ -375,7 +428,7 @@ const MODULES = [
     key: 'news',
     stats: ['28+ SOURCES', '9 CATEGORIES', '3min REFRESH', 'AI SENTIMENT'],
     title: 'News Module',
-    icon: '📰',
+    icon: MODULE_ICONS.news,
     body: '28+ sources filtered for financial relevance across 9 categories, refreshed every 3 minutes, with MaddenAI surfacing the themes that matter before they hit the front page.',
     features: ['28+ curated sources', 'Financial relevance filter', '9 news categories', 'MaddenAI Key Themes daily'],
     visual: <NewsMiniVisual />,
@@ -384,7 +437,7 @@ const MODULES = [
     key: 'watchlist',
     stats: ['UP TO 100 STOCKS', 'LIVE PRICES', 'SUPABASE SYNC', 'CSV EXPORT'],
     title: 'Watchlist',
-    icon: '📋',
+    icon: MODULE_ICONS.watchlist,
     body: 'Add any ASX or US stock, priced live via Yahoo Finance and Twelve Data, with full fundamental data synced through Supabase across every device you use.',
     features: ['ASX + US ticker support', 'Live price tracking', 'Full fundamental data', 'Synced across all devices'],
     visual: <WatchlistMiniVisual />,
@@ -393,7 +446,7 @@ const MODULES = [
     key: 'global',
     stats: ['50+ EXCHANGES', '200+ COUNTRIES', '5 LAYERS', 'LIVE CHOKEPOINTS'],
     title: 'Global Intelligence',
-    icon: '🌐',
+    icon: MODULE_ICONS.global,
     body: 'A live 3D globe across 5 data layers covering 50+ exchanges, shipping chokepoints, and a 200+ country database — see geopolitical risk before it shows up in your portfolio.',
     features: ['Live 3D global exchange map', '50+ exchanges tracked', 'Shipping chokepoint monitoring', '200+ country risk database'],
     visual: <GlobalMiniVisual />,
@@ -447,8 +500,8 @@ export default function Product() {
                 className="flex flex-col justify-center"
               >
                 <span className="font-mono text-[9px] tracking-[0.25em] text-gold">MODULE {String(i + 1).padStart(2, '0')}</span>
-                <h2 className="font-sans text-[30px] md:text-[48px] font-bold text-text-primary mt-3 leading-tight">
-                  <span className="mr-2">{mod.icon}</span>{mod.title}
+                <h2 className="font-sans text-[30px] md:text-[48px] font-bold text-text-primary mt-3 leading-tight flex items-center gap-3">
+                  {mod.icon}{mod.title}
                 </h2>
                 <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">{mod.body}</p>
                 <div className="flex flex-col gap-2.5 mt-6">
