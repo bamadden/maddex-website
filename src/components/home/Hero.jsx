@@ -16,7 +16,7 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 md:px-10 pt-[84px]">
         <div
-          className="grid grid-cols-1 lg:grid-cols-2 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 items-start"
           style={{ gap: 48, minHeight: '80vh' }}
         >
           <div>
@@ -27,12 +27,12 @@ export default function Hero() {
             <h1
               className="hero-headline font-sans"
               style={{
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontSize: 'clamp(3rem, 4vw, 3.25rem)',
                 fontWeight: 700,
                 lineHeight: 1.1,
                 letterSpacing: '-0.02em',
                 color: 'white',
-                maxWidth: 500,
+                maxWidth: 536,
               }}
             >
               The terminal built for

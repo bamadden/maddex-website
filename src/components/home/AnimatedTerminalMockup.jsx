@@ -111,7 +111,7 @@ function TickerTape() {
 function MarketsColumn() {
   return (
     <div className="p-4 border-r border-white/[0.06] flex flex-col overflow-hidden">
-      <div className="font-mono text-[8px] tracking-[0.15em] text-gold mb-2">MARKETS</div>
+      <div className="font-mono text-[9px] tracking-[0.15em] text-gold mb-2">MARKETS</div>
 
       <div className="flex flex-col gap-1">
         {INDEX_CARDS.map((c) => (
@@ -123,11 +123,11 @@ function MarketsColumn() {
         ))}
       </div>
 
-      <div className="font-mono text-[8px] tracking-[0.15em] text-gold mt-2 mb-1.5">SECTORS</div>
+      <div className="font-mono text-[9px] tracking-[0.15em] text-gold mt-2 mb-1.5">SECTORS</div>
       <div className="grid grid-cols-2 gap-x-2 gap-y-0.5">
         {SECTORS.map((s) => (
           <div key={s.label} className="flex-1 py-0.5 text-center">
-            <div className="font-mono text-[7px] text-text-muted leading-tight">{s.label}</div>
+            <div className="font-mono text-[9px] text-text-muted leading-tight">{s.label}</div>
             <div className={`font-mono text-[9px] font-bold leading-none mt-0.5 ${s.positive ? 'text-gain' : 'text-loss'}`}>
               {s.change}
             </div>
@@ -157,7 +157,7 @@ function MaddenAIColumn() {
 
   return (
     <div className="p-4 border-r border-white/[0.06] flex flex-col overflow-hidden">
-      <div className="font-mono text-[8px] tracking-[0.15em] text-gold mb-3">MADDENAI</div>
+      <div className="font-mono text-[9px] tracking-[0.15em] text-gold mb-3">MADDENAI</div>
 
       <div className="flex-1">
         <div className="mb-3 clear-both">
@@ -181,7 +181,7 @@ function MaddenAIColumn() {
 function IntelligenceColumn() {
   return (
     <div className="p-4 flex flex-col overflow-hidden">
-      <div className="font-mono text-[8px] tracking-[0.15em] text-gold mb-3">INTELLIGENCE</div>
+      <div className="font-mono text-[9px] tracking-[0.15em] text-gold mb-3">INTELLIGENCE</div>
 
       <div className="bg-white/[0.04] border border-white/[0.08] rounded-[3px] py-2.5 px-3 mb-2">
         <div className="font-mono text-[9px] text-text-muted">AUD/USD</div>
@@ -196,12 +196,12 @@ function IntelligenceColumn() {
       </div>
 
       <div className="py-2 px-2.5 mb-2" style={{ background: 'rgba(168,50,50,0.08)', borderLeft: '3px solid #A83232' }}>
-        <div className="font-mono text-[7px] tracking-[0.1em]" style={{ color: '#A83232' }}>GLOBAL RISK</div>
+        <div className="font-mono text-[9px] tracking-[0.1em]" style={{ color: '#A83232' }}>GLOBAL RISK</div>
         <div className="font-mono text-[9px] text-text-muted mt-0.5">Middle East tensions easing</div>
       </div>
 
       <div className="py-2 px-2.5" style={{ background: 'rgba(45,138,80,0.08)', borderLeft: '3px solid #2D8A50' }}>
-        <div className="font-mono text-[7px] tracking-[0.1em]" style={{ color: '#2D8A50' }}>AI SUPERCYCLE</div>
+        <div className="font-mono text-[9px] tracking-[0.1em]" style={{ color: '#2D8A50' }}>AI SUPERCYCLE</div>
         <div className="font-mono text-[9px] text-text-muted mt-0.5">NVDA +18% earnings beat</div>
       </div>
     </div>
@@ -215,7 +215,7 @@ export default function AnimatedTerminalMockup() {
       style={{
         border: '1px solid rgba(201,168,76,0.2)',
         borderRadius: 8,
-        minHeight: 480,
+        minHeight: 500,
         maxHeight: 600,
         boxShadow:
           '0 0 0 1px rgba(201,168,76,0.05), 0 20px 60px rgba(0,0,0,0.5), 0 0 100px rgba(201,168,76,0.03)',
@@ -232,7 +232,7 @@ export default function AnimatedTerminalMockup() {
 
       <div className="h-9 bg-black/30 border-t border-white/[0.04] flex items-center justify-around px-4 shrink-0">
         {BOTTOM_STATS.map((s) => (
-          <span key={s.label} className="font-mono text-[8px]">
+          <span key={s.label} className="font-mono text-[9px]">
             <span className="text-text-muted">{s.label} </span>
             <span className="text-white text-[10px]">{s.value}</span>{' '}
             <span className={s.positive ? 'text-gain' : 'text-loss'}>{s.positive ? '▲' : '▼'}</span>
