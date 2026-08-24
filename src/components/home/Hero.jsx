@@ -1,5 +1,42 @@
 import React from 'react'
 
+function Particles() {
+  const particles = React.useMemo(
+    () =>
+      Array(12)
+        .fill(0)
+        .map((_, i) => ({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          duration: 15 + Math.random() * 20,
+          delay: Math.random() * -20,
+          size: Math.random() > 0.5 ? 1.5 : 2.5,
+        })),
+    []
+  )
+
+  return (
+    <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          style={{
+            position: 'absolute',
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            width: p.size,
+            height: p.size,
+            borderRadius: '50%',
+            background: 'rgba(201,168,76,0.3)',
+            animation: `float ${p.duration}s ${p.delay}s ease-in-out infinite alternate`,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
+
 function TypewriterText({ text, speed = 40, pauseMs = 3000 }) {
   const [displayed, setDisplayed] = React.useState('')
   const [idx, setIdx] = React.useState(0)
@@ -42,6 +79,7 @@ export default function Hero() {
       padding: '80px 0 60px',
       position: 'relative',
       overflow: 'hidden',
+      background: 'radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.04) 0%, transparent 60%), #060D1A',
     }}>
 
       {/* Background grid lines — subtle */}
@@ -54,6 +92,8 @@ export default function Hero() {
         backgroundSize: '60px 60px',
         pointerEvents: 'none',
       }} />
+
+      <Particles />
 
       <div className="hero-grid">
 
@@ -90,10 +130,10 @@ export default function Hero() {
             marginBottom: '20px',
             fontFamily: "'Inter', sans-serif",
           }}>
-            The terminal<br />
-            built for the<br />
-            everyday<br />
-            investor.
+            Institutional<br />
+            intelligence.<br />
+            Everyday<br />
+            pricing.
           </h1>
 
           {/* Subheadline */}
@@ -106,8 +146,8 @@ export default function Hero() {
             fontFamily: "'Inter', sans-serif",
           }}>
             ASX and global markets. AI-powered analysis.
-            Institutional-grade tools at a price that
-            makes sense.
+            The depth of a A$42,000 terminal, built for
+            investors who don't have that budget.
           </p>
 
           {/* CTA Buttons */}

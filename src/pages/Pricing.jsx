@@ -8,6 +8,7 @@ import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import FAQItem from '../components/shared/FAQItem'
 import PricingComparisonTable from '../components/shared/PricingComparisonTable'
+import FadeInSection from '../components/shared/FadeInSection'
 import { TERMINAL_PLANS, NEWSLETTER_PLANS, RESEARCH_NOTES_PRICING, BUNDLES } from '../data/pricing'
 
 const FAQS = [
@@ -166,7 +167,7 @@ export default function Pricing() {
         </p>
       </section>
 
-      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto">
           <SectionLabel center>FULL COMPARISON</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight">
@@ -176,9 +177,9 @@ export default function Pricing() {
             <PricingComparisonTable />
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
-      <section id="research-notes" className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
+      <FadeInSection id="research-notes" className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
             PHASE 2 · COMING SOON
@@ -205,9 +206,9 @@ export default function Pricing() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
-      <section id="newsletter" className="bg-bg-surface py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
+      <FadeInSection id="newsletter" className="bg-bg-surface py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
             PHASE 3 · COMING SOON
@@ -241,9 +242,9 @@ export default function Pricing() {
           </div>
           <GoldButton to="/research" variant="ghost" className="mt-8">GET NOTIFIED AT LAUNCH →</GoldButton>
         </div>
-      </section>
+      </FadeInSection>
 
-      <section id="bundles" className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
+      <FadeInSection id="bundles" className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
             COMING SOON — REQUIRES PHASE 2 &amp; 3
@@ -265,9 +266,9 @@ export default function Pricing() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
-      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[720px] mx-auto">
           <SectionLabel center>FAQ</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-8">
@@ -283,7 +284,7 @@ export default function Pricing() {
             />
           ))}
         </div>
-      </section>
+      </FadeInSection>
 
       <FinalCTA />
       <Footer />

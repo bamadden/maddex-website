@@ -6,6 +6,7 @@ import Footer from '../components/layout/Footer'
 import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
+import FadeInSection from '../components/shared/FadeInSection'
 
 // Computed at module load rather than hardcoded — a "TODAY'S READINGS" label
 // with a fixed date reads as broken the moment the page is viewed on any
@@ -420,7 +421,7 @@ export default function MaddenAI() {
         </motion.div>
       </section>
 
-      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center max-w-[720px] mx-auto">
             <SectionLabel center>ASSET ANALYSIS</SectionLabel>
@@ -467,7 +468,7 @@ export default function MaddenAI() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
@@ -656,7 +657,7 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>PERSONALISATION</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -679,7 +680,7 @@ export default function MaddenAI() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       <FinalCTA />
       <Footer />

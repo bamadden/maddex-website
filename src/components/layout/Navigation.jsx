@@ -158,16 +158,20 @@ export default function Navigation() {
               <Link
                 key={item.label}
                 to={item.to}
-                className={`relative py-2 font-sans text-[13px] transition-colors duration-150 ${
+                className={`group relative py-2 font-sans text-[13px] transition-colors duration-150 ${
                   isActive ? 'text-gold' : 'text-text-muted hover:text-gold'
                 }`}
               >
                 {item.label}
-                {isActive && (
+                {isActive ? (
                   <motion.span
                     layoutId="nav-active-underline"
                     className="absolute left-0 right-0 -bottom-0.5 h-px bg-gold"
                     transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                  />
+                ) : (
+                  <span
+                    className="absolute left-0 -bottom-0.5 h-px bg-gold w-full origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-200"
                   />
                 )}
               </Link>

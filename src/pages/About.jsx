@@ -5,6 +5,8 @@ import Navigation from '../components/layout/Navigation'
 import Footer from '../components/layout/Footer'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
+import FinalCTA from '../components/home/FinalCTA'
+import FadeInSection from '../components/shared/FadeInSection'
 
 const TIMELINE = [
   { date: '2024', title: 'THE IDEA', text: 'Frustrated with the tools available to Australian retail investors. Started building.' },
@@ -231,7 +233,7 @@ export default function About() {
       </section>
 
       {/* 4. CONTACT */}
-      <section className="bg-bg-surface py-16 px-6 md:px-10 text-center">
+      <FadeInSection className="bg-bg-surface py-16 px-6 md:px-10 text-center">
         <h2 className="font-sans text-[24px] md:text-[32px] font-bold text-text-primary max-w-2xl mx-auto leading-[1.15]">
           Have a question? I read every email.
         </h2>
@@ -242,8 +244,9 @@ export default function About() {
           ben@maddex.com.au
         </a>
         <div className="font-mono text-[10px] text-text-faint mt-2 tracking-wide">USUALLY WITHIN 24 HOURS</div>
-      </section>
+      </FadeInSection>
 
+      <FinalCTA />
       <Footer />
     </>
   )

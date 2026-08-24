@@ -6,6 +6,7 @@ import Footer from '../components/layout/Footer'
 import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
+import FadeInSection from '../components/shared/FadeInSection'
 import { NEWSLETTER_PLANS } from '../data/pricing'
 
 const FLIP_CARDS = [
@@ -84,7 +85,7 @@ export default function Research() {
         </p>
       </section>
 
-      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>WHAT'S INSIDE</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -96,9 +97,9 @@ export default function Research() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
-      <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[760px] mx-auto">
           <SectionLabel center>SAMPLE ISSUE PREVIEW</SectionLabel>
           <div className="relative bg-bg-surface border border-gold/20 rounded overflow-hidden mt-6" style={{ minHeight: 560 }}>
@@ -148,9 +149,9 @@ export default function Research() {
             </div>
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
-      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto text-center">
           <SectionLabel center>PLANNED PRICING</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -200,7 +201,7 @@ export default function Research() {
             </p>
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       <FinalCTA />
       <Footer />

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import SectionLabel from '../shared/SectionLabel'
 import SectionHeading from '../shared/SectionHeading'
 import FAQItem from '../shared/FAQItem'
+import FadeInSection from '../shared/FadeInSection'
 
 const FAQS = [
   ['Is this financial advice?', 'No. Maddex provides general financial information only and does not constitute financial product advice or a recommendation. Always consider seeking independent financial advice before making investment decisions.'],
@@ -15,7 +16,7 @@ export default function FAQSection() {
   const [openFaq, setOpenFaq] = useState(0)
 
   return (
-    <section className="bg-bg-primary py-20 px-6 md:px-10">
+    <FadeInSection className="bg-bg-primary py-20 px-6 md:px-10">
       <div className="max-w-[720px] mx-auto">
         <SectionLabel center>FAQ</SectionLabel>
         <SectionHeading center className="mb-8">
@@ -31,6 +32,6 @@ export default function FAQSection() {
           />
         ))}
       </div>
-    </section>
+    </FadeInSection>
   )
 }

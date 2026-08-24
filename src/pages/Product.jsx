@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import TickerTape from '../components/layout/TickerTape'
@@ -8,6 +8,7 @@ import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import TerminalCard from '../components/shared/TerminalCard'
+import FadeInSection from '../components/shared/FadeInSection'
 
 function MiniHeader({ label, right, accent }) {
   return (
@@ -393,6 +394,22 @@ function ModuleIcon({ children }) {
   )
 }
 
+function TierBadge({ tier }) {
+  const isCore = tier === 'core'
+  return (
+    <span
+      className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.1em] rounded-full px-2.5 py-1 shrink-0"
+      style={{
+        color: isCore ? '#2D8A50' : '#C9A84C',
+        background: isCore ? 'rgba(45,138,80,0.12)' : 'rgba(201,168,76,0.12)',
+        border: `1px solid ${isCore ? 'rgba(45,138,80,0.35)' : 'rgba(201,168,76,0.35)'}`,
+      }}
+    >
+      {isCore ? '● AVAILABLE NOW' : '◐ PRIME+'}
+    </span>
+  )
+}
+
 const MODULE_ICONS = {
   markets: (
     <ModuleIcon>
@@ -447,6 +464,7 @@ const MODULE_ICONS = {
 const MODULES = [
   {
     key: 'markets',
+    tier: 'core',
     stats: ['9 INDICES', '200+ STOCKS', '11 SECTORS', '60s REFRESH'],
     title: 'Real-time global markets',
     icon: MODULE_ICONS.markets,
@@ -461,6 +479,7 @@ const MODULES = [
   },
   {
     key: 'maddenai',
+    tier: 'core',
     stats: ['ANY ASSET', '5-PART READ', 'INSTANT ANALYSIS', 'CLAUDE SONNET 4.6'],
     title: 'Your AI analyst',
     icon: MODULE_ICONS.maddenai,
@@ -475,6 +494,7 @@ const MODULES = [
   },
   {
     key: 'global',
+    tier: 'core',
     stats: ['50+ EXCHANGES', '200+ COUNTRIES', '5 LAYERS', 'LIVE CHOKEPOINTS'],
     title: 'World-class global intelligence',
     icon: MODULE_ICONS.global,
@@ -489,6 +509,7 @@ const MODULES = [
   },
   {
     key: 'rates',
+    tier: 'prime',
     stats: ['10 AUD PAIRS', '8 BOND TENORS', '10+ CENTRAL BANKS', '5min REFRESH'],
     title: 'Interest rates & currency',
     icon: MODULE_ICONS.rates,
@@ -503,6 +524,7 @@ const MODULES = [
   },
   {
     key: 'macro',
+    tier: 'prime',
     stats: ['12 INDICATORS', 'AI DAILY THEMES', 'AUTO CALENDAR', 'REGIME TRACKING'],
     title: 'Macro intelligence',
     icon: MODULE_ICONS.macro,
@@ -517,6 +539,7 @@ const MODULES = [
   },
   {
     key: 'crypto',
+    tier: 'core',
     stats: ['50+ COINS', 'AUD PRICING', 'FEAR & GREED', 'LIVE COINGECKO'],
     title: 'Crypto intelligence',
     icon: MODULE_ICONS.crypto,
@@ -531,6 +554,7 @@ const MODULES = [
   },
   {
     key: 'news',
+    tier: 'core',
     stats: ['28+ SOURCES', '9 CATEGORIES', '3min REFRESH', 'AI SENTIMENT'],
     title: 'Market intelligence',
     icon: MODULE_ICONS.news,
@@ -545,6 +569,7 @@ const MODULES = [
   },
   {
     key: 'watchlist',
+    tier: 'core',
     stats: ['UNLIMITED WATCHLIST', 'LIVE P&L', 'PRICE ALERTS', 'SUPABASE SYNC'],
     title: 'Track what matters',
     icon: MODULE_ICONS.watchlist,
@@ -589,9 +614,50 @@ export default function Product() {
         </div>
       </section>
 
+      <FadeInSection className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 border-t border-[rgba(201,168,76,0.12)]">
+        <div className="max-w-[1000px] mx-auto text-center">
+          <SectionLabel center>WHY MADDEX</SectionLabel>
+          <h2 className="font-sans text-[28px] md:text-[40px] font-bold text-text-primary mt-3 leading-tight">
+            Institutional data used to cost institutional money.
+          </h2>
+          <p className="font-sans text-[16px] text-text-muted mt-4 max-w-xl mx-auto leading-[1.75]">
+            A Bloomberg Terminal runs about A$42,000 a year. Retail broker apps give you price charts and little else. Maddex gives you the depth without the price tag.
+          </p>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-6 items-end">
+            <div className="text-left md:text-right">
+              <div className="font-mono text-[10px] tracking-[0.15em] text-text-muted uppercase">Bloomberg Terminal</div>
+              <div className="font-sans text-[26px] md:text-[32px] font-bold text-text-primary mt-1">A$42,000+/yr</div>
+              <div className="mt-3 h-2 rounded-full bg-[rgba(30,70,140,0.18)] overflow-hidden md:ml-auto" style={{ maxWidth: 320 }}>
+                <div className="h-full rounded-full" style={{ width: '100%', background: 'rgba(30,70,140,0.55)' }} />
+              </div>
+              <div className="font-sans text-[12px] text-text-faint mt-2">Retail broker apps: basic price data only</div>
+            </div>
+
+            <div className="flex flex-col items-center px-4">
+              <div className="font-mono text-[11px] text-gold tracking-[0.1em] whitespace-nowrap">121× CHEAPER</div>
+              <div className="w-px h-16 bg-[rgba(201,168,76,0.25)] mt-3 hidden md:block" />
+            </div>
+
+            <div className="text-left">
+              <div className="font-mono text-[10px] tracking-[0.15em] text-gold uppercase">Maddex</div>
+              <div className="font-sans text-[26px] md:text-[32px] font-bold text-text-primary mt-1">A$29/month</div>
+              <div className="mt-3 h-2 rounded-full bg-[rgba(201,168,76,0.12)] overflow-hidden" style={{ maxWidth: 320 }}>
+                <div className="h-full rounded-full" style={{ width: '3px', minWidth: 3, background: '#C9A84C' }} />
+              </div>
+              <div className="font-sans text-[12px] text-text-muted mt-2">Institutional-grade markets, AI analysis, global intelligence</div>
+            </div>
+          </div>
+        </div>
+      </FadeInSection>
+
       <div className="bg-bg-surface">
         {MODULES.map((mod, i) => (
-          <section key={mod.key} className="relative py-12 md:py-14 px-6 md:px-10 border-b border-[rgba(201,168,76,0.15)] last:border-b-0">
+          <Fragment key={mod.key}>
+          {i > 0 && (
+            <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent)', margin: 0 }} />
+          )}
+          <section className="relative py-12 md:py-14 px-6 md:px-10">
             <span
               className="absolute top-6 right-6 font-mono select-none pointer-events-none"
               style={{ fontSize: 9, color: '#3D5070' }}
@@ -610,7 +676,10 @@ export default function Product() {
                 transition={{ duration: 0.2 }}
                 className="flex flex-col justify-center"
               >
-                <span className="font-mono text-[9px] tracking-[0.25em] text-gold">MODULE {String(i + 1).padStart(2, '0')}</span>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="font-mono text-[9px] tracking-[0.25em] text-gold">MODULE {String(i + 1).padStart(2, '0')}</span>
+                  <TierBadge tier={mod.tier} />
+                </div>
                 <h2 className="font-sans text-[30px] md:text-[48px] font-bold text-text-primary mt-3 leading-tight flex items-center gap-3">
                   {mod.icon}{mod.title}
                 </h2>
@@ -645,6 +714,7 @@ export default function Product() {
               </div>
             </div>
           </section>
+          </Fragment>
         ))}
       </div>
 
@@ -693,7 +763,7 @@ export default function Product() {
                 'Daily market brief at 7am AEST',
                 'Portfolio P&L at a glance',
                 'MaddenAI daily summary',
-                'Seamless sync with your terminal',
+                'Synced with your terminal in real time',
               ].map((f) => (
                 <div key={f} className="font-sans text-[13px] text-text-muted flex gap-2">
                   <span className="text-gain">✓</span>
