@@ -165,8 +165,8 @@ export default function PricingPreview() {
           </Link>
         </div>
 
-        <p className="font-mono text-[10px] text-text-faint max-w-2xl mx-auto mt-6 leading-[1.7]">
-          Research Notes and the MaddenAI Newsletter are separate products, coming in Phase 2 and Phase 3 of the Maddex roadmap.
+        <p className="font-mono text-[10px] text-text-faint mx-auto mt-6 whitespace-nowrap">
+          Research Notes (Phase 2) and Newsletter (Phase 3) — coming soon.
         </p>
       </div>
     </section>

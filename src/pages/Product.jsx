@@ -19,11 +19,11 @@ function MiniHeader({ label, right, accent }) {
   )
 }
 
-function MiniShell({ children, maxHeight = 240 }) {
+function MiniShell({ children }) {
   return (
     <div
-      className="bg-bg-primary border border-gold/15 rounded overflow-hidden flex flex-col justify-center w-full"
-      style={{ height: maxHeight }}
+      className="bg-bg-primary border border-gold/15 rounded overflow-hidden flex flex-col w-full"
+      style={{ minHeight: 280, height: '100%' }}
     >
       {children}
     </div>
@@ -43,28 +43,34 @@ function MarketsMiniVisual() {
   return (
     <MiniShell>
       <MiniHeader label="MARKETS · ASX 200" right="72/100" />
-      <div className="grid grid-cols-3 gap-1.5 p-3">
-        {indices.map(([n, v, c, pos]) => (
-          <div key={n} className="bg-bg-surface rounded-sm px-2 py-1.5 text-center">
-            <div className="font-mono text-[7px] text-text-muted truncate">{n}</div>
-            <div className="font-mono text-[10px] text-text-primary font-bold mt-0.5">{v}</div>
-            <div className={`font-mono text-[8px] ${pos ? 'text-gain' : 'text-loss'}`}>{c}</div>
-          </div>
-        ))}
+      <div className="flex-1 flex flex-col justify-center gap-3 p-3.5">
+        <div className="grid grid-cols-3 gap-2">
+          {indices.map(([n, v, c, pos]) => (
+            <div key={n} className="bg-bg-surface rounded-sm px-2 py-2.5 text-center">
+              <div className="font-mono text-[8px] text-text-muted truncate">{n}</div>
+              <div className="font-mono text-[12px] text-text-primary font-bold mt-1">{v}</div>
+              <div className={`font-mono text-[9px] mt-0.5 ${pos ? 'text-gain' : 'text-loss'}`}>{pos ? '▲' : '▼'} {c}</div>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-4 gap-1.5">
+          {sectors.map(([l, pos]) => (
+            <div
+              key={l}
+              className="rounded-sm text-center py-2 font-mono text-[8px] font-bold"
+              style={{
+                background: pos ? 'rgba(45,138,80,0.14)' : 'rgba(168,50,50,0.14)',
+                color: pos ? '#2D8A50' : '#A83232',
+              }}
+            >
+              {l}
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="grid grid-cols-4 gap-1 px-3 pb-3">
-        {sectors.map(([l, pos]) => (
-          <div
-            key={l}
-            className="rounded-sm text-center py-1.5 font-mono text-[8px] font-bold"
-            style={{
-              background: pos ? 'rgba(45,138,80,0.14)' : 'rgba(168,50,50,0.14)',
-              color: pos ? '#2D8A50' : '#A83232',
-            }}
-          >
-            {l}
-          </div>
-        ))}
+      <div className="flex items-center justify-between px-3.5 py-2.5" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
+        <span className="font-mono text-[8px] text-text-muted tracking-[0.05em]">ASX 200 · 5D TREND</span>
+        <MiniSparkline color="#2D8A50" points={[40, 44, 42, 48, 46, 52, 55]} />
       </div>
     </MiniShell>
   )
@@ -74,17 +80,26 @@ function MaddenAIMiniVisual() {
   return (
     <MiniShell>
       <MiniHeader label="MADDENAI ANALYST" />
-      <div className="p-3 flex flex-col gap-2.5 flex-1">
-        <div className="self-end bg-gold/10 border border-gold/15 rounded px-2.5 py-1.5 font-mono text-[9px] text-text-primary max-w-[85%]">
+      <div className="p-3.5 flex flex-col justify-center gap-3 flex-1">
+        <div className="self-end bg-gold/10 border border-gold/15 rounded px-3 py-2 font-mono text-[10px] text-text-primary max-w-[85%]">
           BHP outlook for Q4?
         </div>
-        <div className="font-mono text-[9px] text-text-muted leading-[1.6]">
+        <div className="font-mono text-[10px] text-text-muted leading-[1.7]">
           <span className="text-gold">AI · </span>
-          Bias BULLISH. Iron ore at US$98/t supports the earnings thesis. Watch A$44.50 resistance...
+          Bias BULLISH. Iron ore at US$98/t supports the earnings thesis. Cost curve discipline is
+          holding margins even as Chinese steel demand softens. Watch A$44.50 resistance for the next leg up.
         </div>
-        <div className="flex gap-1.5 mt-auto flex-wrap">
+        <div className="flex items-center gap-1.5 font-mono text-[8px] text-text-faint">
+          <span className="flex gap-0.5">
+            <span className="w-1 h-1 rounded-full bg-gold blink-dot" />
+            <span className="w-1 h-1 rounded-full bg-gold blink-dot" style={{ animationDelay: '0.2s' }} />
+            <span className="w-1 h-1 rounded-full bg-gold blink-dot" style={{ animationDelay: '0.4s' }} />
+          </span>
+          analysing follow-up...
+        </div>
+        <div className="flex gap-1.5 flex-wrap">
           {[['BIAS', 'BULLISH'], ['CONF', '76%'], ['HORIZON', '1M']].map(([k, v]) => (
-            <span key={k} className="font-mono text-[7px] text-gold border border-gold/15 rounded-full px-2 py-0.5">
+            <span key={k} className="font-mono text-[7.5px] text-gold border border-gold/15 rounded-full px-2.5 py-1">
               {k}: {v}
             </span>
           ))}
@@ -104,14 +119,14 @@ const GLOBAL_CONTINENTS = [
   'M660,240 L710,229 L742,246 L746,272 L720,292 L680,286 L654,265 Z',
 ]
 const GLOBAL_CITIES = [
-  { name: 'SYDNEY', lat: -33.87, lon: 151.21 },
-  { name: 'TOKYO', lat: 35.68, lon: 139.69 },
-  { name: 'SINGAPORE', lat: 1.35, lon: 103.82 },
-  { name: 'LONDON', lat: 51.51, lon: -0.13 },
-  { name: 'NEW YORK', lat: 40.71, lon: -74.01 },
-  { name: 'FRANKFURT', lat: 50.11, lon: 8.68 },
-  { name: 'DUBAI', lat: 25.20, lon: 55.27 },
-  { name: 'HONG KONG', lat: 22.32, lon: 114.17 },
+  { name: 'SYDNEY', lat: -33.87, lon: 151.21, dx: 0, dy: 20, anchor: 'middle' },
+  { name: 'TOKYO', lat: 35.68, lon: 139.69, dx: 10, dy: -10, anchor: 'start' },
+  { name: 'SINGAPORE', lat: 1.35, lon: 103.82, dx: 0, dy: 20, anchor: 'middle' },
+  { name: 'LONDON', lat: 51.51, lon: -0.13, dx: -10, dy: -8, anchor: 'end' },
+  { name: 'NEW YORK', lat: 40.71, lon: -74.01, dx: 0, dy: -12, anchor: 'middle' },
+  { name: 'FRANKFURT', lat: 50.11, lon: 8.68, dx: 10, dy: 18, anchor: 'start' },
+  { name: 'DUBAI', lat: 25.20, lon: 55.27, dx: 0, dy: -12, anchor: 'middle' },
+  { name: 'HONG KONG', lat: 22.32, lon: 114.17, dx: 10, dy: -10, anchor: 'start' },
 ].map((c) => ({ ...c, x: ((c.lon + 180) / 360) * 800, y: ((90 - c.lat) / 180) * 400 }))
 const GLOBAL_ROUTES = [
   ['NEW YORK', 'LONDON'], ['LONDON', 'FRANKFURT'], ['FRANKFURT', 'DUBAI'],
@@ -133,8 +148,11 @@ function GlobalMap() {
       })}
       {GLOBAL_CITIES.map((c, i) => (
         <g key={c.name}>
-          <circle cx={c.x} cy={c.y} r="4" fill="none" stroke="#C9A84C" strokeWidth="1.5" className="global-dot-ripple" style={{ animationDelay: `${i * 0.25}s` }} />
-          <circle cx={c.x} cy={c.y} r="3" fill="#C9A84C" />
+          <circle cx={c.x} cy={c.y} r="5" fill="none" stroke="#C9A84C" strokeWidth="1.5" className="global-dot-ripple" style={{ animationDelay: `${i * 0.25}s` }} />
+          <circle cx={c.x} cy={c.y} r="3.5" fill="#C9A84C" />
+          <text x={c.x + c.dx} y={c.y + c.dy} fill="#8BA3C4" fontSize="13" fontFamily="IBM Plex Mono, monospace" textAnchor={c.anchor}>
+            {c.name}
+          </text>
         </g>
       ))}
     </svg>
@@ -145,14 +163,14 @@ function GlobalMiniVisual() {
   return (
     <MiniShell>
       <MiniHeader label="GLOBAL INTELLIGENCE" right="18/50 OPEN" />
-      <div className="flex-1 overflow-hidden flex items-center justify-center p-2" style={{ minHeight: 110 }}>
+      <div className="flex-1 overflow-hidden flex items-center justify-center p-3" style={{ minHeight: 160 }}>
         <GlobalMap />
       </div>
       <div className="grid grid-cols-3 divide-x divide-[rgba(201,168,76,0.15)] border-t border-[rgba(201,168,76,0.15)]">
         {[['70+', 'MARKETS'], ['24/7', 'COVERAGE'], ['LIVE', 'INTEL']].map(([v, l]) => (
-          <div key={l} className="text-center py-2">
-            <div className="font-mono text-[11px] font-bold text-gold">{v}</div>
-            <div className="font-mono text-[7px] text-text-muted mt-0.5">{l}</div>
+          <div key={l} className="text-center py-3">
+            <div className="font-mono text-[13px] font-bold text-gold">{v}</div>
+            <div className="font-mono text-[7.5px] text-text-muted mt-1">{l}</div>
           </div>
         ))}
       </div>
@@ -161,8 +179,8 @@ function GlobalMiniVisual() {
 }
 
 function YieldCurveChart() {
-  const w = 200
-  const h = 66
+  const w = 240
+  const h = 110
   const labels = ['1Y', '2Y', '5Y', '10Y', '30Y']
   const auRates = [3.85, 3.95, 4.15, 4.35, 4.42]
   const usRates = [4.05, 4.15, 4.28, 4.40, 4.45]
@@ -186,16 +204,16 @@ function RatesFxVisual() {
   return (
     <MiniShell>
       <MiniHeader label="RATES · YIELD CURVE" />
-      <div className="flex-1 flex items-center justify-center pt-2">
+      <div className="flex-1 flex items-center justify-center pt-3">
         <YieldCurveChart />
       </div>
-      <div className="flex justify-center gap-4 font-mono text-[8px] pb-1.5">
+      <div className="flex justify-center gap-4 font-mono text-[9px] pb-2">
         <span style={{ color: '#C9A84C' }}>● AU 4.42%</span>
         <span style={{ color: '#8BA3C4' }}>● US 4.45%</span>
       </div>
-      <div className="grid grid-cols-2 gap-1.5 px-3 pb-3">
-        {[['AUD/USD', '0.6520'], ['AUD/JPY', '96.84']].map(([pair, val]) => (
-          <div key={pair} className="bg-bg-surface rounded-sm text-center py-1.5">
+      <div className="grid grid-cols-3 gap-1.5 px-3.5 pb-3.5">
+        {[['AUD/USD', '0.6520'], ['AUD/JPY', '96.84'], ['RBA CASH', '4.35%']].map(([pair, val]) => (
+          <div key={pair} className="bg-bg-surface rounded-sm text-center py-2">
             <div className="font-mono text-[7px] text-text-muted">{pair}</div>
             <div className="font-mono text-[11px] text-text-primary font-bold mt-0.5">{val}</div>
           </div>
@@ -205,19 +223,20 @@ function RatesFxVisual() {
   )
 }
 
-function SemiGauge({ value, color }) {
-  const r = 21
-  const cx = 26
-  const cy = 25
+function SemiGauge({ value, color, size = 52 }) {
+  const r = size * 0.4
+  const cx = size / 2
+  const cy = size / 2 - 1
   const angle = (value / 100) * 180
   const rad = (Math.PI / 180) * (180 - angle)
   const x = cx + r * Math.cos(rad)
   const y = cy - r * Math.sin(rad)
   const large = angle > 180 ? 1 : 0
+  const stroke = size / 13
   return (
-    <svg width="52" height="28" viewBox="0 0 52 28">
-      <path d={`M${cx - r},${cy} A${r},${r} 0 0 1 ${cx + r},${cy}`} fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="4" strokeLinecap="round" />
-      <path d={`M${cx - r},${cy} A${r},${r} 0 ${large} 1 ${x},${y}`} fill="none" stroke={color} strokeWidth="4" strokeLinecap="round" />
+    <svg width={size} height={size / 2 + 4} viewBox={`0 0 ${size} ${size / 2 + 4}`}>
+      <path d={`M${cx - r},${cy} A${r},${r} 0 0 1 ${cx + r},${cy}`} fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth={stroke} strokeLinecap="round" />
+      <path d={`M${cx - r},${cy} A${r},${r} 0 ${large} 1 ${x},${y}`} fill="none" stroke={color} strokeWidth={stroke} strokeLinecap="round" />
     </svg>
   )
 }
@@ -228,19 +247,37 @@ function MacroGaugesVisual() {
     { label: 'INFLATION', value: 60, display: '3.8%', color: '#A83232' },
     { label: 'UNEMPLOYMENT', value: 35, display: '4.2%', color: '#2D8A50' },
   ]
+  const indicators = [
+    ['CONSUMER CONFIDENCE', '84.2', '+1.4', true],
+    ['RETAIL SALES (MOM)', '0.4%', '+0.1', true],
+    ['MANUFACTURING PMI', '48.6', '-0.6', false],
+  ]
   return (
     <MiniShell>
       <MiniHeader label="MACRO · KEY INDICATORS" />
-      <div className="flex-1 grid grid-cols-3 gap-1 items-end px-2 pt-4">
-        {gauges.map((g) => (
-          <div key={g.label} className="flex flex-col items-center">
-            <SemiGauge value={g.value} color={g.color} />
-            <div className="font-mono text-[12px] font-bold mt-1" style={{ color: g.color }}>{g.display}</div>
-            <div className="font-mono text-[6.5px] text-text-muted tracking-[0.05em] mt-0.5 text-center">{g.label}</div>
-          </div>
-        ))}
+      <div className="flex-1 flex flex-col justify-center gap-4">
+        <div className="grid grid-cols-3 gap-1 items-end px-2">
+          {gauges.map((g) => (
+            <div key={g.label} className="flex flex-col items-center">
+              <SemiGauge value={g.value} color={g.color} size={80} />
+              <div className="font-mono text-[15px] font-bold mt-1.5" style={{ color: g.color }}>{g.display}</div>
+              <div className="font-mono text-[7px] text-text-muted tracking-[0.05em] mt-0.5 text-center">{g.label}</div>
+            </div>
+          ))}
+        </div>
+        <div className="flex flex-col gap-1.5 px-3.5">
+          {indicators.map(([label, val, chg, pos]) => (
+            <div key={label} className="flex items-center justify-between font-mono text-[8.5px]">
+              <span className="text-text-muted">{label}</span>
+              <span className="flex items-center gap-1.5">
+                <span className="text-text-primary">{val}</span>
+                <span className={pos ? 'text-gain' : 'text-loss'}>{chg}</span>
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="font-mono text-[8px] text-gold px-3 py-2 mt-1" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
+      <div className="font-mono text-[8px] text-gold px-3.5 py-2.5" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
         REGIME: LATE-CYCLE EXPANSION
       </div>
     </MiniShell>
@@ -268,27 +305,30 @@ function CryptoMiniVisual() {
     ['₿', 'BTC', 'A$92,285', '+0.52%', true, [40, 44, 42, 48, 46, 52, 55]],
     ['Ξ', 'ETH', 'A$2,679', '+1.43%', true, [30, 32, 29, 35, 38, 36, 42]],
     ['✕', 'XRP', 'A$1.57', '+0.90%', true, [48, 46, 50, 47, 52, 50, 54]],
+    ['◎', 'SOL', 'A$318.40', '-0.64%', false, [55, 52, 54, 49, 47, 45, 42]],
   ]
   return (
     <MiniShell>
       <MiniHeader label="CRYPTO · TOP 20" right="68 BULLISH" accent="gain" />
-      <div className="flex flex-col gap-1.5 p-3">
-        {coins.map(([logo, sym, price, chg, pos, spark]) => (
-          <div key={sym} className="flex items-center gap-2 bg-bg-surface rounded-sm px-2 py-1.5">
-            <span className="w-5 h-5 rounded-full bg-gold/15 text-gold flex items-center justify-center font-mono text-[10px] font-bold shrink-0">{logo}</span>
-            <span className="font-mono text-[10px] text-text-primary flex-1">{sym}</span>
-            <span className="font-mono text-[10px] text-text-primary">{price}</span>
-            <span className={`font-mono text-[9px] w-11 text-right shrink-0 ${pos ? 'text-gain' : 'text-loss'}`}>{chg}</span>
-            <MiniSparkline color={pos ? '#2D8A50' : '#A83232'} points={spark} />
-          </div>
-        ))}
-      </div>
-      <div className="px-3 pb-3 flex items-center gap-3">
-        <SemiGauge value={42} color="#A83232" />
-        <div>
-          <div className="font-mono text-[7px] text-text-muted tracking-[0.08em]">FEAR &amp; GREED</div>
-          <div className="font-mono text-[13px] text-text-primary font-bold leading-none mt-0.5">
-            42 <span className="text-[9px] text-loss font-normal">FEAR</span>
+      <div className="flex-1 flex flex-col justify-center gap-4 p-3.5">
+        <div className="flex flex-col gap-1.5">
+          {coins.map(([logo, sym, price, chg, pos, spark]) => (
+            <div key={sym} className="flex items-center gap-2 bg-bg-surface rounded-sm px-2.5 py-2">
+              <span className="w-5 h-5 rounded-full bg-gold/15 text-gold flex items-center justify-center font-mono text-[10px] font-bold shrink-0">{logo}</span>
+              <span className="font-mono text-[10px] text-text-primary flex-1">{sym}</span>
+              <span className="font-mono text-[10px] text-text-primary">{price}</span>
+              <span className={`font-mono text-[9px] w-11 text-right shrink-0 ${pos ? 'text-gain' : 'text-loss'}`}>{chg}</span>
+              <MiniSparkline color={pos ? '#2D8A50' : '#A83232'} points={spark} />
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center gap-4" style={{ borderTop: '1px solid rgba(201,168,76,0.12)', paddingTop: 14 }}>
+          <SemiGauge value={42} color="#A83232" size={100} />
+          <div>
+            <div className="font-mono text-[8px] text-text-muted tracking-[0.08em]">FEAR &amp; GREED</div>
+            <div className="font-mono text-[18px] text-text-primary font-bold leading-none mt-1">
+              42 <span className="text-[10px] text-loss font-normal">FEAR</span>
+            </div>
           </div>
         </div>
       </div>
@@ -301,28 +341,40 @@ function NewsMiniVisual() {
     ['ASX', 'BHP rises on iron ore surge', '2m ago', '#2D8A50'],
     ['MACRO', 'RBA holds at 4.35%', '1h ago', '#C9A84C'],
     ['CRYPTO', 'XRP rallies on CLARITY Act', '3h ago', '#2D8A50'],
+    ['GLOBAL', 'Fed signals pause on rate cuts', '5h ago', '#A83232'],
   ]
   return (
     <MiniShell>
       <MiniHeader label="NEWS · LIVE FEED" />
-      <div className="flex flex-col gap-2.5 p-3">
-        {rows.map(([tag, text, time, color]) => (
-          <div key={text} className="flex items-start gap-2">
-            <span className="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: color }} />
-            <div className="flex-1 min-w-0">
-              <span className="font-mono text-[7px] text-gold mr-1">[{tag}]</span>
-              <span className="font-sans text-[10px] text-text-primary">{text}</span>
-              <div className="font-mono text-[7px] text-text-faint mt-0.5">{time}</div>
+      <div className="flex-1 flex flex-col justify-center gap-3 p-3.5">
+        <div className="flex flex-col gap-2.5">
+          {rows.map(([tag, text, time, color]) => (
+            <div key={text} className="flex items-start gap-2">
+              <span className="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: color }} />
+              <div className="flex-1 min-w-0">
+                <span className="font-mono text-[7px] text-gold mr-1">[{tag}]</span>
+                <span className="font-sans text-[10px] text-text-primary">{text}</span>
+                <div className="font-mono text-[7px] text-text-faint mt-0.5">{time}</div>
+              </div>
             </div>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {['#IronOre', '#RBA', '#XRP', '#Fed'].map((tag) => (
+            <span key={tag} className="font-mono text-[7px] text-gold border border-gold/15 rounded-full px-2 py-0.5">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div>
+          <div className="flex items-center justify-between font-mono text-[7px] text-text-muted mb-1">
+            <span>SENTIMENT</span>
+            <span className="text-gain">62% POSITIVE</span>
           </div>
-        ))}
-      </div>
-      <div className="flex flex-wrap gap-1.5 px-3 pb-3">
-        {['#IronOre', '#RBA', '#XRP'].map((tag) => (
-          <span key={tag} className="font-mono text-[7px] text-gold border border-gold/15 rounded-full px-2 py-0.5">
-            {tag}
-          </span>
-        ))}
+          <div className="h-1.5 rounded-full overflow-hidden flex" style={{ background: 'rgba(168,50,50,0.3)' }}>
+            <div className="h-full" style={{ width: '62%', background: '#2D8A50' }} />
+          </div>
+        </div>
       </div>
     </MiniShell>
   )
@@ -342,23 +394,30 @@ function WatchlistMiniVisual() {
     ['CBA', 'A$168.45', '-0.72%', false, 80],
     ['XRO', 'A$148.20', '+1.44%', true, 55],
     ['AAPL', 'US$308.74', '+0.71%', true, 90],
+    ['NVDA', 'US$188.02', '+2.15%', true, 68],
   ]
   return (
     <MiniShell>
-      <MiniHeader label="WATCHLIST · 4 HOLDINGS" />
-      <div className="flex flex-col gap-1.5 p-3">
-        {rows.map(([sym, price, chg, pos, pct]) => (
-          <div key={sym} className="flex items-center gap-2">
-            <span className="font-mono text-[9px] text-text-primary font-bold w-10 shrink-0">{sym}</span>
-            <span className="font-mono text-[9px] text-text-muted flex-1">{price}</span>
-            <span className={`font-mono text-[9px] w-12 text-right shrink-0 ${pos ? 'text-gain' : 'text-loss'}`}>
-              {pos ? '▲' : '▼'}{chg}
-            </span>
-            <RangeBar pct={pct} color={pos ? '#2D8A50' : '#A83232'} />
-          </div>
-        ))}
+      <MiniHeader label="WATCHLIST · 5 HOLDINGS" />
+      <div className="flex-1 flex flex-col justify-center gap-2 p-3.5">
+        <div className="flex flex-col gap-1.5">
+          {rows.map(([sym, price, chg, pos, pct]) => (
+            <div key={sym} className="flex items-center gap-2">
+              <span className="font-mono text-[9px] text-text-primary font-bold w-10 shrink-0">{sym}</span>
+              <span className="font-mono text-[9px] text-text-muted flex-1">{price}</span>
+              <span className={`font-mono text-[9px] w-12 text-right shrink-0 ${pos ? 'text-gain' : 'text-loss'}`}>
+                {pos ? '▲' : '▼'}{chg}
+              </span>
+              <RangeBar pct={pct} color={pos ? '#2D8A50' : '#A83232'} />
+            </div>
+          ))}
+        </div>
+        <div className="font-mono text-[7px] text-text-faint tracking-[0.05em]">52-WEEK RANGE POSITION</div>
       </div>
-      <div className="font-mono text-[7px] text-text-faint px-3 pb-3 tracking-[0.05em]">52-WEEK RANGE POSITION</div>
+      <div className="flex items-center justify-between px-3.5 py-3" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
+        <span className="font-mono text-[8px] text-text-muted tracking-[0.05em]">PORTFOLIO P&amp;L (TODAY)</span>
+        <span className="font-mono text-[12px] font-bold text-gain">+A$847.20</span>
+      </div>
     </MiniShell>
   )
 }
@@ -665,7 +724,7 @@ export default function Product() {
               MODULE {String(i + 1).padStart(2, '0')}
             </span>
             <div
-              className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${
+              className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch ${
                 i % 2 === 0 ? 'lg:[&>*:first-child]:order-2' : ''
               }`}
             >
@@ -698,7 +757,7 @@ export default function Product() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="flex items-center justify-center"
+                className="flex items-stretch justify-center h-full"
               >
                 {mod.visual}
               </motion.div>
@@ -741,83 +800,103 @@ export default function Product() {
       </section>
 
       <section className="bg-bg-surface py-24 px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[55%_45%] gap-10 lg:gap-16 items-center">
           <div>
-            <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mb-4">
-              iOS &amp; ANDROID · COMING 2027
-            </span>
             <SectionLabel>COMPANION APP</SectionLabel>
             <h2 className="font-sans text-[34px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary leading-tight">
-              Maddex Companion App
+              Stay informed.<br />Anywhere.
             </h2>
-            <p className="font-mono text-[12px] text-gold mt-2 tracking-wide">
-              Coming soon — stay informed on the go
-            </p>
             <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
-              The Maddex companion app keeps you connected to your portfolio and the markets when you're away from the terminal. Receive price alerts, breaking news, and daily market briefs directly to your phone. For deep analysis and research, return to the terminal — that's where the real work happens.
+              The Maddex companion app keeps you connected to your portfolio and the markets when you're away from the terminal — price alerts, breaking news, and daily market briefs, straight to your phone.
             </p>
-            <div className="flex flex-col gap-2 mt-6">
+            <div className="flex flex-col gap-3 mt-7">
               {[
-                'Price alerts for your watchlist',
-                'Push notifications for breaking news',
-                'Daily market brief at 7am AEST',
-                'Portfolio P&L at a glance',
-                'MaddenAI daily summary',
-                'Synced with your terminal in real time',
-              ].map((f) => (
-                <div key={f} className="font-sans text-[13px] text-text-muted flex gap-2">
-                  <span className="text-gain">✓</span>
+                ['📱', 'Price alerts for your watchlist'],
+                ['📰', 'Breaking news the moment it happens'],
+                ['☀️', 'Daily market brief every morning'],
+                ['📊', 'Portfolio P&L at a glance'],
+                ['🤖', 'MaddenAI daily sentiment summary'],
+              ].map(([icon, f]) => (
+                <div key={f} className="font-sans text-[14px] text-text-muted flex items-center gap-3">
+                  <span className="text-[16px]">{icon}</span>
                   {f}
                 </div>
               ))}
             </div>
+            <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mt-7">
+              iOS &amp; ANDROID · COMING 2027
+            </span>
+            <p className="font-sans text-[13px] text-text-faint mt-4 leading-[1.6] max-w-[400px]">
+              The terminal is where you do the work. The app keeps you informed.
+            </p>
+            <div className="mt-6">
+              <GoldButton to="/pricing" variant="outline">JOIN THE WAITLIST</GoldButton>
+            </div>
           </div>
+
           <div className="flex justify-center">
             <div style={{
-              width: 200,
-              height: '100%',
-              minHeight: 400,
-              borderRadius: 28,
+              width: 240,
+              height: 520,
+              borderRadius: 36,
               border: '2px solid rgba(201,168,76,0.3)',
-              background: '#060D1A',
-              padding: 8,
-              boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+              background: '#000',
+              boxShadow: '0 0 0 8px #111, 0 0 0 10px rgba(201,168,76,0.1), 0 40px 80px rgba(0,0,0,0.5)',
               position: 'relative',
             }}>
-              {/* Notch */}
+              {/* Dynamic island */}
               <div style={{
-                position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)',
-                width: 64, height: 16, borderRadius: 8, background: '#000', zIndex: 2,
+                position: 'absolute', top: 12, left: '50%', transform: 'translateX(-50%)',
+                width: 90, height: 28, background: '#000', borderRadius: 20,
+                border: '1px solid #222', zIndex: 2,
               }} />
-              <div
-                className="w-full h-full bg-bg-surface rounded-[20px] border border-gold/15 overflow-hidden flex flex-col"
-                style={{ paddingTop: 22 }}
-              >
-                <div className="bg-bg-primary border-b border-gold/15 px-3 py-2 font-mono text-[9px] text-gold flex items-center justify-between">
-                  <span>MADDEX</span>
-                  <span className="text-text-faint">9:42 AM</span>
-                </div>
-                <div className="p-2.5 flex flex-col gap-2 flex-1">
+
+              {/* Screen */}
+              <div style={{
+                margin: '52px 8px 24px',
+                borderRadius: 28,
+                background: '#060D1A',
+                overflow: 'hidden',
+                height: 'calc(100% - 76px)',
+                position: 'relative',
+              }}>
+                <div className="px-3 pt-3">
+                  <div className="flex items-center justify-between font-mono text-[10px] text-text-primary mb-3">
+                    <span>9:41</span>
+                    <span className="tracking-[0.15em]">●●●</span>
+                  </div>
+
                   {[
-                    ['PRICE ALERT', 'BHP.AX up 2.1% — above your A$44 alert'],
-                    ['BREAKING NEWS', 'RBA holds cash rate at 4.35%'],
-                    ['DAILY BRIEF', "Today's 3-minute market brief is ready"],
-                    ['MADDENAI SUMMARY', 'Sentiment 72/100 — neutral-bullish'],
-                  ].map(([tag, msg]) => (
-                    <div key={tag} className="bg-bg-primary border border-gold/15 rounded-sm px-2.5 py-2">
-                      <div className="font-mono text-[7px] text-gold tracking-wide">{tag}</div>
-                      <div className="font-sans text-[9px] text-text-primary mt-1 leading-snug">{msg}</div>
+                    ['MADDEX', 'BHP ▲ 1.27% — Iron ore surge'],
+                    ['MADDEX', 'Morning Brief ready ☀️'],
+                    ['MADDEX', 'Portfolio up A$847 today'],
+                    ['MADDENAI', 'Daily score: 72 · BULLISH'],
+                  ].map(([tag, msg], i) => (
+                    <div
+                      key={i}
+                      style={{
+                        background: 'rgba(255,255,255,0.08)',
+                        borderRadius: 12,
+                        padding: '10px 12px',
+                        marginBottom: 8,
+                      }}
+                    >
+                      <div className="font-mono text-[8px] text-gold tracking-[0.1em]">{tag}</div>
+                      <div className="font-sans text-[11px] text-text-primary mt-1 leading-snug">{msg}</div>
                     </div>
                   ))}
                 </div>
-                <div className="border-t border-gold/15 px-3 py-2 font-mono text-[8px] text-text-faint text-center">
-                  Full analysis in the Maddex Terminal
+
+                <div className="absolute bottom-[32px] left-0 right-0 flex items-center justify-center gap-1.5 px-3">
+                  <span className="font-mono text-[9px] text-gold font-bold">M</span>
+                  <span className="font-mono text-[9px] text-gold">Open terminal for full analysis →</span>
                 </div>
               </div>
+
               {/* Home indicator */}
               <div style={{
                 position: 'absolute', bottom: 8, left: '50%', transform: 'translateX(-50%)',
-                width: 64, height: 3, borderRadius: 2, background: 'rgba(255,255,255,0.6)',
+                width: 120, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.3)',
               }} />
             </div>
           </div>

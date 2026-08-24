@@ -42,20 +42,18 @@ function LiveClock() {
   const [time, setTime] = React.useState('')
 
   React.useEffect(() => {
-    function update() {
-      setTime(
-        new Intl.DateTimeFormat('en-AU', {
-          timeZone: 'Australia/Sydney',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-        }).format(new Date())
-      )
+    const update = () => {
+      const now = new Date()
+      const timeStr = now.toLocaleTimeString('en-AU', {
+        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+      })
+      const city = Intl.DateTimeFormat().resolvedOptions().timeZone
+        .split('/').pop().replace('_', ' ').toUpperCase()
+      setTime(`${timeStr} ${city}`)
     }
     update()
-    const id = setInterval(update, 1000)
-    return () => clearInterval(id)
+    const interval = setInterval(update, 1000)
+    return () => clearInterval(interval)
   }, [])
 
   return (
@@ -63,7 +61,7 @@ function LiveClock() {
       fontFamily: "'IBM Plex Mono', monospace",
       fontSize: '10px',
       letterSpacing: '0.25em',
-      color: '#C9A84C',
+      color: '#4A6080',
       textTransform: 'uppercase',
       display: 'flex',
       alignItems: 'center',
@@ -76,7 +74,7 @@ function LiveClock() {
         background: '#C9A84C',
         animation: 'pulse 2s ease-in-out infinite',
       }} />
-      MADDEX TERMINAL · SYDNEY {time || '--:--:--'} AEST
+      {time || '--:--:-- --'}
     </div>
   )
 }
@@ -132,7 +130,7 @@ export default function Hero() {
           margin: '24px auto 0',
           fontFamily: "'Inter', sans-serif",
         }}>
-          The financial terminal built for investors who take the markets seriously.
+          The terminal for investors who take markets seriously.
         </p>
 
         <div style={{

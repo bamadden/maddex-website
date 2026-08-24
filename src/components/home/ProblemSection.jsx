@@ -48,7 +48,7 @@ export default function ProblemSection() {
   return (
     <section className="bg-bg-surface py-24 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch">
-        <div className="flex flex-col justify-start">
+        <div className="flex flex-col">
           <SectionLabel>THE INFORMATION GAP</SectionLabel>
           <SectionHeading>
             Bloomberg: A$42,000/yr.
@@ -119,6 +119,30 @@ export default function ProblemSection() {
                 <div className="font-mono text-[9px] text-text-muted uppercase tracking-[0.08em] mt-1.5">{l}</div>
               </div>
             ))}
+          </div>
+
+          <div
+            className="flex-1 flex flex-col mt-8 p-7"
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--card-radius)' }}
+          >
+            <div className="font-mono text-[9px] tracking-[0.15em] text-gold">WHAT'S INCLUDED</div>
+            <div className="flex flex-col gap-3 mt-5">
+              {[
+                '8 professional modules',
+                'Real-time ASX + global data',
+                'MaddenAI analyst',
+                'Global intelligence globe',
+                '7-day free trial',
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-2.5 font-sans text-[14px] text-text-muted">
+                  <span className="text-gold">✓</span>
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="mt-auto pt-6 font-sans text-[15px] font-bold text-text-primary">
+              From A$29/month
+            </div>
           </div>
         </div>
 

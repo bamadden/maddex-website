@@ -20,9 +20,10 @@ const FAQS = [
   ['When do Research Notes and the Newsletter launch?', 'Research Notes are planned for Phase 2, roughly 3–6 months after Terminal launch. The MaddenAI Newsletter follows in Phase 3, roughly 6–12 months out. Pricing shown for both is indicative and may change before launch.'],
 ]
 
-function PlanCard({ plan, i, annual, isLast }) {
-  const [hovered, setHovered] = useState(false)
-  const isPrime = plan.popular
+function PlanCard({ plan, i, annual, isLast, hoveredPlan, setHoveredPlan }) {
+  const dataPlan = plan.name.toLowerCase()
+  const isHovered = hoveredPlan === dataPlan
+  const isDimmed = hoveredPlan !== null && !isHovered
 
   return (
     <motion.div
@@ -30,15 +31,21 @@ function PlanCard({ plan, i, annual, isLast }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: i * 0.05, duration: 0.4 }}
+      data-plan={dataPlan}
       className={`relative flex flex-col border-b lg:border-b-0 lg:border-r ${isLast ? 'border-b-0 lg:border-r-0' : ''}`}
       style={{
-        background: isPrime ? 'var(--surface-2)' : hovered ? 'var(--surface-2)' : 'var(--surface)',
-        borderColor: 'var(--border)',
+        background: isHovered ? 'var(--surface-2)' : 'var(--surface)',
+        borderColor: isHovered ? 'rgba(201,168,76,0.5)' : 'var(--border)',
         padding: 'var(--space-8)',
-        transition: 'background 0.15s ease',
+        transform: isHovered ? 'translateY(-6px) scale(1.02)' : isDimmed ? 'scale(0.98)' : 'none',
+        boxShadow: isHovered ? '0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.2)' : 'none',
+        opacity: isDimmed ? 0.7 : 1,
+        filter: isDimmed ? 'brightness(0.85)' : 'none',
+        transition: 'all 0.2s ease',
+        position: 'relative',
+        zIndex: isHovered ? 1 : 0,
       }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => setHoveredPlan(dataPlan)}
     >
       {plan.popular && (
         <span
@@ -92,6 +99,7 @@ function PlanCard({ plan, i, annual, isLast }) {
 export default function Pricing() {
   const [annual, setAnnual] = useState(false)
   const [openFaq, setOpenFaq] = useState(0)
+  const [hoveredPlan, setHoveredPlan] = useState(null)
 
   useEffect(() => {
     document.title = 'Maddex — Pricing'
@@ -114,8 +122,11 @@ export default function Pricing() {
             <span className="block text-[22px] md:text-[32px] text-text-muted font-bold">Bloomberg costs A$42,000 a year.</span>
             <span className="block text-[32px] md:text-[48px] text-text-primary font-bold mt-1">Maddex starts at A$29 a month.</span>
           </h1>
-          <p className="hero-sub font-sans text-[15px] text-text-muted max-w-xl mx-auto mt-3 leading-[1.6]">
-            No lock-in. Cancel anytime. Live today — Research Notes and the Newsletter are coming soon.
+          <p className="hero-sub font-sans text-[15px] text-text-muted max-w-xl mx-auto mt-3 leading-[1.6] whitespace-nowrap">
+            No lock-in. Cancel anytime.
+          </p>
+          <p className="font-mono text-[11px] text-text-faint mx-auto mt-2 whitespace-nowrap">
+            Live now · Research Notes + Newsletter coming soon
           </p>
         </div>
 
@@ -144,11 +155,19 @@ export default function Pricing() {
           style={{
             border: '1px solid var(--border)',
             borderRadius: 'var(--card-radius)',
-            overflow: 'hidden',
           }}
+          onMouseLeave={() => setHoveredPlan(null)}
         >
           {TERMINAL_PLANS.map((plan, i) => (
-            <PlanCard key={plan.name} plan={plan} i={i} annual={annual} isLast={i === TERMINAL_PLANS.length - 1} />
+            <PlanCard
+              key={plan.name}
+              plan={plan}
+              i={i}
+              annual={annual}
+              isLast={i === TERMINAL_PLANS.length - 1}
+              hoveredPlan={hoveredPlan}
+              setHoveredPlan={setHoveredPlan}
+            />
           ))}
         </div>
 

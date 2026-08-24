@@ -54,14 +54,20 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.05, duration: 0.2 }}
-              className="bg-bg-primary border-l-[3px] border-gold rounded-r p-5"
+              className="bg-bg-primary border-l-[3px] border-gold rounded-r p-5 flex flex-col"
             >
               <div className="text-gold text-[11px]">★★★★★</div>
-              <p className="font-sans text-[13px] text-text-primary leading-[1.6] italic mt-2.5">
+              <p className="font-sans text-[13px] text-text-primary leading-[1.6] italic mt-2.5 flex-1">
                 "{t.quote}"
               </p>
-              <p className="font-sans text-[11px] text-text-primary mt-3">{t.name}</p>
-              <p className="font-sans text-[11px] text-text-muted">{t.title}</p>
+              <div style={{ marginTop: 'auto', paddingTop: 16 }}>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 10, color: '#C9A84C', letterSpacing: '0.1em' }}>
+                  {t.name}
+                </div>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 9, color: '#4A6080', marginTop: 2 }}>
+                  {t.title}
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

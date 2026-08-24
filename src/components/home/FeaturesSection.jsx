@@ -166,8 +166,8 @@ function GlobalVisual() {
         <span>GLOBAL INTELLIGENCE</span>
         <span className="text-gold">18/50 OPEN</span>
       </div>
-      <div className="flex-1 flex items-center justify-center p-3">
-        <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" className="w-full h-full">
+      <div className="flex-1 min-h-0 flex items-center justify-center p-3 overflow-visible">
+        <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" className="w-full h-full max-h-full">
           {CONTINENTS.map((d, i) => (
             <path key={i} d={d} fill="rgba(201,168,76,0.28)" stroke="rgba(201,168,76,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
           ))}
