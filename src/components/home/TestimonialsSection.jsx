@@ -39,7 +39,7 @@ export default function TestimonialsSection() {
           </div>
         </motion.div>
 
-        <SectionLabel center>WHAT BETA USERS SAY</SectionLabel>
+        <SectionLabel center>WHAT BETA INVESTORS SAY</SectionLabel>
         <p className="font-mono text-[11px] text-text-muted text-center max-w-xl mx-auto">
           Powered by the same data feeds used by professional traders.
         </p>

@@ -85,7 +85,54 @@ export default function Research() {
         </p>
       </section>
 
-      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
+        <div className="max-w-[1000px] mx-auto text-center">
+          <SectionLabel center>WHAT YOU'RE SIGNING UP FOR</SectionLabel>
+          <h2 className="font-sans text-[32px] md:text-[48px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+            Two briefs. One goal — keep you ahead of the market.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-9 text-left items-stretch">
+            <div className="bg-bg-primary border border-gold/20 rounded p-6 flex flex-col">
+              <span className="font-mono text-[9px] tracking-[0.15em] text-gold">SUNDAY EVENINGS</span>
+              <h3 className="font-sans text-[19px] font-bold text-text-primary mt-2">Weekly Market Brief</h3>
+              <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7]">
+                800–1,200 words. Ben's personal read on the week ahead. What mattered this week, and what to watch next — ASX-first, globally informed.
+              </p>
+              <div className="font-mono text-[9px] text-gold tracking-[0.1em] mt-5 mb-2">SAMPLE TOPICS</div>
+              <div className="flex flex-col gap-1.5">
+                {['RBA decision analysis', 'Iron ore and commodity outlook', 'Key earnings to watch', 'Global macro risks for AU investors'].map((t) => (
+                  <div key={t} className="font-sans text-[12px] text-text-muted flex gap-2">
+                    <span className="text-gold shrink-0">◆</span>{t}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-bg-primary border border-gold/20 rounded p-6 flex flex-col">
+              <span className="font-mono text-[9px] tracking-[0.15em] text-gold">MON–FRI, 7AM AEST</span>
+              <h3 className="font-sans text-[19px] font-bold text-text-primary mt-2">Daily Market Brief</h3>
+              <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7]">
+                3 minutes. What happened overnight, and what it means for your portfolio. Out by 7am every morning.
+              </p>
+              <div className="font-mono text-[9px] text-gold tracking-[0.1em] mt-5 mb-2">SAMPLE FORMAT</div>
+              <div className="flex flex-col gap-1.5">
+                {[
+                  'Overnight: S&P +0.32%, key movers',
+                  'ASX outlook: likely open up',
+                  'One thing to watch today',
+                  'MaddenAI score: 72/100 CAUTIOUSLY BULLISH',
+                ].map((t) => (
+                  <div key={t} className="font-sans text-[12px] text-text-muted flex gap-2">
+                    <span className="text-gold shrink-0">◆</span>{t}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </FadeInSection>
+
+      <FadeInSection className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 text-center">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>WHAT'S INSIDE</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -99,10 +146,10 @@ export default function Research() {
         </div>
       </FadeInSection>
 
-      <FadeInSection className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-[760px] mx-auto">
           <SectionLabel center>SAMPLE ISSUE PREVIEW</SectionLabel>
-          <div className="relative bg-bg-surface border border-gold/20 rounded overflow-hidden mt-6" style={{ minHeight: 560 }}>
+          <div className="relative bg-bg-primary border border-gold/20 rounded overflow-hidden mt-6" style={{ minHeight: 560 }}>
             <div className="bg-gold px-6 py-4 flex items-center justify-between">
               <div>
                 <div className="font-mono text-[14px] font-bold text-bg-primary tracking-[0.1em]">MADDENAI NEWSLETTER</div>
@@ -140,7 +187,7 @@ export default function Research() {
 
               <div
                 className="absolute bottom-0 left-0 right-0 flex items-end justify-center pb-8"
-                style={{ height: '35%', background: 'linear-gradient(to bottom, transparent 0%, transparent 40%, #0B1628 100%)' }}
+                style={{ height: '35%', background: 'linear-gradient(to bottom, transparent 0%, transparent 40%, #060D1A 100%)' }}
               >
                 <span className="font-mono text-[11px] text-gold border border-gold/40 rounded-full px-4 py-2">
                   ILLUSTRATIVE PREVIEW — NOT A PUBLISHED ISSUE
@@ -151,7 +198,7 @@ export default function Research() {
         </div>
       </FadeInSection>
 
-      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-primary py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto text-center">
           <SectionLabel center>PLANNED PRICING</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -170,7 +217,7 @@ export default function Research() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
             {NEWSLETTER_PLANS.map((plan) => (
-              <div key={plan.name} className="border border-gold/20 rounded p-5 bg-bg-primary flex flex-col">
+              <div key={plan.name} className="border border-gold/20 rounded p-5 bg-bg-surface flex flex-col">
                 <div className="font-mono text-[12px] font-bold text-gold">{plan.name}</div>
                 <div className="font-sans text-[18px] font-bold text-text-primary mt-2">
                   {plan.price || `A$${plan.monthly}/mo`}
@@ -191,7 +238,7 @@ export default function Research() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="w-full font-mono text-[12px] text-text-primary bg-bg-primary border border-gold/30 rounded px-4 py-3 outline-none focus:border-gold/60 transition-colors placeholder:text-text-faint"
+              className="w-full font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/30 rounded px-4 py-3 outline-none focus:border-gold/60 transition-colors placeholder:text-text-faint"
             />
             <div className="mt-4">
               <GoldButton className="w-full">NOTIFY ME AT LAUNCH</GoldButton>

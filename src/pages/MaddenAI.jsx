@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
@@ -7,56 +7,6 @@ import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import FadeInSection from '../components/shared/FadeInSection'
-
-// Computed at module load rather than hardcoded — a "TODAY'S READINGS" label
-// with a fixed date reads as broken the moment the page is viewed on any
-// other day, which is most days.
-const TODAY_LABEL = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase()
-
-function ScorePositionBar({ score }) {
-  return (
-    <div className="relative w-full h-1 rounded-full mt-3" style={{ background: 'rgba(30,70,140,0.3)' }}>
-      <div
-        className="absolute inset-0 rounded-full"
-        style={{ background: 'linear-gradient(to right, #A83232 0%, #A83232 33%, #C9A84C 33%, #C9A84C 66%, #2D8A50 66%, #2D8A50 100%)' }}
-      />
-      <motion.div
-        className="absolute top-1/2 w-1.5 h-1.5 rounded-full bg-white -translate-y-1/2 -translate-x-1/2"
-        style={{ boxShadow: '0 0 4px rgba(255,255,255,0.8)' }}
-        initial={{ left: '0%' }}
-        animate={{ left: `${score}%` }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
-      />
-    </div>
-  )
-}
-
-function LiveAESTClock() {
-  const [time, setTime] = useState('')
-
-  useEffect(() => {
-    function update() {
-      const formatted = new Intl.DateTimeFormat('en-AU', {
-        timeZone: 'Australia/Sydney',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      }).format(new Date())
-      setTime(`${formatted} AEST`)
-    }
-    update()
-    const id = setInterval(update, 1000)
-    return () => clearInterval(id)
-  }, [])
-
-  return (
-    <div className="flex items-center justify-center gap-1.5 font-mono text-[9px] text-text-faint mt-3">
-      <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
-      {time}
-    </div>
-  )
-}
 
 function FactorTableHeader() {
   return (
@@ -346,6 +296,36 @@ function ResearchNoteCard({ note }) {
   )
 }
 
+const DEMO_SENTIMENT = [
+  ['Overall', 78],
+  ['Momentum', 84],
+  ['Volume', 71],
+  ['Macro', 62],
+  ['Risk', 76],
+]
+
+function DemoBar({ label, value }) {
+  const color = value >= 75 ? '#2D8A50' : value >= 50 ? '#C9A84C' : '#A83232'
+  return (
+    <div className="flex items-center gap-3">
+      <span className="font-mono text-[11px] text-text-muted w-20 shrink-0">{label}</span>
+      <div className="flex-1 h-1.5 rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden">
+        <div className="h-full rounded-full" style={{ width: `${value}%`, background: color }} />
+      </div>
+      <span className="font-mono text-[11px] w-14 text-right shrink-0" style={{ color }}>{value}/100</span>
+    </div>
+  )
+}
+
+function DemoSection({ label, children, last }) {
+  return (
+    <div className={`px-5 py-4 ${last ? '' : 'border-b border-[rgba(201,168,76,0.15)]'}`}>
+      <div className="font-mono text-[10px] text-gold tracking-[0.15em] mb-2.5">{label}</div>
+      {children}
+    </div>
+  )
+}
+
 const SENTIMENT_FACTORS = [
   ['ASX Market Breadth', 20], ['US Market Breadth', 15], ['Crypto Fear & Greed', 15], ['Crypto Breadth', 10],
   ['Global Index Momentum', 15], ['Volatility (VIX)', 10], ['Commodity Momentum', 10], ['News Sentiment', 5],
@@ -367,61 +347,93 @@ export default function MaddenAI() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-14 px-6 md:px-10 text-center">
-        <SectionLabel center>MADDENAI</SectionLabel>
+      <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
+        <SectionLabel center>MADDENAI ANALYST</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
+          className="font-sans text-[30px] md:text-[46px] font-bold leading-tight tracking-tight text-text-primary max-w-5xl mx-auto"
         >
-          Ask anything. Get a professional read back.
+          You used to need a Bloomberg terminal
+          <br />
+          and a research desk to get this.
         </motion.h1>
         <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
-          Type any ticker or question and MaddenAI reads markets, sentiment, and macro data simultaneously — then hands you a structured answer, not a wall of numbers.
+          MaddenAI gives every retail investor access to structured, professional-grade analysis — on any stock, crypto, FX pair, or index — in seconds. General information only.
         </p>
 
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-[1200px] mx-auto mt-9 bg-bg-surface border border-gold/25 rounded overflow-hidden text-left"
+          className="max-w-[900px] mx-auto mt-9 text-left"
         >
-          <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 flex-wrap">
-            <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
-            TODAY'S MADDENAI READINGS &nbsp;·&nbsp; {TODAY_LABEL} &nbsp;·&nbsp; 09:42 AEST
+          <div className="bg-bg-surface border border-gold/25 rounded-t px-4 py-3 flex items-center gap-2">
+            <span className="font-mono text-[13px] font-bold text-gold">CMD&gt;</span>
+            <span className="font-mono text-[13px] text-text-primary">
+              BHP.AX<span className="text-gold blink-cursor">▍</span>
+            </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[rgba(30,70,140,0.3)]">
-            <div className="p-6 text-center min-h-[160px] flex flex-col justify-center">
-              <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">MARKET SENTIMENT</div>
-              <div className="font-mono text-[72px] font-bold text-gold mt-2 leading-none">
-                <span className="score-pulse">72</span><span className="text-[20px] text-text-primary">/100</span>
-              </div>
-              <div className="font-mono text-[11px] text-text-primary mt-2">NEUTRAL-BULLISH</div>
-              <ScorePositionBar score={72} />
-              <LiveAESTClock />
+
+          <div className="bg-bg-surface border-x border-b border-gold/25 rounded-b overflow-hidden">
+            <div className="bg-bg-primary border-b border-gold/15 px-5 py-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+              <span className="font-mono text-[11px] text-gold tracking-[0.05em]">MADDENAI · BHP GROUP (BHP.AX) · ASX</span>
+              <span className="font-mono text-[11px] text-text-muted">
+                A$43.21 <span className="text-gain">▲ +1.27%</span> · Vol: 8.24M · 22 Aug 2026
+              </span>
             </div>
-            <div className="p-6 text-center min-h-[160px] flex flex-col justify-center">
-              <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">CRYPTO MOMENTUM</div>
-              <div className="font-mono text-[72px] font-bold text-gold mt-2 leading-none">
-                <span className="score-pulse">68</span><span className="text-[20px] text-text-primary">/100</span>
+
+            <DemoSection label="ASSESSMENT">
+              <p className="font-mono text-[12px] text-text-muted leading-[1.8]">
+                Bullish bias supported by iron ore strength. Spot at US$98/t, up 2.3% on China stimulus.
+              </p>
+            </DemoSection>
+
+            <DemoSection label="SENTIMENT">
+              <div className="flex flex-col gap-2">
+                {DEMO_SENTIMENT.map(([label, value]) => (
+                  <DemoBar key={label} label={label} value={value} />
+                ))}
               </div>
-              <div className="font-mono text-[11px] text-gain mt-2">BULLISH</div>
-              <ScorePositionBar score={68} />
-              <LiveAESTClock />
-            </div>
-            <div className="p-6 text-center min-h-[160px] flex flex-col justify-center">
-              <div className="font-mono text-[9px] text-text-muted tracking-[0.1em]">BEST PERFORMING SECTOR</div>
-              <div className="font-mono text-[22px] font-bold text-gold mt-2">INFORMATION TECHNOLOGY</div>
-              <div className="font-mono text-[11px] text-gain mt-2">81/100 STRONG</div>
-              <ScorePositionBar score={81} />
-              <LiveAESTClock />
+            </DemoSection>
+
+            <DemoSection label="LEVELS">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-mono text-[12px]">
+                <div><span className="text-text-faint">Support: </span><span className="text-text-primary">A$41.80 · A$39.20</span></div>
+                <div><span className="text-text-faint">Resistance: </span><span className="text-text-primary">A$44.50 · A$46.80</span></div>
+              </div>
+            </DemoSection>
+
+            <DemoSection label="OUTLOOK">
+              <div className="font-mono text-[12px] leading-[1.8]">
+                <div className="text-gain font-bold">BULLISH near-term (1–5 days)</div>
+                <div className="text-text-muted mt-0.5">Target range: A$44.50 – A$46.80</div>
+                <div className="text-text-muted mt-0.5">Catalyst: China PMI data (Mon 25 Aug)</div>
+              </div>
+            </DemoSection>
+
+            <DemoSection label="RISK" last>
+              <p className="font-mono text-[12px] text-text-muted leading-[1.8]">
+                Invalidated if iron ore drops below US$92/t or China stimulus disappoints expectations.
+              </p>
+            </DemoSection>
+
+            <div className="px-5 py-3 bg-bg-primary border-t border-[rgba(30,70,140,0.25)] font-mono text-[10px] text-text-faint flex items-center gap-1.5">
+              <span>⚠</span> General information only. Not financial advice.
             </div>
           </div>
         </motion.div>
+
+        <p className="font-sans text-[15px] text-text-muted mt-8">
+          This is what MaddenAI produces for every asset. Every time. In under 10 seconds.
+        </p>
+        <div className="mt-5">
+          <GoldButton to="/pricing">START FREE TRIAL →</GoldButton>
+        </div>
       </section>
 
-      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center max-w-[720px] mx-auto">
             <SectionLabel center>ASSET ANALYSIS</SectionLabel>
@@ -470,7 +482,7 @@ export default function MaddenAI() {
         </div>
       </FadeInSection>
 
-      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <section className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>HOW IT WORKS</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
@@ -522,7 +534,7 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10">
+      <section className="bg-bg-primary py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <SectionLabel center>SCORING MODELS</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary text-center max-w-3xl mx-auto leading-tight">
@@ -626,7 +638,7 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 text-center">
         <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-5">
           PHASE 2 · COMING SOON
         </span>
@@ -657,7 +669,7 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>PERSONALISATION</SectionLabel>
           <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">

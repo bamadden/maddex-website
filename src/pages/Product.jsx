@@ -468,7 +468,7 @@ const MODULES = [
     stats: ['9 INDICES', '200+ STOCKS', '11 SECTORS', '60s REFRESH'],
     title: 'Real-time global markets',
     icon: MODULE_ICONS.markets,
-    body: 'ASX 200 as the primary index, alongside nine global benchmarks and a full sector breadth heatmap — refreshed continuously, so you see the whole market, not just headline numbers.',
+    body: 'ASX 200 as the primary index, alongside nine global benchmarks and a full sector breadth heatmap. Refreshed continuously, so you see the whole market, not just headline numbers.',
     features: [
       'ASX 200, S&P 500, NASDAQ, FTSE, Nikkei + more',
       'Sector heatmap with advance/decline breadth',
@@ -483,7 +483,7 @@ const MODULES = [
     stats: ['ANY ASSET', '5-PART READ', 'INSTANT ANALYSIS', 'CLAUDE SONNET 4.6'],
     title: 'Your AI analyst',
     icon: MODULE_ICONS.maddenai,
-    body: 'Ask anything about any stock, crypto, or macro question — MaddenAI reads the data and hands back a structured, professional read in seconds, not a wall of numbers.',
+    body: 'Ask anything about any stock, crypto, or macro question. MaddenAI reads the data and hands back a structured, professional read in seconds — not a wall of numbers.',
     features: [
       'Ask anything about any asset',
       'Five-part structured analysis every time',
@@ -543,7 +543,7 @@ const MODULES = [
     stats: ['50+ COINS', 'AUD PRICING', 'FEAR & GREED', 'LIVE COINGECKO'],
     title: 'Crypto intelligence',
     icon: MODULE_ICONS.crypto,
-    body: 'Fifty-plus coins priced live in AUD, with the Fear & Greed Index and on-chain context most retail platforms leave out.',
+    body: 'Fifty-plus coins priced live in AUD, with the Fear & Greed Index and on-chain context most retail apps leave out.',
     features: [
       '50+ coins with AUD dual pricing',
       'Fear & Greed Index',
@@ -718,7 +718,7 @@ export default function Product() {
         ))}
       </div>
 
-      <section className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 text-center">
         <SectionLabel center>COMMAND BAR</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-3xl mx-auto leading-tight">
           <span className="block md:whitespace-nowrap">Keyboard-driven command interface.</span>
@@ -740,7 +740,7 @@ export default function Product() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <section className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           <div>
             <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">

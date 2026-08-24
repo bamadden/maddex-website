@@ -95,6 +95,22 @@ export default function Hero() {
 
       <Particles />
 
+      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+
+      <p style={{
+        textAlign: 'center',
+        fontFamily: "'Inter', sans-serif",
+        fontSize: '13px',
+        fontStyle: 'italic',
+        color: '#4A6080',
+        maxWidth: '640px',
+        margin: '0 auto 28px',
+        lineHeight: 1.6,
+        padding: '0 24px',
+      }}>
+        Bloomberg costs A$42,000/year. Retail apps give you basic data. There's been nothing in between.
+      </p>
+
       <div className="hero-grid">
 
         {/* LEFT COLUMN */}
@@ -588,6 +604,8 @@ export default function Hero() {
             ))}
           </div>
         </div>
+      </div>
+
       </div>
     </section>
   )

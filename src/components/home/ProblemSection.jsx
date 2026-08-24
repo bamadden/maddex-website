@@ -18,7 +18,7 @@ const CARDS = [
   },
   {
     border: '#3D5070',
-    label: 'RETAIL PLATFORMS',
+    label: 'RETAIL APPS',
     price: 'FREE',
     priceColor: 'text-text-primary',
     features: [

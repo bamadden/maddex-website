@@ -116,6 +116,11 @@ export default function Pricing() {
 
       <section className="relative bg-bg-primary pt-[84px] pb-10 px-6 md:px-10 text-center overflow-hidden">
         <div className="relative" style={{ zIndex: 1 }}>
+          <div className="hero-eyebrow">
+            <span className="inline-block font-mono text-[10px] tracking-[0.1em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3.5 py-1.5 mb-5">
+              EVERY PLAN INCLUDES A 7-DAY FREE TRIAL · NO CREDIT CARD REQUIRED
+            </span>
+          </div>
           <div className="hero-eyebrow"><SectionLabel center>TERMINAL PRICING</SectionLabel></div>
           <h1 className="hero-headline font-sans font-bold leading-tight tracking-tight max-w-4xl mx-auto">
             <span className="block text-[22px] md:text-[32px] text-text-muted font-bold">Bloomberg costs A$42,000 a year.</span>
@@ -167,7 +172,7 @@ export default function Pricing() {
         </p>
       </section>
 
-      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto">
           <SectionLabel center>FULL COMPARISON</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight">
@@ -179,7 +184,7 @@ export default function Pricing() {
         </div>
       </FadeInSection>
 
-      <FadeInSection id="research-notes" className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
+      <FadeInSection id="research-notes" className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
             PHASE 2 · COMING SOON
@@ -208,7 +213,7 @@ export default function Pricing() {
         </div>
       </FadeInSection>
 
-      <FadeInSection id="newsletter" className="bg-bg-surface py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
+      <FadeInSection id="newsletter" className="bg-bg-surface py-16 md:py-20 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
             PHASE 3 · COMING SOON
@@ -244,7 +249,7 @@ export default function Pricing() {
         </div>
       </FadeInSection>
 
-      <FadeInSection id="bundles" className="bg-bg-primary py-14 md:py-16 px-6 md:px-10 scroll-mt-[84px]">
+      <FadeInSection id="bundles" className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
           <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
             COMING SOON — REQUIRES PHASE 2 &amp; 3
@@ -268,7 +273,7 @@ export default function Pricing() {
         </div>
       </FadeInSection>
 
-      <FadeInSection className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
         <div className="max-w-[720px] mx-auto">
           <SectionLabel center>FAQ</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-8">
