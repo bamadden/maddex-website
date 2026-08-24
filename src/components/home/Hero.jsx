@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Particles() {
   const particles = React.useMemo(
@@ -173,7 +174,7 @@ export default function Hero() {
             marginBottom: '48px',
             flexWrap: 'wrap',
           }}>
-            <a href="/pricing" style={{
+            <Link to="/pricing" style={{
               background: '#C9A84C',
               color: '#060D1A',
               padding: '14px 32px',
@@ -187,8 +188,8 @@ export default function Hero() {
               transition: 'opacity 0.15s',
             }}>
               Start Free Trial
-            </a>
-            <a href="/pricing" style={{
+            </Link>
+            <Link to="/pricing" style={{
               background: 'transparent',
               color: '#C9A84C',
               padding: '14px 32px',
@@ -203,7 +204,7 @@ export default function Hero() {
               transition: 'border-color 0.15s',
             }}>
               View Pricing
-            </a>
+            </Link>
           </div>
 
           {/* Stats row */}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import TickerTape from '../components/layout/TickerTape'
 import Navigation from '../components/layout/Navigation'
 import Footer from '../components/layout/Footer'
@@ -295,12 +296,12 @@ export default function ProfileSettings() {
                       </div>
                     )}
                   </div>
-                  <a
-                    href="/pricing"
+                  <Link
+                    to="/pricing"
                     className="px-5 py-2 border border-gold text-gold font-mono text-[11px] rounded-sm hover:bg-gold/10 transition-colors"
                   >
                     {profile.subscription_tier === 'trial' ? 'UPGRADE NOW' : 'MANAGE PLAN'}
-                  </a>
+                  </Link>
                 </div>
               </section>
             </div>
