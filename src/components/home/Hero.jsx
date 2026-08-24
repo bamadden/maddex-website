@@ -271,12 +271,15 @@ export default function Hero() {
             {/* Column 1 — Markets */}
             <div className="hero-sim-col" style={{
               padding: '20px',
+              display: 'flex',
+              flexDirection: 'column',
             }}>
               <div style={{
                 fontSize: '9px', color: '#C9A84C',
                 letterSpacing: '0.2em', marginBottom: '14px',
               }}>MARKETS</div>
 
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               {[
                 { name: 'ASX 200', val: '8,247.3', chg: '+0.42%', up: true },
                 { name: 'S&P 500', val: '5,842.3', chg: '+0.32%', up: true },
@@ -335,6 +338,7 @@ export default function Hero() {
                   </div>
                 ))}
               </div>
+              </div>
             </div>
 
             {/* Column 2 — MaddenAI */}
@@ -350,6 +354,7 @@ export default function Hero() {
                 paddingBottom: '10px',
               }}>MADDENAI ANALYST</div>
 
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               {/* User message */}
               <div style={{
                 alignSelf: 'flex-end',
@@ -415,15 +420,17 @@ export default function Hero() {
                   ))}
                 </div>
               </div>
+              </div>
             </div>
 
             {/* Column 3 — Intelligence */}
-            <div className="hero-sim-col" style={{ padding: '20px' }}>
+            <div className="hero-sim-col" style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
               <div style={{
                 fontSize: '9px', color: '#C9A84C',
                 letterSpacing: '0.2em', marginBottom: '14px',
               }}>INTELLIGENCE</div>
 
+              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               {/* AUD/USD card */}
               <div style={{
                 background: 'rgba(201,168,76,0.03)',
@@ -493,6 +500,7 @@ export default function Hero() {
                     </div>
                   ))}
                 </div>
+              </div>
               </div>
             </div>
           </div>

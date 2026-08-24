@@ -35,12 +35,12 @@ function PlanCard({ plan, i, annual, isLast, hoveredPlan, setHoveredPlan }) {
       className={`relative flex flex-col border-b lg:border-b-0 lg:border-r ${isLast ? 'border-b-0 lg:border-r-0' : ''}`}
       style={{
         background: isHovered ? 'var(--surface-2)' : 'var(--surface)',
-        borderColor: isHovered ? 'rgba(201,168,76,0.5)' : 'var(--border)',
+        borderColor: isHovered ? 'rgba(201,168,76,0.8)' : 'var(--border)',
         padding: 'var(--space-8)',
-        transform: isHovered ? 'translateY(-6px) scale(1.02)' : isDimmed ? 'scale(0.98)' : 'none',
-        boxShadow: isHovered ? '0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.2)' : 'none',
-        opacity: isDimmed ? 0.7 : 1,
-        filter: isDimmed ? 'brightness(0.85)' : 'none',
+        transform: isHovered ? 'translateY(-8px) scale(1.03)' : isDimmed ? 'scale(0.97)' : 'none',
+        boxShadow: isHovered ? '0 24px 48px rgba(0,0,0,0.5)' : 'none',
+        opacity: isDimmed ? 0.55 : 1,
+        filter: isDimmed ? 'brightness(0.7)' : 'none',
         transition: 'all 0.2s ease',
         position: 'relative',
         zIndex: isHovered ? 1 : 0,

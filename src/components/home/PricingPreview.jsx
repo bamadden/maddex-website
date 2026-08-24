@@ -23,6 +23,7 @@ function convertAud(aud) {
 export default function PricingPreview() {
   const [annual, setAnnual] = useState(false)
   const [showComparison, setShowComparison] = useState(false)
+  const [hoveredPlan, setHoveredPlan] = useState(null)
 
   return (
     <section className="bg-bg-surface py-24 px-6 md:px-10">
@@ -57,23 +58,40 @@ export default function PricingPreview() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 text-left max-w-[1000px] mx-auto">
-          {TERMINAL_PLANS.map((plan, i) => (
+        <div
+          className="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-10 text-left max-w-[1000px] mx-auto"
+          onMouseLeave={() => setHoveredPlan(null)}
+        >
+          {TERMINAL_PLANS.map((plan, i) => {
+            const isHovered = hoveredPlan === plan.name
+            const isDimmed = hoveredPlan !== null && !isHovered
+            return (
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.05, duration: 0.4 }}
-              whileHover={{ y: -4, scale: plan.popular ? 1.03 : 1.01 }}
-              className={`relative bg-bg-primary rounded p-6 border transition-colors duration-200 flex flex-col h-full ${
-                plan.popular
-                  ? 'border-[rgba(201,168,76,0.6)] scale-[1.03]'
-                  : plan.name === 'APEX'
-                  ? 'border-[rgba(201,168,76,0.15)] hover:border-gold/40'
-                  : 'border-[rgba(201,168,76,0.15)] hover:border-gold/40'
+              onMouseEnter={() => setHoveredPlan(plan.name)}
+              className={`relative bg-bg-primary rounded p-6 border flex flex-col h-full ${
+                plan.popular && !isHovered ? 'border-[rgba(201,168,76,0.6)]' : ''
               }`}
-              style={plan.popular ? { backgroundImage: 'linear-gradient(rgba(201,168,76,0.03), rgba(201,168,76,0.03))' } : undefined}
+              style={{
+                ...(plan.popular ? { backgroundImage: 'linear-gradient(rgba(201,168,76,0.03), rgba(201,168,76,0.03))' } : {}),
+                borderColor: isHovered ? 'rgba(201,168,76,0.8)' : plan.popular ? 'rgba(201,168,76,0.6)' : 'rgba(201,168,76,0.15)',
+                transform: isHovered
+                  ? 'translateY(-8px) scale(1.03)'
+                  : isDimmed
+                  ? 'scale(0.97)'
+                  : plan.popular
+                  ? 'scale(1.03)'
+                  : 'none',
+                boxShadow: isHovered ? '0 24px 48px rgba(0,0,0,0.5)' : 'none',
+                opacity: isDimmed ? 0.55 : 1,
+                filter: isDimmed ? 'brightness(0.7)' : 'none',
+                transition: 'all 0.2s ease',
+                zIndex: isHovered ? 1 : 0,
+              }}
             >
               {plan.popular && (
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[9px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
@@ -128,7 +146,8 @@ export default function PricingPreview() {
                 </GoldButton>
               </div>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
 
         <p className="font-mono text-[11px] text-text-muted max-w-2xl mx-auto mt-8 leading-[1.7]">

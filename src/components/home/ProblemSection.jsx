@@ -146,7 +146,7 @@ export default function ProblemSection() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 mt-9 lg:mt-0">
+        <div className="flex flex-col gap-5 mt-9 lg:mt-0 justify-center">
           {CARDS.map((card, i) => (
             <motion.div key={card.label}>
               <motion.div
