@@ -71,9 +71,7 @@ export default function ProblemSection() {
             Less than a Bloomberg in a single day.
           </div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+          <div className="grid grid-cols-1 sm:grid-cols-3" style={{
             gap: '1px',
             background: 'rgba(201,168,76,0.1)',
             border: '1px solid rgba(201,168,76,0.1)',
@@ -88,21 +86,23 @@ export default function ProblemSection() {
             ].map(({ icon, label, sub }) => (
               <div key={label} style={{
                 background: '#0B1628',
-                padding: '16px 20px',
+                padding: '10px 20px',
                 textAlign: 'center',
               }}>
-                <div style={{ fontSize: '18px', marginBottom: '6px' }}>{icon}</div>
+                <div style={{ fontSize: '15px', marginBottom: '4px', lineHeight: 1 }}>{icon}</div>
                 <div style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: '9px',
                   letterSpacing: '0.15em',
                   color: '#C9A84C',
-                  marginBottom: '3px',
+                  marginBottom: '2px',
+                  lineHeight: 1.2,
                 }}>{label}</div>
                 <div style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: '9px',
                   color: '#637899',
+                  lineHeight: 1.2,
                 }}>{sub}</div>
               </div>
             ))}
