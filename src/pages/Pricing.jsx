@@ -55,7 +55,7 @@ function PlanCard({ plan, i, annual, isLast }) {
 
       <div style={{ minHeight: 120 }}>
         <div className="font-mono text-[12px] tracking-wide text-gold">{plan.name}</div>
-        <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
+        <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug" style={{ minHeight: 34 }}>{plan.tagline}</p>
         <div className="mt-4">
           {annual ? (
             <>

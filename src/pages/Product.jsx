@@ -22,8 +22,8 @@ function MiniHeader({ label, right, accent }) {
 function MiniShell({ children, maxHeight = 240 }) {
   return (
     <div
-      className="bg-bg-primary border border-gold/15 rounded overflow-hidden flex flex-col w-full"
-      style={{ maxHeight }}
+      className="bg-bg-primary border border-gold/15 rounded overflow-hidden flex flex-col justify-center w-full"
+      style={{ height: maxHeight }}
     >
       {children}
     </div>
