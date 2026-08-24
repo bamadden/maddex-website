@@ -10,6 +10,7 @@ import FAQItem from '../components/shared/FAQItem'
 import PricingComparisonTable from '../components/shared/PricingComparisonTable'
 import FadeInSection from '../components/shared/FadeInSection'
 import { TERMINAL_PLANS, NEWSLETTER_PLANS, RESEARCH_NOTES_PRICING, BUNDLES } from '../data/pricing'
+import { useAnalytics } from '../hooks/useAnalytics'
 
 const FAQS = [
   ['Is this financial advice?', 'No. Maddex provides general financial information only and does not constitute financial product advice or a personal recommendation. Always consider seeking independent financial advice before making investment decisions.'],
@@ -24,6 +25,7 @@ function PlanCard({ plan, i, annual, isLast, hoveredPlan, setHoveredPlan }) {
   const dataPlan = plan.name.toLowerCase()
   const isHovered = hoveredPlan === dataPlan
   const isDimmed = hoveredPlan !== null && !isHovered
+  const { trackPricing } = useAnalytics()
 
   return (
     <motion.div
@@ -88,7 +90,11 @@ function PlanCard({ plan, i, annual, isLast, hoveredPlan, setHoveredPlan }) {
         ))}
       </div>
       <div className="mt-auto pt-6">
-        <GoldButton variant={plan.popular ? 'solid' : 'ghost'} className="!w-full">
+        <GoldButton
+          variant={plan.popular ? 'solid' : 'ghost'}
+          onClick={() => trackPricing(dataPlan)}
+          className="!w-full"
+        >
           START 7-DAY FREE TRIAL
         </GoldButton>
       </div>

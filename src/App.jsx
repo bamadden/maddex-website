@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
 import ScrollProgress from './components/shared/ScrollProgress'
 import BackToTop from './components/shared/BackToTop'
+import { useAnalytics } from './hooks/useAnalytics'
 import Home from './pages/Home'
 import Product from './pages/Product'
 import MaddenAIPage from './pages/MaddenAI'
@@ -19,6 +20,16 @@ function ScrollToTop() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [pathname])
+  return null
+}
+
+function PageViewTracker() {
+  const location = useLocation()
+  const { trackPageView } = useAnalytics()
+  useEffect(() => {
+    trackPageView(location.pathname)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname])
   return null
 }
 
@@ -62,6 +73,7 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <BrowserRouter>
         <ScrollToTop />
+        <PageViewTracker />
         <ScrollProgress />
         <AnimatedRoutes />
         <BackToTop />

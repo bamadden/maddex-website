@@ -31,14 +31,14 @@ export default function GoldButton({
 
   if (to) {
     return (
-      <Link to={to} className={wrapperClass}>
+      <Link to={to} onClick={onClick} className={wrapperClass}>
         {content}
       </Link>
     )
   }
   if (href) {
     return (
-      <a href={href} className={wrapperClass}>
+      <a href={href} onClick={onClick} className={wrapperClass}>
         {content}
       </a>
     )

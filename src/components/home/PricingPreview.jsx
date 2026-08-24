@@ -7,6 +7,7 @@ import SectionSubheading from '../shared/SectionSubheading'
 import GoldButton from '../shared/GoldButton'
 import PricingComparisonTable from '../shared/PricingComparisonTable'
 import { TERMINAL_PLANS } from '../../data/pricing'
+import { useAnalytics } from '../../hooks/useAnalytics'
 
 // Approximate indicative FX rates off AUD — not live, just enough to show
 // international visitors roughly what they'd pay in their own currency.
@@ -24,6 +25,7 @@ export default function PricingPreview() {
   const [annual, setAnnual] = useState(false)
   const [showComparison, setShowComparison] = useState(false)
   const [hoveredPlan, setHoveredPlan] = useState(null)
+  const { trackPricing } = useAnalytics()
 
   return (
     <section className="bg-bg-surface py-24 px-6 md:px-10">
@@ -141,7 +143,12 @@ export default function PricingPreview() {
                 ))}
               </div>
               <div className="mt-auto pt-6">
-                <GoldButton to="/pricing" variant={plan.popular ? 'solid' : 'ghost'} className="w-full">
+                <GoldButton
+                  to="/pricing"
+                  variant={plan.popular ? 'solid' : 'ghost'}
+                  onClick={() => trackPricing(plan.name.toLowerCase())}
+                  className="w-full"
+                >
                   START 7-DAY FREE TRIAL
                 </GoldButton>
               </div>

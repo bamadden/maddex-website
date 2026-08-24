@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAnalytics } from '../../hooks/useAnalytics'
 
 function Particles() {
   const particles = React.useMemo(
@@ -80,6 +81,7 @@ function LiveClock() {
 }
 
 export default function Hero() {
+  const { trackCTA } = useAnalytics()
   return (
     <section style={{
       minHeight: '100vh',
@@ -140,20 +142,23 @@ export default function Hero() {
           marginTop: '36px',
           flexWrap: 'wrap',
         }}>
-          <Link to="/pricing" style={{
-            background: '#C9A84C',
-            color: '#060D1A',
-            padding: '14px 32px',
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: '12px',
-            fontWeight: 700,
-            letterSpacing: '0.08em',
-            textDecoration: 'none',
-            textTransform: 'uppercase',
-            display: 'inline-block',
-            borderRadius: 0,
-            transition: 'opacity 0.15s',
-          }}>
+          <Link
+            to="/pricing"
+            onClick={() => trackCTA('start_trial', 'hero')}
+            style={{
+              background: '#C9A84C',
+              color: '#060D1A',
+              padding: '14px 32px',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '12px',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textDecoration: 'none',
+              textTransform: 'uppercase',
+              display: 'inline-block',
+              borderRadius: 0,
+              transition: 'opacity 0.15s',
+            }}>
             Start Free Trial
           </Link>
           <Link to="/pricing" style={{

@@ -8,6 +8,7 @@ import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import FadeInSection from '../components/shared/FadeInSection'
+import { useAnalytics } from '../hooks/useAnalytics'
 
 function MiniHeader({ label, right, accent }) {
   return (
@@ -891,6 +892,7 @@ function CommandBarDemo() {
 }
 
 export default function Product() {
+  const { trackCTA } = useAnalytics()
   useEffect(() => {
     document.title = 'Maddex — The Terminal'
   }, [])
@@ -916,7 +918,7 @@ export default function Product() {
           Eight professional modules, AI-powered analysis, global intelligence.
         </p>
         <div className="mt-8">
-          <GoldButton to="/pricing">START FREE TRIAL</GoldButton>
+          <GoldButton to="/pricing" onClick={() => trackCTA('start_trial', 'product_page')}>START FREE TRIAL</GoldButton>
         </div>
       </section>
 

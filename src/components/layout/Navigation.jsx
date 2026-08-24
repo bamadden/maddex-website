@@ -6,6 +6,7 @@ import GoldButton from '../shared/GoldButton'
 import AuthModal from './AuthModal'
 import { useProfileContext } from '../../context/ProfileContext'
 import { supabase } from '../../lib/supabase'
+import { useAnalytics } from '../../hooks/useAnalytics'
 
 const NAV_LINKS = [
   { label: 'Terminal', to: '/product' },
@@ -91,6 +92,7 @@ function ProfileMenu() {
 }
 
 function AuthButtons({ onOpenAuth }) {
+  const { trackCTA } = useAnalytics()
   return (
     <div className="flex items-center gap-3">
       <button
@@ -100,7 +102,7 @@ function AuthButtons({ onOpenAuth }) {
       >
         Sign In
       </button>
-      <GoldButton to="/pricing" className="!px-4 !py-2 !text-[11px]">
+      <GoldButton to="/pricing" onClick={() => trackCTA('start_trial', 'nav')} className="!px-4 !py-2 !text-[11px]">
         START FREE TRIAL
       </GoldButton>
     </div>
@@ -112,6 +114,7 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const location = useLocation()
+  const { trackCTA } = useAnalytics()
   const { profile } = useProfileContext()
 
   useEffect(() => {
@@ -248,7 +251,11 @@ export default function Navigation() {
                   </button>
                 )}
 
-                <GoldButton to="/pricing" onClick={() => setMobileOpen(false)} className="w-full">
+                <GoldButton
+                  to="/pricing"
+                  onClick={() => { trackCTA('start_trial', 'nav_mobile'); setMobileOpen(false) }}
+                  className="w-full"
+                >
                   START FREE TRIAL
                 </GoldButton>
               </motion.div>
