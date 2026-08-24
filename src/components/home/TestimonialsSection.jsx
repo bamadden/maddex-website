@@ -21,7 +21,7 @@ const TESTIMONIALS = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-bg-surface py-20 px-6 md:px-10">
+    <section className="bg-bg-surface py-24 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -30,7 +30,7 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.2 }}
           className="max-w-[720px] mx-auto text-left border-l-[3px] border-gold pl-6 mb-7"
         >
-          <p className="font-sans text-[18px] md:text-[22px] font-bold text-text-primary leading-[1.35]">
+          <p className="font-sans text-[18px] md:text-[22px] font-bold tracking-[-0.02em] text-text-primary leading-[1.35]">
             "The financial intelligence terminal Australian retail investors have always deserved."
           </p>
           <div className="mt-2">

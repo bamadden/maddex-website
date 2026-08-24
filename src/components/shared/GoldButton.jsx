@@ -15,8 +15,8 @@ export default function GoldButton({
 
   const styles =
     variant === 'solid'
-      ? 'bg-gold text-bg-primary hover:brightness-110 hover:shadow-[0_0_20px_rgba(201,168,76,0.3)]'
-      : 'bg-transparent text-gold border border-[rgba(201,168,76,0.4)] hover:bg-[rgba(201,168,76,0.08)] hover:border-[rgba(201,168,76,0.7)]'
+      ? 'bg-gold text-bg-primary hover:opacity-90'
+      : 'bg-transparent text-gold border border-[rgba(201,168,76,0.4)] hover:opacity-90 hover:border-[rgba(201,168,76,0.7)]'
 
   // The inner span can be told to go full-width via a `w-full` class, but an
   // `inline-block` wrapper shrinks to fit its content regardless — a
@@ -29,7 +29,7 @@ export default function GoldButton({
     <motion.span
       whileTap={{ scale: 0.97 }}
       className={`${base} ${styles} ${className}`}
-      style={{ padding: '14px 28px', borderRadius: 3 }}
+      style={{ padding: '14px 28px', borderRadius: 0 }}
       {...props}
     >
       {children}

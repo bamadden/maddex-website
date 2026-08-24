@@ -17,7 +17,7 @@ const CARDS = [
     ],
   },
   {
-    border: '#3D5070',
+    border: '#4A6080',
     label: 'RETAIL APPS',
     price: 'FREE',
     priceColor: 'text-text-primary',
@@ -46,7 +46,7 @@ const CARDS = [
 
 export default function ProblemSection() {
   return (
-    <section className="bg-bg-surface py-20 px-6 md:px-10">
+    <section className="bg-bg-surface py-24 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-stretch">
         <div className="flex flex-col justify-start">
           <SectionLabel>THE INFORMATION GAP</SectionLabel>
@@ -74,7 +74,7 @@ export default function ProblemSection() {
           <div className="grid grid-cols-1 sm:grid-cols-3" style={{
             gap: '1px',
             background: 'rgba(201,168,76,0.1)',
-            border: '1px solid rgba(201,168,76,0.1)',
+            border: '1px solid rgba(201,168,76,0.15)',
             borderRadius: '4px',
             margin: '32px 0',
             overflow: 'hidden',
@@ -101,7 +101,7 @@ export default function ProblemSection() {
                 <div style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: '9px',
-                  color: '#637899',
+                  color: '#8BA3C4',
                   lineHeight: 1.2,
                 }}>{sub}</div>
               </div>
@@ -114,7 +114,7 @@ export default function ProblemSection() {
               ['8', 'Modules included'],
               ['A$29', 'Starting price'],
             ].map(([n, l]) => (
-              <div key={l} className="border-t border-[rgba(30,70,140,0.3)] pt-4">
+              <div key={l} className="border-t border-[rgba(201,168,76,0.15)] pt-4">
                 <div className="font-mono text-[22px] font-bold text-gold">{n}</div>
                 <div className="font-mono text-[9px] text-text-muted uppercase tracking-[0.08em] mt-1.5">{l}</div>
               </div>

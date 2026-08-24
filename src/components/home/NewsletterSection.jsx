@@ -29,9 +29,9 @@ export default function NewsletterSection() {
   const [email, setEmail] = useState('')
 
   return (
-    <section className="bg-bg-primary py-20 px-6 md:px-10">
+    <section className="bg-bg-primary py-24 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
-        <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
+        <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mb-4">
           PHASE 3 · COMING SOON
         </span>
         <SectionLabel center>MADDENAI NEWSLETTER</SectionLabel>
@@ -50,11 +50,11 @@ export default function NewsletterSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.05, duration: 0.2 }}
-              className="bg-bg-surface border border-[rgba(201,168,76,0.2)] rounded p-5 flex flex-col h-full"
+              className="bg-bg-surface border border-[rgba(201,168,76,0.15)] rounded p-5 flex flex-col h-full"
             >
               <div className="font-mono text-[11px] font-bold tracking-wide text-gold">{tier.name}</div>
               <div className="mt-2">
-                <span className="font-sans text-[28px] font-bold text-text-primary">{tier.price}</span>
+                <span className="font-sans text-[28px] font-bold tracking-[-0.02em] text-text-primary">{tier.price}</span>
                 {tier.suffix && <span className="font-sans text-[12px] text-text-muted">{tier.suffix}</span>}
               </div>
               <div className="flex flex-col gap-1.5 mt-4 flex-1">
@@ -78,7 +78,7 @@ export default function NewsletterSection() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="flex-1 font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/30 rounded px-4 py-3 outline-none focus:border-gold/60 transition-colors placeholder:text-text-faint"
+              className="flex-1 font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/15 rounded px-4 py-3 outline-none focus:border-gold/40 transition-colors placeholder:text-text-faint"
             />
             <GoldButton>NOTIFY ME</GoldButton>
           </div>

@@ -56,7 +56,7 @@ export default function AuthModal({ onClose }) {
       onClick={onClose}
     >
       <div
-        className="w-full max-w-sm bg-bg-surface border border-gold/25 rounded-sm p-6"
+        className="w-full max-w-sm bg-bg-surface border border-gold/15 rounded-sm p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-6">
@@ -86,7 +86,7 @@ export default function AuthModal({ onClose }) {
                 autoFocus
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
+                className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
                 placeholder="you@example.com"
               />
             </div>
@@ -96,7 +96,7 @@ export default function AuthModal({ onClose }) {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
+                className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
                 placeholder="••••••••"
               />
             </div>
@@ -122,7 +122,7 @@ export default function AuthModal({ onClose }) {
               Forgot password?
             </button>
 
-            <div className="pt-4 border-t border-[rgba(30,70,140,0.3)] text-center">
+            <div className="pt-4 border-t border-[rgba(201,168,76,0.15)] text-center">
               <span className="font-mono text-[11px] text-text-muted">New to Maddex? </span>
               <Link
                 to="/pricing"

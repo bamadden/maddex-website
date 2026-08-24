@@ -28,10 +28,10 @@ function FactorBar({ label, weight }) {
     <div
       ref={ref}
       className="flex items-center justify-end gap-3 py-[10px] px-4 transition-colors hover:bg-[rgba(201,168,76,0.03)]"
-      style={{ borderBottom: '1px solid rgba(30,70,140,0.2)' }}
+      style={{ borderBottom: '1px solid rgba(201,168,76,0.2)' }}
     >
       <span className="font-mono text-[11px] text-text-muted w-40 shrink-0 text-left mr-auto">{label}</span>
-      <div className="w-[80px] max-w-[80px] h-[6px] rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden shrink-0">
+      <div className="w-[80px] max-w-[80px] h-[6px] rounded-full bg-[rgba(201,168,76,0.15)] overflow-hidden shrink-0">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: inView ? `${weight}%` : 0 }}
@@ -52,7 +52,7 @@ function ScoreDial({ value, label }) {
   return (
     <div ref={ref} className="relative w-[112px] h-[112px] shrink-0">
       <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-        <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(30,70,140,0.3)" strokeWidth="6" />
+        <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="6" />
         <motion.circle
           cx="50" cy="50" r="42" fill="none" stroke="#C9A84C" strokeWidth="6" strokeLinecap="round"
           strokeDasharray={circumference}
@@ -71,15 +71,15 @@ function ScoreDial({ value, label }) {
 
 function ExampleReading({ examples }) {
   return (
-    <div className="mt-5 pt-5 border-t border-[rgba(30,70,140,0.3)]">
+    <div className="mt-5 pt-5 border-t border-[rgba(201,168,76,0.15)]">
       <div className="font-mono text-[9px] text-gold tracking-[0.05em] mb-3">EXAMPLE: TODAY'S READING</div>
       <div className="flex flex-col gap-2.5">
         {examples.map(([label, value]) => {
-          const color = value >= 66 ? '#C9A84C' : value >= 33 ? '#D4922B' : '#A83232'
+          const color = value >= 66 ? '#C9A84C' : value >= 33 ? '#E8C96A' : '#A83232'
           return (
             <div key={label} className="flex items-center gap-3">
               <span className="font-mono text-[10px] text-text-muted w-32 shrink-0">{label}</span>
-              <div className="flex-1 h-1.5 rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden">
+              <div className="flex-1 h-1.5 rounded-full bg-[rgba(201,168,76,0.15)] overflow-hidden">
                 <div className="h-full rounded-full" style={{ width: `${value}%`, background: color }} />
               </div>
               <span className="font-mono text-[10px] w-8 text-right shrink-0" style={{ color }}>{value}</span>
@@ -93,7 +93,7 @@ function ExampleReading({ examples }) {
 
 function ClassificationBands() {
   return (
-    <div className="mt-5 pt-5 border-t border-[rgba(30,70,140,0.3)]">
+    <div className="mt-5 pt-5 border-t border-[rgba(201,168,76,0.15)]">
       <div className="flex justify-between font-mono text-[8px] text-text-faint mb-1.5">
         <span>0</span><span>33</span><span>66</span><span>100</span>
       </div>
@@ -147,7 +147,7 @@ function WavyLineIcon() {
     <svg width="44" height="44" viewBox="0 0 44 44">
       <defs>
         <linearGradient id="wavyGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#1A7FE8" />
+          <stop offset="0%" stopColor="#8BA3C4" />
           <stop offset="100%" stopColor="#C9A84C" />
         </linearGradient>
       </defs>
@@ -209,14 +209,14 @@ function AssetExampleCard({ ex }) {
       className="bg-bg-primary border border-gold/15 rounded overflow-hidden flex flex-col"
       style={{ borderTop: '2px solid #C9A84C' }}
     >
-      <div className="bg-bg-surface border-b border-gold/12 px-4 py-2 font-mono text-[9px] text-gold tracking-[0.15em]">
+      <div className="bg-bg-surface border-b border-gold/15 px-4 py-2 font-mono text-[9px] text-gold tracking-[0.15em]">
         {ex.category}
       </div>
       <div className="p-4 flex gap-3 items-start flex-1">
         <div className="shrink-0 mt-0.5">{ex.icon}</div>
         <div className="flex flex-col gap-2.5 flex-1 min-w-0">
           <div className="flex items-baseline justify-between gap-2 flex-wrap">
-            <span className="font-sans text-[15px] font-bold text-text-primary">{ex.name}</span>
+            <span className="font-sans text-[15px] font-bold tracking-[-0.02em] text-text-primary">{ex.name}</span>
             <span className="font-mono text-[10px] text-text-muted">{ex.ticker}</span>
           </div>
           <div className="font-mono text-[12px]">
@@ -226,7 +226,7 @@ function AssetExampleCard({ ex }) {
           <p className="font-sans text-[12px] text-text-muted leading-[1.7]">{ex.text}</p>
           <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
             {ex.tags.map((t) => (
-              <span key={t} className="font-mono text-[9px] text-gold border border-gold/25 rounded-full px-2 py-0.5">
+              <span key={t} className="font-mono text-[9px] text-gold border border-gold/15 rounded-full px-2 py-0.5">
                 {t}
               </span>
             ))}
@@ -269,10 +269,10 @@ const RESEARCH_NOTE_EXAMPLES = [
 
 function ResearchNoteCard({ note }) {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded-sm overflow-hidden flex flex-col h-full">
+    <div className="bg-bg-surface border border-gold/15 rounded-sm overflow-hidden flex flex-col h-full">
       <div className="px-5 py-4 border-b border-gold/15">
         <div className="font-mono text-[9px] tracking-[0.15em] text-gold">{note.noteType.toUpperCase()}</div>
-        <div className="font-sans text-[16px] font-bold text-text-primary mt-2 leading-snug">{note.title}</div>
+        <div className="font-sans text-[16px] font-bold tracking-[-0.02em] text-text-primary mt-2 leading-snug">{note.title}</div>
         <div className="font-mono text-[10px] text-text-muted mt-2">{note.pages} &nbsp;|&nbsp; {note.date}</div>
       </div>
       <div className="px-5 py-4 flex-1">
@@ -285,9 +285,9 @@ function ResearchNoteCard({ note }) {
           ))}
         </div>
       </div>
-      <div className="px-5 py-3 border-t border-[rgba(30,70,140,0.25)] flex flex-wrap gap-1.5">
+      <div className="px-5 py-3 border-t border-[rgba(201,168,76,0.15)] flex flex-wrap gap-1.5">
         {note.tags.map((t) => (
-          <span key={t} className="font-mono text-[9px] text-gold border border-gold/25 rounded-full px-2 py-0.5">
+          <span key={t} className="font-mono text-[9px] text-gold border border-gold/15 rounded-full px-2 py-0.5">
             {t}
           </span>
         ))}
@@ -309,7 +309,7 @@ function DemoBar({ label, value }) {
   return (
     <div className="flex items-center gap-3">
       <span className="font-mono text-[11px] text-text-muted w-20 shrink-0">{label}</span>
-      <div className="flex-1 h-1.5 rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden">
+      <div className="flex-1 h-1.5 rounded-full bg-[rgba(201,168,76,0.15)] overflow-hidden">
         <div className="h-full rounded-full" style={{ width: `${value}%`, background: color }} />
       </div>
       <span className="font-mono text-[11px] w-14 text-right shrink-0" style={{ color }}>{value}/100</span>
@@ -353,7 +353,7 @@ export default function MaddenAI() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className="font-sans text-[30px] md:text-[46px] font-bold leading-tight tracking-tight text-text-primary max-w-5xl mx-auto"
+          className="font-sans text-[30px] md:text-[46px] font-extrabold leading-tight tracking-[-0.03em] text-text-primary max-w-5xl mx-auto"
         >
           You used to need a Bloomberg terminal
           <br />
@@ -369,14 +369,14 @@ export default function MaddenAI() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-[900px] mx-auto mt-9 text-left"
         >
-          <div className="bg-bg-surface border border-gold/25 rounded-t px-4 py-3 flex items-center gap-2">
+          <div className="bg-bg-surface border border-gold/15 rounded-t px-4 py-3 flex items-center gap-2">
             <span className="font-mono text-[13px] font-bold text-gold">CMD&gt;</span>
             <span className="font-mono text-[13px] text-text-primary">
               BHP.AX<span className="text-gold blink-cursor">▍</span>
             </span>
           </div>
 
-          <div className="bg-bg-surface border-x border-b border-gold/25 rounded-b overflow-hidden">
+          <div className="bg-bg-surface border-x border-b border-gold/15 rounded-b overflow-hidden">
             <div className="bg-bg-primary border-b border-gold/15 px-5 py-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
               <span className="font-mono text-[11px] text-gold tracking-[0.05em]">MADDENAI · BHP GROUP (BHP.AX) · ASX</span>
               <span className="font-mono text-[11px] text-text-muted">
@@ -419,7 +419,7 @@ export default function MaddenAI() {
               </p>
             </DemoSection>
 
-            <div className="px-5 py-3 bg-bg-primary border-t border-[rgba(30,70,140,0.25)] font-mono text-[10px] text-text-faint flex items-center gap-1.5">
+            <div className="px-5 py-3 bg-bg-primary border-t border-[rgba(201,168,76,0.15)] font-mono text-[10px] text-text-faint flex items-center gap-1.5">
               <span>⚠</span> General information only. Not financial advice.
             </div>
           </div>
@@ -433,11 +433,11 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-24 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <div className="text-center max-w-[720px] mx-auto">
             <SectionLabel center>ASSET ANALYSIS</SectionLabel>
-            <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
+            <h2 className="font-sans text-[34px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary leading-tight">
               Type any ticker. Get a full structured read in seconds.
             </h2>
             <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75]">
@@ -482,10 +482,10 @@ export default function MaddenAI() {
         </div>
       </FadeInSection>
 
-      <section className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
+      <section className="bg-bg-surface py-24 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>HOW IT WORKS</SectionLabel>
-          <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[34px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
             A two-layer intelligence system.
           </h2>
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 mt-10 text-left">
@@ -496,10 +496,10 @@ export default function MaddenAI() {
               transition={{ duration: 0.2 }}
               whileHover={{ boxShadow: '0 0 20px rgba(201,168,76,0.1)' }}
               className="rounded p-6 min-h-[180px] transition-shadow"
-              style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.25)' }}
+              style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.15)' }}
             >
               <span className="font-mono text-[9px] tracking-[0.25em] text-gold">QUANTITATIVE LAYER</span>
-              <h3 className="font-sans text-[24px] font-bold text-text-primary mt-3">Data Ingestion</h3>
+              <h3 className="font-sans text-[24px] font-bold tracking-[-0.02em] text-text-primary mt-3">Data Ingestion</h3>
               <p className="font-sans text-[14px] text-text-muted mt-3 leading-[1.7]">
                 Market Sentiment Score · Crypto Momentum Index · Sector Strength Radar · Real-time data processing · Zero API cost
               </p>
@@ -522,10 +522,10 @@ export default function MaddenAI() {
               transition={{ duration: 0.5, delay: 0.15 }}
               whileHover={{ boxShadow: '0 0 20px rgba(201,168,76,0.1)' }}
               className="rounded p-6 min-h-[180px] transition-shadow"
-              style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.25)' }}
+              style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.15)' }}
             >
               <span className="font-mono text-[9px] tracking-[0.25em] text-gold">AI LAYER</span>
-              <h3 className="font-sans text-[24px] font-bold text-text-primary mt-3">Weighted Synthesis</h3>
+              <h3 className="font-sans text-[24px] font-bold tracking-[-0.02em] text-text-primary mt-3">Weighted Synthesis</h3>
               <p className="font-sans text-[14px] text-text-muted mt-3 leading-[1.7]">
                 Anthropic Claude Sonnet 4.6 · Real-time data injection · Structured response format · Experience personalisation · Research Note generation
               </p>
@@ -534,10 +534,10 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-16 md:py-20 px-6 md:px-10">
+      <section className="bg-bg-primary py-24 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <SectionLabel center>SCORING MODELS</SectionLabel>
-          <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary text-center max-w-3xl mx-auto leading-tight">
+          <h2 className="font-sans text-[34px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary text-center max-w-3xl mx-auto leading-tight">
             <span className="block md:whitespace-nowrap">Three composite models.</span>
             <span className="block">Fully transparent.</span>
           </h2>
@@ -548,9 +548,9 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.2 }}
-              className="bg-bg-surface border border-gold/20 rounded p-6 flex flex-col"
+              className="bg-bg-surface border border-gold/15 rounded p-6 flex flex-col"
             >
-              <h3 className="font-sans text-[17px] font-bold text-text-primary">Market Sentiment Score</h3>
+              <h3 className="font-sans text-[17px] font-bold tracking-[-0.02em] text-text-primary">Market Sentiment Score</h3>
               <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">8-factor weighted composite. Updated every 60 seconds.</p>
               <div className="flex justify-center my-6"><ScoreDial value={72} label="/100" /></div>
               <div className="flex flex-col rounded overflow-hidden">
@@ -574,9 +574,9 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-bg-surface border border-gold/20 rounded p-6 flex flex-col"
+              className="bg-bg-surface border border-gold/15 rounded p-6 flex flex-col"
             >
-              <h3 className="font-sans text-[17px] font-bold text-text-primary">Crypto Momentum Index</h3>
+              <h3 className="font-sans text-[17px] font-bold tracking-[-0.02em] text-text-primary">Crypto Momentum Index</h3>
               <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">5-factor composite across price, volume, and positioning.</p>
               <div className="flex justify-center my-6"><ScoreDial value={68} label="/100" /></div>
               <div className="flex flex-col rounded overflow-hidden">
@@ -600,9 +600,9 @@ export default function MaddenAI() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-bg-surface border border-gold/20 rounded p-6 flex flex-col"
+              className="bg-bg-surface border border-gold/15 rounded p-6 flex flex-col"
             >
-              <h3 className="font-sans text-[17px] font-bold text-text-primary">Sector Strength Radar</h3>
+              <h3 className="font-sans text-[17px] font-bold tracking-[-0.02em] text-text-primary">Sector Strength Radar</h3>
               <p className="font-sans text-[12px] text-text-muted mt-2 leading-[1.7]">All 11 GICS sectors scored simultaneously, every session.</p>
               <div className="grid grid-cols-3 gap-1.5 mt-6">
                 {[
@@ -619,7 +619,7 @@ export default function MaddenAI() {
                   )
                 ))}
               </div>
-              <div className="flex flex-col rounded overflow-hidden mt-5 pt-5 border-t border-[rgba(30,70,140,0.3)]">
+              <div className="flex flex-col rounded overflow-hidden mt-5 pt-5 border-t border-[rgba(201,168,76,0.15)]">
                 <FactorTableHeader />
                 {SECTOR_FACTORS.map(([label, weight]) => (
                   <FactorBar key={label} label={label} weight={weight} />
@@ -638,12 +638,12 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <section className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 text-center">
-        <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-5">
+      <section className="bg-bg-primary py-24 px-6 md:px-10 text-center">
+        <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mb-5">
           PHASE 2 · COMING SOON
         </span>
         <SectionLabel center>RESEARCH NOTES</SectionLabel>
-        <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+        <h2 className="font-sans text-[34px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
           Institutional-quality PDF research, generated on demand.
         </h2>
         <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
@@ -669,10 +669,10 @@ export default function MaddenAI() {
         </div>
       </section>
 
-      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-24 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>PERSONALISATION</SectionLabel>
-          <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[34px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
             MaddenAI speaks your language — whatever your experience level.
           </h2>
           <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-4 leading-[1.75]">
@@ -685,7 +685,7 @@ export default function MaddenAI() {
               ['ADVANCED', 'BHP showing bullish MACD crossover with volume confirmation above 52W mean.'],
               ['PROFESSIONAL', 'BHP: Constructive near-term. Fe ore basis risk contained. EBITDA sensitivity to spot pricing remains key variable.'],
             ].map(([level, quote]) => (
-              <div key={level} className="bg-bg-primary border border-gold/20 rounded p-6 min-h-[220px] flex flex-col">
+              <div key={level} className="bg-bg-primary border border-gold/15 rounded p-6 min-h-[220px] flex flex-col">
                 <span className="font-mono text-[10px] tracking-[0.15em] text-gold">{level}</span>
                 <p className="font-sans text-[13px] text-text-muted mt-4 leading-[1.7] italic">"{quote}"</p>
               </div>

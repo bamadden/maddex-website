@@ -16,13 +16,13 @@ export default function Disclaimer() {
 
       <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
         <SectionLabel center>LEGAL</SectionLabel>
-        <h1 className="font-sans text-[36px] md:text-[56px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto">
+        <h1 className="font-sans text-[36px] md:text-[56px] font-extrabold leading-tight tracking-[-0.03em] text-text-primary max-w-3xl mx-auto">
           General Information Disclaimer
         </h1>
         <p className="font-mono text-[11px] text-text-faint mt-4">Last updated: August 2026</p>
       </section>
 
-      <section className="bg-bg-surface py-14 px-6 md:px-10">
+      <section className="bg-bg-surface py-24 px-6 md:px-10">
         <div className="max-w-[760px] mx-auto flex flex-col gap-7">
           <div>
             <h2 className="font-sans text-[19px] font-bold text-gold">General information only</h2>

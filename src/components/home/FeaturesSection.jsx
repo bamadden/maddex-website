@@ -39,8 +39,8 @@ const HEATMAP = [
 
 function MarketsVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-[320px]">
-      <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
+    <div className="bg-bg-surface border border-gold/15 rounded overflow-hidden flex flex-col h-[320px]">
+      <div className="bg-bg-primary border-b border-gold/15 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>MARKETS · ASX 200</span>
         <span className="text-gain">● OPEN</span>
       </div>
@@ -73,7 +73,7 @@ function MarketsVisual() {
           </div>
         ))}
       </div>
-      <div className="border-t border-[rgba(30,70,140,0.25)] px-4 py-2.5 font-mono text-[9px] text-text-muted flex justify-between shrink-0">
+      <div className="border-t border-[rgba(201,168,76,0.15)] px-4 py-2.5 font-mono text-[9px] text-text-muted flex justify-between shrink-0">
         <span>BHP.AX <span className="text-text-primary">A$43.21</span></span>
         <span className="text-text-faint">P/E 11.2</span>
         <span>US$ <span className="text-text-primary">28.10</span></span>
@@ -84,8 +84,8 @@ function MarketsVisual() {
 
 function MaddenAIVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-[320px]">
-      <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 shrink-0">
+    <div className="bg-bg-surface border border-gold/15 rounded overflow-hidden flex flex-col h-[320px]">
+      <div className="bg-bg-primary border-b border-gold/15 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 shrink-0">
         <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
         MADDENAI CHAT
       </div>
@@ -161,15 +161,15 @@ const GLOBAL_STATS = [
 
 function GlobalVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-[320px]">
-      <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
+    <div className="bg-bg-surface border border-gold/15 rounded overflow-hidden flex flex-col h-[320px]">
+      <div className="bg-bg-primary border-b border-gold/15 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>GLOBAL INTELLIGENCE</span>
         <span className="text-gold">18/50 OPEN</span>
       </div>
       <div className="flex-1 flex items-center justify-center p-3">
         <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" className="w-full h-full">
           {CONTINENTS.map((d, i) => (
-            <path key={i} d={d} fill="rgba(30,70,140,0.28)" stroke="rgba(30,70,140,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
+            <path key={i} d={d} fill="rgba(201,168,76,0.28)" stroke="rgba(201,168,76,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
           ))}
 
           {WORLD_ROUTES.map(([a, b], i) => {
@@ -194,7 +194,7 @@ function GlobalVisual() {
               />
               <circle cx={c.x} cy={c.y} r="3" fill="#C9A84C" />
               <text
-                x={c.x + c.dx} y={c.y + c.dy} fill="#8A9BB5" textAnchor={c.anchor}
+                x={c.x + c.dx} y={c.y + c.dy} fill="#8BA3C4" textAnchor={c.anchor}
                 fontSize="15" fontFamily="IBM Plex Mono, monospace"
               >
                 {c.name}
@@ -203,7 +203,7 @@ function GlobalVisual() {
           ))}
         </svg>
       </div>
-      <div className="border-t border-[rgba(30,70,140,0.25)] grid grid-cols-3 divide-x divide-[rgba(30,70,140,0.25)] shrink-0">
+      <div className="border-t border-[rgba(201,168,76,0.15)] grid grid-cols-3 divide-x divide-[rgba(201,168,76,0.15)] shrink-0">
         {GLOBAL_STATS.map((s) => (
           <div key={s.label} className="px-3 py-3 text-center">
             <div className="font-mono text-[16px] font-bold text-gold">{s.value}</div>
@@ -288,7 +288,7 @@ export default function FeaturesSection() {
   const ActiveVisual = VISUALS[activeTab]
 
   return (
-    <section className="bg-bg-primary py-20 px-6 md:px-10">
+    <section className="bg-bg-primary py-24 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>WHAT'S INSIDE</SectionLabel>
         <SectionHeading center>
@@ -309,7 +309,7 @@ export default function FeaturesSection() {
               className={`relative font-mono text-[12px] tracking-[0.05em] px-6 py-2.5 rounded-full transition-colors duration-150 ${
                 activeTab === tab
                   ? 'text-bg-primary font-bold'
-                  : 'border border-[rgba(201,168,76,0.4)] text-gold bg-[rgba(201,168,76,0.1)] hover:bg-[rgba(201,168,76,0.18)] hover:border-[rgba(201,168,76,0.6)]'
+                  : 'border border-[rgba(201,168,76,0.4)] text-gold bg-[rgba(201,168,76,0.1)] hover:bg-[rgba(201,168,76,0.15)] hover:border-[rgba(201,168,76,0.6)]'
               }`}
             >
               {activeTab === tab && (

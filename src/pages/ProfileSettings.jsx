@@ -21,7 +21,7 @@ function Toggle({ checked, onChange }) {
     <button
       type="button"
       onClick={onChange}
-      className={`relative w-11 h-6 rounded-full transition-colors shrink-0 ${checked ? 'bg-gain' : 'bg-[rgba(30,70,140,0.4)]'}`}
+      className={`relative w-11 h-6 rounded-full transition-colors shrink-0 ${checked ? 'bg-gain' : 'bg-[rgba(201,168,76,0.4)]'}`}
     >
       <span
         className={`absolute left-0 top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${checked ? 'translate-x-5' : 'translate-x-0.5'}`}
@@ -64,11 +64,11 @@ export default function ProfileSettings() {
       <section className="bg-bg-primary pt-[84px] pb-14 px-6 md:px-10 min-h-screen">
         <div className="max-w-2xl mx-auto">
           {loading && (
-            <div className="font-mono text-[13px] text-text-muted py-20 text-center">Loading profile...</div>
+            <div className="font-mono text-[13px] text-text-muted py-24 text-center">Loading profile...</div>
           )}
 
           {!loading && !profile && (
-            <div className="font-mono text-[13px] text-text-muted py-20 text-center">
+            <div className="font-mono text-[13px] text-text-muted py-24 text-center">
               Please sign in to view your account settings.
             </div>
           )}
@@ -87,8 +87,8 @@ export default function ProfileSettings() {
                 </p>
               </div>
 
-              <section className="bg-bg-surface border border-[rgba(30,70,140,0.4)] rounded-sm p-6 flex flex-col gap-4">
-                <h2 className="font-mono text-[11px] text-gold tracking-[0.15em] border-b border-[rgba(30,70,140,0.4)] pb-3">
+              <section className="bg-bg-surface border border-[rgba(201,168,76,0.4)] rounded-sm p-6 flex flex-col gap-4">
+                <h2 className="font-mono text-[11px] text-gold tracking-[0.15em] border-b border-[rgba(201,168,76,0.4)] pb-3">
                   PERSONAL DETAILS
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -98,7 +98,7 @@ export default function ProfileSettings() {
                       type="text"
                       value={current.first_name ?? ''}
                       onChange={(e) => setForm((f) => ({ ...f, first_name: e.target.value }))}
-                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
+                      className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
                     />
                   </div>
                   <div>
@@ -107,7 +107,7 @@ export default function ProfileSettings() {
                       type="text"
                       value={current.last_name ?? ''}
                       onChange={(e) => setForm((f) => ({ ...f, last_name: e.target.value }))}
-                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
+                      className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
                     />
                   </div>
                   <div>
@@ -117,7 +117,7 @@ export default function ProfileSettings() {
                       value={current.display_name ?? ''}
                       onChange={(e) => setForm((f) => ({ ...f, display_name: e.target.value }))}
                       placeholder="How you appear in the terminal"
-                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint"
+                      className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint"
                     />
                   </div>
                   <div>
@@ -126,7 +126,7 @@ export default function ProfileSettings() {
                       type="email"
                       value={current.email ?? ''}
                       disabled
-                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-muted opacity-60 focus:outline-none"
+                      className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-muted opacity-60 focus:outline-none"
                     />
                   </div>
                   <div>
@@ -136,7 +136,7 @@ export default function ProfileSettings() {
                       value={current.country ?? ''}
                       onChange={(e) => setForm((f) => ({ ...f, country: e.target.value }))}
                       placeholder="Australia"
-                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint"
+                      className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint"
                     />
                   </div>
                   <div>
@@ -146,7 +146,7 @@ export default function ProfileSettings() {
                       value={current.phone ?? ''}
                       onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                       placeholder="+61 4XX XXX XXX"
-                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint"
+                      className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint"
                     />
                   </div>
                   <div className="sm:col-span-2">
@@ -156,14 +156,14 @@ export default function ProfileSettings() {
                       onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
                       placeholder="A short bio — visible on your profile"
                       rows={3}
-                      className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint resize-none"
+                      className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none placeholder:text-text-faint resize-none"
                     />
                   </div>
                 </div>
               </section>
 
-              <section className="bg-bg-surface border border-[rgba(30,70,140,0.4)] rounded-sm p-6 flex flex-col gap-5">
-                <h2 className="font-mono text-[11px] text-gold tracking-[0.15em] border-b border-[rgba(30,70,140,0.4)] pb-3">
+              <section className="bg-bg-surface border border-[rgba(201,168,76,0.4)] rounded-sm p-6 flex flex-col gap-5">
+                <h2 className="font-mono text-[11px] text-gold tracking-[0.15em] border-b border-[rgba(201,168,76,0.4)] pb-3">
                   DISPLAY PREFERENCES
                 </h2>
 
@@ -184,7 +184,7 @@ export default function ProfileSettings() {
                         className={`flex items-center gap-2 px-3 py-2.5 rounded-sm border text-left transition-colors ${
                           current.preferred_currency === c.code
                             ? 'border-gold bg-gold/10 text-gold'
-                            : 'border-[rgba(30,70,140,0.4)] text-text-muted hover:border-text-muted'
+                            : 'border-[rgba(201,168,76,0.4)] text-text-muted hover:border-text-muted'
                         }`}
                       >
                         <span className="text-[15px]">{c.flag}</span>
@@ -197,7 +197,7 @@ export default function ProfileSettings() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-2 border-t border-[rgba(30,70,140,0.25)]">
+                <div className="flex items-center justify-between pt-2 border-t border-[rgba(201,168,76,0.15)]">
                   <div>
                     <div className="font-mono text-[12px] text-text-primary">Show secondary currency conversion</div>
                     <div className="font-mono text-[10px] text-text-muted mt-0.5">
@@ -210,12 +210,12 @@ export default function ProfileSettings() {
                   />
                 </div>
 
-                <div className="pt-2 border-t border-[rgba(30,70,140,0.25)]">
+                <div className="pt-2 border-t border-[rgba(201,168,76,0.15)]">
                   <label className="font-mono text-[10px] text-text-muted tracking-wider block mb-2">TIMEZONE</label>
                   <select
                     value={current.timezone ?? 'Australia/Brisbane'}
                     onChange={(e) => setForm((f) => ({ ...f, timezone: e.target.value }))}
-                    className="w-full bg-bg-primary border border-[rgba(30,70,140,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
+                    className="w-full bg-bg-primary border border-[rgba(201,168,76,0.4)] rounded-sm px-3 py-2 text-[13px] font-mono text-text-primary focus:border-gold focus:outline-none"
                   >
                     <option value="Australia/Brisbane">Brisbane (AEST, no DST)</option>
                     <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
@@ -232,8 +232,8 @@ export default function ProfileSettings() {
                 </div>
               </section>
 
-              <section className="bg-bg-surface border border-[rgba(30,70,140,0.4)] rounded-sm p-6 flex flex-col gap-4">
-                <h2 className="font-mono text-[11px] text-gold tracking-[0.15em] border-b border-[rgba(30,70,140,0.4)] pb-3">
+              <section className="bg-bg-surface border border-[rgba(201,168,76,0.4)] rounded-sm p-6 flex flex-col gap-4">
+                <h2 className="font-mono text-[11px] text-gold tracking-[0.15em] border-b border-[rgba(201,168,76,0.4)] pb-3">
                   NOTIFICATIONS
                 </h2>
                 {[
@@ -272,15 +272,15 @@ export default function ProfileSettings() {
                   <button
                     type="button"
                     onClick={() => setForm({})}
-                    className="px-4 py-2.5 border border-[rgba(30,70,140,0.4)] text-text-muted font-mono text-[13px] rounded-sm hover:border-text-muted transition-colors"
+                    className="px-4 py-2.5 border border-[rgba(201,168,76,0.4)] text-text-muted font-mono text-[13px] rounded-sm hover:border-text-muted transition-colors"
                   >
                     Cancel
                   </button>
                 </div>
               )}
 
-              <section className="bg-bg-surface border border-[rgba(30,70,140,0.4)] rounded-sm p-6">
-                <h2 className="font-mono text-[11px] text-gold tracking-[0.15em] border-b border-[rgba(30,70,140,0.4)] pb-3 mb-4">
+              <section className="bg-bg-surface border border-[rgba(201,168,76,0.4)] rounded-sm p-6">
+                <h2 className="font-mono text-[11px] text-gold tracking-[0.15em] border-b border-[rgba(201,168,76,0.4)] pb-3 mb-4">
                   SUBSCRIPTION
                 </h2>
                 <div className="flex items-center justify-between flex-wrap gap-4">

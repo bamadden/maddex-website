@@ -16,7 +16,7 @@ export default function FAQSection() {
   const [openFaq, setOpenFaq] = useState(0)
 
   return (
-    <FadeInSection className="bg-bg-primary py-20 px-6 md:px-10">
+    <FadeInSection className="bg-bg-primary py-24 px-6 md:px-10">
       <div className="max-w-[720px] mx-auto">
         <SectionLabel center>FAQ</SectionLabel>
         <SectionHeading center className="mb-8">

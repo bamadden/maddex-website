@@ -36,7 +36,7 @@ const PRODUCTS = [
 
 export default function ProductsOverviewSection() {
   return (
-    <section className="bg-bg-surface py-20 px-6 md:px-10">
+    <section className="bg-bg-surface py-24 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>THE MADDEX ECOSYSTEM</SectionLabel>
         <SectionHeading center>
@@ -59,7 +59,7 @@ export default function ProductsOverviewSection() {
               className={`relative rounded p-7 flex flex-col min-h-[320px] ${
                 p.live
                   ? 'border border-gold/40 bg-bg-primary shadow-[0_0_30px_rgba(201,168,76,0.08)]'
-                  : 'border border-[rgba(30,70,140,0.35)] bg-bg-primary opacity-90'
+                  : 'border border-[rgba(201,168,76,0.15)] bg-bg-primary opacity-90'
               }`}
             >
               <span className={`font-mono text-[9px] tracking-[0.15em] ${p.live ? 'text-gold' : 'text-text-faint'}`}>

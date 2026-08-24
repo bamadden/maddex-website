@@ -38,36 +38,46 @@ function Particles() {
   )
 }
 
-function TypewriterText({ text, speed = 40, pauseMs = 3000 }) {
-  const [displayed, setDisplayed] = React.useState('')
-  const [idx, setIdx] = React.useState(0)
-  const [pausing, setPausing] = React.useState(false)
+function LiveClock() {
+  const [time, setTime] = React.useState('')
 
   React.useEffect(() => {
-    if (pausing) {
-      const t = setTimeout(() => {
-        setDisplayed('')
-        setIdx(0)
-        setPausing(false)
-      }, pauseMs)
-      return () => clearTimeout(t)
+    function update() {
+      setTime(
+        new Intl.DateTimeFormat('en-AU', {
+          timeZone: 'Australia/Sydney',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false,
+        }).format(new Date())
+      )
     }
-    if (idx < text.length) {
-      const t = setTimeout(() => {
-        setDisplayed((prev) => prev + text[idx])
-        setIdx((i) => i + 1)
-      }, speed)
-      return () => clearTimeout(t)
-    } else {
-      setPausing(true)
-    }
-  }, [idx, pausing, text, speed, pauseMs])
+    update()
+    const id = setInterval(update, 1000)
+    return () => clearInterval(id)
+  }, [])
 
   return (
-    <span>
-      {displayed}
-      <span style={{ opacity: pausing ? 0 : 1, transition: 'opacity 0.3s' }}>|</span>
-    </span>
+    <div style={{
+      fontFamily: "'IBM Plex Mono', monospace",
+      fontSize: '10px',
+      letterSpacing: '0.25em',
+      color: '#C9A84C',
+      textTransform: 'uppercase',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '8px',
+    }}>
+      <span style={{
+        width: '6px', height: '6px',
+        borderRadius: '50%',
+        background: '#C9A84C',
+        animation: 'pulse 2s ease-in-out infinite',
+      }} />
+      MADDEX TERMINAL · SYDNEY {time || '--:--:--'} AEST
+    </div>
   )
 }
 
@@ -76,8 +86,9 @@ export default function Hero() {
     <section style={{
       minHeight: '100vh',
       display: 'flex',
-      alignItems: 'center',
-      padding: '80px 0 60px',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      padding: '140px 24px 80px',
       position: 'relative',
       overflow: 'hidden',
       background: 'radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.04) 0%, transparent 60%), #060D1A',
@@ -96,168 +107,95 @@ export default function Hero() {
 
       <Particles />
 
-      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+      <div style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
 
-      <p style={{
-        textAlign: 'center',
-        fontFamily: "'Inter', sans-serif",
-        fontSize: '13px',
-        fontStyle: 'italic',
-        color: '#4A6080',
-        maxWidth: '640px',
-        margin: '0 auto 28px',
-        lineHeight: 1.6,
-        padding: '0 24px',
-      }}>
-        Bloomberg costs A$42,000/year. Retail apps give you basic data. There's been nothing in between.
-      </p>
+        <LiveClock />
 
-      <div className="hero-grid">
+        <h1 style={{
+          fontSize: 'clamp(3.5rem, 7vw, 6rem)',
+          fontWeight: 800,
+          letterSpacing: '-0.04em',
+          lineHeight: 1.0,
+          color: '#FFFFFF',
+          fontFamily: "'Inter', sans-serif",
+          marginTop: '28px',
+        }}>
+          Institutional intelligence.<br />
+          Everyday pricing.
+        </h1>
 
-        {/* LEFT COLUMN */}
-        <div>
-          {/* Label */}
-          <div style={{
+        <p style={{
+          fontSize: '1.1rem',
+          color: '#8BA3C4',
+          lineHeight: 1.6,
+          maxWidth: '480px',
+          margin: '24px auto 0',
+          fontFamily: "'Inter', sans-serif",
+        }}>
+          The financial terminal built for investors who take the markets seriously.
+        </p>
+
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '12px',
+          marginTop: '36px',
+          flexWrap: 'wrap',
+        }}>
+          <Link to="/pricing" style={{
+            background: '#C9A84C',
+            color: '#060D1A',
+            padding: '14px 32px',
             fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: '10px',
-            letterSpacing: '0.25em',
-            color: '#C9A84C',
-            textTransform: 'uppercase',
-            marginBottom: '20px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-          }}>
-            <span style={{
-              width: '6px', height: '6px',
-              borderRadius: '50%',
-              background: '#C9A84C',
-              animation: 'pulse 2s ease-in-out infinite',
-            }} />
-            Financial Intelligence Terminal
-          </div>
-
-          {/* Headline */}
-          <h1 style={{
-            fontSize: 'clamp(2.8rem, 4.6vw, 4.2rem)',
-            fontWeight: 800,
-            lineHeight: 1.05,
-            letterSpacing: '-0.03em',
-            color: '#FFFFFF',
-            marginBottom: '20px',
-            fontFamily: "'Inter', sans-serif",
-          }}>
-            Institutional<br />
-            intelligence.<br />
-            Everyday<br />
-            pricing.
-          </h1>
-
-          {/* Subheadline */}
-          <p style={{
-            fontSize: '1.05rem',
-            color: '#8BA3C4',
-            lineHeight: 1.65,
-            marginBottom: '36px',
-            maxWidth: '420px',
-            fontFamily: "'Inter', sans-serif",
-          }}>
-            ASX and global markets. AI-powered analysis.
-            The depth of a A$42,000 terminal, built for
-            investors who don't have that budget.
-          </p>
-
-          {/* CTA Buttons */}
-          <div style={{
-            display: 'flex',
-            gap: '12px',
-            marginBottom: '48px',
-            flexWrap: 'wrap',
-          }}>
-            <Link to="/pricing" style={{
-              background: '#C9A84C',
-              color: '#060D1A',
-              padding: '14px 32px',
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: '12px',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              textDecoration: 'none',
-              textTransform: 'uppercase',
-              display: 'inline-block',
-              transition: 'opacity 0.15s',
-            }}>
-              Start Free Trial
-            </Link>
-            <Link to="/pricing" style={{
-              background: 'transparent',
-              color: '#C9A84C',
-              padding: '14px 32px',
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: '12px',
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              textDecoration: 'none',
-              textTransform: 'uppercase',
-              border: '1px solid rgba(201,168,76,0.35)',
-              display: 'inline-block',
-              transition: 'border-color 0.15s',
-            }}>
-              View Pricing
-            </Link>
-          </div>
-
-          {/* Stats row */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, auto)',
-            gap: '32px',
-            marginBottom: '32px',
-          }}>
-            {[
-              { n: '70+', l: 'Markets' },
-              { n: '8', l: 'Modules' },
-              { n: 'A$29', l: 'per month' },
-              { n: '7-day', l: 'free trial' },
-            ].map(({ n, l }) => (
-              <div key={l}>
-                <div style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: '1.5rem',
-                  fontWeight: 700,
-                  color: '#C9A84C',
-                  lineHeight: 1,
-                }}>{n}</div>
-                <div style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: '9px',
-                  color: '#637899',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  marginTop: '4px',
-                }}>{l}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Trust line */}
-          <div style={{
-            fontFamily: "'IBM Plex Mono', monospace",
-            fontSize: '9px',
-            color: '#4A6080',
+            fontSize: '12px',
+            fontWeight: 700,
             letterSpacing: '0.08em',
+            textDecoration: 'none',
+            textTransform: 'uppercase',
+            display: 'inline-block',
+            borderRadius: 0,
+            transition: 'opacity 0.15s',
           }}>
-            General information only · Not financial advice ·
-            Built in Australia
-          </div>
+            Start Free Trial
+          </Link>
+          <Link to="/pricing" style={{
+            background: 'transparent',
+            color: '#C9A84C',
+            padding: '14px 32px',
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: '12px',
+            fontWeight: 600,
+            letterSpacing: '0.08em',
+            textDecoration: 'none',
+            textTransform: 'uppercase',
+            border: '1px solid rgba(201,168,76,0.4)',
+            borderRadius: 0,
+            display: 'inline-block',
+            transition: 'opacity 0.15s',
+          }}>
+            View Pricing
+          </Link>
         </div>
 
-        {/* RIGHT COLUMN — Terminal Simulator */}
-        <div className="hero-simulator" style={{
+        <div style={{
+          fontFamily: "'IBM Plex Mono', monospace",
+          fontSize: '9px',
+          color: '#4A6080',
+          letterSpacing: '0.1em',
+          marginTop: '20px',
+        }}>
+          7-day free trial · No credit card · General information only
+        </div>
+
+        {/* Terminal simulator — product demo, full width below the fold */}
+        <div style={{
+          maxWidth: '1100px',
           width: '100%',
-          border: '1px solid rgba(201,168,76,0.18)',
-          borderRadius: '6px',
+          margin: '72px auto 0',
+          border: '1px solid rgba(201,168,76,0.15)',
+          borderRadius: '4px',
           overflow: 'hidden',
+          textAlign: 'left',
           boxShadow: `
             0 0 0 1px rgba(201,168,76,0.05),
             0 24px 80px rgba(0,0,0,0.6),
@@ -268,8 +206,8 @@ export default function Hero() {
 
           {/* Window Chrome */}
           <div style={{
-            background: '#030912',
-            borderBottom: '1px solid rgba(255,255,255,0.06)',
+            background: '#060D1A',
+            borderBottom: '1px solid rgba(201,168,76,0.15)',
             padding: '10px 16px',
             display: 'flex',
             alignItems: 'center',
@@ -280,7 +218,7 @@ export default function Hero() {
               <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#FFBD2E' }} />
               <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#28CA41' }} />
             </div>
-            <span style={{ fontSize: '10px', color: '#3A5070', letterSpacing: '0.2em' }}>
+            <span style={{ fontSize: '10px', color: '#4A6080', letterSpacing: '0.2em' }}>
               MADDEX TERMINAL
             </span>
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '5px' }}>
@@ -296,7 +234,7 @@ export default function Hero() {
           {/* Ticker Tape */}
           <div style={{
             background: 'rgba(0,0,0,0.5)',
-            borderBottom: '1px solid rgba(255,255,255,0.04)',
+            borderBottom: '1px solid rgba(201,168,76,0.1)',
             padding: '6px 0',
             overflow: 'hidden',
             whiteSpace: 'nowrap',
@@ -305,7 +243,7 @@ export default function Hero() {
               display: 'inline-flex',
               animation: 'ticker 35s linear infinite',
               fontSize: '9px',
-              color: '#B8C8D8',
+              color: '#8BA3C4',
             }}>
               {/* Duplicate for seamless loop — each item carries its own trailing
                   margin (rather than a flex `gap`) so the two copies are each a
@@ -329,16 +267,16 @@ export default function Hero() {
           {/* Main Dashboard — 3 columns */}
           <div className="hero-sim-grid" style={{
             background: '#060D1A',
-            minHeight: '360px',
+            minHeight: '500px',
           }}>
 
             {/* Column 1 — Markets */}
             <div className="hero-sim-col" style={{
-              padding: '14px',
+              padding: '20px',
             }}>
               <div style={{
-                fontSize: '8px', color: '#C9A84C',
-                letterSpacing: '0.2em', marginBottom: '10px',
+                fontSize: '9px', color: '#C9A84C',
+                letterSpacing: '0.2em', marginBottom: '14px',
               }}>MARKETS</div>
 
               {[
@@ -347,32 +285,32 @@ export default function Hero() {
                 { name: 'BTC/AUD', val: 'A$92,285', chg: '+0.52%', up: true },
               ].map((item) => (
                 <div key={item.name} style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.07)',
+                  background: 'rgba(201,168,76,0.03)',
+                  border: '1px solid rgba(201,168,76,0.15)',
                   borderRadius: '3px',
-                  padding: '9px 11px',
-                  marginBottom: '6px',
+                  padding: '12px 14px',
+                  marginBottom: '8px',
                 }}>
-                  <div style={{ fontSize: '8px', color: '#637899', marginBottom: '2px' }}>
+                  <div style={{ fontSize: '9px', color: '#8BA3C4', marginBottom: '3px' }}>
                     {item.name}
                   </div>
-                  <div style={{ fontSize: '16px', color: '#E8EDF5', fontWeight: 600 }}>
+                  <div style={{ fontSize: '19px', color: '#FFFFFF', fontWeight: 600 }}>
                     {item.val}
                   </div>
-                  <div style={{ fontSize: '9px', color: item.up ? '#2D8A50' : '#A83232' }}>
+                  <div style={{ fontSize: '10px', color: item.up ? '#2D8A50' : '#A83232' }}>
                     {item.up ? '▲' : '▼'} {item.chg}
                   </div>
                 </div>
               ))}
 
               <div style={{
-                fontSize: '8px', color: '#C9A84C',
-                letterSpacing: '0.2em', margin: '10px 0 6px',
+                fontSize: '9px', color: '#C9A84C',
+                letterSpacing: '0.2em', margin: '16px 0 8px',
               }}>SECTORS</div>
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
-                gap: '2px',
+                gap: '3px',
               }}>
                 {[
                   ['Materials', '+1.8%', true],
@@ -388,12 +326,12 @@ export default function Hero() {
                     background: up
                       ? `rgba(45,138,80,${Math.abs(parseFloat(pct)) / 3})`
                       : `rgba(168,50,50,${Math.abs(parseFloat(pct)) / 3})`,
-                    padding: '4px 6px',
+                    padding: '6px 8px',
                     borderRadius: '2px',
                     textAlign: 'center',
                   }}>
-                    <div style={{ fontSize: '8px', color: '#637899' }}>{name}</div>
-                    <div style={{ fontSize: '9px', fontWeight: 600, color: up ? '#2D8A50' : '#A83232' }}>
+                    <div style={{ fontSize: '9px', color: '#8BA3C4' }}>{name}</div>
+                    <div style={{ fontSize: '10px', fontWeight: 600, color: up ? '#2D8A50' : '#A83232' }}>
                       {pct}
                     </div>
                   </div>
@@ -403,72 +341,54 @@ export default function Hero() {
 
             {/* Column 2 — MaddenAI */}
             <div className="hero-sim-col" style={{
-              padding: '14px',
+              padding: '20px',
               display: 'flex',
               flexDirection: 'column',
             }}>
               <div style={{
-                fontSize: '8px', color: '#C9A84C',
-                letterSpacing: '0.2em', marginBottom: '10px',
-                borderBottom: '1px solid rgba(201,168,76,0.1)',
-                paddingBottom: '8px',
+                fontSize: '9px', color: '#C9A84C',
+                letterSpacing: '0.2em', marginBottom: '14px',
+                borderBottom: '1px solid rgba(201,168,76,0.15)',
+                paddingBottom: '10px',
               }}>MADDENAI ANALYST</div>
 
               {/* User message */}
               <div style={{
                 alignSelf: 'flex-end',
                 background: 'rgba(201,168,76,0.08)',
-                border: '1px solid rgba(201,168,76,0.2)',
+                border: '1px solid rgba(201,168,76,0.15)',
                 borderRadius: '3px 3px 0 3px',
-                padding: '7px 10px',
-                fontSize: '9px',
-                color: '#E8EDF5',
+                padding: '9px 12px',
+                fontSize: '10px',
+                color: '#FFFFFF',
                 maxWidth: '90%',
-                marginBottom: '10px',
+                marginBottom: '12px',
               }}>
                 What's driving BHP today?
               </div>
 
-              {/* AI Response with typewriter */}
+              {/* AI Response */}
               <div style={{
-                fontSize: '9px',
-                color: '#B8C8D8',
+                fontSize: '10px',
+                color: '#8BA3C4',
                 lineHeight: 1.65,
-                flex: 1,
               }}>
-                <TypewriterText
-                  text="BHP +1.27% on strong iron ore data. Spot price at US$98/t, up 2.3% on China stimulus hopes. Volume 1.4x average. Key support A$41.80, resistance A$44.50. Bias: BULLISH near-term."
-                  speed={40}
-                  pauseMs={3000}
-                />
-              </div>
-
-              {/* Typing dots */}
-              <div style={{ marginTop: '8px', display: 'flex', gap: '3px' }}>
-                {[0, 1, 2].map((i) => (
-                  <span key={i} style={{
-                    width: '4px', height: '4px',
-                    borderRadius: '50%',
-                    background: '#C9A84C',
-                    animation: `pulse ${1 + i * 0.3}s ease-in-out infinite`,
-                    opacity: 0.6,
-                  }} />
-                ))}
+                BHP +1.27% on strong iron ore data. Spot price at US$98/t, up 2.3% on China stimulus hopes. Volume 1.4x average. Key support A$41.80, resistance A$44.50. Bias: BULLISH near-term.
               </div>
 
               {/* Quick Analysis */}
-              <div style={{ marginTop: '10px' }}>
+              <div style={{ marginTop: '14px' }}>
                 <div style={{
-                  fontSize: '7px', color: '#4A6080',
-                  letterSpacing: '0.15em', marginBottom: '6px',
+                  fontSize: '8px', color: '#4A6080',
+                  letterSpacing: '0.15em', marginBottom: '8px',
                 }}>QUICK ANALYSIS</div>
-                <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
                   {[['BIAS', 'BULLISH'], ['CONF', '78%'], ['HORIZON', '1-5D']].map(([k, v]) => (
                     <div key={k} style={{
-                      border: '1px solid rgba(201,168,76,0.35)',
+                      border: '1px solid rgba(201,168,76,0.15)',
                       borderRadius: '10px',
-                      padding: '3px 7px',
-                      fontSize: '7px',
+                      padding: '4px 8px',
+                      fontSize: '8px',
                       color: '#C9A84C',
                     }}>
                       {k}: {v}
@@ -478,18 +398,18 @@ export default function Hero() {
               </div>
 
               {/* Divider + Quick Actions */}
-              <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', marginTop: '10px', paddingTop: '8px' }}>
+              <div style={{ borderTop: '1px solid rgba(201,168,76,0.15)', marginTop: '14px', paddingTop: '10px' }}>
                 <div style={{
-                  fontSize: '7px', color: '#4A6080',
-                  letterSpacing: '0.15em', marginBottom: '6px',
+                  fontSize: '8px', color: '#4A6080',
+                  letterSpacing: '0.15em', marginBottom: '8px',
                 }}>QUICK ACTIONS</div>
-                <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
                   {['+ WATCHLIST', 'RESEARCH NOTE'].map((label) => (
                     <div key={label} style={{
-                      border: '1px solid rgba(255,255,255,0.12)',
+                      border: '1px solid rgba(201,168,76,0.15)',
                       borderRadius: '10px',
-                      padding: '3px 7px',
-                      fontSize: '7px',
+                      padding: '4px 8px',
+                      fontSize: '8px',
                       color: '#8BA3C4',
                     }}>
                       {label}
@@ -500,78 +420,78 @@ export default function Hero() {
             </div>
 
             {/* Column 3 — Intelligence */}
-            <div className="hero-sim-col" style={{ padding: '14px' }}>
+            <div className="hero-sim-col" style={{ padding: '20px' }}>
               <div style={{
-                fontSize: '8px', color: '#C9A84C',
-                letterSpacing: '0.2em', marginBottom: '10px',
+                fontSize: '9px', color: '#C9A84C',
+                letterSpacing: '0.2em', marginBottom: '14px',
               }}>INTELLIGENCE</div>
 
               {/* AUD/USD card */}
               <div style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
+                background: 'rgba(201,168,76,0.03)',
+                border: '1px solid rgba(201,168,76,0.15)',
                 borderRadius: '3px',
-                padding: '9px 11px',
-                marginBottom: '6px',
+                padding: '12px 14px',
+                marginBottom: '8px',
               }}>
-                <div style={{ fontSize: '8px', color: '#637899', marginBottom: '2px' }}>AUD/USD</div>
-                <div style={{ fontSize: '16px', color: '#E8EDF5', fontWeight: 600 }}>0.6520</div>
-                <div style={{ fontSize: '9px', color: '#2D8A50' }}>▲ +0.18%</div>
+                <div style={{ fontSize: '9px', color: '#8BA3C4', marginBottom: '3px' }}>AUD/USD</div>
+                <div style={{ fontSize: '19px', color: '#FFFFFF', fontWeight: 600 }}>0.6520</div>
+                <div style={{ fontSize: '10px', color: '#2D8A50' }}>▲ +0.18%</div>
               </div>
 
               {/* RBA card */}
               <div style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
+                background: 'rgba(201,168,76,0.03)',
+                border: '1px solid rgba(201,168,76,0.15)',
                 borderRadius: '3px',
-                padding: '9px 11px',
-                marginBottom: '10px',
+                padding: '12px 14px',
+                marginBottom: '14px',
               }}>
-                <div style={{ fontSize: '8px', color: '#637899', marginBottom: '2px' }}>RBA CASH RATE</div>
-                <div style={{ fontSize: '16px', color: '#E8EDF5', fontWeight: 600 }}>4.35%</div>
-                <div style={{ fontSize: '9px', color: '#C9A84C' }}>HOLD · Next: 16 Sep</div>
+                <div style={{ fontSize: '9px', color: '#8BA3C4', marginBottom: '3px' }}>RBA CASH RATE</div>
+                <div style={{ fontSize: '19px', color: '#FFFFFF', fontWeight: 600 }}>4.35%</div>
+                <div style={{ fontSize: '10px', color: '#C9A84C' }}>HOLD · Next: 16 Sep</div>
               </div>
 
               {/* Macro alerts */}
               <div style={{
                 background: 'rgba(45,138,80,0.08)',
                 borderLeft: '2px solid #2D8A50',
-                padding: '7px 10px',
-                marginBottom: '5px',
+                padding: '9px 12px',
+                marginBottom: '6px',
                 borderRadius: '0 2px 2px 0',
               }}>
-                <div style={{ fontSize: '8px', color: '#2D8A50', letterSpacing: '0.15em', marginBottom: '2px' }}>
+                <div style={{ fontSize: '9px', color: '#2D8A50', letterSpacing: '0.15em', marginBottom: '3px' }}>
                   AI SUPERCYCLE
                 </div>
-                <div style={{ fontSize: '9px', color: '#8BA3C4' }}>NVDA +18% earnings beat</div>
+                <div style={{ fontSize: '10px', color: '#8BA3C4' }}>NVDA +18% earnings beat</div>
               </div>
 
               <div style={{
                 background: 'rgba(168,50,50,0.08)',
                 borderLeft: '2px solid #A83232',
-                padding: '7px 10px',
+                padding: '9px 12px',
                 borderRadius: '0 2px 2px 0',
               }}>
-                <div style={{ fontSize: '8px', color: '#A83232', letterSpacing: '0.15em', marginBottom: '2px' }}>
+                <div style={{ fontSize: '9px', color: '#A83232', letterSpacing: '0.15em', marginBottom: '3px' }}>
                   GEOPOLITICAL
                 </div>
-                <div style={{ fontSize: '9px', color: '#8BA3C4' }}>Middle East easing</div>
+                <div style={{ fontSize: '10px', color: '#8BA3C4' }}>Middle East easing</div>
               </div>
 
               {/* Upcoming */}
-              <div style={{ marginTop: '10px' }}>
+              <div style={{ marginTop: '14px' }}>
                 <div style={{
-                  fontSize: '7px', color: '#C9A84C',
-                  letterSpacing: '0.15em', marginBottom: '6px',
+                  fontSize: '8px', color: '#C9A84C',
+                  letterSpacing: '0.15em', marginBottom: '8px',
                 }}>UPCOMING EVENTS</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                   {[
                     ['16 Sep', 'RBA Decision', 'HOLD expected'],
                     ['17 Sep', 'FOMC Decision', '65% Hold'],
                   ].map(([date, title, desc]) => (
-                    <div key={date} style={{ fontSize: '7px', lineHeight: 1.5 }}>
-                      <span style={{ color: '#C9A84C' }}>📅 {date}</span>
-                      <span style={{ color: '#637899' }}> · {title} · {desc}</span>
+                    <div key={date} style={{ fontSize: '8px', lineHeight: 1.5 }}>
+                      <span style={{ color: '#C9A84C' }}>{date}</span>
+                      <span style={{ color: '#8BA3C4' }}> · {title} · {desc}</span>
                     </div>
                   ))}
                 </div>
@@ -582,8 +502,8 @@ export default function Hero() {
           {/* Bottom Stats Bar */}
           <div style={{
             background: 'rgba(0,0,0,0.4)',
-            borderTop: '1px solid rgba(255,255,255,0.04)',
-            padding: '7px 16px',
+            borderTop: '1px solid rgba(201,168,76,0.15)',
+            padding: '9px 16px',
             display: 'flex',
             justifyContent: 'space-around',
             alignItems: 'center',
@@ -595,17 +515,50 @@ export default function Hero() {
               ['VIX', '18.4', '▼'],
             ].map(([label, val, arrow]) => (
               <div key={label} style={{ textAlign: 'center' }}>
-                <span style={{ fontSize: '8px', color: '#637899', marginRight: '6px' }}>{label}</span>
-                <span style={{ fontSize: '10px', color: '#E8EDF5' }}>{val}</span>
+                <span style={{ fontSize: '9px', color: '#8BA3C4', marginRight: '6px' }}>{label}</span>
+                <span style={{ fontSize: '11px', color: '#FFFFFF' }}>{val}</span>
                 <span style={{
-                  fontSize: '8px', marginLeft: '3px',
+                  fontSize: '9px', marginLeft: '3px',
                   color: arrow === '▲' ? '#2D8A50' : '#A83232',
                 }}>{arrow}</span>
               </div>
             ))}
           </div>
         </div>
-      </div>
+
+        {/* Stats row */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '48px',
+          marginTop: '48px',
+          flexWrap: 'wrap',
+        }}>
+          {[
+            { n: '70+', l: 'Markets' },
+            { n: '8', l: 'Modules' },
+            { n: 'A$29', l: 'Per month' },
+            { n: '7 days', l: 'Free trial' },
+          ].map(({ n, l }) => (
+            <div key={l} style={{ textAlign: 'center' }}>
+              <div style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: '1.5rem',
+                fontWeight: 700,
+                color: '#C9A84C',
+                lineHeight: 1,
+              }}>{n}</div>
+              <div style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: '9px',
+                color: '#8BA3C4',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                marginTop: '6px',
+              }}>{l}</div>
+            </div>
+          ))}
+        </div>
 
       </div>
     </section>

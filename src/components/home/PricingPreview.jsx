@@ -25,7 +25,7 @@ export default function PricingPreview() {
   const [showComparison, setShowComparison] = useState(false)
 
   return (
-    <section className="bg-bg-surface py-20 px-6 md:px-10">
+    <section className="bg-bg-surface py-24 px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto text-center">
         <SectionLabel center>PRICING</SectionLabel>
         <SectionHeading center>
@@ -37,7 +37,7 @@ export default function PricingPreview() {
           Bloomberg costs A$42,000 a year. Maddex starts at A$29 a month.
         </SectionSubheading>
 
-        <div className="relative inline-flex items-center gap-1 bg-bg-primary border border-gold/20 rounded-full p-1 mt-8">
+        <div className="relative inline-flex items-center gap-1 bg-bg-primary border border-gold/15 rounded-full p-1 mt-8">
           <button
             type="button"
             onClick={() => setAnnual(false)}
@@ -70,8 +70,8 @@ export default function PricingPreview() {
                 plan.popular
                   ? 'border-[rgba(201,168,76,0.6)] scale-[1.03]'
                   : plan.name === 'APEX'
-                  ? 'border-[rgba(201,168,76,0.3)] hover:border-gold/50'
-                  : 'border-[rgba(201,168,76,0.2)] hover:border-gold/40'
+                  ? 'border-[rgba(201,168,76,0.15)] hover:border-gold/40'
+                  : 'border-[rgba(201,168,76,0.15)] hover:border-gold/40'
               }`}
               style={plan.popular ? { backgroundImage: 'linear-gradient(rgba(201,168,76,0.03), rgba(201,168,76,0.03))' } : undefined}
             >
@@ -81,7 +81,7 @@ export default function PricingPreview() {
                 </span>
               )}
               {!plan.popular && plan.badge && (
-                <span className="absolute -top-3 right-4 border border-gold/50 bg-bg-primary text-gold font-mono text-[8px] font-bold px-2 py-1 rounded-full whitespace-nowrap tracking-[0.05em]">
+                <span className="absolute -top-3 right-4 border border-gold/40 bg-bg-primary text-gold font-mono text-[8px] font-bold px-2 py-1 rounded-full whitespace-nowrap tracking-[0.05em]">
                   {plan.badge}
                 </span>
               )}
@@ -100,7 +100,7 @@ export default function PricingPreview() {
                           A${plan.monthly}
                         </span>
                       )}
-                      <span className="font-sans text-[44px] font-bold text-text-primary">A${displayedAud}</span>
+                      <span className="font-sans text-[44px] font-bold tracking-[-0.02em] text-text-primary">A${displayedAud}</span>
                       <span className="font-sans text-[13px] text-text-muted">/mo</span>
                       <div className="font-mono text-[10px] text-text-faint mt-1">
                         USD ~${fx.usd} · GBP ~£{fx.gbp} · EUR ~€{fx.eur}
@@ -114,7 +114,7 @@ export default function PricingPreview() {
                   <div
                     key={f}
                     className={`font-sans text-[12px] text-text-muted flex gap-2 py-2.5 ${
-                      fi > 0 ? 'border-t border-[rgba(30,70,140,0.2)]' : ''
+                      fi > 0 ? 'border-t border-[rgba(201,168,76,0.15)]' : ''
                     }`}
                   >
                     <span className="text-gain">✓</span>

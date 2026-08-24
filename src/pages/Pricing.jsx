@@ -40,7 +40,7 @@ function PlanCard({ plan, i, annual }) {
         </span>
       )}
       {!plan.popular && plan.badge && (
-        <span className="absolute -top-3 right-6 border border-gold/50 bg-bg-primary text-gold font-mono text-[9px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap z-10 tracking-[0.05em]">
+        <span className="absolute -top-3 right-6 border border-gold/40 bg-bg-primary text-gold font-mono text-[9px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap z-10 tracking-[0.05em]">
           {plan.badge}
         </span>
       )}
@@ -73,12 +73,12 @@ function PlanCard({ plan, i, annual }) {
           {annual ? (
             <>
               <span className="font-sans text-[13px] text-text-faint line-through mr-2">A${plan.monthly}</span>
-              <span className="font-sans text-[28px] font-bold text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
+              <span className="font-sans text-[28px] font-bold tracking-[-0.02em] text-text-primary">A${(plan.annual / 12).toFixed(0)}</span>
               <span className="font-sans text-[13px] text-text-muted">/mo</span>
             </>
           ) : (
             <>
-              <span className="font-sans text-[28px] font-bold text-text-primary">A${plan.monthly}</span>
+              <span className="font-sans text-[28px] font-bold tracking-[-0.02em] text-text-primary">A${plan.monthly}</span>
               <span className="font-sans text-[13px] text-text-muted">/mo</span>
             </>
           )}
@@ -117,12 +117,12 @@ export default function Pricing() {
       <section className="relative bg-bg-primary pt-[84px] pb-10 px-6 md:px-10 text-center overflow-hidden">
         <div className="relative" style={{ zIndex: 1 }}>
           <div className="hero-eyebrow">
-            <span className="inline-block font-mono text-[10px] tracking-[0.1em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3.5 py-1.5 mb-5">
+            <span className="inline-block font-mono text-[10px] tracking-[0.1em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3.5 py-1.5 mb-5">
               EVERY PLAN INCLUDES A 7-DAY FREE TRIAL · NO CREDIT CARD REQUIRED
             </span>
           </div>
           <div className="hero-eyebrow"><SectionLabel center>TERMINAL PRICING</SectionLabel></div>
-          <h1 className="hero-headline font-sans font-bold leading-tight tracking-tight max-w-4xl mx-auto">
+          <h1 className="hero-headline font-sans font-extrabold leading-tight tracking-[-0.03em] max-w-4xl mx-auto">
             <span className="block text-[22px] md:text-[32px] text-text-muted font-bold">Bloomberg costs A$42,000 a year.</span>
             <span className="block text-[32px] md:text-[48px] text-text-primary font-bold mt-1">Maddex starts at A$29 a month.</span>
           </h1>
@@ -131,7 +131,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="relative inline-flex items-center gap-1 bg-bg-surface border border-gold/20 rounded-full p-1 mt-6">
+        <div className="relative inline-flex items-center gap-1 bg-bg-surface border border-gold/15 rounded-full p-1 mt-6">
           <button
             type="button"
             onClick={() => setAnnual(false)}
@@ -154,7 +154,7 @@ export default function Pricing() {
         <div
           className="mt-10 max-w-[1000px] mx-auto"
           style={{
-            border: '1px solid rgba(201,168,76,0.2)',
+            border: '1px solid rgba(201,168,76,0.15)',
             borderRadius: '8px',
             padding: '2px',
             background: 'rgba(201,168,76,0.02)',
@@ -172,10 +172,10 @@ export default function Pricing() {
         </p>
       </section>
 
-      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-24 px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto">
           <SectionLabel center>FULL COMPARISON</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary text-center leading-tight">
             Every feature, side by side.
           </h2>
           <div className="mt-10">
@@ -184,26 +184,26 @@ export default function Pricing() {
         </div>
       </FadeInSection>
 
-      <FadeInSection id="research-notes" className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 scroll-mt-[84px]">
+      <FadeInSection id="research-notes" className="bg-bg-primary py-24 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
-          <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
+          <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mb-4">
             PHASE 2 · COMING SOON
           </span>
           <SectionLabel center>MADDENAI RESEARCH NOTES</SectionLabel>
-          <h2 className="font-sans text-[24px] sm:text-[32px] md:text-[44px] font-bold text-text-primary max-w-3xl mx-auto leading-tight md:whitespace-nowrap">
+          <h2 className="font-sans text-[24px] sm:text-[32px] md:text-[44px] font-bold tracking-[-0.02em] text-text-primary max-w-3xl mx-auto leading-tight md:whitespace-nowrap">
             Institutional-quality research. On demand.
           </h2>
           <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
             AI-powered equity and crypto research notes, delivered as professionally designed PDFs. Planned pricing below.
           </p>
-          <div className="max-w-[560px] mx-auto mt-10 bg-bg-surface border border-gold/20 rounded p-6 text-left">
-            <div className="grid grid-cols-3 gap-2 font-mono text-[10px] text-text-faint pb-2 border-b border-[rgba(30,70,140,0.3)]">
+          <div className="max-w-[560px] mx-auto mt-10 bg-bg-surface border border-gold/15 rounded p-6 text-left">
+            <div className="grid grid-cols-3 gap-2 font-mono text-[10px] text-text-faint pb-2 border-b border-[rgba(201,168,76,0.15)]">
               <span>OPTION</span>
               <span className="text-right">PRICE</span>
               <span className="text-right">NOTE</span>
             </div>
             {RESEARCH_NOTES_PRICING.map(({ label, price, note }) => (
-              <div key={label} className="grid grid-cols-3 gap-2 py-2.5 font-mono text-[12px] border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
+              <div key={label} className="grid grid-cols-3 gap-2 py-2.5 font-mono text-[12px] border-b border-[rgba(201,168,76,0.15)] last:border-b-0">
                 <span className="text-text-muted">{label}</span>
                 <span className="text-text-primary text-right">{price}</span>
                 <span className="text-gold text-right">{note}</span>
@@ -213,13 +213,13 @@ export default function Pricing() {
         </div>
       </FadeInSection>
 
-      <FadeInSection id="newsletter" className="bg-bg-surface py-16 md:py-20 px-6 md:px-10 scroll-mt-[84px]">
+      <FadeInSection id="newsletter" className="bg-bg-surface py-24 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
-          <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
+          <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mb-4">
             PHASE 3 · COMING SOON
           </span>
           <SectionLabel center>MADDENAI NEWSLETTER</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
             A standalone product.
             <br />
             <span className="whitespace-nowrap">Own inbox, own subscription.</span>
@@ -229,9 +229,9 @@ export default function Pricing() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10 text-left max-w-[1000px] mx-auto">
             {NEWSLETTER_PLANS.map((plan) => (
-              <div key={plan.name} className="bg-bg-primary border border-[rgba(201,168,76,0.2)] rounded p-5 flex flex-col">
+              <div key={plan.name} className="bg-bg-primary border border-[rgba(201,168,76,0.15)] rounded p-5 flex flex-col">
                 <div className="font-mono text-[11px] tracking-wide text-gold">{plan.name}</div>
-                <div className="font-sans text-[22px] font-bold text-text-primary mt-2">
+                <div className="font-sans text-[22px] font-bold tracking-[-0.02em] text-text-primary mt-2">
                   {plan.price || `A$${plan.monthly}/mo`}
                 </div>
                 <p className="font-sans text-[12px] text-text-muted mt-2 leading-snug">{plan.tagline}</p>
@@ -249,13 +249,13 @@ export default function Pricing() {
         </div>
       </FadeInSection>
 
-      <FadeInSection id="bundles" className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 scroll-mt-[84px]">
+      <FadeInSection id="bundles" className="bg-bg-primary py-24 px-6 md:px-10 scroll-mt-[84px]">
         <div className="max-w-[1200px] mx-auto text-center">
-          <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
+          <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mb-4">
             COMING SOON — REQUIRES PHASE 2 &amp; 3
           </span>
           <SectionLabel center>BUNDLES</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
             Terminal, notes, and newsletter — together.
           </h2>
           <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
@@ -265,7 +265,7 @@ export default function Pricing() {
             {BUNDLES.map((b) => (
               <div key={b.name} className="bg-bg-surface border border-[rgba(201,168,76,0.15)] rounded p-6 flex flex-col">
                 <div className="font-mono text-[11px] tracking-wide text-gold">{b.name}</div>
-                <div className="font-sans text-[26px] font-bold text-text-primary mt-2">A${b.price}<span className="text-[13px] text-text-muted font-sans">/mo</span></div>
+                <div className="font-sans text-[26px] font-bold tracking-[-0.02em] text-text-primary mt-2">A${b.price}<span className="text-[13px] text-text-muted font-sans">/mo</span></div>
                 <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7]">{b.desc}</p>
               </div>
             ))}
@@ -273,10 +273,10 @@ export default function Pricing() {
         </div>
       </FadeInSection>
 
-      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-24 px-6 md:px-10">
         <div className="max-w-[720px] mx-auto">
           <SectionLabel center>FAQ</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary text-center leading-tight mb-8">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary text-center leading-tight mb-8">
             Questions, answered.
           </h2>
           {FAQS.map((faq, i) => (

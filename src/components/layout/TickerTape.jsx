@@ -37,7 +37,7 @@ function TickerItem({ text }) {
 
 export default function TickerTape() {
   return (
-    <div className="fixed top-0 left-0 right-0 h-7 bg-bg-primary border-b border-gold/10 overflow-hidden z-[1001]">
+    <div className="fixed top-0 left-0 right-0 h-7 bg-bg-primary border-b border-gold/15 overflow-hidden z-[1001]">
       <div className="flex ticker-track-keywords w-max h-full items-center">
         {[0, 1].map((copy) => (
           <div key={copy} className="flex items-center">

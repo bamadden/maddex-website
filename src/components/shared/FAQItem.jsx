@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export default function FAQItem({ question, answer, isOpen, onClick }) {
   return (
-    <div className="border-b border-[rgba(30,70,140,0.3)]">
+    <div className="border-b border-[rgba(201,168,76,0.15)]">
       <button
         type="button"
         onClick={onClick}

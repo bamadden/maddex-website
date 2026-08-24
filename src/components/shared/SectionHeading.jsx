@@ -7,7 +7,7 @@ export default function SectionHeading({ children, center = false, className = '
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
       transition={{ duration: 0.2 }}
-      className={`font-sans text-[length:clamp(1.75rem,3vw,2.5rem)] font-bold leading-[1.1] text-white ${
+      className={`font-sans text-[length:clamp(1.75rem,3vw,2.5rem)] font-bold leading-[1.1] tracking-[-0.02em] text-white ${
         center ? 'text-center mx-auto' : ''
       } ${className}`}
     >

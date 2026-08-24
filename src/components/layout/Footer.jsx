@@ -60,7 +60,7 @@ export default function Footer() {
         className="h-px w-full"
         style={{ background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)' }}
       />
-      <div className="h-9 bg-bg-elevated border-t border-b border-gold/20 overflow-hidden relative pl-6">
+      <div className="h-9 bg-bg-elevated border-t border-b border-gold/15 overflow-hidden relative pl-6">
         <div className="flex ticker-track h-full items-center" style={{ width: 'max-content' }}>
           {tickerItems(0)}
           {tickerItems(1)}
@@ -69,7 +69,7 @@ export default function Footer() {
 
       <div
         className="px-6 md:px-10 py-8"
-        style={{ background: 'linear-gradient(to bottom, rgba(201,168,76,0.03), transparent 40px), #030912' }}
+        style={{ background: 'linear-gradient(to bottom, rgba(201,168,76,0.03), transparent 40px), #060D1A' }}
       >
         <div className="max-w-[1200px] mx-auto text-center">
           <div className="font-mono text-[15px] font-bold text-gold">MADDEX</div>
@@ -157,7 +157,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="max-w-[1200px] mx-auto border-t border-[rgba(30,70,140,0.3)] mt-8 pt-4 grid grid-cols-1 md:grid-cols-3 gap-2 items-center text-center md:text-left">
+        <div className="max-w-[1200px] mx-auto border-t border-[rgba(201,168,76,0.15)] mt-8 pt-4 grid grid-cols-1 md:grid-cols-3 gap-2 items-center text-center md:text-left">
           <p className="font-mono text-[9px] text-text-faint">© 2026 Madden Group Holdings Pty Ltd</p>
           <p className="font-mono text-[9px] text-text-faint md:text-center">General information only · Not financial advice</p>
           <p className="font-mono text-[9px] text-text-faint md:text-right">ABN — Pending registration</p>

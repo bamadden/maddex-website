@@ -12,7 +12,7 @@ import FadeInSection from '../components/shared/FadeInSection'
 
 function MiniHeader({ label, right, accent }) {
   return (
-    <div className="bg-bg-surface border-b border-gold/12 px-3 py-2 flex justify-between items-center font-mono text-[9px] shrink-0">
+    <div className="bg-bg-surface border-b border-gold/15 px-3 py-2 flex justify-between items-center font-mono text-[9px] shrink-0">
       <span className="text-text-muted tracking-[0.05em]">{label}</span>
       {right && <span className={accent === 'gain' ? 'text-gain' : 'text-gold'}>{right}</span>}
     </div>
@@ -22,7 +22,7 @@ function MiniHeader({ label, right, accent }) {
 function MiniShell({ children, maxHeight = 240 }) {
   return (
     <div
-      className="bg-bg-primary border border-gold/20 rounded overflow-hidden flex flex-col w-full"
+      className="bg-bg-primary border border-gold/15 rounded overflow-hidden flex flex-col w-full"
       style={{ maxHeight }}
     >
       {children}
@@ -75,7 +75,7 @@ function MaddenAIMiniVisual() {
     <MiniShell>
       <MiniHeader label="MADDENAI ANALYST" />
       <div className="p-3 flex flex-col gap-2.5 flex-1">
-        <div className="self-end bg-gold/10 border border-gold/25 rounded px-2.5 py-1.5 font-mono text-[9px] text-text-primary max-w-[85%]">
+        <div className="self-end bg-gold/10 border border-gold/15 rounded px-2.5 py-1.5 font-mono text-[9px] text-text-primary max-w-[85%]">
           BHP outlook for Q4?
         </div>
         <div className="font-mono text-[9px] text-text-muted leading-[1.6]">
@@ -84,7 +84,7 @@ function MaddenAIMiniVisual() {
         </div>
         <div className="flex gap-1.5 mt-auto flex-wrap">
           {[['BIAS', 'BULLISH'], ['CONF', '76%'], ['HORIZON', '1M']].map(([k, v]) => (
-            <span key={k} className="font-mono text-[7px] text-gold border border-gold/30 rounded-full px-2 py-0.5">
+            <span key={k} className="font-mono text-[7px] text-gold border border-gold/15 rounded-full px-2 py-0.5">
               {k}: {v}
             </span>
           ))}
@@ -124,7 +124,7 @@ function GlobalMap() {
   return (
     <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" className="w-full h-full">
       {GLOBAL_CONTINENTS.map((d, i) => (
-        <path key={i} d={d} fill="rgba(30,70,140,0.28)" stroke="rgba(30,70,140,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
+        <path key={i} d={d} fill="rgba(201,168,76,0.28)" stroke="rgba(201,168,76,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
       ))}
       {GLOBAL_ROUTES.map(([a, b], i) => {
         const ca = globalCityByName(a)
@@ -148,7 +148,7 @@ function GlobalMiniVisual() {
       <div className="flex-1 overflow-hidden flex items-center justify-center p-2" style={{ minHeight: 110 }}>
         <GlobalMap />
       </div>
-      <div className="grid grid-cols-3 divide-x divide-[rgba(30,70,140,0.25)] border-t border-[rgba(30,70,140,0.25)]">
+      <div className="grid grid-cols-3 divide-x divide-[rgba(201,168,76,0.15)] border-t border-[rgba(201,168,76,0.15)]">
         {[['70+', 'MARKETS'], ['24/7', 'COVERAGE'], ['LIVE', 'INTEL']].map(([v, l]) => (
           <div key={l} className="text-center py-2">
             <div className="font-mono text-[11px] font-bold text-gold">{v}</div>
@@ -173,7 +173,7 @@ function YieldCurveChart() {
   const pathFor = (rates) => rates.map((r, i) => `${i === 0 ? 'M' : 'L'}${xs[i]},${y(r)}`).join(' ')
   return (
     <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
-      <path d={pathFor(usRates)} fill="none" stroke="#4A90D9" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={pathFor(usRates)} fill="none" stroke="#8BA3C4" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
       <path d={pathFor(auRates)} fill="none" stroke="#C9A84C" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
       {labels.map((l, i) => (
         <text key={l} x={xs[i]} y={h - 3} fill="#4A6080" fontSize="7" fontFamily="IBM Plex Mono, monospace" textAnchor="middle">{l}</text>
@@ -191,7 +191,7 @@ function RatesFxVisual() {
       </div>
       <div className="flex justify-center gap-4 font-mono text-[8px] pb-1.5">
         <span style={{ color: '#C9A84C' }}>● AU 4.42%</span>
-        <span style={{ color: '#4A90D9' }}>● US 4.45%</span>
+        <span style={{ color: '#8BA3C4' }}>● US 4.45%</span>
       </div>
       <div className="grid grid-cols-2 gap-1.5 px-3 pb-3">
         {[['AUD/USD', '0.6520'], ['AUD/JPY', '96.84']].map(([pair, val]) => (
@@ -216,7 +216,7 @@ function SemiGauge({ value, color }) {
   const large = angle > 180 ? 1 : 0
   return (
     <svg width="52" height="28" viewBox="0 0 52 28">
-      <path d={`M${cx - r},${cy} A${r},${r} 0 0 1 ${cx + r},${cy}`} fill="none" stroke="rgba(30,70,140,0.3)" strokeWidth="4" strokeLinecap="round" />
+      <path d={`M${cx - r},${cy} A${r},${r} 0 0 1 ${cx + r},${cy}`} fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="4" strokeLinecap="round" />
       <path d={`M${cx - r},${cy} A${r},${r} 0 ${large} 1 ${x},${y}`} fill="none" stroke={color} strokeWidth="4" strokeLinecap="round" />
     </svg>
   )
@@ -319,7 +319,7 @@ function NewsMiniVisual() {
       </div>
       <div className="flex flex-wrap gap-1.5 px-3 pb-3">
         {['#IronOre', '#RBA', '#XRP'].map((tag) => (
-          <span key={tag} className="font-mono text-[7px] text-gold border border-gold/25 rounded-full px-2 py-0.5">
+          <span key={tag} className="font-mono text-[7px] text-gold border border-gold/15 rounded-full px-2 py-0.5">
             {tag}
           </span>
         ))}
@@ -330,7 +330,7 @@ function NewsMiniVisual() {
 
 function RangeBar({ pct, color }) {
   return (
-    <div className="w-14 h-1.5 rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden shrink-0">
+    <div className="w-14 h-1.5 rounded-full bg-[rgba(201,168,76,0.15)] overflow-hidden shrink-0">
       <div className="h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
     </div>
   )
@@ -372,7 +372,7 @@ function KeyStats({ stats }) {
           className="text-center font-mono text-[10px] font-semibold text-gold rounded transition-colors"
           style={{
             background: 'rgba(201,168,76,0.06)',
-            border: '1px solid rgba(201,168,76,0.25)',
+            border: '1px solid rgba(201,168,76,0.15)',
             padding: '8px 16px',
             borderRadius: 4,
           }}
@@ -600,7 +600,7 @@ export default function Product() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
+          className="font-sans text-[40px] md:text-[64px] font-extrabold leading-tight tracking-[-0.03em] text-text-primary max-w-4xl mx-auto"
         >
           Everything you need.
           <br />
@@ -614,10 +614,10 @@ export default function Product() {
         </div>
       </section>
 
-      <FadeInSection className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 border-t border-[rgba(201,168,76,0.12)]">
+      <FadeInSection className="bg-bg-primary py-24 px-6 md:px-10 border-t border-[rgba(201,168,76,0.15)]">
         <div className="max-w-[1000px] mx-auto text-center">
           <SectionLabel center>WHY MADDEX</SectionLabel>
-          <h2 className="font-sans text-[28px] md:text-[40px] font-bold text-text-primary mt-3 leading-tight">
+          <h2 className="font-sans text-[28px] md:text-[40px] font-bold tracking-[-0.02em] text-text-primary mt-3 leading-tight">
             Institutional data used to cost institutional money.
           </h2>
           <p className="font-sans text-[16px] text-text-muted mt-4 max-w-xl mx-auto leading-[1.75]">
@@ -627,22 +627,22 @@ export default function Product() {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-6 items-end">
             <div className="text-left md:text-right">
               <div className="font-mono text-[10px] tracking-[0.15em] text-text-muted uppercase">Bloomberg Terminal</div>
-              <div className="font-sans text-[26px] md:text-[32px] font-bold text-text-primary mt-1">A$42,000+/yr</div>
-              <div className="mt-3 h-2 rounded-full bg-[rgba(30,70,140,0.18)] overflow-hidden md:ml-auto" style={{ maxWidth: 320 }}>
-                <div className="h-full rounded-full" style={{ width: '100%', background: 'rgba(30,70,140,0.55)' }} />
+              <div className="font-sans text-[26px] md:text-[32px] font-bold tracking-[-0.02em] text-text-primary mt-1">A$42,000+/yr</div>
+              <div className="mt-3 h-2 rounded-full bg-[rgba(201,168,76,0.15)] overflow-hidden md:ml-auto" style={{ maxWidth: 320 }}>
+                <div className="h-full rounded-full" style={{ width: '100%', background: 'rgba(201,168,76,0.55)' }} />
               </div>
               <div className="font-sans text-[12px] text-text-faint mt-2">Retail broker apps: basic price data only</div>
             </div>
 
             <div className="flex flex-col items-center px-4">
               <div className="font-mono text-[11px] text-gold tracking-[0.1em] whitespace-nowrap">121× CHEAPER</div>
-              <div className="w-px h-16 bg-[rgba(201,168,76,0.25)] mt-3 hidden md:block" />
+              <div className="w-px h-16 bg-[rgba(201,168,76,0.15)] mt-3 hidden md:block" />
             </div>
 
             <div className="text-left">
               <div className="font-mono text-[10px] tracking-[0.15em] text-gold uppercase">Maddex</div>
-              <div className="font-sans text-[26px] md:text-[32px] font-bold text-text-primary mt-1">A$29/month</div>
-              <div className="mt-3 h-2 rounded-full bg-[rgba(201,168,76,0.12)] overflow-hidden" style={{ maxWidth: 320 }}>
+              <div className="font-sans text-[26px] md:text-[32px] font-bold tracking-[-0.02em] text-text-primary mt-1">A$29/month</div>
+              <div className="mt-3 h-2 rounded-full bg-[rgba(201,168,76,0.15)] overflow-hidden" style={{ maxWidth: 320 }}>
                 <div className="h-full rounded-full" style={{ width: '3px', minWidth: 3, background: '#C9A84C' }} />
               </div>
               <div className="font-sans text-[12px] text-text-muted mt-2">Institutional-grade markets, AI analysis, global intelligence</div>
@@ -657,10 +657,10 @@ export default function Product() {
           {i > 0 && (
             <div style={{ height: 1, background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent)', margin: 0 }} />
           )}
-          <section className="relative py-12 md:py-14 px-6 md:px-10">
+          <section className="relative py-24 px-6 md:px-10">
             <span
               className="absolute top-6 right-6 font-mono select-none pointer-events-none"
-              style={{ fontSize: 9, color: '#3D5070' }}
+              style={{ fontSize: 9, color: '#4A6080' }}
             >
               MODULE {String(i + 1).padStart(2, '0')}
             </span>
@@ -680,7 +680,7 @@ export default function Product() {
                   <span className="font-mono text-[9px] tracking-[0.25em] text-gold">MODULE {String(i + 1).padStart(2, '0')}</span>
                   <TierBadge tier={mod.tier} />
                 </div>
-                <h2 className="font-sans text-[30px] md:text-[48px] font-bold text-text-primary mt-3 leading-tight flex items-center gap-3">
+                <h2 className="font-sans text-[30px] md:text-[48px] font-bold tracking-[-0.02em] text-text-primary mt-3 leading-tight flex items-center gap-3">
                   {mod.icon}{mod.title}
                 </h2>
                 <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">{mod.body}</p>
@@ -704,7 +704,7 @@ export default function Product() {
               </motion.div>
             </div>
 
-            <div className="max-w-[1200px] mx-auto mt-6 pt-4 border-t border-[rgba(30,70,140,0.2)]">
+            <div className="max-w-[1200px] mx-auto mt-6 pt-4 border-t border-[rgba(201,168,76,0.15)]">
               <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-gold mb-3">KEY STATS</div>
               <KeyStats stats={mod.stats} />
               <div className="flex justify-center sm:justify-end mt-4">
@@ -718,9 +718,9 @@ export default function Product() {
         ))}
       </div>
 
-      <section className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-24 px-6 md:px-10 text-center">
         <SectionLabel center>COMMAND BAR</SectionLabel>
-        <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary max-w-3xl mx-auto leading-tight">
+        <h2 className="font-sans text-[34px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-3xl mx-auto leading-tight">
           <span className="block md:whitespace-nowrap">Keyboard-driven command interface.</span>
           <span className="block">Built for speed.</span>
         </h2>
@@ -740,14 +740,14 @@ export default function Product() {
         </div>
       </section>
 
-      <section className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
+      <section className="bg-bg-surface py-24 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           <div>
-            <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
+            <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mb-4">
               iOS &amp; ANDROID · COMING 2027
             </span>
             <SectionLabel>COMPANION APP</SectionLabel>
-            <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
+            <h2 className="font-sans text-[34px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary leading-tight">
               Maddex Companion App
             </h2>
             <p className="font-mono text-[12px] text-gold mt-2 tracking-wide">
@@ -793,7 +793,7 @@ export default function Product() {
                 className="w-full h-full bg-bg-surface rounded-[20px] border border-gold/15 overflow-hidden flex flex-col"
                 style={{ paddingTop: 22 }}
               >
-                <div className="bg-bg-primary border-b border-gold/12 px-3 py-2 font-mono text-[9px] text-gold flex items-center justify-between">
+                <div className="bg-bg-primary border-b border-gold/15 px-3 py-2 font-mono text-[9px] text-gold flex items-center justify-between">
                   <span>MADDEX</span>
                   <span className="text-text-faint">9:42 AM</span>
                 </div>
@@ -810,7 +810,7 @@ export default function Product() {
                     </div>
                   ))}
                 </div>
-                <div className="border-t border-gold/12 px-3 py-2 font-mono text-[8px] text-text-faint text-center">
+                <div className="border-t border-gold/15 px-3 py-2 font-mono text-[8px] text-text-faint text-center">
                   Full analysis in the Maddex Terminal
                 </div>
               </div>

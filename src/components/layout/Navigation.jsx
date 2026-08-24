@@ -8,10 +8,10 @@ import { useProfileContext } from '../../context/ProfileContext'
 import { supabase } from '../../lib/supabase'
 
 const NAV_LINKS = [
-  { label: 'TERMINAL', to: '/product' },
-  { label: 'PRICING', to: '/pricing' },
-  { label: 'ABOUT', to: '/about' },
-  { label: 'MADDENAI', to: '/maddenai' },
+  { label: 'Terminal', to: '/product' },
+  { label: 'Pricing', to: '/pricing' },
+  { label: 'About', to: '/about' },
+  { label: 'MaddenAI', to: '/maddenai' },
 ]
 
 // profiles.first_name/last_name/country come from the same Supabase row the
@@ -55,8 +55,8 @@ function ProfileMenu() {
             transition={{ duration: 0.15 }}
             className="absolute top-full right-0 pt-3 z-50"
           >
-            <div className="bg-bg-surface border border-gold/20 border-t-2 border-t-gold rounded p-1 min-w-[220px]">
-              <div className="px-4 py-3 border-b border-[rgba(30,70,140,0.3)]">
+            <div className="bg-bg-surface border border-gold/15 border-t-2 border-t-gold rounded p-1 min-w-[220px]">
+              <div className="px-4 py-3 border-b border-[rgba(201,168,76,0.15)]">
                 <div className="font-sans text-[13px] font-medium text-text-primary">
                   {profileDisplayName(profile)}
                 </div>
@@ -96,9 +96,9 @@ function AuthButtons({ onOpenAuth }) {
       <button
         type="button"
         onClick={onOpenAuth}
-        className="font-mono text-[11px] font-bold tracking-[0.05em] text-gold border border-[rgba(201,168,76,0.4)] rounded-sm px-4 py-2 hover:bg-[rgba(201,168,76,0.08)] hover:border-[rgba(201,168,76,0.7)] transition-all duration-150"
+        className="font-sans text-[13px] text-text-muted hover:text-gold transition-colors duration-150"
       >
-        SIGN IN
+        Sign In
       </button>
       <GoldButton to="/pricing" className="!px-4 !py-2 !text-[11px]">
         START FREE TRIAL
@@ -135,18 +135,18 @@ export default function Navigation() {
 
   return (
     <nav
-      className="fixed top-7 left-0 right-0 h-14 z-[1000] transition-colors duration-200"
+      className="fixed top-7 left-0 right-0 h-14 z-[1000] transition-all duration-200"
       style={{
-        background: scrolled ? 'rgba(6,13,26,0.98)' : 'rgba(6,13,26,0.95)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: `1px solid rgba(201,168,76,${scrolled ? 0.2 : 0.12})`,
+        background: scrolled ? 'rgba(6,13,26,0.98)' : 'rgba(6,13,26,0.9)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderBottom: scrolled ? '1px solid rgba(201,168,76,0.15)' : '1px solid transparent',
       }}
     >
       <div className="max-w-[1200px] mx-auto h-full px-6 md:px-10 flex items-center justify-between">
         <Link
           to="/"
-          className="font-mono text-[15px] font-bold tracking-[0.12em] text-gold shrink-0"
+          className="font-mono text-[13px] font-bold tracking-[0.3em] text-gold shrink-0"
         >
           MADDEX
         </Link>
@@ -209,7 +209,7 @@ export default function Navigation() {
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'tween', duration: 0.25 }}
-                className="fixed top-0 right-0 bottom-0 w-[280px] bg-bg-surface border-l border-gold/20 z-[120] p-6 flex flex-col gap-6"
+                className="fixed top-0 right-0 bottom-0 w-[280px] bg-bg-surface border-l border-gold/15 z-[120] p-6 flex flex-col gap-6"
               >
                 <button
                   type="button"

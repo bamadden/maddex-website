@@ -37,15 +37,15 @@ function FlipCard({ front, back, index }) {
         transition={{ duration: 0.2 }}
       >
         <div
-          className="absolute inset-0 bg-bg-surface border border-gold/20 rounded p-5 flex flex-col items-center justify-center text-center gap-2"
+          className="absolute inset-0 bg-bg-surface border border-gold/15 rounded p-5 flex flex-col items-center justify-center text-center gap-2"
           style={{ backfaceVisibility: 'hidden' }}
         >
           <span className="text-gold text-[20px]">◆</span>
-          <span className="font-sans text-[16px] font-bold text-text-primary">{front}</span>
+          <span className="font-sans text-[16px] font-bold tracking-[-0.02em] text-text-primary">{front}</span>
           <span className="font-mono text-[11px] tracking-wide text-gold">HOVER TO REVEAL</span>
         </div>
         <div
-          className="absolute inset-0 bg-bg-primary border border-gold/30 rounded p-5 flex items-center justify-center text-center"
+          className="absolute inset-0 bg-bg-primary border border-gold/15 rounded p-5 flex items-center justify-center text-center"
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
         >
           <span className="font-sans text-[13px] text-text-muted leading-[1.7]">{back}</span>
@@ -68,7 +68,7 @@ export default function Research() {
       <Navigation />
 
       <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
-        <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-5">
+        <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mb-5">
           PHASE 3 · COMING SOON, 6–12 MONTHS OUT
         </span>
         <SectionLabel center>MADDENAI NEWSLETTER</SectionLabel>
@@ -76,7 +76,7 @@ export default function Research() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
-          className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-3xl mx-auto"
+          className="font-sans text-[40px] md:text-[64px] font-extrabold leading-tight tracking-[-0.03em] text-text-primary max-w-3xl mx-auto"
         >
           The market brief serious Australian investors will read first.
         </motion.h1>
@@ -85,16 +85,16 @@ export default function Research() {
         </p>
       </section>
 
-      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-24 px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto text-center">
           <SectionLabel center>WHAT YOU'RE SIGNING UP FOR</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[48px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[32px] md:text-[48px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
             Two briefs. One goal — keep you ahead of the market.
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-9 text-left items-stretch">
-            <div className="bg-bg-primary border border-gold/20 rounded p-6 flex flex-col">
+            <div className="bg-bg-primary border border-gold/15 rounded p-6 flex flex-col">
               <span className="font-mono text-[9px] tracking-[0.15em] text-gold">SUNDAY EVENINGS</span>
-              <h3 className="font-sans text-[19px] font-bold text-text-primary mt-2">Weekly Market Brief</h3>
+              <h3 className="font-sans text-[19px] font-bold tracking-[-0.02em] text-text-primary mt-2">Weekly Market Brief</h3>
               <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7]">
                 800–1,200 words. Ben's personal read on the week ahead. What mattered this week, and what to watch next — ASX-first, globally informed.
               </p>
@@ -108,9 +108,9 @@ export default function Research() {
               </div>
             </div>
 
-            <div className="bg-bg-primary border border-gold/20 rounded p-6 flex flex-col">
+            <div className="bg-bg-primary border border-gold/15 rounded p-6 flex flex-col">
               <span className="font-mono text-[9px] tracking-[0.15em] text-gold">MON–FRI, 7AM AEST</span>
-              <h3 className="font-sans text-[19px] font-bold text-text-primary mt-2">Daily Market Brief</h3>
+              <h3 className="font-sans text-[19px] font-bold tracking-[-0.02em] text-text-primary mt-2">Daily Market Brief</h3>
               <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7]">
                 3 minutes. What happened overnight, and what it means for your portfolio. Out by 7am every morning.
               </p>
@@ -132,10 +132,10 @@ export default function Research() {
         </div>
       </FadeInSection>
 
-      <FadeInSection className="bg-bg-primary py-16 md:py-20 px-6 md:px-10 text-center">
+      <FadeInSection className="bg-bg-primary py-24 px-6 md:px-10 text-center">
         <div className="max-w-[1200px] mx-auto text-center">
           <SectionLabel center>WHAT'S INSIDE</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
             Four sections. Every issue. Hover to preview.
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-9">
@@ -146,10 +146,10 @@ export default function Research() {
         </div>
       </FadeInSection>
 
-      <FadeInSection className="bg-bg-surface py-16 md:py-20 px-6 md:px-10">
+      <FadeInSection className="bg-bg-surface py-24 px-6 md:px-10">
         <div className="max-w-[760px] mx-auto">
           <SectionLabel center>SAMPLE ISSUE PREVIEW</SectionLabel>
-          <div className="relative bg-bg-primary border border-gold/20 rounded overflow-hidden mt-6" style={{ minHeight: 560 }}>
+          <div className="relative bg-bg-primary border border-gold/15 rounded overflow-hidden mt-6" style={{ minHeight: 560 }}>
             <div className="bg-gold px-6 py-4 flex items-center justify-between">
               <div>
                 <div className="font-mono text-[14px] font-bold text-bg-primary tracking-[0.1em]">MADDENAI NEWSLETTER</div>
@@ -198,10 +198,10 @@ export default function Research() {
         </div>
       </FadeInSection>
 
-      <FadeInSection className="bg-bg-primary py-16 md:py-20 px-6 md:px-10">
+      <FadeInSection className="bg-bg-primary py-24 px-6 md:px-10">
         <div className="max-w-[1000px] mx-auto text-center">
           <SectionLabel center>PLANNED PRICING</SectionLabel>
-          <h2 className="font-sans text-[32px] md:text-[56px] font-bold text-text-primary max-w-2xl mx-auto leading-tight">
+          <h2 className="font-sans text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
             Free brief, or paid tiers.
           </h2>
 
@@ -217,9 +217,9 @@ export default function Research() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
             {NEWSLETTER_PLANS.map((plan) => (
-              <div key={plan.name} className="border border-gold/20 rounded p-5 bg-bg-surface flex flex-col">
+              <div key={plan.name} className="border border-gold/15 rounded p-5 bg-bg-surface flex flex-col">
                 <div className="font-mono text-[12px] font-bold text-gold">{plan.name}</div>
-                <div className="font-sans text-[18px] font-bold text-text-primary mt-2">
+                <div className="font-sans text-[18px] font-bold tracking-[-0.02em] text-text-primary mt-2">
                   {plan.price || `A$${plan.monthly}/mo`}
                 </div>
                 <div className="flex flex-col gap-2 mt-3 font-sans text-[11px] text-text-muted">
@@ -238,7 +238,7 @@ export default function Research() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="w-full font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/30 rounded px-4 py-3 outline-none focus:border-gold/60 transition-colors placeholder:text-text-faint"
+              className="w-full font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/15 rounded px-4 py-3 outline-none focus:border-gold/40 transition-colors placeholder:text-text-faint"
             />
             <div className="mt-4">
               <GoldButton className="w-full">NOTIFY ME AT LAUNCH</GoldButton>
