@@ -4,6 +4,7 @@ import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
 import ScrollProgress from './components/shared/ScrollProgress'
 import BackToTop from './components/shared/BackToTop'
 import { CookieConsent } from './components/CookieConsent'
+import { CheckoutProvider } from './context/CheckoutContext'
 import { useAnalytics } from './hooks/useAnalytics'
 import Home from './pages/Home'
 import Product from './pages/Product'
@@ -73,12 +74,14 @@ export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <BrowserRouter>
-        <ScrollToTop />
-        <PageViewTracker />
-        <ScrollProgress />
-        <AnimatedRoutes />
-        <BackToTop />
-        <CookieConsent />
+        <CheckoutProvider>
+          <ScrollToTop />
+          <PageViewTracker />
+          <ScrollProgress />
+          <AnimatedRoutes />
+          <BackToTop />
+          <CookieConsent />
+        </CheckoutProvider>
       </BrowserRouter>
     </MotionConfig>
   )

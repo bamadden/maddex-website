@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAnalytics } from '../../hooks/useAnalytics'
+import { useCheckout } from '../../context/CheckoutContext'
 
 function Particles() {
   const particles = React.useMemo(
@@ -82,6 +83,7 @@ function LiveClock() {
 
 export default function Hero() {
   const { trackCTA } = useAnalytics()
+  const { openCheckout } = useCheckout()
   return (
     <section style={{
       minHeight: '100vh',
@@ -142,9 +144,9 @@ export default function Hero() {
           marginTop: '36px',
           flexWrap: 'wrap',
         }}>
-          <Link
-            to="/pricing"
-            onClick={() => trackCTA('start_trial', 'hero')}
+          <button
+            type="button"
+            onClick={() => { trackCTA('start_trial', 'hero'); openCheckout('core') }}
             style={{
               background: '#C9A84C',
               color: '#060D1A',
@@ -156,11 +158,13 @@ export default function Hero() {
               textDecoration: 'none',
               textTransform: 'uppercase',
               display: 'inline-block',
+              border: 'none',
               borderRadius: 0,
+              cursor: 'pointer',
               transition: 'opacity 0.15s',
             }}>
             Start Free Trial
-          </Link>
+          </button>
           <Link to="/pricing" style={{
             background: 'transparent',
             color: '#C9A84C',

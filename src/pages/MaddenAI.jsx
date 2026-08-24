@@ -8,6 +8,7 @@ import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import FadeInSection from '../components/shared/FadeInSection'
 import { useAnalytics } from '../hooks/useAnalytics'
+import { useCheckout } from '../context/CheckoutContext'
 
 function FactorTableHeader() {
   return (
@@ -340,6 +341,7 @@ const SECTOR_FACTORS = [
 
 export default function MaddenAI() {
   const { trackCTA } = useAnalytics()
+  const { openCheckout } = useCheckout()
   useEffect(() => {
     document.title = 'MaddenAI — The Intelligence Engine'
   }, [])
@@ -431,7 +433,7 @@ export default function MaddenAI() {
           This is what MaddenAI produces for every asset. Every time. In under 10 seconds.
         </p>
         <div className="mt-5">
-          <GoldButton to="/pricing" onClick={() => trackCTA('start_trial', 'maddenai_page')}>START FREE TRIAL →</GoldButton>
+          <GoldButton onClick={() => { trackCTA('start_trial', 'maddenai_page'); openCheckout('core') }}>START FREE TRIAL →</GoldButton>
         </div>
       </section>
 

@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
 import GoldButton from '../shared/GoldButton'
 import { useAnalytics } from '../../hooks/useAnalytics'
+import { useCheckout } from '../../context/CheckoutContext'
 
 export default function FinalCTA() {
   const { trackCTA } = useAnalytics()
+  const { openCheckout } = useCheckout()
   return (
     <section className="relative min-h-[70vh] bg-bg-surface overflow-hidden flex items-center">
       <div
@@ -61,7 +63,7 @@ export default function FinalCTA() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-wrap items-center justify-center gap-4 mt-9"
         >
-          <GoldButton to="/pricing" onClick={() => trackCTA('start_trial', 'final_cta')}>START FREE TRIAL</GoldButton>
+          <GoldButton onClick={() => { trackCTA('start_trial', 'final_cta'); openCheckout('core') }}>START FREE TRIAL</GoldButton>
           <GoldButton to="/pricing" variant="ghost" onClick={() => trackCTA('view_pricing', 'final_cta')}>VIEW PRICING</GoldButton>
         </motion.div>
 
