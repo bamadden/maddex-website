@@ -7,6 +7,7 @@ import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import FinalCTA from '../components/home/FinalCTA'
 import FadeInSection from '../components/shared/FadeInSection'
+import { ContactForm } from '../components/ContactForm'
 
 const FOUNDER_DETAILS = [
   { icon: '📍', text: 'Brisbane, Australia' },
@@ -293,8 +294,11 @@ export default function About() {
         <p className="font-mono text-[11px] text-text-faint mt-2">
           Usually within 24 hours.
         </p>
-        <div className="mt-6">
-          <GoldButton href="mailto:ben@maddex.com.au">SEND AN EMAIL →</GoldButton>
+        <p className="font-mono text-[10px] text-text-faint mt-6 tracking-[0.1em]">
+          OR USE THE FORM BELOW
+        </p>
+        <div className="max-w-[480px] mx-auto mt-6 text-left">
+          <ContactForm />
         </div>
       </FadeInSection>
 
