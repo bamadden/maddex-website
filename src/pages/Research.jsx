@@ -8,6 +8,7 @@ import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 import FadeInSection from '../components/shared/FadeInSection'
 import { NEWSLETTER_PLANS } from '../data/pricing'
+import { useAnalytics } from '../hooks/useAnalytics'
 
 const NEWSLETTER_TILES = [
   {
@@ -55,10 +56,37 @@ function NewsletterTile({ name, desc, badge, index }) {
 
 export default function Research() {
   const [email, setEmail] = useState('')
+  const [waitlistStatus, setWaitlistStatus] = useState('idle')
+  // idle | sending | success | error
+  const [waitlistMessage, setWaitlistMessage] = useState('')
+  const { trackEvent } = useAnalytics()
 
   useEffect(() => {
     document.title = 'MaddenAI Newsletter — Coming Soon'
   }, [])
+
+  const handleWaitlistSubmit = async (e) => {
+    e.preventDefault()
+    setWaitlistStatus('sending')
+
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, product: 'newsletter', source: 'research_page' }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to join waitlist')
+
+      setWaitlistStatus('success')
+      setWaitlistMessage(data.message || "You're on the list!")
+      trackEvent('newsletter_signup')
+      setEmail('')
+    } catch (err) {
+      setWaitlistStatus('error')
+      setWaitlistMessage(err.message)
+    }
+  }
 
   return (
     <>
@@ -231,16 +259,30 @@ export default function Research() {
             BE FIRST TO KNOW WHEN IT LAUNCHES
           </div>
           <div className="max-w-[440px] mx-auto mt-4">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
-              className="w-full font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/15 rounded px-4 py-3 outline-none focus:border-gold/40 transition-colors placeholder:text-text-faint"
-            />
-            <div className="mt-4">
-              <GoldButton className="w-full">NOTIFY ME AT LAUNCH</GoldButton>
-            </div>
+            {waitlistStatus === 'success' ? (
+              <div className="font-mono text-[12px] text-gain border border-gain/30 bg-gain/10 rounded px-4 py-3">
+                ✓ {waitlistMessage}
+              </div>
+            ) : (
+              <form onSubmit={handleWaitlistSubmit}>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  className="w-full font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/15 rounded px-4 py-3 outline-none focus:border-gold/40 transition-colors placeholder:text-text-faint"
+                />
+                <div className="mt-4">
+                  <GoldButton type="submit" disabled={waitlistStatus === 'sending'} className="w-full">
+                    {waitlistStatus === 'sending' ? 'JOINING...' : 'NOTIFY ME AT LAUNCH'}
+                  </GoldButton>
+                </div>
+                {waitlistStatus === 'error' && (
+                  <p className="font-mono text-[11px] text-loss mt-3">{waitlistMessage}</p>
+                )}
+              </form>
+            )}
             <p className="font-sans text-[11px] text-text-faint mt-4">
               No spam — just a heads-up when the MaddenAI Newsletter opens for subscriptions.
             </p>

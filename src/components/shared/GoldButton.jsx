@@ -8,6 +8,8 @@ export default function GoldButton({
   onClick,
   variant = 'solid',
   className = '',
+  type = 'button',
+  disabled = false,
   ...props
 }) {
   const styles = variant === 'solid' ? 'btn-primary' : 'btn-secondary'
@@ -44,7 +46,7 @@ export default function GoldButton({
     )
   }
   return (
-    <button type="button" onClick={onClick} className={wrapperClass}>
+    <button type={type} onClick={onClick} disabled={disabled} className={wrapperClass}>
       {content}
     </button>
   )
