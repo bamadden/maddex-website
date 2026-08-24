@@ -71,7 +71,44 @@ export default function ProblemSection() {
             Less than a Bloomberg in a single day.
           </div>
 
-          <div className="grid grid-cols-3 gap-4 mt-auto pt-10">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '1px',
+            background: 'rgba(201,168,76,0.1)',
+            border: '1px solid rgba(201,168,76,0.1)',
+            borderRadius: '4px',
+            margin: '32px 0',
+            overflow: 'hidden',
+          }}>
+            {[
+              { icon: '🔒', label: 'SECURED BY SUPABASE', sub: 'Enterprise-grade auth' },
+              { icon: '🇦🇺', label: 'BUILT IN AUSTRALIA', sub: 'Brisbane, Queensland' },
+              { icon: '⚡', label: 'ALWAYS ON', sub: 'Real-time data pipeline' },
+            ].map(({ icon, label, sub }) => (
+              <div key={label} style={{
+                background: '#0B1628',
+                padding: '16px 20px',
+                textAlign: 'center',
+              }}>
+                <div style={{ fontSize: '18px', marginBottom: '6px' }}>{icon}</div>
+                <div style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: '9px',
+                  letterSpacing: '0.15em',
+                  color: '#C9A84C',
+                  marginBottom: '3px',
+                }}>{label}</div>
+                <div style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: '9px',
+                  color: '#637899',
+                }}>{sub}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-3 gap-4">
             {[
               ['70+', 'Markets covered'],
               ['8', 'Modules included'],

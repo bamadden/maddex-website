@@ -39,7 +39,7 @@ const HEATMAP = [
 
 function MarketsVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col min-h-[220px] max-h-[280px]">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-[320px]">
       <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>MARKETS · ASX 200</span>
         <span className="text-gain">● OPEN</span>
@@ -84,7 +84,7 @@ function MarketsVisual() {
 
 function MaddenAIVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col min-h-[220px] max-h-[280px]">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-[320px]">
       <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-gold flex items-center gap-1.5 shrink-0">
         <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
         MADDENAI CHAT
@@ -161,13 +161,13 @@ const GLOBAL_STATS = [
 
 function GlobalVisual() {
   return (
-    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col min-h-[220px] max-h-[280px]">
+    <div className="bg-bg-surface border border-gold/20 rounded overflow-hidden flex flex-col h-[320px]">
       <div className="bg-bg-primary border-b border-gold/12 px-4 py-2.5 font-mono text-[10px] text-text-muted flex justify-between shrink-0">
         <span>GLOBAL INTELLIGENCE</span>
         <span className="text-gold">18/50 OPEN</span>
       </div>
       <div className="flex-1 flex items-center justify-center p-3">
-        <svg viewBox="0 0 800 400" className="w-full h-full">
+        <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" className="w-full h-full">
           {CONTINENTS.map((d, i) => (
             <path key={i} d={d} fill="rgba(30,70,140,0.28)" stroke="rgba(30,70,140,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
           ))}

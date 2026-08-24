@@ -422,29 +422,45 @@ export default function MaddenAI() {
 
       <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
-          <div className="text-left max-w-[720px]">
-            <SectionLabel>ASSET ANALYSIS</SectionLabel>
+          <div className="text-center max-w-[720px] mx-auto">
+            <SectionLabel center>ASSET ANALYSIS</SectionLabel>
             <h2 className="font-sans text-[34px] md:text-[56px] font-bold text-text-primary leading-tight">
               Type any ticker. Get a full structured read in seconds.
             </h2>
-            <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75] max-w-[440px]">
-              Stock, crypto, FX pair, or index — MaddenAI returns the same five-part structure every time, so you always know where to look.
+            <p className="font-sans text-[17px] text-text-muted mt-4 leading-[1.75]">
+              Stock, crypto, FX pair, or index — every time, the same five-part structure.
             </p>
-            <div className="flex flex-col gap-3 mt-7">
-              {[
-                ['ASSESSMENT', 'A one-line read on current conditions'],
-                ['SENTIMENT', 'Overall, Momentum, Volume, Macro, Risk scores'],
-                ['LEVELS', 'Support and resistance, calculated live'],
-                ['OUTLOOK', 'A near-term directional view with a range'],
-                ['RISK', 'The specific scenario that would invalidate it'],
-              ].map(([title, desc]) => (
-                <div key={title} className="flex gap-3">
-                  <span className="font-mono text-[11px] text-gold w-24 shrink-0 pt-0.5">{title}</span>
-                  <span className="font-sans text-[13px] text-text-muted">{desc}</span>
-                </div>
-              ))}
-            </div>
           </div>
+
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 mt-8"
+            style={{
+              gap: '1px',
+              background: 'rgba(201,168,76,0.1)',
+              border: '1px solid rgba(201,168,76,0.15)',
+              borderRadius: '4px',
+              overflow: 'hidden',
+            }}
+          >
+            {[
+              { num: '01', title: 'ASSESSMENT', desc: 'A one-line read on current conditions' },
+              { num: '02', title: 'SENTIMENT', desc: 'Overall, Momentum, Volume, Macro, Risk scores' },
+              { num: '03', title: 'LEVELS', desc: 'Support and resistance, calculated live' },
+              { num: '04', title: 'OUTLOOK', desc: 'Near-term directional view with a range' },
+              { num: '05', title: 'RISK', desc: 'The scenario that would invalidate it' },
+            ].map(({ num, title, desc }) => (
+              <div key={num} style={{ background: '#0B1628', padding: '24px 20px' }}>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '10px', color: 'rgba(201,168,76,0.4)', marginBottom: '8px' }}>
+                  {num}
+                </div>
+                <div style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', fontWeight: 600, color: '#C9A84C', letterSpacing: '0.1em', marginBottom: '8px' }}>
+                  {title}
+                </div>
+                <div style={{ fontSize: '12px', color: '#8BA3C4', lineHeight: 1.5 }}>{desc}</div>
+              </div>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10 items-stretch">
             {ASSET_EXAMPLES.map((ex) => (
               <AssetExampleCard key={ex.ticker} ex={ex} />

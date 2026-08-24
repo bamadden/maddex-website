@@ -6,6 +6,58 @@ import Footer from '../components/layout/Footer'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
 
+const TIMELINE = [
+  { date: '2024', title: 'THE IDEA', text: 'Frustrated with the tools available to Australian retail investors. Started building.' },
+  { date: 'EARLY 2025', title: 'FIRST BUILD', text: 'First prototype built in Replit. Five modules, basic data, proof of concept.' },
+  { date: 'MID 2025', title: 'SERIOUS DEVELOPMENT', text: 'Rebuilt from scratch with a Bloomberg-grade design philosophy. Eight modules. MaddenAI integrated. Data pipeline built.' },
+  { date: 'LATE 2025', title: 'INFRASTRUCTURE', text: 'Supabase auth, subscription tiers, Vercel deployment. Terminal taking shape.' },
+  { date: '2026', title: 'LAUNCH PREPARATION', text: 'Full polish, elite UI, global intelligence globe. Preparing for first subscribers.' },
+  { date: '2026', title: 'LAUNCH', text: 'Maddex goes live. The terminal Australian investors have always deserved.' },
+]
+
+const PHILOSOPHY = [
+  "We don't believe in information asymmetry.",
+  'Retail investors deserve institutional tools.',
+  'General information, transparently delivered.',
+]
+
+function TimelineItem({ item, index }) {
+  const isRight = index % 2 === 1
+  const content = (
+    <div className={isRight ? 'pl-8 md:pl-10' : 'pl-8 md:pl-0 md:pr-10 md:text-right'}>
+      <div className="font-mono text-[11px] text-gold tracking-[0.15em]">
+        {item.date} — {item.title}
+      </div>
+      <p className="font-sans text-[14px] text-text-muted leading-[1.7] mt-2">{item.text}</p>
+    </div>
+  )
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.3 }}
+      className="relative grid grid-cols-1 md:grid-cols-2 md:gap-10"
+    >
+      <span
+        className="absolute left-[7px] md:left-1/2 top-1 md:top-1.5 w-3 h-3 rounded-full bg-gold -translate-x-1/2"
+        style={{ boxShadow: '0 0 0 3px #0B1628, 0 0 0 4px rgba(201,168,76,0.3)' }}
+      />
+      {isRight ? (
+        <>
+          <div className="hidden md:block" />
+          {content}
+        </>
+      ) : (
+        <>
+          {content}
+          <div className="hidden md:block" />
+        </>
+      )}
+    </motion.div>
+  )
+}
+
 const VENTURES = [
   {
     name: 'Maddex',
@@ -135,6 +187,46 @@ export default function About() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 3b. TIMELINE */}
+      <section className="bg-bg-surface py-16 px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <SectionLabel center>THE MADDEX STORY</SectionLabel>
+          <h2 className="font-sans text-[28px] md:text-[42px] font-bold text-text-primary max-w-2xl mx-auto leading-[1.15]">
+            From frustration to first subscribers.
+          </h2>
+          <div className="relative max-w-[760px] mx-auto mt-16">
+            <div
+              className="absolute left-[7px] md:left-1/2 top-0 bottom-0 w-px md:-translate-x-1/2"
+              style={{ background: 'rgba(201,168,76,0.25)' }}
+            />
+            <div className="flex flex-col gap-12">
+              {TIMELINE.map((item, i) => (
+                <TimelineItem key={item.title} item={item} index={i} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3c. PHILOSOPHY */}
+      <section className="bg-bg-primary py-16 px-6 md:px-10">
+        <div className="max-w-[720px] mx-auto flex flex-col gap-10">
+          {PHILOSOPHY.map((quote) => (
+            <motion.p
+              key={quote}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.3 }}
+              className="text-center pt-6 font-sans text-[22px] md:text-[30px] font-bold text-text-primary leading-tight"
+              style={{ borderTop: '1px solid rgba(201,168,76,0.3)' }}
+            >
+              {quote}
+            </motion.p>
+          ))}
         </div>
       </section>
 

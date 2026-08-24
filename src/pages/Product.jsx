@@ -6,6 +6,7 @@ import Navigation from '../components/layout/Navigation'
 import Footer from '../components/layout/Footer'
 import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
+import GoldButton from '../components/shared/GoldButton'
 import TerminalCard from '../components/shared/TerminalCard'
 
 function MiniHeader({ label, right, accent }) {
@@ -68,165 +69,23 @@ function MarketsMiniVisual() {
   )
 }
 
-function FearGreedGauge({ value }) {
-  const r = 16
-  const cx = 18
-  const cy = 18
-  const angle = (value / 100) * 180
-  const rad = (Math.PI / 180) * (180 - angle)
-  const x = cx + r * Math.cos(rad)
-  const y = cy - r * Math.sin(rad)
-  const large = angle > 180 ? 1 : 0
-  return (
-    <svg width="36" height="20" viewBox="0 0 36 20">
-      <path d="M2,18 A16,16 0 0 1 34,18" fill="none" stroke="rgba(30,70,140,0.3)" strokeWidth="3.5" strokeLinecap="round" />
-      <path d={`M2,18 A16,16 0 ${large} 1 ${x},${y}`} fill="none" stroke="#C9A84C" strokeWidth="3.5" strokeLinecap="round" />
-    </svg>
-  )
-}
-
-function CryptoMiniVisual() {
-  const coins = [
-    ['₿', 'BTC', 'A$162,400', '+1.80%', true],
-    ['Ξ', 'ETH', 'A$6,124', '+2.10%', true],
-    ['✕', 'XRP', 'A$2.31', '+0.90%', true],
-  ]
+function MaddenAIMiniVisual() {
   return (
     <MiniShell>
-      <MiniHeader label="CRYPTO · TOP 20" right="68 BULLISH" accent="gain" />
-      <div className="flex flex-col gap-1.5 p-3">
-        {coins.map(([logo, sym, price, chg, pos]) => (
-          <div key={sym} className="flex items-center gap-2 bg-bg-surface rounded-sm px-2 py-1.5">
-            <span className="w-5 h-5 rounded-full bg-gold/15 text-gold flex items-center justify-center font-mono text-[10px] font-bold shrink-0">{logo}</span>
-            <span className="font-mono text-[10px] text-text-primary flex-1">{sym}</span>
-            <span className="font-mono text-[10px] text-text-primary">{price}</span>
-            <span className={`font-mono text-[9px] w-11 text-right shrink-0 ${pos ? 'text-gain' : 'text-loss'}`}>{chg}</span>
-          </div>
-        ))}
-      </div>
-      <div className="px-3 pb-3 flex items-center gap-3">
-        <FearGreedGauge value={42} />
-        <div>
-          <div className="font-mono text-[7px] text-text-muted tracking-[0.08em]">FEAR &amp; GREED</div>
-          <div className="font-mono text-[13px] text-text-primary font-bold leading-none mt-0.5">42</div>
-        </div>
-      </div>
-    </MiniShell>
-  )
-}
-
-function RbaStepChart() {
-  const w = 200
-  const h = 56
-  const pts = [
-    { year: '2022', rate: 3.10 },
-    { year: '2023', rate: 4.35 },
-    { year: '2025', rate: 3.60 },
-    { year: '2026', rate: 4.35 },
-  ]
-  const xs = pts.map((_, i) => 8 + i * ((w - 16) / (pts.length - 1)))
-  const min = 2.8
-  const max = 4.6
-  const y = (r) => h - 14 - ((r - min) / (max - min)) * (h - 24)
-  let path = `M${xs[0]},${y(pts[0].rate)}`
-  for (let i = 1; i < pts.length; i++) {
-    path += ` L${xs[i]},${y(pts[i - 1].rate)} L${xs[i]},${y(pts[i].rate)}`
-  }
-  return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
-      <path d={path} fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
-      {pts.map((p, i) => (
-        <g key={p.year}>
-          <circle cx={xs[i]} cy={y(p.rate)} r="2.5" fill="#C9A84C" />
-          <text x={xs[i]} y={h - 2} fill="#4A6080" fontSize="7" fontFamily="IBM Plex Mono, monospace" textAnchor="middle">{p.year}</text>
-        </g>
-      ))}
-    </svg>
-  )
-}
-
-function RatesMiniVisual() {
-  return (
-    <MiniShell>
-      <MiniHeader label="RATES · RBA CASH RATE" />
-      <div className="flex-1 flex items-center justify-center py-3">
-        <RbaStepChart />
-      </div>
-      <div className="px-3 pb-3">
-        <div className="bg-bg-surface rounded-sm text-center py-2">
-          <div className="font-mono text-[18px] font-bold text-gold leading-none">4.35%</div>
-          <div className="font-mono text-[7px] text-text-muted mt-1 tracking-[0.08em]">CURRENT RATE</div>
-        </div>
-      </div>
-      <div className="font-mono text-[8px] text-gold px-3 py-2 truncate" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
-        NEXT DECISION {rbaDateLabel} · {rbaDaysRemaining}D
-      </div>
-    </MiniShell>
-  )
-}
-
-function MacroMiniVisual() {
-  return (
-    <MiniShell>
-      <MiniHeader label="MACRO · RBA DASHBOARD" />
-      <div className="text-center py-4">
-        <div className="font-mono text-[26px] font-bold text-gold leading-none">4.35%</div>
-        <div className="font-mono text-[8px] text-text-muted mt-1.5 tracking-[0.05em]">CASH RATE — HELD</div>
-      </div>
-      <div className="grid grid-cols-3 gap-2 px-3 pb-3">
-        {[['CPI', '3.6%'], ['UE', '4.1%'], ['GDP', '1.5%']].map(([l, v]) => (
-          <div key={l} className="bg-bg-surface rounded-sm py-2 text-center">
-            <div className="font-mono text-[7px] text-text-muted">{l}</div>
-            <div className="font-mono text-[11px] text-text-primary font-bold mt-0.5">{v}</div>
-          </div>
-        ))}
-      </div>
-      <div className="font-mono text-[8px] text-gold px-3 py-2" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
-        CHINA PMI 50.4 ▲ · IRON ORE 102Mt
-      </div>
-    </MiniShell>
-  )
-}
-
-function NewsMiniVisual() {
-  const rows = [
-    ['ASX', 'BHP rises on iron ore data', '2m ago', '#2D8A50'],
-    ['MACRO', 'RBA holds at 4.35%', '1h ago', '#C9A84C'],
-    ['CRYPTO', 'XRP up 0.9% — CLARITY Act', '3h ago', '#2D8A50'],
-  ]
-  return (
-    <MiniShell>
-      <MiniHeader label="NEWS · LIVE FEED" />
-      <div className="flex flex-col gap-2.5 p-3">
-        {rows.map(([tag, text, time, color]) => (
-          <div key={text} className="flex items-start gap-2">
-            <span className="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: color }} />
-            <div className="flex-1 min-w-0">
-              <span className="font-mono text-[7px] text-gold mr-1">[{tag}]</span>
-              <span className="font-sans text-[10px] text-text-primary">{text}</span>
-              <div className="font-mono text-[7px] text-text-faint mt-0.5">{time}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </MiniShell>
-  )
-}
-
-function WatchlistMiniVisual() {
-  return (
-    <MiniShell>
-      <MiniHeader label="MADDENAI · YOUR WATCHLIST" />
-      <div className="p-3 flex flex-col gap-2">
-        <div className="self-end bg-gold/10 border border-gold/25 rounded px-2.5 py-1.5 font-mono text-[9px] text-text-primary max-w-[80%]">
-          BHP analysis?
+      <MiniHeader label="MADDENAI ANALYST" />
+      <div className="p-3 flex flex-col gap-2.5 flex-1">
+        <div className="self-end bg-gold/10 border border-gold/25 rounded px-2.5 py-1.5 font-mono text-[9px] text-text-primary max-w-[85%]">
+          BHP outlook for Q4?
         </div>
         <div className="font-mono text-[9px] text-text-muted leading-[1.6]">
-          <span className="text-gold">AI · </span>BHP +1.27% on iron ore strength. Volume 1.4x average, holding above the 50-day MA.
+          <span className="text-gold">AI · </span>
+          Bias BULLISH. Iron ore at US$98/t supports the earnings thesis. Watch A$44.50 resistance...
         </div>
-        <div className="flex gap-1.5 mt-1">
-          {[['BIAS', 'BULLISH'], ['CONF', '78%']].map(([k, v]) => (
-            <span key={k} className="font-mono text-[7px] text-gold border border-gold/30 rounded-full px-2 py-0.5">{k}: {v}</span>
+        <div className="flex gap-1.5 mt-auto flex-wrap">
+          {[['BIAS', 'BULLISH'], ['CONF', '76%'], ['HORIZON', '1M']].map(([k, v]) => (
+            <span key={k} className="font-mono text-[7px] text-gold border border-gold/30 rounded-full px-2 py-0.5">
+              {k}: {v}
+            </span>
           ))}
         </div>
       </div>
@@ -262,7 +121,7 @@ const globalCityByName = (name) => GLOBAL_CITIES.find((c) => c.name === name)
 
 function GlobalMap() {
   return (
-    <svg viewBox="0 0 800 400" className="w-full h-full">
+    <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" className="w-full h-full">
       {GLOBAL_CONTINENTS.map((d, i) => (
         <path key={i} d={d} fill="rgba(30,70,140,0.28)" stroke="rgba(30,70,140,0.55)" strokeWidth="1.5" strokeLinejoin="round" />
       ))}
@@ -285,7 +144,7 @@ function GlobalMiniVisual() {
   return (
     <MiniShell>
       <MiniHeader label="GLOBAL INTELLIGENCE" right="18/50 OPEN" />
-      <div className="flex-1 flex items-center justify-center p-2" style={{ minHeight: 110 }}>
+      <div className="flex-1 overflow-hidden flex items-center justify-center p-2" style={{ minHeight: 110 }}>
         <GlobalMap />
       </div>
       <div className="grid grid-cols-3 divide-x divide-[rgba(30,70,140,0.25)] border-t border-[rgba(30,70,140,0.25)]">
@@ -296,6 +155,209 @@ function GlobalMiniVisual() {
           </div>
         ))}
       </div>
+    </MiniShell>
+  )
+}
+
+function YieldCurveChart() {
+  const w = 200
+  const h = 66
+  const labels = ['1Y', '2Y', '5Y', '10Y', '30Y']
+  const auRates = [3.85, 3.95, 4.15, 4.35, 4.42]
+  const usRates = [4.05, 4.15, 4.28, 4.40, 4.45]
+  const min = 3.7
+  const max = 4.6
+  const xs = labels.map((_, i) => 10 + i * ((w - 20) / (labels.length - 1)))
+  const y = (r) => h - 16 - ((r - min) / (max - min)) * (h - 24)
+  const pathFor = (rates) => rates.map((r, i) => `${i === 0 ? 'M' : 'L'}${xs[i]},${y(r)}`).join(' ')
+  return (
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
+      <path d={pathFor(usRates)} fill="none" stroke="#4A90D9" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={pathFor(auRates)} fill="none" stroke="#C9A84C" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+      {labels.map((l, i) => (
+        <text key={l} x={xs[i]} y={h - 3} fill="#4A6080" fontSize="7" fontFamily="IBM Plex Mono, monospace" textAnchor="middle">{l}</text>
+      ))}
+    </svg>
+  )
+}
+
+function RatesFxVisual() {
+  return (
+    <MiniShell>
+      <MiniHeader label="RATES · YIELD CURVE" />
+      <div className="flex-1 flex items-center justify-center pt-2">
+        <YieldCurveChart />
+      </div>
+      <div className="flex justify-center gap-4 font-mono text-[8px] pb-1.5">
+        <span style={{ color: '#C9A84C' }}>● AU 4.42%</span>
+        <span style={{ color: '#4A90D9' }}>● US 4.45%</span>
+      </div>
+      <div className="grid grid-cols-2 gap-1.5 px-3 pb-3">
+        {[['AUD/USD', '0.6520'], ['AUD/JPY', '96.84']].map(([pair, val]) => (
+          <div key={pair} className="bg-bg-surface rounded-sm text-center py-1.5">
+            <div className="font-mono text-[7px] text-text-muted">{pair}</div>
+            <div className="font-mono text-[11px] text-text-primary font-bold mt-0.5">{val}</div>
+          </div>
+        ))}
+      </div>
+    </MiniShell>
+  )
+}
+
+function SemiGauge({ value, color }) {
+  const r = 21
+  const cx = 26
+  const cy = 25
+  const angle = (value / 100) * 180
+  const rad = (Math.PI / 180) * (180 - angle)
+  const x = cx + r * Math.cos(rad)
+  const y = cy - r * Math.sin(rad)
+  const large = angle > 180 ? 1 : 0
+  return (
+    <svg width="52" height="28" viewBox="0 0 52 28">
+      <path d={`M${cx - r},${cy} A${r},${r} 0 0 1 ${cx + r},${cy}`} fill="none" stroke="rgba(30,70,140,0.3)" strokeWidth="4" strokeLinecap="round" />
+      <path d={`M${cx - r},${cy} A${r},${r} 0 ${large} 1 ${x},${y}`} fill="none" stroke={color} strokeWidth="4" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+function MacroGaugesVisual() {
+  const gauges = [
+    { label: 'GDP GROWTH', value: 40, display: '1.2%', color: '#C9A84C' },
+    { label: 'INFLATION', value: 60, display: '3.8%', color: '#A83232' },
+    { label: 'UNEMPLOYMENT', value: 35, display: '4.2%', color: '#2D8A50' },
+  ]
+  return (
+    <MiniShell>
+      <MiniHeader label="MACRO · KEY INDICATORS" />
+      <div className="flex-1 grid grid-cols-3 gap-1 items-end px-2 pt-4">
+        {gauges.map((g) => (
+          <div key={g.label} className="flex flex-col items-center">
+            <SemiGauge value={g.value} color={g.color} />
+            <div className="font-mono text-[12px] font-bold mt-1" style={{ color: g.color }}>{g.display}</div>
+            <div className="font-mono text-[6.5px] text-text-muted tracking-[0.05em] mt-0.5 text-center">{g.label}</div>
+          </div>
+        ))}
+      </div>
+      <div className="font-mono text-[8px] text-gold px-3 py-2 mt-1" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
+        REGIME: LATE-CYCLE EXPANSION
+      </div>
+    </MiniShell>
+  )
+}
+
+function MiniSparkline({ color, points }) {
+  const w = 40
+  const h = 16
+  const max = Math.max(...points)
+  const min = Math.min(...points)
+  const range = max - min || 1
+  const coords = points
+    .map((p, i) => `${(i / (points.length - 1)) * w},${h - ((p - min) / range) * h}`)
+    .join(' ')
+  return (
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`}>
+      <polyline points={coords} fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function CryptoMiniVisual() {
+  const coins = [
+    ['₿', 'BTC', 'A$92,285', '+0.52%', true, [40, 44, 42, 48, 46, 52, 55]],
+    ['Ξ', 'ETH', 'A$2,679', '+1.43%', true, [30, 32, 29, 35, 38, 36, 42]],
+    ['✕', 'XRP', 'A$1.57', '+0.90%', true, [48, 46, 50, 47, 52, 50, 54]],
+  ]
+  return (
+    <MiniShell>
+      <MiniHeader label="CRYPTO · TOP 20" right="68 BULLISH" accent="gain" />
+      <div className="flex flex-col gap-1.5 p-3">
+        {coins.map(([logo, sym, price, chg, pos, spark]) => (
+          <div key={sym} className="flex items-center gap-2 bg-bg-surface rounded-sm px-2 py-1.5">
+            <span className="w-5 h-5 rounded-full bg-gold/15 text-gold flex items-center justify-center font-mono text-[10px] font-bold shrink-0">{logo}</span>
+            <span className="font-mono text-[10px] text-text-primary flex-1">{sym}</span>
+            <span className="font-mono text-[10px] text-text-primary">{price}</span>
+            <span className={`font-mono text-[9px] w-11 text-right shrink-0 ${pos ? 'text-gain' : 'text-loss'}`}>{chg}</span>
+            <MiniSparkline color={pos ? '#2D8A50' : '#A83232'} points={spark} />
+          </div>
+        ))}
+      </div>
+      <div className="px-3 pb-3 flex items-center gap-3">
+        <SemiGauge value={42} color="#A83232" />
+        <div>
+          <div className="font-mono text-[7px] text-text-muted tracking-[0.08em]">FEAR &amp; GREED</div>
+          <div className="font-mono text-[13px] text-text-primary font-bold leading-none mt-0.5">
+            42 <span className="text-[9px] text-loss font-normal">FEAR</span>
+          </div>
+        </div>
+      </div>
+    </MiniShell>
+  )
+}
+
+function NewsMiniVisual() {
+  const rows = [
+    ['ASX', 'BHP rises on iron ore surge', '2m ago', '#2D8A50'],
+    ['MACRO', 'RBA holds at 4.35%', '1h ago', '#C9A84C'],
+    ['CRYPTO', 'XRP rallies on CLARITY Act', '3h ago', '#2D8A50'],
+  ]
+  return (
+    <MiniShell>
+      <MiniHeader label="NEWS · LIVE FEED" />
+      <div className="flex flex-col gap-2.5 p-3">
+        {rows.map(([tag, text, time, color]) => (
+          <div key={text} className="flex items-start gap-2">
+            <span className="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: color }} />
+            <div className="flex-1 min-w-0">
+              <span className="font-mono text-[7px] text-gold mr-1">[{tag}]</span>
+              <span className="font-sans text-[10px] text-text-primary">{text}</span>
+              <div className="font-mono text-[7px] text-text-faint mt-0.5">{time}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-1.5 px-3 pb-3">
+        {['#IronOre', '#RBA', '#XRP'].map((tag) => (
+          <span key={tag} className="font-mono text-[7px] text-gold border border-gold/25 rounded-full px-2 py-0.5">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </MiniShell>
+  )
+}
+
+function RangeBar({ pct, color }) {
+  return (
+    <div className="w-14 h-1.5 rounded-full bg-[rgba(30,70,140,0.3)] overflow-hidden shrink-0">
+      <div className="h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
+    </div>
+  )
+}
+
+function WatchlistMiniVisual() {
+  const rows = [
+    ['BHP', 'A$43.21', '+1.27%', true, 55],
+    ['CBA', 'A$168.45', '-0.72%', false, 80],
+    ['XRO', 'A$148.20', '+1.44%', true, 55],
+    ['AAPL', 'US$308.74', '+0.71%', true, 90],
+  ]
+  return (
+    <MiniShell>
+      <MiniHeader label="WATCHLIST · 4 HOLDINGS" />
+      <div className="flex flex-col gap-1.5 p-3">
+        {rows.map(([sym, price, chg, pos, pct]) => (
+          <div key={sym} className="flex items-center gap-2">
+            <span className="font-mono text-[9px] text-text-primary font-bold w-10 shrink-0">{sym}</span>
+            <span className="font-mono text-[9px] text-text-muted flex-1">{price}</span>
+            <span className={`font-mono text-[9px] w-12 text-right shrink-0 ${pos ? 'text-gain' : 'text-loss'}`}>
+              {pos ? '▲' : '▼'}{chg}
+            </span>
+            <RangeBar pct={pct} color={pos ? '#2D8A50' : '#A83232'} />
+          </div>
+        ))}
+      </div>
+      <div className="font-mono text-[7px] text-text-faint px-3 pb-3 tracking-[0.05em]">52-WEEK RANGE POSITION</div>
     </MiniShell>
   )
 }
@@ -323,17 +385,6 @@ function KeyStats({ stats }) {
   )
 }
 
-// RBA meets on published dates — computed from today rather than a fixed
-// date + "days remaining" that both go wrong the moment the meeting passes.
-const RBA_MEETINGS_2026 = ['2026-09-16', '2026-11-04', '2026-12-09']
-const nextRbaMeeting = RBA_MEETINGS_2026
-  .map((d) => new Date(`${d}T00:00:00`))
-  .find((d) => d.getTime() > Date.now())
-const rbaDaysRemaining = nextRbaMeeting ? Math.ceil((nextRbaMeeting - Date.now()) / 86400000) : null
-const rbaDateLabel = nextRbaMeeting
-  ? nextRbaMeeting.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' }).toUpperCase()
-  : ''
-
 function ModuleIcon({ children }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" className="w-9 h-9 md:w-10 md:h-10 text-gold shrink-0">
@@ -348,10 +399,16 @@ const MODULE_ICONS = {
       <path d="M4 19V5M4 19h16M8 15l3-4 3 2 4-6" strokeLinecap="round" strokeLinejoin="round" />
     </ModuleIcon>
   ),
-  crypto: (
+  maddenai: (
+    <ModuleIcon>
+      <rect x="7" y="7" width="10" height="10" rx="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1" strokeLinecap="round" />
+    </ModuleIcon>
+  ),
+  global: (
     <ModuleIcon>
       <circle cx="12" cy="12" r="9" />
-      <path d="M9.5 15.5c0-1.4 1.1-2 2.5-2s2.5-.7 2.5-2-1.1-2-2.5-2-2.5.6-2.5 2M12 7v1.5M12 15.5V17" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M3 12h18M12 3c2.5 2.5 4 6 4 9s-1.5 6.5-4 9c-2.5-2.5-4-6-4-9s1.5-6.5 4-9Z" strokeLinecap="round" strokeLinejoin="round" />
     </ModuleIcon>
   ),
   rates: (
@@ -367,6 +424,12 @@ const MODULE_ICONS = {
       <path d="M19 5 5 19" strokeLinecap="round" />
     </ModuleIcon>
   ),
+  crypto: (
+    <ModuleIcon>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 15.5c0-1.4 1.1-2 2.5-2s2.5-.7 2.5-2-1.1-2-2.5-2-2.5.6-2.5 2M12 7v1.5M12 15.5V17" strokeLinecap="round" strokeLinejoin="round" />
+    </ModuleIcon>
+  ),
   news: (
     <ModuleIcon>
       <rect x="4" y="4" width="16" height="16" rx="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -379,77 +442,120 @@ const MODULE_ICONS = {
       <path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18" strokeLinecap="round" strokeLinejoin="round" />
     </ModuleIcon>
   ),
-  global: (
-    <ModuleIcon>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M3 12h18M12 3c2.5 2.5 4 6 4 9s-1.5 6.5-4 9c-2.5-2.5-4-6-4-9s1.5-6.5 4-9Z" strokeLinecap="round" strokeLinejoin="round" />
-    </ModuleIcon>
-  ),
 }
 
 const MODULES = [
   {
     key: 'markets',
     stats: ['9 INDICES', '200+ STOCKS', '11 SECTORS', '60s REFRESH'],
-    title: 'Markets Module',
+    title: 'Real-time global markets',
     icon: MODULE_ICONS.markets,
-    body: 'ASX 200 as the primary index, alongside 9 global indices and full 11-sector GICS breakdown — refreshed continuously and scored by MaddenAI sentiment for context, not just numbers.',
-    features: ['9 global indices tracked live', 'Full ASX 200 constituent list', '11 GICS sector heatmap', 'MaddenAI sentiment overlay'],
+    body: 'ASX 200 as the primary index, alongside nine global benchmarks and a full sector breadth heatmap — refreshed continuously, so you see the whole market, not just headline numbers.',
+    features: [
+      'ASX 200, S&P 500, NASDAQ, FTSE, Nikkei + more',
+      'Sector heatmap with advance/decline breadth',
+      'Top movers with P/E, volume, market cap',
+      'Interactive charts with drawing tools',
+    ],
     visual: <MarketsMiniVisual />,
   },
   {
-    key: 'crypto',
-    stats: ['TOP 20 AUD', '5-FACTOR SCORE', 'LIVE COINGECKO', '30s REFRESH'],
-    title: 'Crypto Module',
-    icon: MODULE_ICONS.crypto,
-    body: 'Top 20 assets by market cap in AUD, sourced live from CoinGecko, with the MaddenAI Crypto Momentum Index and Fear & Greed tracking — built for investors who treat crypto as a real allocation.',
-    features: ['Top 20 by AUD market cap', 'MaddenAI Momentum Index', 'Fear & Greed reading', 'BTC dominance tracking'],
-    visual: <CryptoMiniVisual />,
-  },
-  {
-    key: 'rates',
-    stats: ['10 AUD PAIRS', '8 BOND TENORS', '10+ CENTRAL BANKS', '5min REFRESH'],
-    title: 'Rates Module',
-    icon: MODULE_ICONS.rates,
-    body: 'FX pairs sourced via the Frankfurter API, government bond yield curves, and central bank rates with the RBA as the primary reference rate — the macro plumbing most retail platforms skip entirely.',
-    features: ['10 AUD currency pairs', 'AU Government Bond yield curve', '10+ central bank policy rates', 'Rate decision countdowns'],
-    visual: <RatesMiniVisual />,
-  },
-  {
-    key: 'macro',
-    stats: ['8 AU INDICATORS', 'RBA PRIMARY', 'CHINA WATCH', '30-DAY CALENDAR'],
-    title: 'Macro Module',
-    icon: MODULE_ICONS.macro,
-    body: 'A live RBA dashboard with cash rate, next meeting countdown, the eight Australian macro indicators that actually move markets, and a dedicated China Watch panel for commodity-linked demand signals.',
-    features: ['RBA cash rate + next meeting countdown', '8 Australian macro indicators', 'China Watch commodity linkage', '30-day economic calendar'],
-    visual: <MacroMiniVisual />,
-  },
-  {
-    key: 'news',
-    stats: ['28+ SOURCES', '9 CATEGORIES', '3min REFRESH', 'AI SENTIMENT'],
-    title: 'News Module',
-    icon: MODULE_ICONS.news,
-    body: '28+ sources filtered for financial relevance across 9 categories, refreshed every 3 minutes, with MaddenAI surfacing the themes that matter before they hit the front page.',
-    features: ['28+ curated sources', 'Financial relevance filter', '9 news categories', 'MaddenAI Key Themes daily'],
-    visual: <NewsMiniVisual />,
-  },
-  {
-    key: 'watchlist',
-    stats: ['UP TO 100 STOCKS', 'LIVE PRICES', 'SUPABASE SYNC', 'CSV EXPORT'],
-    title: 'Watchlist',
-    icon: MODULE_ICONS.watchlist,
-    body: 'Add any ASX or US stock, priced live via Yahoo Finance and Twelve Data, with full fundamental data synced through Supabase across every device you use.',
-    features: ['ASX + US ticker support', 'Live price tracking', 'Full fundamental data', 'Synced across all devices'],
-    visual: <WatchlistMiniVisual />,
+    key: 'maddenai',
+    stats: ['ANY ASSET', '5-PART READ', 'INSTANT ANALYSIS', 'CLAUDE SONNET 4.6'],
+    title: 'Your AI analyst',
+    icon: MODULE_ICONS.maddenai,
+    body: 'Ask anything about any stock, crypto, or macro question — MaddenAI reads the data and hands back a structured, professional read in seconds, not a wall of numbers.',
+    features: [
+      'Ask anything about any asset',
+      'Five-part structured analysis every time',
+      'Click any asset → instant analysis',
+      'General information only',
+    ],
+    visual: <MaddenAIMiniVisual />,
   },
   {
     key: 'global',
     stats: ['50+ EXCHANGES', '200+ COUNTRIES', '5 LAYERS', 'LIVE CHOKEPOINTS'],
-    title: 'Global Intelligence',
+    title: 'World-class global intelligence',
     icon: MODULE_ICONS.global,
-    body: 'A live 3D globe across 5 data layers covering 50+ exchanges, shipping chokepoints, and a 200+ country database — see geopolitical risk before it shows up in your portfolio.',
-    features: ['Live 3D global exchange map', '50+ exchanges tracked', 'Shipping chokepoint monitoring', '200+ country risk database'],
+    body: 'A live 3D globe across five data layers — see shipping routes, flight paths, and geopolitical risk before it shows up in your portfolio.',
+    features: [
+      'Interactive 3D globe with live data layers',
+      'Shipping routes, flight paths, seismic data',
+      'Country intelligence panels',
+      'Geopolitical risk scoring',
+    ],
     visual: <GlobalMiniVisual />,
+  },
+  {
+    key: 'rates',
+    stats: ['10 AUD PAIRS', '8 BOND TENORS', '10+ CENTRAL BANKS', '5min REFRESH'],
+    title: 'Interest rates & currency',
+    icon: MODULE_ICONS.rates,
+    body: 'Compare AU and US yield curves side by side, track ten major FX pairs against the dollar, and never miss an RBA decision.',
+    features: [
+      'Global central bank rates dashboard',
+      'AU and US yield curves compared',
+      '10 major FX pairs vs AUD',
+      'RBA policy tracker',
+    ],
+    visual: <RatesFxVisual />,
+  },
+  {
+    key: 'macro',
+    stats: ['12 INDICATORS', 'AI DAILY THEMES', 'AUTO CALENDAR', 'REGIME TRACKING'],
+    title: 'Macro intelligence',
+    icon: MODULE_ICONS.macro,
+    body: 'Twelve economic indicators in one dashboard, with MaddenAI surfacing the themes that actually move markets before they hit the headlines.',
+    features: [
+      '12 economic indicators dashboard',
+      'AI-generated daily macro themes',
+      'Economic calendar auto-updating',
+      'Macro regime indicator',
+    ],
+    visual: <MacroGaugesVisual />,
+  },
+  {
+    key: 'crypto',
+    stats: ['50+ COINS', 'AUD PRICING', 'FEAR & GREED', 'LIVE COINGECKO'],
+    title: 'Crypto intelligence',
+    icon: MODULE_ICONS.crypto,
+    body: 'Fifty-plus coins priced live in AUD, with the Fear & Greed Index and on-chain context most retail platforms leave out.',
+    features: [
+      '50+ coins with AUD dual pricing',
+      'Fear & Greed Index',
+      'BTC dominance tracker',
+      'On-chain context',
+    ],
+    visual: <CryptoMiniVisual />,
+  },
+  {
+    key: 'news',
+    stats: ['28+ SOURCES', '9 CATEGORIES', '3min REFRESH', 'AI SENTIMENT'],
+    title: 'Market intelligence',
+    icon: MODULE_ICONS.news,
+    body: '28+ sources filtered for relevance and scored for sentiment, with an AI morning briefing so you start the session already informed.',
+    features: [
+      'Live news with sentiment scoring',
+      'AI morning market briefing',
+      'Trending topics and market impact',
+      'Breaking news alerts',
+    ],
+    visual: <NewsMiniVisual />,
+  },
+  {
+    key: 'watchlist',
+    stats: ['UNLIMITED WATCHLIST', 'LIVE P&L', 'PRICE ALERTS', 'SUPABASE SYNC'],
+    title: 'Track what matters',
+    icon: MODULE_ICONS.watchlist,
+    body: 'Build an unlimited watchlist, track real P&L across your portfolio, and get price alerts the moment something moves — synced everywhere via Supabase.',
+    features: [
+      'Unlimited watchlist (Prime+)',
+      'Portfolio with P&L tracking',
+      'Price alerts via companion app',
+      'Supabase sync across devices',
+    ],
+    visual: <WatchlistMiniVisual />,
   },
 ]
 
@@ -464,23 +570,28 @@ export default function Product() {
       <Navigation />
 
       <section className="bg-bg-primary pt-[84px] pb-14 px-6 md:px-10 text-center">
-        <SectionLabel center>THE TERMINAL</SectionLabel>
+        <SectionLabel center>MADDEX TERMINAL</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
           className="font-sans text-[40px] md:text-[64px] font-bold leading-tight tracking-tight text-text-primary max-w-4xl mx-auto"
         >
-          Seven modules. Zero compromises.
+          Everything you need.
+          <br />
+          One terminal.
         </motion.h1>
         <p className="font-sans text-[17px] text-text-muted max-w-2xl mx-auto mt-5 leading-[1.75]">
-          Every screen in Maddex is built around one idea: give Australian investors the depth of a professional terminal without the professional price tag.
+          Eight professional modules, AI-powered analysis, global intelligence.
         </p>
+        <div className="mt-8">
+          <GoldButton to="/pricing">START FREE TRIAL</GoldButton>
+        </div>
       </section>
 
       <div className="bg-bg-surface">
         {MODULES.map((mod, i) => (
-          <section key={mod.key} className="relative py-12 md:py-14 px-6 md:px-10 border-b border-[rgba(30,70,140,0.2)] last:border-b-0">
+          <section key={mod.key} className="relative py-12 md:py-14 px-6 md:px-10 border-b border-[rgba(201,168,76,0.15)] last:border-b-0">
             <span
               className="absolute top-6 right-6 font-mono select-none pointer-events-none"
               style={{ fontSize: 9, color: '#3D5070' }}
@@ -489,11 +600,11 @@ export default function Product() {
             </span>
             <div
               className={`max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${
-                i % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''
+                i % 2 === 0 ? 'lg:[&>*:first-child]:order-2' : ''
               }`}
             >
               <motion.div
-                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+                initial={{ opacity: 0, x: i % 2 === 1 ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.2 }}
@@ -514,7 +625,7 @@ export default function Product() {
                 </div>
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, x: i % 2 === 0 ? 30 : -30 }}
+                initial={{ opacity: 0, x: i % 2 === 1 ? 30 : -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-100px' }}
                 transition={{ duration: 0.5, delay: 0.1 }}
@@ -560,7 +671,7 @@ export default function Product() {
       </section>
 
       <section className="bg-bg-surface py-14 md:py-16 px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
           <div>
             <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/30 rounded-full px-3 py-1 mb-4">
               iOS &amp; ANDROID · COMING 2027
@@ -591,10 +702,11 @@ export default function Product() {
               ))}
             </div>
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center">
             <div style={{
-              width: 220,
-              height: 440,
+              width: 200,
+              height: '100%',
+              minHeight: 400,
               borderRadius: 28,
               border: '2px solid rgba(201,168,76,0.3)',
               background: '#060D1A',

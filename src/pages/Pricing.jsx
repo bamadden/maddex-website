@@ -20,14 +20,18 @@ const FAQS = [
 ]
 
 function PlanCard({ plan, i, annual }) {
+  const [hovered, setHovered] = useState(false)
+  const isPrime = plan.popular
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: i * 0.05, duration: 0.4 }}
-      whileHover={{ y: -4, scale: plan.popular ? 1.015 : 1.01 }}
       className="relative rounded flex flex-col"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {plan.popular && (
         <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap z-10">
@@ -40,14 +44,21 @@ function PlanCard({ plan, i, annual }) {
         </span>
       )}
       <div
-        className={`relative overflow-hidden rounded p-6 transition-colors duration-200 flex flex-col flex-1 bg-bg-primary ${
-          plan.popular ? '' : 'border border-[rgba(201,168,76,0.15)] hover:border-gold/40'
-        }`}
-        style={{ minHeight: 480, ...(plan.popular ? {
-                background:
-                  'rgba(201,168,76,0.04) padding-box, linear-gradient(135deg, #C9A84C, rgba(201,168,76,0.3)) border-box',
-                border: '1px solid transparent',
-              } : {}) }}
+        className="relative overflow-hidden rounded p-6 flex flex-col flex-1"
+        style={{
+          minHeight: 480,
+          background: hovered ? '#0F1E35' : '#0B1628',
+          border: `1px solid ${
+            isPrime
+              ? (hovered ? 'rgba(201,168,76,0.8)' : 'rgba(201,168,76,0.4)')
+              : (hovered ? 'rgba(201,168,76,0.5)' : 'rgba(201,168,76,0.15)')
+          }`,
+          transform: hovered ? `translateY(-4px)${isPrime ? ' scale(1.015)' : ''}` : 'translateY(0)',
+          boxShadow: hovered
+            ? (isPrime ? '0 12px 40px rgba(201,168,76,0.18)' : '0 8px 32px rgba(201,168,76,0.1)')
+            : 'none',
+          transition: 'all 0.2s ease',
+        }}
       >
         {plan.popular && (
           <div
