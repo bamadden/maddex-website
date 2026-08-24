@@ -27,30 +27,56 @@ const SOCIAL_LINKS = [
   },
 ]
 
-const PRE_FOOTER_ITEMS = [
-  { symbol: 'ASX 200', price: '8,412.40', change: '+0.42%', positive: true },
-  { symbol: 'BTC/AUD', price: 'A$162,400', change: '+1.80%', positive: true },
-  { symbol: 'AUD/USD', price: '0.6452', change: '-0.12%', positive: false },
-  { symbol: 'GOLD', price: 'A$4,821', change: '+0.30%', positive: true },
+const TICKER_ITEMS = [
+  'ASX 200  ▲ 0.42%  8,247',
+  'BHP  ▲ 1.27%  A$43.21',
+  'CBA  ▼ 0.72%  A$168.45',
+  'S&P 500  ▲ 0.32%  5,842',
+  'NVDA  ▲ 2.85%  US$138.42',
+  'XRP  ▲ 0.90%  A$1.57',
+  'BTC  ▲ 0.52%  A$92,285',
+  'Gold  ▲ 0.80%  US$2,487',
+  'AUD/USD  0.6520  ▲',
+  'Iron Ore  US$98/t  ▲',
+  'RBA  4.35%  HOLD',
+  'MaddenAI  72 · BULLISH',
 ]
 
-function tickerItems(copy) {
-  return [
-    <span key={`${copy}-live`} className="font-mono text-[9px] text-gold flex items-center gap-1.5 shrink-0 pr-8">
-      <span className="w-1.5 h-1.5 rounded-full bg-gold blink-dot" />
-      LIVE
-    </span>,
-    ...PRE_FOOTER_ITEMS.map((item) => (
-      <span key={`${copy}-${item.symbol}`} className="font-mono text-[10px] text-text-muted flex items-center gap-1.5 shrink-0 pr-8">
-        <span className="text-gold font-semibold">{item.symbol}</span>
-        <span className="text-text-primary">{item.price}</span>
-        <span className={item.positive ? 'text-gain' : 'text-loss'}>
-          {item.positive ? '▲' : '▼'} {item.change}
-        </span>
-      </span>
-    )),
-    <span key={`${copy}-score`} className="font-mono text-[10px] text-gold shrink-0 pr-8">MaddenAI 72/100</span>,
-  ]
+function TickerBar() {
+  const tripled = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS]
+  return (
+    <div style={{
+      width: '100%',
+      overflow: 'hidden',
+      background: '#030912',
+      borderTop: '1px solid rgba(201,168,76,0.1)',
+      padding: '9px 0',
+    }}>
+      <div style={{
+        display: 'inline-flex',
+        gap: '56px',
+        animation: 'tickerMove 80s linear infinite',
+        willChange: 'transform',
+        whiteSpace: 'nowrap',
+      }}>
+        {tripled.map((item, i) => (
+          <span
+            key={i}
+            style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '10px',
+              color: '#637899',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              userSelect: 'none',
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default function Footer() {
@@ -60,12 +86,7 @@ export default function Footer() {
         className="h-px w-full"
         style={{ background: 'linear-gradient(to right, transparent, rgba(201,168,76,0.5), transparent)' }}
       />
-      <div className="h-9 bg-bg-elevated border-t border-b border-gold/15 overflow-hidden relative pl-6">
-        <div className="flex ticker-track h-full items-center" style={{ width: 'max-content' }}>
-          {tickerItems(0)}
-          {tickerItems(1)}
-        </div>
-      </div>
+      <TickerBar />
 
       <div
         className="px-6 md:px-10 py-8"

@@ -347,7 +347,7 @@ export default function MaddenAI() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[140px] pb-16 px-6 md:px-10 text-center">
         <SectionLabel center>MADDENAI ANALYST</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 8 }}

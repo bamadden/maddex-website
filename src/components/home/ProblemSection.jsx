@@ -122,26 +122,56 @@ export default function ProblemSection() {
           </div>
 
           <div
-            className="flex-1 flex flex-col mt-8 p-7"
-            style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--card-radius)' }}
+            className="flex-1 flex flex-col mt-8"
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--card-radius)', padding: 'var(--space-7, 28px)', height: '100%' }}
           >
-            <div className="font-mono text-[9px] tracking-[0.15em] text-gold">WHAT'S INCLUDED</div>
-            <div className="flex flex-col gap-3 mt-5">
+            <div style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '10px',
+              letterSpacing: '0.2em',
+              color: 'var(--gold)',
+              marginBottom: '4px',
+            }}>MARKET PULSE</div>
+
+            <div className="flex-1 flex flex-col justify-center">
               {[
-                '8 professional modules',
-                'Real-time ASX + global data',
-                'MaddenAI analyst',
-                'Global intelligence globe',
-                '7-day free trial',
+                { label: 'ASX 200', value: '8,247.3', change: '+0.42%', up: true },
+                { label: 'BHP.AX', value: 'A$43.21', change: '+1.27%', up: true },
+                { label: 'AUD/USD', value: '0.6520', change: '+0.18%', up: true },
+                { label: 'BTC', value: 'A$92,285', change: '+0.52%', up: true },
+                { label: 'Gold', value: 'US$2,487', change: '+0.8%', up: true },
+                { label: 'Iron Ore', value: 'US$98/t', change: '+2.3%', up: true },
               ].map((item) => (
-                <div key={item} className="flex items-center gap-2.5 font-sans text-[14px] text-text-muted">
-                  <span className="text-gold">✓</span>
-                  {item}
+                <div
+                  key={item.label}
+                  className="flex items-center justify-between"
+                  style={{ padding: '10px 0', borderBottom: '1px solid rgba(201,168,76,0.08)' }}
+                >
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '11px', color: '#8BA3C4' }}>
+                    {item.label}
+                  </span>
+                  <div style={{ textAlign: 'right' }}>
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', color: '#FFFFFF', marginRight: '8px' }}>
+                      {item.value}
+                    </span>
+                    <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '10px', color: item.up ? '#2D8A50' : '#A83232' }}>
+                      {item.up ? '▲' : '▼'} {item.change}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
-            <div className="mt-auto pt-6 font-sans text-[15px] font-bold text-text-primary">
-              From A$29/month
+
+            <div style={{
+              marginTop: '16px',
+              paddingTop: '12px',
+              borderTop: '1px solid rgba(201,168,76,0.1)',
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '9px',
+              color: '#4A6080',
+              letterSpacing: '0.1em',
+            }}>
+              DEMO DATA · LIVE ON SUBSCRIPTION
             </div>
           </div>
         </div>

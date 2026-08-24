@@ -66,6 +66,11 @@ body {
   100% { transform: translateX(-50%); }
 }
 
+@keyframes tickerMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-33.333333%); }
+}
+
 /* Referenced by inline `animation: pulse ...` styles in the hero terminal simulator */
 @keyframes pulse {
   0%, 100% { opacity: 1; }

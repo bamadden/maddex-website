@@ -16,9 +16,9 @@ const FOUNDER_DETAILS = [
 ]
 
 const STORY_PARAGRAPHS = [
-  "I was managing my own portfolio while working in finance, and kept hitting the same wall — the data and tools that actually give you an edge were either locked behind a Bloomberg terminal or simply didn't exist for retail investors.",
-  "Retail apps show you a price and a chart. That's not enough to make informed decisions. So I built what I wanted to use: a terminal that treats everyday investors like the sophisticated market participants they are.",
-  'Maddex is still early. But the direction is clear: institutional intelligence, everyday pricing, built by someone who uses it every day.',
+  "From early on, I was drawn to understanding how things work — economies, markets, the flow of capital across borders. That curiosity led me through a finance degree, into government work, and eventually to managing my own portfolio.",
+  "What I found was a gap. The information and tools that serious investors rely on — macro context, AI-powered analysis, institutional-grade data — were locked away. Retail investors were left with prices and charts, when what they needed was intelligence.",
+  'Maddex is built on the belief that access to quality financial information changes outcomes. One terminal. One source of truth. Everything an informed investor needs to make better decisions — at a price that makes sense.',
 ]
 
 const GAP_CARDS = [
@@ -44,26 +44,39 @@ const GAP_CARDS = [
 
 const VENTURES = [
   {
-    name: 'MADDEX',
+    name: 'Maddex',
     status: '● LIVE NOW',
     live: true,
-    desc: 'Financial intelligence terminal for everyday Australian investors.',
+    topBorder: '#C9A84C',
+    subtitle: 'FINANCIAL INTELLIGENCE TERMINAL',
+    desc: 'Real-time ASX and global market data, AI-powered analysis via MaddenAI, and global intelligence — in one professional terminal. Built for everyday Australian investors.',
+    stats: [
+      ['A$29/mo', 'CORE PLAN'],
+      ['8', 'MODULES'],
+      ['70+', 'MARKETS'],
+    ],
     footer: 'maddex.com.au',
     footerLink: true,
   },
   {
-    name: 'MADDEN CAPITAL',
+    name: 'Madden Capital',
     status: '◐ IN DEVELOPMENT',
     live: false,
-    desc: 'A private investment fund focused on long-term value creation across public markets and private opportunities.',
+    topBorder: 'rgba(201,168,76,0.4)',
+    subtitle: 'PRIVATE INVESTMENT',
+    desc: 'A private investment fund focused on long-term value creation across public markets, private credit, and emerging asset classes.',
+    pills: ['Public Markets', 'Private Credit', 'Alternatives'],
     footer: 'Est. future',
     footerLink: false,
   },
   {
-    name: 'MADDEN PHILANTHROPY',
+    name: 'Madden Philanthropy',
     status: '◐ IN DEVELOPMENT',
     live: false,
-    desc: 'A not-for-profit arm dedicated to financial literacy and access to quality financial education for all Australians.',
+    topBorder: 'rgba(201,168,76,0.4)',
+    subtitle: 'FINANCIAL EDUCATION',
+    desc: "A not-for-profit arm dedicated to financial literacy — because access to quality financial education shouldn't depend on where you grew up or what school you attended.",
+    mission: 'Financial knowledge for everyone.',
     footer: 'Est. future',
     footerLink: false,
   },
@@ -80,7 +93,7 @@ export default function About() {
       <Navigation />
 
       {/* 1. MISSION STATEMENT */}
-      <section className="bg-bg-primary pt-[84px] pb-20 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[140px] pb-20 px-6 md:px-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -110,7 +123,7 @@ export default function About() {
           >
             <SectionLabel>THE STORY</SectionLabel>
             <h2 className="font-sans text-[28px] md:text-[40px] font-bold tracking-[-0.02em] text-text-primary mt-3 leading-[1.15]">
-              Built out of frustration.
+              Built from a desire to know more.
             </h2>
             <div className="flex flex-col gap-5 mt-6">
               {STORY_PARAGRAPHS.map((para, i) => (
@@ -206,7 +219,13 @@ export default function About() {
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ delay: i * 0.06, duration: 0.2 }}
                 className="flex flex-col h-full"
-                style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--card-radius)', padding: 'var(--space-8)' }}
+                style={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
+                  borderTop: `3px solid ${v.topBorder}`,
+                  borderRadius: 'var(--card-radius)',
+                  padding: 'var(--space-8)',
+                }}
               >
                 <span
                   className="inline-flex items-center gap-1.5 font-mono text-[10px] font-bold tracking-[0.1em] w-fit"
@@ -214,12 +233,41 @@ export default function About() {
                 >
                   {v.status}
                 </span>
+                <h3 className="font-sans text-[20px] font-bold tracking-[-0.02em] text-text-primary mt-4">{v.name}</h3>
+                <div className="font-mono text-[11px] tracking-[0.1em] text-gold mt-1.5">{v.subtitle}</div>
                 <div className="mt-4 mb-4" style={{ height: 1, background: 'var(--border)' }} />
-                <h3 className="font-sans text-[17px] font-bold tracking-[-0.02em] text-text-primary">{v.name}</h3>
-                <p className="font-sans text-[13px] text-text-muted mt-3 leading-[1.7] flex-1">{v.desc}</p>
-                <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--border)' }}>
+                <p className="font-sans text-[13px] text-text-muted leading-[1.7]">{v.desc}</p>
+
+                {v.stats && (
+                  <div className="grid grid-cols-3 gap-3 mt-6">
+                    {v.stats.map(([value, label]) => (
+                      <div key={label}>
+                        <div className="font-mono text-[15px] font-bold text-gold">{value}</div>
+                        <div className="font-mono text-[8px] text-text-muted tracking-[0.08em] mt-1">{label}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {v.pills && (
+                  <div className="flex flex-wrap gap-1.5 mt-6">
+                    {v.pills.map((p) => (
+                      <span key={p} className="font-mono text-[10px] text-gold border border-gold/30 rounded-full px-2.5 py-1">
+                        {p}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {v.mission && (
+                  <p className="font-sans text-[13px] text-text-muted italic mt-6">
+                    "{v.mission}"
+                  </p>
+                )}
+
+                <div className="mt-auto pt-6" style={{ borderTop: '1px solid var(--border)' }}>
                   {v.footerLink ? (
-                    <a href="https://maddex.com.au" className="font-mono text-[11px] text-gold hover:opacity-70 transition-opacity">{v.footer}</a>
+                    <a href="https://maddex.com.au" className="font-mono text-[11px] text-gold hover:opacity-70 transition-opacity">→ {v.footer}</a>
                   ) : (
                     <span className="font-mono text-[11px] text-text-muted">{v.footer}</span>
                   )}

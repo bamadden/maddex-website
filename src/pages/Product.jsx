@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import TickerTape from '../components/layout/TickerTape'
@@ -67,6 +67,18 @@ function MarketsMiniVisual() {
             </div>
           ))}
         </div>
+        <div className="flex flex-col gap-1">
+          <div className="font-mono text-[7px] text-gold tracking-[0.1em]">TOP MOVERS</div>
+          {[
+            ['FMG', '+3.42%', 'A$18.92', '2.8x avg'],
+            ['NXT', '+2.18%', 'A$13.36', '1.9x avg'],
+          ].map(([sym, chg, price, vol]) => (
+            <div key={sym} className="flex items-center justify-between font-mono text-[8.5px]">
+              <span className="text-gain">▲ {sym} {chg}</span>
+              <span className="text-text-muted">{price} · Vol {vol}</span>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="flex items-center justify-between px-3.5 py-2.5" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
         <span className="font-mono text-[8px] text-text-muted tracking-[0.05em]">ASX 200 · 5D TREND</span>
@@ -103,6 +115,16 @@ function MaddenAIMiniVisual() {
               {k}: {v}
             </span>
           ))}
+        </div>
+        <div className="flex flex-col gap-1.5">
+          <div className="font-mono text-[7px] text-text-faint tracking-[0.1em]">QUICK PROMPTS</div>
+          <div className="flex flex-wrap gap-1.5">
+            {['ASX OUTLOOK', 'BHP', 'AUD/USD', 'IRON ORE'].map((p) => (
+              <span key={p} className="font-mono text-[7.5px] text-gold border border-gold/15 rounded-full px-2.5 py-1">
+                {p}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </MiniShell>
@@ -166,6 +188,18 @@ function GlobalMiniVisual() {
       <div className="flex-1 overflow-hidden flex items-center justify-center p-3" style={{ minHeight: 160 }}>
         <GlobalMap />
       </div>
+      <div className="flex items-center justify-between px-3.5 py-2" style={{ borderTop: '1px solid rgba(201,168,76,0.12)' }}>
+        <span className="font-mono text-[8.5px] tracking-[0.02em]">
+          <span className="text-gain">🟢 ASX</span>
+          <span className="text-text-muted"> · </span>
+          <span className="text-loss">🔴 NYSE</span>
+          <span className="text-text-muted"> · </span>
+          <span className="text-loss">🔴 LSE</span>
+          <span className="text-text-muted"> · </span>
+          <span className="text-gain">🟢 TSE</span>
+        </span>
+        <span className="font-mono text-[7.5px] text-text-faint">2 of 8 exchanges open</span>
+      </div>
       <div className="grid grid-cols-3 divide-x divide-[rgba(201,168,76,0.15)] border-t border-[rgba(201,168,76,0.15)]">
         {[['70+', 'MARKETS'], ['24/7', 'COVERAGE'], ['LIVE', 'INTEL']].map(([v, l]) => (
           <div key={l} className="text-center py-3">
@@ -210,6 +244,11 @@ function RatesFxVisual() {
       <div className="flex justify-center gap-4 font-mono text-[9px] pb-2">
         <span style={{ color: '#C9A84C' }}>● AU 4.42%</span>
         <span style={{ color: '#8BA3C4' }}>● US 4.45%</span>
+      </div>
+      <div className="flex justify-center gap-4 font-mono text-[8px] text-text-muted pb-2">
+        <span>RBA <span className="text-text-primary font-bold">4.35%</span></span>
+        <span>Fed <span className="text-text-primary font-bold">4.50%</span></span>
+        <span>ECB <span className="text-text-primary font-bold">2.00%</span></span>
       </div>
       <div className="grid grid-cols-3 gap-1.5 px-3.5 pb-3.5">
         {[['AUD/USD', '0.6520'], ['AUD/JPY', '96.84'], ['RBA CASH', '4.35%']].map(([pair, val]) => (
@@ -264,6 +303,9 @@ function MacroGaugesVisual() {
               <div className="font-mono text-[7px] text-text-muted tracking-[0.05em] mt-0.5 text-center">{g.label}</div>
             </div>
           ))}
+        </div>
+        <div className="font-mono text-[8px] text-gold tracking-[0.1em] text-center">
+          RBA DECISION · 16 SEP · 25 DAYS
         </div>
         <div className="flex flex-col gap-1.5 px-3.5">
           {indicators.map(([label, val, chg, pos]) => (
@@ -331,6 +373,22 @@ function CryptoMiniVisual() {
             </div>
           </div>
         </div>
+        <div className="flex flex-col gap-1.5">
+          <div className="font-mono text-[7px] text-text-faint tracking-[0.1em]">MARKET DOMINANCE</div>
+          {[
+            ['BTC', 58.4, '#C9A84C'],
+            ['ETH', 10.4, '#8BA3C4'],
+            ['Others', 31.2, '#4A6080'],
+          ].map(([label, pct, color]) => (
+            <div key={label} className="flex items-center gap-2">
+              <span className="font-mono text-[8px] text-text-muted w-12 shrink-0">{label}</span>
+              <div className="h-1.5 rounded-full flex-1 overflow-hidden" style={{ background: 'rgba(201,168,76,0.1)' }}>
+                <div className="h-full rounded-full" style={{ width: `${pct}%`, background: color }} />
+              </div>
+              <span className="font-mono text-[8px] text-text-primary w-10 text-right shrink-0">{pct}%</span>
+            </div>
+          ))}
+        </div>
       </div>
     </MiniShell>
   )
@@ -368,8 +426,8 @@ function NewsMiniVisual() {
         </div>
         <div>
           <div className="flex items-center justify-between font-mono text-[7px] text-text-muted mb-1">
-            <span>SENTIMENT</span>
-            <span className="text-gain">62% POSITIVE</span>
+            <span className="text-gain">BULLISH</span>
+            <span className="text-gain">62%</span>
           </div>
           <div className="h-1.5 rounded-full overflow-hidden flex" style={{ background: 'rgba(168,50,50,0.3)' }}>
             <div className="h-full" style={{ width: '62%', background: '#2D8A50' }} />
@@ -643,6 +701,132 @@ const MODULES = [
   },
 ]
 
+const CMD_QUERIES = [
+  {
+    text: 'BHP.AX',
+    results: [
+      ['STOCK', 'BHP GROUP · A$43.21 · ▲+1.27%'],
+      ['ACTION', 'Analyse BHP with MaddenAI'],
+      ['ACTION', 'Add BHP to watchlist'],
+    ],
+  },
+  {
+    text: 'AAPL',
+    results: [
+      ['STOCK', 'APPLE INC · US$308.74 · ▲+0.71%'],
+      ['ACTION', 'Analyse AAPL with MaddenAI'],
+      ['ACTION', 'Add AAPL to watchlist'],
+    ],
+  },
+  {
+    text: 'BTC',
+    results: [
+      ['CRYPTO', 'Bitcoin · A$92,285 · ▲+0.52%'],
+      ['ACTION', 'Analyse BTC with MaddenAI'],
+    ],
+  },
+  {
+    text: 'AUD/USD',
+    results: [
+      ['FX', 'AUD/USD · 0.6520 · ▲+0.18%'],
+      ['ACTION', 'View FX rates module'],
+    ],
+  },
+  {
+    text: 'iron ore outlook',
+    results: [
+      ['MADDENAI', 'Ask: "iron ore outlook"'],
+      ['DATA', 'Iron Ore Spot · US$98/t · ▲+2.3%'],
+    ],
+  },
+  {
+    text: 'RBA next move',
+    results: [
+      ['MADDENAI', 'Ask: "RBA next move"'],
+      ['DATA', 'RBA Cash Rate · 4.35% · HOLD expected'],
+    ],
+  },
+]
+
+function CommandBarDemo() {
+  const [queryIndex, setQueryIndex] = useState(0)
+  const [displayText, setDisplayText] = useState('')
+  const [showResults, setShowResults] = useState(false)
+
+  useEffect(() => {
+    let cancelled = false
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+    async function run() {
+      let i = queryIndex
+      while (!cancelled) {
+        const query = CMD_QUERIES[i % CMD_QUERIES.length].text
+
+        for (let c = 1; c <= query.length; c++) {
+          if (cancelled) return
+          setDisplayText(query.slice(0, c))
+          await wait(40)
+        }
+
+        if (cancelled) return
+        setShowResults(true)
+        await wait(1500)
+
+        if (cancelled) return
+        setShowResults(false)
+        await wait(300)
+
+        for (let c = query.length; c >= 0; c--) {
+          if (cancelled) return
+          setDisplayText(query.slice(0, c))
+          await wait(20)
+        }
+
+        if (cancelled) return
+        await wait(500)
+
+        i += 1
+        setQueryIndex(i % CMD_QUERIES.length)
+      }
+    }
+
+    run()
+    return () => { cancelled = true }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const results = CMD_QUERIES[queryIndex % CMD_QUERIES.length].results
+
+  return (
+    <TerminalCard>
+      <div className="px-4 py-3 flex items-center gap-2">
+        <span className="font-mono text-[13px] font-bold text-gold">CMD&gt;</span>
+        <span className="font-mono text-[13px] text-text-primary">
+          {displayText}
+          <span className="text-gold">▍</span>
+        </span>
+      </div>
+      <div
+        className="border-t border-gold/15 flex flex-col gap-2 px-4 transition-opacity duration-300"
+        style={{
+          opacity: showResults ? 1 : 0,
+          maxHeight: showResults ? 140 : 0,
+          paddingTop: showResults ? 12 : 0,
+          paddingBottom: showResults ? 12 : 0,
+          overflow: 'hidden',
+        }}
+      >
+        {results.map(([tag, text], i) => (
+          <div key={i} className="flex items-start gap-2 font-mono text-[11px]">
+            <span className="text-gold shrink-0">[{tag}]</span>
+            <span className="text-text-muted text-left">{text}</span>
+          </div>
+        ))}
+      </div>
+    </TerminalCard>
+  )
+}
+
 export default function Product() {
   useEffect(() => {
     document.title = 'Maddex — The Terminal'
@@ -653,7 +837,7 @@ export default function Product() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-14 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[140px] pb-14 px-6 md:px-10 text-center">
         <SectionLabel center>MADDEX TERMINAL</SectionLabel>
         <motion.h1
           initial={{ opacity: 0, y: 8 }}
@@ -787,15 +971,7 @@ export default function Product() {
           Type a ticker, a module name, or a plain-English question. The command bar routes it instantly.
         </p>
         <div className="max-w-[600px] mx-auto mt-10">
-          <TerminalCard>
-            <div className="px-4 py-3 flex items-center gap-2">
-              <span className="font-mono text-[13px] font-bold text-gold">CMD&gt;</span>
-              <span className="font-mono text-[13px] text-text-primary">
-                BHP.AX
-                <span className="text-gold">▍</span>
-              </span>
-            </div>
-          </TerminalCard>
+          <CommandBarDemo />
         </div>
       </section>
 

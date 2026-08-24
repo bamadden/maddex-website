@@ -110,7 +110,7 @@ export default function Pricing() {
       <TickerTape />
       <Navigation />
 
-      <section className="relative bg-bg-primary pt-[84px] pb-10 px-6 md:px-10 text-center overflow-hidden">
+      <section className="relative bg-bg-primary pt-[140px] pb-10 px-6 md:px-10 text-center overflow-hidden">
         <div className="relative" style={{ zIndex: 1 }}>
           <div className="hero-eyebrow">
             <span className="inline-block font-mono text-[10px] tracking-[0.1em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3.5 py-1.5 mb-5">

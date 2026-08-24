@@ -67,7 +67,7 @@ export default function Research() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[140px] pb-16 px-6 md:px-10 text-center">
         <span className="inline-block font-mono text-[9px] tracking-[0.15em] text-gold bg-gold/10 border border-gold/15 rounded-full px-3 py-1 mb-5">
           PHASE 3 · COMING SOON, 6–12 MONTHS OUT
         </span>
