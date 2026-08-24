@@ -496,7 +496,7 @@ export default function MaddenAI() {
               transition={{ duration: 0.2 }}
               whileHover={{ boxShadow: '0 0 20px rgba(201,168,76,0.1)' }}
               className="rounded p-6 min-h-[180px] transition-shadow"
-              style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.15)' }}
+              style={{ background: 'var(--bg)', border: '1px solid rgba(201,168,76,0.15)' }}
             >
               <span className="font-mono text-[9px] tracking-[0.25em] text-gold">QUANTITATIVE LAYER</span>
               <h3 className="font-sans text-[24px] font-bold tracking-[-0.02em] text-text-primary mt-3">Data Ingestion</h3>
@@ -522,7 +522,7 @@ export default function MaddenAI() {
               transition={{ duration: 0.5, delay: 0.15 }}
               whileHover={{ boxShadow: '0 0 20px rgba(201,168,76,0.1)' }}
               className="rounded p-6 min-h-[180px] transition-shadow"
-              style={{ background: 'var(--bg-primary)', border: '1px solid rgba(201,168,76,0.15)' }}
+              style={{ background: 'var(--bg)', border: '1px solid rgba(201,168,76,0.15)' }}
             >
               <span className="font-mono text-[9px] tracking-[0.25em] text-gold">AI LAYER</span>
               <h3 className="font-sans text-[24px] font-bold tracking-[-0.02em] text-text-primary mt-3">Weighted Synthesis</h3>

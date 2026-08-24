@@ -2,21 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Design tokens (--bg, --gold, --border, etc.) live in styles/design-system.css,
+   which loads before this file — the single source of truth for the palette. */
 :root {
-  --bg-primary: #060D1A;
-  --bg-surface: #0B1628;
-  --bg-elevated: #0F1E35;
-  --gold: #C9A84C;
-  --gold-bright: #E8C96A;
-  --gold-dim: rgba(201,168,76,0.12);
   --gold-glow: rgba(201,168,76,0.06);
-  --text-primary: #FFFFFF;
-  --text-secondary: #8BA3C4;
-  --text-muted: #4A6080;
-  --gain: #2D8A50;
-  --loss: #A83232;
-  --border: rgba(201,168,76,0.15);
-  --border-hover: rgba(201,168,76,0.4);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

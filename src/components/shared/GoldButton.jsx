@@ -10,13 +10,7 @@ export default function GoldButton({
   className = '',
   ...props
 }) {
-  const base =
-    'inline-flex items-center justify-center gap-2 font-mono text-[12px] font-bold tracking-[0.08em] transition-all duration-150 whitespace-nowrap'
-
-  const styles =
-    variant === 'solid'
-      ? 'bg-gold text-bg-primary hover:opacity-90'
-      : 'bg-transparent text-gold border border-[rgba(201,168,76,0.4)] hover:opacity-90 hover:border-[rgba(201,168,76,0.7)]'
+  const styles = variant === 'solid' ? 'btn-primary' : 'btn-secondary'
 
   // The inner span can be told to go full-width via a `w-full` class, but an
   // `inline-block` wrapper shrinks to fit its content regardless — a
@@ -28,8 +22,7 @@ export default function GoldButton({
   const content = (
     <motion.span
       whileTap={{ scale: 0.97 }}
-      className={`${base} ${styles} ${className}`}
-      style={{ padding: '14px 28px', borderRadius: 0 }}
+      className={`${styles} inline-flex items-center justify-center gap-2 ${className}`}
       {...props}
     >
       {children}

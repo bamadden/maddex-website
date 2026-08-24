@@ -20,7 +20,7 @@ const FAQS = [
   ['When do Research Notes and the Newsletter launch?', 'Research Notes are planned for Phase 2, roughly 3–6 months after Terminal launch. The MaddenAI Newsletter follows in Phase 3, roughly 6–12 months out. Pricing shown for both is indicative and may change before launch.'],
 ]
 
-function PlanCard({ plan, i, annual }) {
+function PlanCard({ plan, i, annual, isLast }) {
   const [hovered, setHovered] = useState(false)
   const isPrime = plan.popular
 
@@ -30,43 +30,30 @@ function PlanCard({ plan, i, annual }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ delay: i * 0.05, duration: 0.4 }}
-      className="relative rounded flex flex-col"
+      className={`relative flex flex-col border-b lg:border-b-0 lg:border-r ${isLast ? 'border-b-0 lg:border-r-0' : ''}`}
+      style={{
+        background: isPrime ? 'var(--surface-2)' : hovered ? 'var(--surface-2)' : 'var(--surface)',
+        borderColor: 'var(--border)',
+        padding: 'var(--space-8)',
+        transition: 'background 0.15s ease',
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {plan.popular && (
-        <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-bg-primary font-mono text-[11px] font-bold px-3 py-1 rounded-full whitespace-nowrap z-10">
+        <span
+          className="absolute top-6 right-6 bg-gold text-bg-primary font-mono text-[9px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap tracking-[0.05em]"
+        >
           {plan.badge}
         </span>
       )}
       {!plan.popular && plan.badge && (
-        <span className="absolute -top-3 right-6 border border-gold/40 bg-bg-primary text-gold font-mono text-[9px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap z-10 tracking-[0.05em]">
+        <span className="absolute top-6 right-6 border border-gold/40 bg-bg-primary text-gold font-mono text-[9px] font-bold px-2.5 py-1 rounded-full whitespace-nowrap tracking-[0.05em]">
           {plan.badge}
         </span>
       )}
-      <div
-        className="relative overflow-hidden rounded p-6 flex flex-col flex-1"
-        style={{
-          minHeight: 480,
-          background: hovered ? '#0F1E35' : '#0B1628',
-          border: `1px solid ${
-            isPrime
-              ? (hovered ? 'rgba(201,168,76,0.8)' : 'rgba(201,168,76,0.4)')
-              : (hovered ? 'rgba(201,168,76,0.5)' : 'rgba(201,168,76,0.15)')
-          }`,
-          transform: hovered ? `translateY(-4px)${isPrime ? ' scale(1.015)' : ''}` : 'translateY(0)',
-          boxShadow: hovered
-            ? (isPrime ? '0 12px 40px rgba(201,168,76,0.18)' : '0 8px 32px rgba(201,168,76,0.1)')
-            : 'none',
-          transition: 'all 0.2s ease',
-        }}
-      >
-        {plan.popular && (
-          <div
-            className="absolute inset-0 pointer-events-none card-shimmer-sweep-6s"
-            style={{ background: 'linear-gradient(110deg, transparent 40%, rgba(201,168,76,0.08) 50%, transparent 60%)' }}
-          />
-        )}
+
+      <div style={{ minHeight: 120 }}>
         <div className="font-mono text-[12px] tracking-wide text-gold">{plan.name}</div>
         <p className="font-sans text-[12px] text-text-muted mt-1 leading-snug">{plan.tagline}</p>
         <div className="mt-4">
@@ -83,19 +70,20 @@ function PlanCard({ plan, i, annual }) {
             </>
           )}
         </div>
-        <div className="flex flex-col mt-5 flex-1">
-          {plan.features.map((f) => (
-            <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2 py-2">
-              <span className="text-gain">✓</span>
-              {f}
-            </div>
-          ))}
-        </div>
-        <div className="mt-auto pt-6">
-          <GoldButton variant={plan.popular ? 'solid' : 'ghost'} className="!w-full">
-            START 7-DAY FREE TRIAL
-          </GoldButton>
-        </div>
+      </div>
+
+      <div className="flex flex-col mt-5 flex-1">
+        {plan.features.map((f) => (
+          <div key={f} className="font-sans text-[12px] text-text-muted flex gap-2 py-2">
+            <span className="text-gain">✓</span>
+            {f}
+          </div>
+        ))}
+      </div>
+      <div className="mt-auto pt-6">
+        <GoldButton variant={plan.popular ? 'solid' : 'ghost'} className="!w-full">
+          START 7-DAY FREE TRIAL
+        </GoldButton>
       </div>
     </motion.div>
   )
@@ -152,19 +140,16 @@ export default function Pricing() {
         </div>
 
         <div
-          className="mt-10 max-w-[1000px] mx-auto"
+          className="mt-10 max-w-[1000px] mx-auto grid grid-cols-1 lg:grid-cols-3 text-left"
           style={{
-            border: '1px solid rgba(201,168,76,0.15)',
-            borderRadius: '8px',
-            padding: '2px',
-            background: 'rgba(201,168,76,0.02)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--card-radius)',
+            overflow: 'hidden',
           }}
         >
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 text-left">
-            {TERMINAL_PLANS.map((plan, i) => (
-              <PlanCard key={plan.name} plan={plan} i={i} annual={annual} />
-            ))}
-          </div>
+          {TERMINAL_PLANS.map((plan, i) => (
+            <PlanCard key={plan.name} plan={plan} i={i} annual={annual} isLast={i === TERMINAL_PLANS.length - 1} />
+          ))}
         </div>
 
         <p className="font-mono text-[11px] text-text-muted max-w-2xl mx-auto mt-8 leading-[1.7]">
@@ -222,7 +207,7 @@ export default function Pricing() {
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
             A standalone product.
             <br />
-            <span className="whitespace-nowrap">Own inbox, own subscription.</span>
+            <span className="md:whitespace-nowrap">Own inbox, own subscription.</span>
           </h2>
           <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
             Free weekly brief for everyone, with paid tiers for daily briefings and the full monthly recap.
