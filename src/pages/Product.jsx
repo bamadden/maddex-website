@@ -7,7 +7,6 @@ import Footer from '../components/layout/Footer'
 import FinalCTA from '../components/home/FinalCTA'
 import SectionLabel from '../components/shared/SectionLabel'
 import GoldButton from '../components/shared/GoldButton'
-import TerminalCard from '../components/shared/TerminalCard'
 import FadeInSection from '../components/shared/FadeInSection'
 
 function MiniHeader({ label, right, accent }) {
@@ -798,32 +797,96 @@ function CommandBarDemo() {
   const results = CMD_QUERIES[queryIndex % CMD_QUERIES.length].results
 
   return (
-    <TerminalCard>
-      <div className="px-4 py-3 flex items-center gap-2">
-        <span className="font-mono text-[13px] font-bold text-gold">CMD&gt;</span>
-        <span className="font-mono text-[13px] text-text-primary">
-          {displayText}
-          <span className="text-gold">▍</span>
-        </span>
+    <div style={{
+      background: '#0B1628',
+      border: '1px solid rgba(201,168,76,0.2)',
+      borderRadius: '4px',
+      height: '320px',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+    }}>
+      {/* Search input row — fixed height */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        padding: '12px 16px',
+        borderBottom: '1px solid rgba(201,168,76,0.1)',
+        flexShrink: 0,
+      }}>
+        <span style={{ color: '#C9A84C', marginRight: 8, fontFamily: "'IBM Plex Mono', monospace", fontWeight: 'bold' }}>CMD&gt;</span>
+        <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '13px', color: '#E8EDF5' }}>{displayText}</span>
+        <span style={{
+          display: 'inline-block',
+          width: 2, height: 16,
+          background: '#C9A84C',
+          marginLeft: 2,
+          animation: 'blink-cursor 0.8s step-start infinite',
+        }} />
       </div>
-      <div
-        className="border-t border-gold/15 flex flex-col gap-2 px-4 transition-opacity duration-300"
-        style={{
-          opacity: showResults ? 1 : 0,
-          maxHeight: showResults ? 140 : 0,
-          paddingTop: showResults ? 12 : 0,
-          paddingBottom: showResults ? 12 : 0,
-          overflow: 'hidden',
-        }}
-      >
-        {results.map(([tag, text], i) => (
-          <div key={i} className="flex items-start gap-2 font-mono text-[11px]">
-            <span className="text-gold shrink-0">[{tag}]</span>
-            <span className="text-text-muted text-left">{text}</span>
+
+      {/* Results area — fixed height, content animates inside */}
+      <div style={{ flex: 1, overflow: 'hidden', padding: '8px 0' }}>
+        {showResults && results.map(([tag, text], i) => (
+          <div
+            key={i}
+            style={{
+              padding: '10px 16px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              opacity: showResults ? 1 : 0,
+              transition: 'opacity 0.3s ease',
+              transitionDelay: `${i * 0.05}s`,
+            }}
+          >
+            <span style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: '8px',
+              color: '#4A6080',
+              background: '#152540',
+              padding: '2px 6px',
+              borderRadius: '2px',
+              letterSpacing: '0.1em',
+              minWidth: '56px',
+              textAlign: 'center',
+              flexShrink: 0,
+            }}>{tag}</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '12px', color: '#E8EDF5', flex: 1, textAlign: 'left' }}>
+              {text}
+            </span>
           </div>
         ))}
+
+        {!showResults && (
+          <div style={{
+            padding: '24px 16px',
+            fontFamily: "'IBM Plex Mono', monospace",
+            fontSize: '10px',
+            color: '#4A6080',
+            letterSpacing: '0.1em',
+            textAlign: 'left',
+          }}>
+            TYPE TO SEARCH STOCKS, CRYPTO, FX, OR ASK MADDENAI
+          </div>
+        )}
       </div>
-    </TerminalCard>
+
+      {/* Footer — fixed height */}
+      <div style={{
+        padding: '8px 16px',
+        borderTop: '1px solid rgba(201,168,76,0.06)',
+        display: 'flex',
+        gap: '16px',
+        flexShrink: 0,
+      }}>
+        {['↵ select', 'esc close', '/ open'].map((hint) => (
+          <span key={hint} style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: '9px', color: '#4A6080' }}>
+            {hint}
+          </span>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -961,7 +1024,7 @@ export default function Product() {
         ))}
       </div>
 
-      <section className="bg-bg-primary py-24 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary py-24 px-6 md:px-10 text-center" style={{ minHeight: 620 }}>
         <SectionLabel center>COMMAND BAR</SectionLabel>
         <h2 className="font-sans text-[34px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-3xl mx-auto leading-tight">
           <span className="block md:whitespace-nowrap">Keyboard-driven command interface.</span>
@@ -970,7 +1033,7 @@ export default function Product() {
         <p className="font-sans text-[17px] text-text-muted max-w-xl mx-auto mt-4 leading-[1.75]">
           Type a ticker, a module name, or a plain-English question. The command bar routes it instantly.
         </p>
-        <div className="max-w-[600px] mx-auto mt-10">
+        <div className="max-w-[600px] mx-auto mt-10" style={{ minHeight: 320 }}>
           <CommandBarDemo />
         </div>
       </section>

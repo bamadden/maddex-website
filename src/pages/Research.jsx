@@ -9,48 +9,46 @@ import GoldButton from '../components/shared/GoldButton'
 import FadeInSection from '../components/shared/FadeInSection'
 import { NEWSLETTER_PLANS } from '../data/pricing'
 
-const FLIP_CARDS = [
-  { front: 'MADDENAI SENTIMENT', back: 'A weekly 0-100 sentiment score with a full factor breakdown — not just a number.' },
-  { front: 'KEY THEMES', back: 'The macro or market themes actually worth your attention that week, explained plainly.' },
-  { front: 'ASX WATCH LIST', back: 'A curated list of ASX names in focus, with the reasoning behind each inclusion.' },
-  { front: 'RBA CALENDAR', back: 'Every upcoming rate decision and data release that could move your portfolio.' },
+const NEWSLETTER_TILES = [
+  {
+    name: 'Free',
+    desc: 'Weekly market highlights delivered every Sunday. A curated snapshot of what moved markets and what to watch next week.',
+    badge: false,
+  },
+  {
+    name: 'Weekly Brief — A$19/mo',
+    desc: "Ben's personal Sunday evening read. 800-1,200 words covering the week's key themes, ASX outlook, and one macro idea to watch. Written in plain English, not corporate speak.",
+    badge: true,
+  },
+  {
+    name: 'Daily + Weekly — A$39/mo',
+    desc: 'Everything in Weekly, plus a 3-minute morning brief delivered by 7am AEST every weekday. What happened overnight, what it means for ASX, and one thing to watch today.',
+    badge: true,
+  },
+  {
+    name: 'Full Suite — A$59/mo',
+    desc: 'Daily brief, weekly deep-dive, and a monthly recap with one MaddenAI research note preview included. The complete picture, every week.',
+    badge: true,
+  },
 ]
 
-function FlipCard({ front, back, index }) {
-  const [flipped, setFlipped] = useState(false)
+function NewsletterTile({ name, desc, badge, index }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ delay: index * 0.1, duration: 0.4 }}
-      className="min-h-[180px] cursor-pointer"
-      style={{ perspective: 1000 }}
-      onClick={() => setFlipped((f) => !f)}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
+      transition={{ delay: index * 0.06, duration: 0.2 }}
+      className="relative flex flex-col h-full text-left"
+      style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--card-radius)', padding: 'var(--space-6, 24px)' }}
     >
-      <motion.div
-        className="relative w-full h-full"
-        style={{ transformStyle: 'preserve-3d' }}
-        animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.2 }}
-      >
-        <div
-          className="absolute inset-0 bg-bg-surface border border-gold/15 rounded p-5 flex flex-col items-center justify-center text-center gap-2"
-          style={{ backfaceVisibility: 'hidden' }}
-        >
-          <span className="text-gold text-[20px]">◆</span>
-          <span className="font-sans text-[16px] font-bold tracking-[-0.02em] text-text-primary">{front}</span>
-          <span className="font-mono text-[11px] tracking-wide text-gold">HOVER TO REVEAL</span>
-        </div>
-        <div
-          className="absolute inset-0 bg-bg-primary border border-gold/15 rounded p-5 flex items-center justify-center text-center"
-          style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-        >
-          <span className="font-sans text-[13px] text-text-muted leading-[1.7]">{back}</span>
-        </div>
-      </motion.div>
+      {badge && (
+        <span className="absolute top-4 right-4 font-mono text-[8px] font-bold tracking-[0.1em] text-gold bg-gold/10 border border-gold/30 rounded-full px-2 py-1">
+          COMING SOON
+        </span>
+      )}
+      <div className="font-sans text-[16px] font-semibold text-text-primary pr-24">{name}</div>
+      <p className="font-sans text-[13px] text-text-muted leading-[1.6] mt-3">{desc}</p>
     </motion.div>
   )
 }
@@ -133,14 +131,14 @@ export default function Research() {
       </FadeInSection>
 
       <FadeInSection className="bg-bg-primary py-24 px-6 md:px-10 text-center">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <SectionLabel center>WHAT'S INSIDE</SectionLabel>
+        <div className="max-w-[1000px] mx-auto text-center">
+          <SectionLabel center>MEMBERSHIP TIERS</SectionLabel>
           <h2 className="font-sans text-[32px] md:text-[56px] font-bold tracking-[-0.02em] text-text-primary max-w-2xl mx-auto leading-tight">
-            Four sections. Every issue. Hover to preview.
+            Four ways to stay informed.
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-9">
-            {FLIP_CARDS.map((card, i) => (
-              <FlipCard key={card.front} front={card.front} back={card.back} index={i} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-9 items-stretch">
+            {NEWSLETTER_TILES.map((tile, i) => (
+              <NewsletterTile key={tile.name} {...tile} index={i} />
             ))}
           </div>
         </div>
