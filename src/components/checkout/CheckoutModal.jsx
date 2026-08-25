@@ -1,5 +1,7 @@
 import { Fragment, useState } from 'react'
 
+const TERMINAL_URL = import.meta.env.VITE_TERMINAL_URL || 'https://app.maddex.com.au'
+
 const PLANS = {
   core: { name: 'Core', price: 29, currency: 'AUD' },
   prime: { name: 'Prime', price: 79, currency: 'AUD' },
@@ -274,7 +276,7 @@ function SuccessStep() {
       </p>
 
       <a
-        href="https://maddex-bqz544ywk-the-madden-group.vercel.app"
+        href={TERMINAL_URL}
         target="_blank"
         rel="noopener noreferrer"
         style={{
