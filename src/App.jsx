@@ -1,21 +1,24 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import { AnimatePresence, motion, MotionConfig } from 'framer-motion'
 import ScrollProgress from './components/shared/ScrollProgress'
 import BackToTop from './components/shared/BackToTop'
 import { CookieConsent } from './components/CookieConsent'
 import { CheckoutProvider } from './context/CheckoutContext'
 import { useAnalytics } from './hooks/useAnalytics'
-import Home from './pages/Home'
-import Product from './pages/Product'
-import MaddenAIPage from './pages/MaddenAI'
-import Pricing from './pages/Pricing'
-import About from './pages/About'
-import Research from './pages/Research'
-import ProfileSettings from './pages/ProfileSettings'
-import Privacy from './pages/Privacy'
-import Terms from './pages/Terms'
-import Disclaimer from './pages/Disclaimer'
+
+// Route-level code splitting — each page's JS only downloads when a visitor
+// navigates to it, instead of one ~800KB bundle shipping every page upfront.
+const Home = lazy(() => import('./pages/Home'))
+const Product = lazy(() => import('./pages/Product'))
+const MaddenAIPage = lazy(() => import('./pages/MaddenAI'))
+const Pricing = lazy(() => import('./pages/Pricing'))
+const About = lazy(() => import('./pages/About'))
+const Research = lazy(() => import('./pages/Research'))
+const ProfileSettings = lazy(() => import('./pages/ProfileSettings'))
+const Privacy = lazy(() => import('./pages/Privacy'))
+const Terms = lazy(() => import('./pages/Terms'))
+const Disclaimer = lazy(() => import('./pages/Disclaimer'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -48,10 +51,15 @@ function PageTransition({ children }) {
   )
 }
 
+function RouteFallback() {
+  return <div style={{ minHeight: '100vh', background: '#060D1A' }} />
+}
+
 function AnimatedRoutes() {
   const location = useLocation()
   return (
     <AnimatePresence mode="wait" initial={false}>
+      <Suspense fallback={<RouteFallback />}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/product" element={<PageTransition><Product /></PageTransition>} />
@@ -66,6 +74,7 @@ function AnimatedRoutes() {
         <Route path="/disclaimer" element={<PageTransition><Disclaimer /></PageTransition>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </Suspense>
     </AnimatePresence>
   )
 }
