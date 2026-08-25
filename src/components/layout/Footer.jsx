@@ -165,16 +165,14 @@ export default function Footer() {
 
         <div className="max-w-[1200px] mx-auto flex justify-center items-center gap-5 mt-9">
           {SOCIAL_LINKS.map(({ label, icon }) => (
-            <a
+            <span
               key={label}
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="text-text-muted hover:text-gold transition-colors"
+              aria-label={`${label} (coming soon)`}
+              title="Coming soon"
+              className="text-text-muted opacity-50 cursor-default"
             >
               {icon}
-            </a>
+            </span>
           ))}
         </div>
 

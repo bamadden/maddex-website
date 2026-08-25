@@ -14,7 +14,7 @@ export default function Disclaimer() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[140px] pb-16 px-6 md:px-10 text-center">
         <SectionLabel center>LEGAL</SectionLabel>
         <h1 className="font-sans text-[36px] md:text-[56px] font-extrabold leading-tight tracking-[-0.03em] text-text-primary max-w-3xl mx-auto">
           General Information Disclaimer
@@ -65,9 +65,26 @@ export default function Disclaimer() {
             </p>
           </div>
           <div>
+            <h2 className="font-sans text-[19px] font-bold text-gold">No responsibility for investment decisions</h2>
+            <p className="font-sans text-[15px] text-text-muted mt-3 leading-[1.8]">
+              Maddex, Madden Group Holdings Pty Ltd, and their directors and employees accept no
+              responsibility or liability for any loss or damage arising from any investment decision made in
+              reliance on information, data, or analysis provided through the platform. You are solely
+              responsible for your own investment decisions.
+            </p>
+          </div>
+          <div>
+            <h2 className="font-sans text-[19px] font-bold text-gold">Australian law</h2>
+            <p className="font-sans text-[15px] text-text-muted mt-3 leading-[1.8]">
+              This disclaimer and your use of Maddex are governed by the laws of Queensland, Australia.
+              Maddex does not hold an Australian Financial Services Licence and does not provide financial
+              product advice as defined under the Corporations Act 2001 (Cth).
+            </p>
+          </div>
+          <div>
             <h2 className="font-sans text-[19px] font-bold text-gold">Contact</h2>
             <p className="font-sans text-[15px] text-text-muted mt-3 leading-[1.8]">
-              Questions about this disclaimer can be sent to hello@maddex.com.au.
+              Questions about this disclaimer can be sent to ben@maddex.com.au.
             </p>
           </div>
         </div>

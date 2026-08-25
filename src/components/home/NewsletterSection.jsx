@@ -4,6 +4,7 @@ import SectionLabel from '../shared/SectionLabel'
 import SectionHeading from '../shared/SectionHeading'
 import SectionSubheading from '../shared/SectionSubheading'
 import GoldButton from '../shared/GoldButton'
+import { useAnalytics } from '../../hooks/useAnalytics'
 
 const TIERS = [
   {
@@ -27,6 +28,33 @@ const TIERS = [
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState('')
+  const [status, setStatus] = useState('idle')
+  // idle | sending | success | error
+  const [message, setMessage] = useState('')
+  const { trackEvent } = useAnalytics()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setStatus('sending')
+
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, product: 'newsletter', source: 'home_newsletter_section' }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to join waitlist')
+
+      setStatus('success')
+      setMessage(data.message || "You're on the list!")
+      trackEvent('newsletter_signup')
+      setEmail('')
+    } catch (err) {
+      setStatus('error')
+      setMessage(err.message)
+    }
+  }
 
   return (
     <section className="bg-bg-primary py-24 px-6 md:px-10">
@@ -72,16 +100,28 @@ export default function NewsletterSection() {
         </div>
 
         <div className="max-w-[440px] mx-auto mt-9">
-          <div className="flex gap-2">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
-              className="flex-1 font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/15 rounded px-4 py-3 outline-none focus:border-gold/40 transition-colors placeholder:text-text-faint"
-            />
-            <GoldButton>NOTIFY ME</GoldButton>
-          </div>
+          {status === 'success' ? (
+            <div className="font-mono text-[12px] text-gain border border-gain/30 bg-gain/10 rounded px-4 py-3">
+              ✓ {message}
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex gap-2">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="your@email.com"
+                className="flex-1 font-mono text-[12px] text-text-primary bg-bg-surface border border-gold/15 rounded px-4 py-3 outline-none focus:border-gold/40 transition-colors placeholder:text-text-faint"
+              />
+              <GoldButton type="submit" disabled={status === 'sending'}>
+                {status === 'sending' ? 'SENDING...' : 'NOTIFY ME'}
+              </GoldButton>
+            </form>
+          )}
+          {status === 'error' && (
+            <div className="font-mono text-[11px] text-loss mt-3">{message}</div>
+          )}
           <div className="font-mono text-[10px] text-text-faint mt-3">
             Pricing shown is indicative and may change before launch.
           </div>

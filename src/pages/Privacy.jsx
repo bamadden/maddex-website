@@ -7,7 +7,7 @@ import SectionLabel from '../components/shared/SectionLabel'
 const SECTIONS = [
   {
     title: '1. Who we are',
-    body: 'Maddex is operated by Madden Group Holdings Pty Ltd (ABN [XX XXX XXX XXX]), an Australian company. This policy explains how we collect, use, store, and protect your personal information when you use the Maddex website and the Maddex Terminal.',
+    body: 'Maddex is operated by Madden Group Holdings Pty Ltd (ABN pending registration), an Australian company. This policy explains how we collect, use, store, and protect your personal information when you use the Maddex website and the Maddex Terminal.',
   },
   {
     title: '2. Information we collect',
@@ -23,7 +23,7 @@ const SECTIONS = [
   },
   {
     title: '5. Third-party services',
-    body: 'Maddex relies on third-party providers for authentication, hosting, and market data (including but not limited to Supabase, Vercel, and financial data vendors). These providers process data on our behalf under their own privacy and security commitments.',
+    body: 'Maddex relies on third-party providers to operate the service: Supabase (authentication and data storage), Vercel (hosting), Stripe (payment processing, once subscriptions are live), Resend (transactional email), and Google Analytics (site usage analytics), alongside financial data vendors for market data. These providers process data on our behalf under their own privacy and security commitments, and payment details are handled directly by Stripe — Maddex does not store your card details.',
   },
   {
     title: '6. Your rights',
@@ -31,7 +31,7 @@ const SECTIONS = [
   },
   {
     title: '7. Cookies',
-    body: 'We use essential cookies and local storage to keep you signed in and to remember your preferences. We do not use third-party advertising trackers.',
+    body: 'We use essential cookies and local storage to keep you signed in and to remember your preferences. With your consent (via the cookie banner shown on your first visit), we also use Google Analytics to understand how the site is used. You can withdraw analytics consent at any time by clearing your browser’s local storage for this site and choosing "Essential Only" when the banner reappears. We do not use third-party advertising trackers.',
   },
   {
     title: '8. Changes to this policy',
@@ -39,7 +39,7 @@ const SECTIONS = [
   },
   {
     title: '9. Contact',
-    body: 'Questions about this policy can be sent to hello@maddex.com.au.',
+    body: 'Questions about this policy can be sent to ben@maddex.com.au.',
   },
 ]
 
@@ -53,7 +53,7 @@ export default function Privacy() {
       <TickerTape />
       <Navigation />
 
-      <section className="bg-bg-primary pt-[84px] pb-16 px-6 md:px-10 text-center">
+      <section className="bg-bg-primary pt-[140px] pb-16 px-6 md:px-10 text-center">
         <SectionLabel center>LEGAL</SectionLabel>
         <h1 className="font-sans text-[36px] md:text-[56px] font-extrabold leading-tight tracking-[-0.03em] text-text-primary max-w-3xl mx-auto">
           Privacy Policy
