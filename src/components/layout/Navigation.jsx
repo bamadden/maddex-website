@@ -191,7 +191,7 @@ export default function Navigation() {
 
         <button
           type="button"
-          className="lg:hidden text-gold text-2xl"
+          className="lg:hidden text-gold text-2xl w-11 h-11 flex items-center justify-center -mr-2.5"
           onClick={() => setMobileOpen(true)}
           aria-label="Open menu"
         >
@@ -212,7 +212,7 @@ export default function Navigation() {
               />
               <motion.div
                 initial={{ x: '100%' }}
-                animate={{ x: 0 }}
+                animate={{ x: '0%' }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'tween', duration: 0.25 }}
                 className="fixed top-0 right-0 bottom-0 w-[280px] bg-bg-surface border-l border-gold/15 z-[120] p-6 flex flex-col gap-6"

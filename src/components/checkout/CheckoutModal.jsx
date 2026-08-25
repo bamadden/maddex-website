@@ -72,6 +72,9 @@ export function CheckoutModal({ plan, onClose }) {
               background: 'none', border: 'none',
               color: '#637899', cursor: 'pointer',
               fontSize: '18px',
+              width: 44, height: 44,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              marginRight: -12,
             }}
           >✕</button>
         </div>
